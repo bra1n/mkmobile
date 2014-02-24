@@ -1,0 +1,18 @@
+<input ng-model="query" ng-change="search()" id="search">
+<button>Cancel</button>
+<div>
+  {{products.length}} Results
+  <select ng-model="sort">
+    <option value="name">Alphabetical</option>
+    <option value="expansion">Expansion</option>
+    <option value="rarity">Rarity</option>
+  </select>
+</div>
+<ul>
+  <li ng-repeat="product in products | filter:query | orderBy:sort">
+    <a href="#/products/{{product.idProduct}}">
+      <img src="" ng-src="/img/expansions/{{product.expansion | expansionIcon}}.png" title="{{product.expansion}}">
+      {{product.name[0].productName}} - {{product.rarity}}
+    </a>
+  </li>
+</ul>

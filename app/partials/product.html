@@ -1,0 +1,18 @@
+Here be product {{productId}}
+<ul>
+  <li ng-repeat="article in articles">
+    Language: {{article.language.languageName}}
+    Price: {{article.price}} &euro;
+    Count: {{article.count}}
+    Condition: {{article.condition}}
+    Flags:
+    <span ng-if="article.isFoil">Foil</span>
+    <span ng-if="article.isSigned">Signed</span>
+    <span ng-if="article.isAltered">Altered</span>
+    <span ng-if="article.isPlayset">Playset</span>
+    <button ng-click="article.showSeller = !article.showSeller">Seller</button>
+    <div class="ng-hide" ng-show="article.showSeller">
+      {{article.seller.username}} from {{article.seller.country}}
+    </div>
+  </li>
+</ul>
