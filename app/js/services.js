@@ -4,25 +4,49 @@ var mkmobileServices;
 mkmobileServices = angular.module('mkmobileServices', ['ngResource']);
 
 mkmobileServices.factory('MkmApi', [
-  '$resource', '$q', function($resource, $q) {
-    return $resource('/api.php', {}, {
+  '$resource', function($resource) {
+    return $resource('/api/:type/:param1/:param2/:param3/:param4', {}, {
       search: {
         method: 'GET',
         params: {
-          search: ""
+          type: "products",
+          param2: "1",
+          param3: "1",
+          param4: "false"
         },
-        cache: true,
         unique: true
       },
       articles: {
         method: 'GET',
         params: {
-          articles: ""
-        },
-        cache: true
+          type: "articles"
+        }
+      },
+      product: {
+        method: 'GET',
+        params: {
+          type: "product"
+        }
       }
     });
   }
 ]);
+
+mkmobileServices.factory('DataCache', function() {
+  var cache;
+  cache = {
+    product: {}
+  };
+  return {
+    product: function(id, data) {
+      if (data != null) {
+        cache.product[id] = data;
+      }
+      if (id != null) {
+        return cache.product[id];
+      }
+    }
+  };
+});
 
 //# sourceMappingURL=services.map

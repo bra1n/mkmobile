@@ -1,5 +1,6 @@
 mkmobileApp = angular.module 'mkmobileApp', [
   'ngRoute',
+  'ngAnimate',
   'mkmobileControllers',
   'mkmobileFilters',
   'mkmobileServices'
@@ -19,6 +20,9 @@ mkmobileApp.config ['$routeProvider', ($routeProvider) ->
 ]
 
 mkmobileApp.config ['$httpProvider', ($httpProvider) ->
+  $httpProvider.defaults.useXDomain = yes
+  $httpProvider.defaults.cache = yes
+  delete $httpProvider.defaults.headers.common['X-Requested-With']
   $httpProvider.interceptors.push ['$q', ($q) ->
     uniqueRequests = {}
     request: (config) ->

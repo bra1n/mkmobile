@@ -4,15 +4,17 @@ var mkmobileControllers;
 mkmobileControllers = angular.module('mkmobileControllers', []);
 
 mkmobileControllers.controller('SearchCtrl', [
-  '$scope', '$routeParams', '$location', 'MkmApi', function($scope, $routeParams, $location, MkmApi) {
+  '$scope', '$routeParams', '$location', 'MkmApi', 'DataCache', function($scope, $routeParams, $location, MkmApi, DataCache) {
     $scope.search = function() {
+      $scope.status = "loading";
       $location.search({
         query: $scope.query
       });
       return MkmApi.search({
-        search: $scope.query
+        param1: $scope.query
       }, function(data) {
         var product, _i, _len, _ref, _results;
+        $scope.status = "";
         if ((data != null ? data.product : void 0) == null) {
           return;
         }
@@ -22,7 +24,7 @@ mkmobileControllers.controller('SearchCtrl', [
         for (_i = 0, _len = _ref.length; _i < _len; _i++) {
           product = _ref[_i];
           if (product.category.idCategory === "1") {
-            _results.push($scope.products.push(product));
+            _results.push($scope.products.push(DataCache.product(product.idProduct, product)));
           }
         }
         return _results;
@@ -37,12 +39,22 @@ mkmobileControllers.controller('SearchCtrl', [
 ]);
 
 mkmobileControllers.controller('ProductCtrl', [
-  '$scope', '$routeParams', 'MkmApi', function($scope, $routeParams, MkmApi) {
+  '$scope', '$routeParams', 'MkmApi', 'DataCache', function($scope, $routeParams, MkmApi, DataCache) {
     $scope.productId = $routeParams.productId;
+    $scope.product = DataCache.product($scope.productId);
+    $scope.status = "loading";
+    if ($scope.product == null) {
+      MkmApi.product({
+        param1: $routeParams.productId
+      }, function(data) {
+        return $scope.product = DataCache.product($routeParams.productId, data.product);
+      });
+    }
     return MkmApi.articles({
-      articles: $routeParams.productId
+      param1: $routeParams.productId
     }, function(data) {
       var article, _i, _len, _ref, _results;
+      $scope.status = "";
       if ((data != null ? data.article : void 0) == null) {
         return;
       }

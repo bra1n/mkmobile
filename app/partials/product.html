@@ -1,5 +1,5 @@
-Here be product {{productId}}
-<ul>
+{{product.name[0].productName}} ({{productId}})<br/>
+<ul ng-class="status">
   <li ng-repeat="article in articles">
     Language: {{article.language.languageName}}
     Price: {{article.price}} &euro;
