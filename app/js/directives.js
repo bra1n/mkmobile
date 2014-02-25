@@ -6,12 +6,16 @@ mkmobileDirectives = angular.module('mkmobileDirectives', []);
 mkmobileDirectives.directive('infiniteScroll', function() {
   return {
     link: function(scope, elm, attr) {
-      var docElem;
+      var docElem, scrollHandler;
       docElem = document.documentElement;
-      return $(window).bind('scroll', function() {
+      scrollHandler = function() {
         if (docElem.scrollTop + docElem.clientHeight - elm[0].offsetTop >= elm[0].scrollHeight) {
           return scope.$apply(attr.infiniteScroll);
         }
+      };
+      $(window).bind('scroll', scrollHandler);
+      return scope.$on('$destroy', function() {
+        return $(window).unbind('scroll', scrollHandler);
       });
     }
   };
