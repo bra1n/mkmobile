@@ -6,6 +6,26 @@ ul, li {
   padding: 0;
   margin: 0; }
 
+header {
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100%;
+  top: -1px;
+  padding-top: 1px;
+  background: white;
+  z-index: 1000; }
+
+footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100%;
+  bottom: -1px;
+  padding-bottom: 1px;
+  background: white;
+  z-index: 1000; }
+
 .loading {
   position: relative;
   background: red; }
@@ -15,7 +35,9 @@ ul, li {
     color: red; }
 
 .container {
-  position: relative; }
+  position: relative;
+  margin-bottom: 35px;
+  margin-top: 35px; }
   .container .content.ng-enter, .container .content.ng-leave {
     -webkit-transition: 0.5s linear all;
     -moz-transition: 0.5s linear all;

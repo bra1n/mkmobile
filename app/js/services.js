@@ -28,7 +28,7 @@ mkmobileServices.factory('MkmApi', [
           if (headers()['range'] != null) {
             response.count = headers()['range'].replace(/^.*\//g, '');
           } else {
-            response.count = response['article'].length();
+            response.count = response['article'].length;
           }
           return response;
         }

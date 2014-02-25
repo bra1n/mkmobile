@@ -18,7 +18,7 @@ mkmobileServices.factory 'MkmApi', ['$resource', ($resource) ->
         if headers()['range']?
           response.count = headers()['range'].replace /^.*\//g, ''
         else
-          response.count = response['article'].length()
+          response.count = response['article'].length
         response
 
     product:
