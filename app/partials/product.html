@@ -1,8 +1,9 @@
 {{product.name[0].productName}} ({{productId}})<br/>
-<ul ng-class="status">
-  <li ng-repeat="article in articles">
+{{data.count}}
+<ul ng-class="{loading:!data}">
+  <li ng-repeat="article in data.article">
     Language: {{article.language.languageName}}
-    Price: {{article.price}} &euro;
+    Price: {{article.price | currency:"€"}}
     Count: {{article.count}}
     Condition: {{article.condition}}
     Flags:

@@ -1,9 +1,10 @@
 mkmobileApp = angular.module 'mkmobileApp', [
-  'ngRoute',
-  'ngAnimate',
-  'mkmobileControllers',
-  'mkmobileFilters',
+  'ngRoute'
+  'ngAnimate'
+  'mkmobileControllers'
+  'mkmobileFilters'
   'mkmobileServices'
+  'mkmobileDirectives'
 ]
 
 mkmobileApp.config ['$routeProvider', ($routeProvider) ->
@@ -29,7 +30,7 @@ mkmobileApp.config ['$httpProvider', ($httpProvider) ->
       if config.unique
         uniqueRequests[config.unique]?.resolve()
         uniqueRequests[config.unique] = $q.defer()
-        config.timeout = uniqueRequests[config.unique].promise;
+        config.timeout = uniqueRequests[config.unique].promise
       config or $q.when(config)
   ]
 ]

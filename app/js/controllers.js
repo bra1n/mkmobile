@@ -6,7 +6,6 @@ mkmobileControllers = angular.module('mkmobileControllers', []);
 mkmobileControllers.controller('SearchCtrl', [
   '$scope', '$routeParams', '$location', 'MkmApi', 'DataCache', function($scope, $routeParams, $location, MkmApi, DataCache) {
     $scope.search = function() {
-      $scope.status = "loading";
       $location.search({
         query: $scope.query
       });
@@ -14,7 +13,6 @@ mkmobileControllers.controller('SearchCtrl', [
         param1: $scope.query
       }, function(data) {
         var product, _i, _len, _ref, _results;
-        $scope.status = "";
         if ((data != null ? data.product : void 0) == null) {
           return;
         }
@@ -42,7 +40,6 @@ mkmobileControllers.controller('ProductCtrl', [
   '$scope', '$routeParams', 'MkmApi', 'DataCache', function($scope, $routeParams, MkmApi, DataCache) {
     $scope.productId = $routeParams.productId;
     $scope.product = DataCache.product($scope.productId);
-    $scope.status = "loading";
     if ($scope.product == null) {
       MkmApi.product({
         param1: $routeParams.productId
@@ -50,22 +47,8 @@ mkmobileControllers.controller('ProductCtrl', [
         return $scope.product = DataCache.product($routeParams.productId, data.product);
       });
     }
-    return MkmApi.articles({
+    return $scope.data = MkmApi.articles({
       param1: $routeParams.productId
-    }, function(data) {
-      var article, _i, _len, _ref, _results;
-      $scope.status = "";
-      if ((data != null ? data.article : void 0) == null) {
-        return;
-      }
-      $scope.articles = [];
-      _ref = [].concat(data.article);
-      _results = [];
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        article = _ref[_i];
-        _results.push($scope.articles.push(article));
-      }
-      return _results;
     });
   }
 ]);

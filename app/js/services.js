@@ -5,7 +5,7 @@ mkmobileServices = angular.module('mkmobileServices', ['ngResource']);
 
 mkmobileServices.factory('MkmApi', [
   '$resource', function($resource) {
-    return $resource('/api/:type/:param1/:param2/:param3/:param4', {}, {
+    return $resource('/api/:type/:param1/:param2/:param3/:param4/:param5', {}, {
       search: {
         method: 'GET',
         params: {
@@ -20,6 +20,17 @@ mkmobileServices.factory('MkmApi', [
         method: 'GET',
         params: {
           type: "articles"
+        },
+        transformResponse: function(data, headers) {
+          var response;
+          response = angular.fromJson(data);
+          response.article = [].concat(response.article);
+          if (headers()['range'] != null) {
+            response.count = headers()['range'].replace(/^.*\//g, '');
+          } else {
+            response.count = response['article'].length();
+          }
+          return response;
         }
       },
       product: {
