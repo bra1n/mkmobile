@@ -12,7 +12,7 @@ mkmobileControllers.controller('SearchCtrl', [
       return MkmApi.search({
         param1: $scope.query
       }, function(data) {
-        var product, _i, _len, _ref, _results;
+        var product, _i, _len, _ref, _ref1, _results;
         if ((data != null ? data.product : void 0) == null) {
           return;
         }
@@ -21,7 +21,7 @@ mkmobileControllers.controller('SearchCtrl', [
         _results = [];
         for (_i = 0, _len = _ref.length; _i < _len; _i++) {
           product = _ref[_i];
-          if (product.category.idCategory === "1") {
+          if (((_ref1 = product.category) != null ? _ref1.idCategory : void 0) === "1") {
             _results.push($scope.products.push(DataCache.product(product.idProduct, product)));
           }
         }
@@ -38,8 +38,7 @@ mkmobileControllers.controller('SearchCtrl', [
 
 mkmobileControllers.controller('ProductCtrl', [
   '$scope', '$routeParams', 'MkmApi', 'DataCache', function($scope, $routeParams, MkmApi, DataCache) {
-    $scope.productId = $routeParams.productId;
-    $scope.product = DataCache.product($scope.productId);
+    $scope.product = DataCache.product($routeParams.productId);
     if ($scope.product == null) {
       MkmApi.product({
         param1: $routeParams.productId
@@ -47,9 +46,25 @@ mkmobileControllers.controller('ProductCtrl', [
         return $scope.product = DataCache.product($routeParams.productId, data.product);
       });
     }
-    return $scope.data = MkmApi.articles({
+    $scope.data = MkmApi.articles({
       param1: $routeParams.productId
     });
+    return $scope.loadArticles = function() {
+      var _ref;
+      if (!(((_ref = $scope.data) != null ? _ref.count : void 0) > 100 && $scope.data.article.length < $scope.data.count)) {
+        return;
+      }
+      if ($scope.running != null) {
+        return;
+      }
+      return $scope.running = MkmApi.articles({
+        param1: $routeParams.productId,
+        param2: $scope.data.article.length + 1
+      }, function(data) {
+        $scope.running = null;
+        return $scope.data.article = $scope.data.article.concat(data.article);
+      });
+    };
   }
 ]);
 

@@ -1,6 +1,6 @@
-{{product.name[0].productName}} ({{productId}})<br/>
+{{product.name[0].productName}}<br/>
 {{data.count}}
-<ul ng-class="{loading:!data}">
+<ul ng-class="{loading:!data.article || running}" data-infinite-scroll="loadArticles()">
   <li ng-repeat="article in data.article">
     Language: {{article.language.languageName}}
     Price: {{article.price | currency:"€"}}
@@ -17,3 +17,5 @@
     </div>
   </li>
 </ul>
+<br/>
+<br/>

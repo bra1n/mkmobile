@@ -3,14 +3,14 @@ var mkmobileDirectives;
 
 mkmobileDirectives = angular.module('mkmobileDirectives', []);
 
-mkmobileDirectives.directive('whenScrolled', function() {
+mkmobileDirectives.directive('infiniteScroll', function() {
   return {
     link: function(scope, elm, attr) {
-      var raw;
-      raw = elm[0];
-      return elm.bind('scroll', function() {
-        if (raw.scrollTop + raw.offsetHeight >= raw.scrollHeight) {
-          return scope.$apply(attr.whenScrolled);
+      var docElem;
+      docElem = document.documentElement;
+      return $(window).bind('scroll', function() {
+        if (docElem.scrollTop + docElem.clientHeight - elm[0].offsetTop >= elm[0].scrollHeight) {
+          return scope.$apply(attr.infiniteScroll);
         }
       });
     }
