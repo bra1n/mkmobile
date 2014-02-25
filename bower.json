@@ -1,0 +1,27 @@
+{
+  "name": "mkmobile",
+  "version": "0.0.2",
+  "homepage": "https://github.com/bra1n/mkmobile",
+  "authors": [
+    "Steffen Baumgart <steffen@baumgart.biz>"
+  ],
+  "main": "app/index.html",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/lib",
+    "test",
+    "tests"
+  ],
+  "description": "MKMobile App",
+  "dependencies": {
+    "jquery": "~2.1.0",
+    "angular-animate": "~1.2.13",
+    "angular-resource": "~1.2.13",
+    "angular-route": "~1.2.13",
+    "normalize-css": "~3.0.0"
+  }
+}
