@@ -5,7 +5,9 @@ mkmobileServices = angular.module('mkmobileServices', ['ngResource']);
 
 mkmobileServices.factory('MkmApi', [
   '$resource', function($resource) {
-    return $resource('/api/:type/:param1/:param2/:param3/:param4/:param5', {}, {
+    var apiURL;
+    apiURL = '/api';
+    return $resource(apiURL + '/:type/:param1/:param2/:param3/:param4/:param5', {}, {
       search: {
         method: 'GET',
         params: {
@@ -14,24 +16,14 @@ mkmobileServices.factory('MkmApi', [
           param3: "1",
           param4: "false"
         },
-        unique: true
+        unique: "search"
       },
       articles: {
         method: 'GET',
         params: {
           type: "articles"
         },
-        transformResponse: function(data, headers) {
-          var response;
-          response = angular.fromJson(data);
-          response.article = [].concat(response.article);
-          if (headers()['range'] != null) {
-            response.count = headers()['range'].replace(/^.*\//g, '');
-          } else {
-            response.count = response['article'].length;
-          }
-          return response;
-        }
+        cache: false
       },
       product: {
         method: 'GET',
@@ -43,21 +35,25 @@ mkmobileServices.factory('MkmApi', [
   }
 ]);
 
-mkmobileServices.factory('DataCache', function() {
-  var cache;
-  cache = {
-    product: {}
-  };
-  return {
-    product: function(id, data) {
-      if (data != null) {
-        cache.product[id] = data;
+mkmobileServices.factory('DataCache', [
+  '$cacheFactory', function($cacheFactory) {
+    var cache;
+    cache = {
+      product: $cacheFactory('products', {
+        capacity: 500
+      })
+    };
+    return {
+      product: function(id, data) {
+        if (data != null) {
+          cache.product.put(id, data);
+        }
+        if (id != null) {
+          return cache.product.get(id);
+        }
       }
-      if (id != null) {
-        return cache.product[id];
-      }
-    }
-  };
-});
+    };
+  }
+]);
 
 //# sourceMappingURL=services.map

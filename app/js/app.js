@@ -4,16 +4,19 @@ var mkmobileApp;
 mkmobileApp = angular.module('mkmobileApp', ['ngRoute', 'ngAnimate', 'mkmobileControllers', 'mkmobileFilters', 'mkmobileServices', 'mkmobileDirectives']);
 
 mkmobileApp.config([
-  '$routeProvider', function($routeProvider) {
-    return $routeProvider.when('/search', {
-      templateUrl: 'partials/search.html',
+  '$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
+    $locationProvider.html5Mode(true);
+    return $routeProvider.when('/login', {
+      "class": 'login',
+      templateUrl: '/partials/login.html',
       controller: 'SearchCtrl',
       reloadOnSearch: false
-    }).when('/products/:productId', {
-      templateUrl: 'partials/product.html',
+    }).when('/product/:productId', {
+      "class": 'product',
+      templateUrl: '/partials/product.html',
       controller: 'ProductCtrl'
     }).otherwise({
-      redirectTo: '/search'
+      redirectTo: '/login'
     });
   }
 ]);
@@ -42,6 +45,14 @@ mkmobileApp.config([
         };
       }
     ]);
+  }
+]);
+
+mkmobileApp.run([
+  '$rootScope', function($rootScope) {
+    return $rootScope.$on('$routeChangeSuccess', function(event, current, previous) {
+      return $rootScope.viewClass = current.$$route["class"];
+    });
   }
 ]);
 

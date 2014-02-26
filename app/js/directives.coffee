@@ -1,7 +1,7 @@
 mkmobileDirectives = angular.module 'mkmobileDirectives', []
 
 # infinite scrolling
-mkmobileDirectives.directive 'infiniteScroll', () ->
+mkmobileDirectives.directive 'infiniteScroll', ->
   link: (scope, elm, attr) ->
     docElem = document.documentElement
     scrollHandler = ->

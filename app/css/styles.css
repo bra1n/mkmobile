@@ -16,6 +16,10 @@ header {
   background: white;
   z-index: 1000; }
 
+article {
+  margin-bottom: 35px;
+  margin-top: 35px; }
+
 footer {
   position: fixed;
   left: 0;
@@ -34,11 +38,14 @@ footer {
     position: absolute;
     color: red; }
 
-.container {
-  position: relative;
-  margin-bottom: 35px;
-  margin-top: 35px; }
-  .container .content.ng-enter, .container .content.ng-leave {
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+  height: 20px; }
+
+#container {
+  position: relative; }
+  #container #content.ng-enter, #container #content.ng-leave {
     -webkit-transition: 0.5s linear all;
     -moz-transition: 0.5s linear all;
     -ms-transition: 0.5s linear all;
@@ -47,12 +54,27 @@ footer {
     position: absolute;
     top: 0;
     left: 0;
+    right: 0;
+    width: 100%;
     background: white; }
-  .container .content.ng-enter {
+  #container #content.ng-enter {
     opacity: 0; }
-  .container .content.ng-enter.ng-enter-active {
+  #container #content.ng-enter.ng-enter-active {
     opacity: 1; }
-  .container .content.ng-leave {
+  #container #content.ng-leave {
     opacity: 1; }
-  .container .content.ng-leave.ng-leave-active {
+  #container #content.ng-leave.ng-leave-active {
     opacity: 0; }
+
+#content.login form {
+  position: fixed; }
+  #content.login form input, #content.login form button {
+    display: block; }
+#content.login aside {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.75);
+  width: 100%;
+  z-index: 10; }
+
+#content.product .icon.comment {
+  cursor: pointer; }

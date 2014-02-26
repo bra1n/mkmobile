@@ -1,21 +1,45 @@
-{{product.name[0].productName}}<br/>
-{{data.count}}
-<ul ng-class="{loading:!data.article || running}" data-infinite-scroll="loadArticles()">
-  <li ng-repeat="article in data.article">
-    Language: {{article.language.languageName}}
-    Price: {{article.price | currency:"€"}}
-    Count: {{article.count}}
-    Condition: {{article.condition}}
-    Flags:
-    <span ng-if="article.isFoil">Foil</span>
-    <span ng-if="article.isSigned">Signed</span>
-    <span ng-if="article.isAltered">Altered</span>
-    <span ng-if="article.isPlayset">Playset</span>
-    <button ng-click="article.showSeller = !article.showSeller">Seller</button>
-    <div class="ng-hide" ng-show="article.showSeller">
-      {{article.seller.username}} from {{article.seller.country}}
-    </div>
-  </li>
-</ul>
-<br/>
-<br/>
+<header>
+  {{product.name[0].productName}}
+  {{product.number}}
+  <span class="icon expansion expansion-{{product.expansion | expansionIcon}}"></span>
+  {{product.rarity}}
+  <div class="slider" ng-show="slider">
+    <img src="" ng-src="//www.mkmapi.eu/{{product.image}}">
+    Price Tendency: {{product.tendency}}<br/>
+    Available Items: {{count}}<br/>
+    From (EX+): {{product.priceGuide.LOW | currency:"€"}}<br/>
+    Average price (EX+): {{product.priceGuide.AVG | currency:"€"}}<br/>
+    Available foils: {{product.foils}}<br/>
+    Foils from: {{product.priceGuide.FOIL | currency:"€"}}
+  </div>
+  <span class="slider-toggle" ng-click="slider=!slider">Toggle</span>
+</header>
+<article>
+  <span ng-show="data.article && !count">No Offers :(</span>
+  <ul ng-class="{loading:!data.article || running}" data-infinite-scroll="loadArticles()">
+    <li ng-repeat="article in data.article">
+      <button ng-click="article.showSeller = !article.showSeller">+</button>
+      {{article.seller.username}}
+      {{article.language.idLanguage}}
+      {{article.condition}}
+      {{article.isFoil}}
+      {{article.isSigned}}
+      {{article.isPlayset}}
+      {{article.isAltered}}
+      <span class="icon comment" ng-hide="!article.comments" ng-click="article.showComment = !article.showComment"></span>
+      <span class="price">{{article.price | currency:"€"}}</span>
+      <span class="count">{{article.count}}</span>
+      <button>Cart</button>
+      <div class="comment" ng-hide="!article.showComment">
+        {{article.comments}}
+      </div>
+      <div class="seller" ng-hide="!article.showSeller">
+        (123)
+        {{article.seller.country}}
+        {{article.seller.reputation}}
+        {{article.seller.isCommercial}}
+        {{article.seller.speed}}
+      </div>
+    </li>
+  </ul>
+</article>

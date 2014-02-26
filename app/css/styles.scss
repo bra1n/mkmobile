@@ -1,3 +1,4 @@
+// General styling
 a {
   text-decoration: none;
 }
@@ -16,6 +17,11 @@ header {
   padding-top: 1px;
   background: white;
   z-index: 1000;
+}
+
+article {
+  margin-bottom: 35px;
+  margin-top: 35px;
 }
 
 footer {
@@ -39,16 +45,23 @@ footer {
   }
 }
 
-.container {
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+  height: 20px;
+}
+
+// Transition between screens
+#container {
   position: relative;
-  margin-bottom: 35px;
-  margin-top: 35px;
-  .content {
+  #content {
     &.ng-enter, &.ng-leave {
       -webkit-transition: 0.5s linear all;-moz-transition: 0.5s linear all;-ms-transition: 0.5s linear all;-o-transition: 0.5s linear all;transition: 0.5s linear all;
       position: absolute;
       top: 0;
       left: 0;
+      right: 0;
+      width: 100%;
       background: white;
     }
     &.ng-enter { opacity:0; }
@@ -56,4 +69,24 @@ footer {
     &.ng-leave { opacity:1; }
     &.ng-leave.ng-leave-active { opacity:0; }
   }
+}
+
+// Styling per Screen
+#content.login {
+  form {
+    // login form
+    position: fixed;
+    input, button { display: block; }
+  }
+  aside {
+    // search results
+    position: absolute;
+    background: rgba(255,255,255,0.75);
+    width: 100%;
+    z-index: 10;
+  }
+}
+
+#content.product {
+  .icon.comment { cursor:pointer; }
 }
