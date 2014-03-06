@@ -4,12 +4,11 @@ var mkmobileServices;
 mkmobileServices = angular.module('mkmobileServices', ['ngResource']);
 
 mkmobileServices.factory('MkmApi', [
-  '$resource', function($resource) {
-    var apiURL;
+  '$resource', '$location', 'DataCache', function($resource, $location, DataCache) {
+    var api, apiURL, loggedIn, parseRangeHeader, redirectAfterLogin;
     apiURL = '/api';
-    return $resource(apiURL + '/:type/:param1/:param2/:param3/:param4/:param5', {}, {
+    api = $resource(apiURL + '/:type/:param1/:param2/:param3/:param4/:param5', {}, {
       search: {
-        method: 'GET',
         params: {
           type: "products",
           param2: "1",
@@ -19,19 +18,102 @@ mkmobileServices.factory('MkmApi', [
         unique: "search"
       },
       articles: {
-        method: 'GET',
         params: {
           type: "articles"
         },
         cache: false
       },
       product: {
-        method: 'GET',
         params: {
           type: "product"
         }
       }
     });
+    parseRangeHeader = function(headers) {
+      if (headers().range != null) {
+        return parseInt(headers().range.replace(/^.*\//, ''), 10);
+      } else {
+        return 0;
+      }
+    };
+    loggedIn = false;
+    redirectAfterLogin = false;
+    return {
+      search: function(query, response) {
+        if (response == null) {
+          response = {
+            count: 0,
+            products: []
+          };
+        }
+        response.loading = true;
+        api.search({
+          param1: query,
+          param5: response.products.length + 1
+        }, function(data, headers) {
+          var _ref, _ref1;
+          if ((_ref = data.product) != null) {
+            _ref.map(function(val) {
+              return DataCache.product(val.idProduct, val);
+            });
+          }
+          response.count = parseRangeHeader(headers) || ((_ref1 = data.product) != null ? _ref1.length : void 0);
+          if (response.count) {
+            response.products = response.products.concat(data.product);
+          }
+          return response.loading = false;
+        });
+        return response;
+      },
+      product: function(id) {
+        var response;
+        response = {
+          product: DataCache.product(id)
+        };
+        if (response.product == null) {
+          api.product({
+            param1: id
+          }, function(data) {
+            return response.product = DataCache.product(id, data.product);
+          });
+        }
+        return response;
+      },
+      articles: function(id, response) {
+        if (response == null) {
+          response = {
+            count: 0,
+            articles: []
+          };
+        }
+        response.loading = true;
+        api.articles({
+          param1: id,
+          param2: response.articles.length + 1
+        }, function(data, headers) {
+          var _ref;
+          response.count = parseRangeHeader(headers) || ((_ref = data.article) != null ? _ref.length : void 0);
+          if (response.count) {
+            response.articles = response.articles.concat(data.article);
+          }
+          return response.loading = false;
+        });
+        return response;
+      },
+      isLoggedIn: function() {
+        if (!loggedIn) {
+          redirectAfterLogin = $location.path();
+          $location.path('/login');
+        }
+        return loggedIn;
+      },
+      login: function() {
+        loggedIn = true;
+        if (redirectAfterLogin) {
+          return $location.path(redirectAfterLogin);
+        }
+      }
+    };
   }
 ]);
 

@@ -69,13 +69,14 @@ footer {
   #container #content.ng-leave.ng-leave-active {
     opacity: 0; }
 
-#content.login form {
+#content.login article {
   position: fixed; }
-  #content.login form input, #content.login form button {
+  #content.login article input, #content.login article button {
     display: block; }
 #content.login aside {
   position: absolute;
-  background: rgba(255, 255, 255, 0.75);
+  top: 30px;
+  background-color: rgba(255, 255, 255, 0.75);
   width: 100%;
   z-index: 10; }
 
@@ -89,10 +90,12 @@ footer {
   transition: 0.5s linear all;
   position: fixed;
   bottom: 100%;
-  margin-bottom: -20px;
+  margin-bottom: -30px;
+  padding-bottom: 10px;
   background: white;
   width: 100%;
-  height: 100%; }
+  height: 100%;
+  overflow: hidden; }
   #content.product aside.slider.open {
     bottom: 30px; }
   #content.product aside.slider .content {
@@ -110,7 +113,7 @@ footer {
     background: grey;
     cursor: s-resize;
     position: absolute;
-    bottom: -10px; }
+    bottom: 0; }
   #content.product aside.slider.open .toggle {
     cursor: n-resize; }
 #content.product article .icon.ng-hide {

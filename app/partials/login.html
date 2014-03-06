@@ -2,28 +2,28 @@
   <input ng-model="query" ng-change="search()" id="search">
   <button ng-show="query" ng-click="query = null">X</button>
 </header>
+<aside class="results" ng-show="query">
+  {{data.count}} Results
+  <select ng-model="sort" ng-show="data.count > 0">
+    <option value="name">Alphabetical</option>
+    <option value="expansion">Expansion</option>
+    <option value="rarity">Rarity</option>
+  </select>
+  <ul ng-class="{loading:data.loading}" data-infinite-scroll="loadResults()">
+    <li ng-repeat="product in data.products | orderBy:sort">
+      <a href="/product/{{product.idProduct}}">
+        <span class="icon expansion expansion-{{product.expansion | expansionIcon}}"></span>
+        <span class="icon rarity rarity-{{product.rarity}}" ng-show="product.rarity"></span>
+        {{product.name[0].productName}}
+      </a>
+    </li>
+  </ul>
+</aside>
 <article>
   <form>
     <img src="/img/logo.jpg" alt="Logo"/>
     <input type="text" name="username" placeholder="username"/>
     <input type="password" name="password" placeholder="password"/>
-    <button>Log In</button>
+    <button ng-click="login()">Log In</button>
   </form>
-  <aside class="results" ng-show="query">
-    {{count}} Results
-    <select ng-model="sort" ng-show="count > 0">
-      <option value="name">Alphabetical</option>
-      <option value="expansion">Expansion</option>
-      <option value="rarity">Rarity</option>
-    </select>
-    <ul ng-class="{loading:running}" data-infinite-scroll="loadResults()">
-      <li ng-repeat="product in data.product | orderBy:sort">
-        <a href="/product/{{product.idProduct}}">
-          <span class="icon expansion expansion-{{product.expansion | expansionIcon}}"></span>
-          <span class="icon rarity rarity-{{product.rarity}}" ng-show="product.rarity"></span>
-          {{product.name[0].productName}}
-        </a>
-      </li>
-    </ul>
-  </aside>
 </article>

@@ -4,86 +4,48 @@ var mkmobileControllers;
 mkmobileControllers = angular.module('mkmobileControllers', []);
 
 mkmobileControllers.controller('SearchCtrl', [
-  '$scope', '$routeParams', '$location', 'MkmApi', 'DataCache', function($scope, $routeParams, $location, MkmApi, DataCache) {
+  '$scope', '$routeParams', '$location', 'MkmApi', function($scope, $routeParams, $location, MkmApi) {
     $scope.search = function() {
-      $location.search({
-        search: $scope.query
-      });
       if (!$scope.query) {
         return;
       }
-      return $scope.running = MkmApi.search({
-        param1: $scope.query
-      }, function(data, headers) {
-        var _ref, _ref1;
-        $scope.data = data;
-        $scope.running = null;
-        if ((_ref = data.product) != null) {
-          _ref.map(function(val) {
-            return DataCache.product(val.idProduct, val);
-          });
-        }
-        $scope.count = headers().range != null ? headers().range.replace(/^.*\//, '') : ((_ref1 = $scope.data.product) != null ? _ref1.length : void 0) || 0;
-        if (!$scope.count) {
-          return $scope.data.product = [];
-        }
+      $location.search({
+        search: $scope.query
       });
+      return $scope.data = MkmApi.search($scope.query);
     };
-    $scope.count = 0;
     $scope.query = $routeParams.search;
     $scope.search();
     $scope.sort = "name";
-    return $scope.loadResults = function() {
-      if (!($scope.count > 100 && $scope.data.product.length < $scope.count)) {
+    $scope.loadResults = function() {
+      if ($scope.data.products.length >= $scope.data.count || $scope.data.loading) {
         return;
       }
-      if ($scope.running != null) {
-        return;
-      }
-      return $scope.running = MkmApi.search({
-        param1: $scope.query,
-        param5: $scope.data.product.length + 1
-      }, function(data) {
-        var _ref;
-        $scope.running = null;
-        return $scope.data.product = $scope.data.product.concat((_ref = data.product) != null ? _ref.map(function(val) {
-          return DataCache.product(val.idProduct, val);
-        }) : void 0);
-      });
+      return MkmApi.search($scope.query, $scope.data);
+    };
+    return $scope.login = function() {
+      console.log("logging in");
+      return MkmApi.login();
     };
   }
 ]);
 
 mkmobileControllers.controller('ProductCtrl', [
-  '$scope', '$routeParams', 'MkmApi', 'DataCache', function($scope, $routeParams, MkmApi, DataCache) {
-    $scope.product = DataCache.product($routeParams.productId);
-    if ($scope.product == null) {
-      MkmApi.product({
-        param1: $routeParams.productId
-      }, function(data) {
-        return $scope.product = DataCache.product($routeParams.productId, data.product);
-      });
-    }
-    $scope.data = MkmApi.articles({
-      param1: $routeParams.productId
-    }, function(data, headers) {
-      var _ref;
-      return $scope.count = headers().range != null ? headers().range.replace(/^.*\//, '') : ((_ref = data.article) != null ? _ref.length : void 0) || 0;
-    });
-    return $scope.loadArticles = function() {
-      if (!($scope.count > 100 && $scope.data.article.length < $scope.count)) {
+  '$scope', '$routeParams', 'MkmApi', function($scope, $routeParams, MkmApi) {
+    $scope.productData = MkmApi.product($routeParams.productId);
+    $scope.data = MkmApi.articles($routeParams.productId);
+    $scope.loadArticles = function() {
+      if ($scope.data.articles.length >= $scope.data.count || $scope.data.loading) {
         return;
       }
-      if ($scope.running != null) {
+      return MkmApi.articles($routeParams.productId, $scope.data);
+    };
+    return $scope.addToCart = function(article) {
+      if (!MkmApi.isLoggedIn()) {
         return;
       }
-      return $scope.running = MkmApi.articles({
-        param1: $routeParams.productId,
-        param2: $scope.data.article.length + 1
-      }, function(data) {
-        $scope.running = null;
-        return $scope.data.article = $scope.data.article.concat(data.article);
-      });
+      console.log("add", article.idArticle);
+      return article.count--;
     };
   }
 ]);

@@ -1,25 +1,25 @@
 <header>
-  {{product.name[0].productName}}
-  {{product.number}}
-  <span class="icon expansion expansion-{{product.expansion | expansionIcon}}"></span>
-  <span ng-show="product.rarity" class="icon rarity rarity-{{product.rarity}}"></span>
+  {{productData.product.name[0].productName}}
+  {{productData.product.number}}
+  <span class="icon expansion expansion-{{productData.product.expansion | expansionIcon}}"></span>
+  <span ng-show="productData.product.rarity" class="icon rarity rarity-{{productData.product.rarity}}"></span>
 </header>
 <aside class="slider" ng-class="!!slider && 'open'">
   <div class="content">
-    <img src="" ng-src="{{product.image | productImage}}">
-    <div class="tendency">Price Tendency: {{product.tendency}}</div>
-    <span>Available Items: {{count}}</span>
-    <span>From (EX+): {{product.priceGuide.LOW | currency:"€"}}</span>
-    <span>Average price (EX+): {{product.priceGuide.AVG | currency:"€"}}</span>
-    <span ng-show="product.foils">Available foils: {{product.foils}}</span>
-    <span ng-show="product.foils">Foils from: {{product.priceGuide.FOIL | currency:"€"}}</span>
+    <img src="" ng-src="{{productData.product.image | productImage}}">
+    <div class="tendency">Price Tendency: {{productData.product.tendency}}</div>
+    <span>Available Items: {{data.count}}</span>
+    <span>From (EX+): {{productData.product.priceGuide.LOW | currency:"€"}}</span>
+    <span>Average price (EX+): {{productData.product.priceGuide.AVG | currency:"€"}}</span>
+    <span ng-show="productData.product.foils">Available foils: {{productData.product.foils}}</span>
+    <span ng-show="productData.product.foils">Foils from: {{productData.product.priceGuide.FOIL | currency:"€"}}</span>
   </div>
   <div class="toggle" ng-click="slider=!slider"></div>
 </aside>
 <article>
-  <span ng-show="data.article && !count">No Offers :(</span>
-  <ul ng-class="{loading:!data.article || running}" data-infinite-scroll="loadArticles()">
-    <li ng-repeat="article in data.article">
+  <span ng-show="!data.loading && !data.count">No Offers :(</span>
+  <ul ng-class="{loading:data.loading}" data-infinite-scroll="loadArticles()">
+    <li ng-repeat="article in data.articles" ng-hide="!article.count">
       <div class="seller">
         <button ng-click="article.showSeller = !article.showSeller" ng-class="!!article.showSeller && 'open'"></button>
         <span class="icon country country-{{article.seller.country}}"></span>
@@ -38,7 +38,7 @@
         {{article.price | currency:"€"}}
         <span class="price-per-card" ng-show="article.isPlayset">({{article.price / 4 | currency:"€"}})</span>
         <span class="count">{{article.count}}</span>
-        <button></button>
+        <button ng-click="addToCart(article)"></button>
       </div>
       <div class="comment" ng-hide="!article.showComment">{{article.comments}}</div>
       <div class="seller" ng-hide="!article.showSeller">
