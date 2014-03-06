@@ -1,5 +1,300 @@
-.icon.comment { background-image: url('/img/comment.png');background-repeat: no-repeat; width:20px; }
-.icon.expansion {background-image: url('/img/expansions.png');background-repeat: no-repeat;}
+.icon.comment { background-image: url('/img/comment.png'); width:20px; }
+.icon.is-foil { background-image: url('/img/foil.png'); width:16px;height: 16px; }
+.icon.is-altered { background-image: url('/img/altered.png'); width:16px;height: 16px; }
+.icon.is-signed { background-image: url('/img/signed.png'); width:16px;height: 16px; }
+.icon.is-playset { background-image: url('/img/playset.png'); width:16px;height: 16px; }
+.icon.is-commercial { background-image: url('/img/commercial.png'); width:16px;height: 16px; }
+
+.icon.rarity { background-image: url('/img/rarities.png');  width: 16px; height: 16px; }
+.rarity-Common { background-position: -1px -1px; }
+.rarity-Land { background-position: -19px -1px; }
+.rarity-Mythic { background-position: -1px -19px; }
+.rarity-Rare { background-position: -19px -19px; }
+.rarity-Special { background-position: -37px -1px; }
+.rarity-Timeshifted { background-position: -37px -19px; }
+.rarity-Token { background-position: -1px -37px; }
+.rarity-Uncommon { background-position: -19px -37px; }
+
+.icon.grading { background-image: url('/img/grading.png');  width: 16px; height: 16px; }
+.grading-EX { background-position: -1px -1px; }
+.grading-GD { background-position: -19px -1px; }
+.grading-LP { background-position: -1px -19px; }
+.grading-MT { background-position: -19px -19px; }
+.grading-NM { background-position: -37px -1px; }
+.grading-PL { background-position: -37px -19px; }
+.grading-PO { background-position: -1px -37px; }
+
+.icon.language { background-image: url('/img/languages.png');  width: 16px; height: 11px; }
+.language-0 { background-position: 0 0; }
+.language-1 { background-position: -16px 0; }
+.language-2 { background-position: -32px 0; }
+.language-3 { background-position: -48px 0; }
+.language-4 { background-position: -64px 0; }
+.language-5 { background-position: -80px 0; }
+.language-6 { background-position: -96px 0; }
+.language-7 { background-position: -112px 0; }
+.language-8 { background-position: -128px 0; }
+.language-9 { background-position: -144px 0; }
+.language-10 { background-position: -160px 0; }
+.language-11 { background-position: -176px 0; }
+
+.icon.reputation { background-image: url('/img/reputation.png'); background-repeat: no-repeat; }
+.reputation-0 { width: 16px; height: 16px; background-position: -1px -1px; }
+.reputation-1 { width: 20px; height: 19px; background-position: -19px -1px; }
+.reputation-2 { width: 20px; height: 19px; background-position: -1px -22px; }
+.reputation-3 { width: 16px; height: 15px; background-position: -23px -22px; }
+.reputation-4 { width: 16px; height: 15px; background-position: -41px -1px; }
+
+.icon.country { background-image: url('/img/countries.png');  width: 16px; height: 11px; }
+.icon.country-AD { background-position: -1px -1px; }
+.icon.country-AE { background-position: -19px -1px;}
+.icon.country-AF { background-position: -37px -1px;}
+.icon.country-AG { background-position: -55px -1px;}
+.icon.country-AI { background-position: -73px -1px;}
+.icon.country-AL { background-position: -91px -1px;}
+.icon.country-AM { background-position: -109px -1px;}
+.icon.country-AN { background-position: -127px -1px;}
+.icon.country-AO { background-position: -145px -1px;}
+.icon.country-AR { background-position: -163px -1px;}
+.icon.country-AS { background-position: -181px -1px;}
+.icon.country-AT { background-position: -199px -1px;}
+.icon.country-AU { background-position: -217px -1px;}
+.icon.country-AW { background-position: -1px -14px;}
+.icon.country-AX { background-position: -19px -14px;}
+.icon.country-AZ { background-position: -37px -14px;}
+.icon.country-BA { background-position: -55px -14px;}
+.icon.country-BB { background-position: -73px -14px;}
+.icon.country-BD { background-position: -91px -14px;}
+.icon.country-BE { background-position: -109px -14px;}
+.icon.country-BF { background-position: -127px -14px;}
+.icon.country-BG { background-position: -145px -14px;}
+.icon.country-BH { background-position: -163px -14px;}
+.icon.country-BI { background-position: -181px -14px;}
+.icon.country-BJ { background-position: -199px -14px;}
+.icon.country-BM { background-position: -217px -14px;}
+.icon.country-BN { background-position: -1px -27px;}
+.icon.country-BO { background-position: -19px -27px;}
+.icon.country-BR { background-position: -37px -27px;}
+.icon.country-BS { background-position: -55px -27px;}
+.icon.country-BT { background-position: -73px -27px;}
+.icon.country-BV { background-position: -91px -27px;}
+.icon.country-BW { background-position: -109px -27px;}
+.icon.country-BY { background-position: -127px -27px;}
+.icon.country-BZ { background-position: -145px -27px;}
+.icon.country-CA { background-position: -163px -27px;}
+.icon.country-CATALONIA { background-position: -181px -27px;}
+.icon.country-CC { background-position: -199px -27px;}
+.icon.country-CD { background-position: -217px -27px;}
+.icon.country-CF { background-position: -1px -40px;}
+.icon.country-CG { background-position: -19px -40px;}
+.icon.country-CH { width: 11px; height: 11px; background-position: -37px -40px;}
+.icon.country-CI { background-position: -50px -40px;}
+.icon.country-CK { background-position: -68px -40px;}
+.icon.country-CL { background-position: -86px -40px;}
+.icon.country-CM { background-position: -104px -40px;}
+.icon.country-CN { background-position: -122px -40px;}
+.icon.country-CO { background-position: -140px -40px;}
+.icon.country-CR { background-position: -158px -40px;}
+.icon.country-CS { background-position: -176px -40px;}
+.icon.country-CU { background-position: -194px -40px;}
+.icon.country-CV { background-position: -212px -40px;}
+.icon.country-CX { background-position: -1px -53px;}
+.icon.country-CY { background-position: -19px -53px;}
+.icon.country-CZ { background-position: -37px -53px;}
+.icon.country-D  { background-position: -55px -53px;}
+.icon.country-DJ { background-position: -73px -53px;}
+.icon.country-DK { background-position: -91px -53px;}
+.icon.country-DM { background-position: -109px -53px;}
+.icon.country-DO { background-position: -127px -53px;}
+.icon.country-DZ { background-position: -145px -53px;}
+.icon.country-EC { background-position: -163px -53px;}
+.icon.country-EE { background-position: -181px -53px;}
+.icon.country-EG { background-position: -199px -53px;}
+.icon.country-EH { background-position: -217px -53px;}
+.icon.country-ENGLAND { background-position: -1px -66px;}
+.icon.country-ER { background-position: -19px -66px;}
+.icon.country-ES { background-position: -37px -66px;}
+.icon.country-ET { background-position: -55px -66px;}
+.icon.country-EUROPEANUNION { background-position: -73px -66px;}
+.icon.country-FAM { background-position: -91px -66px;}
+.icon.country-FI { background-position: -109px -66px;}
+.icon.country-FJ { background-position: -127px -66px;}
+.icon.country-FK { background-position: -145px -66px;}
+.icon.country-FM { background-position: -163px -66px;}
+.icon.country-FO { background-position: -181px -66px;}
+.icon.country-FR { background-position: -199px -66px;}
+.icon.country-GA { background-position: -217px -66px;}
+.icon.country-GB { background-position: -1px -79px;}
+.icon.country-GD { background-position: -19px -79px;}
+.icon.country-GE { background-position: -37px -79px;}
+.icon.country-GF { background-position: -55px -79px;}
+.icon.country-GH { background-position: -73px -79px;}
+.icon.country-GI { background-position: -91px -79px;}
+.icon.country-GL { background-position: -109px -79px;}
+.icon.country-GM { background-position: -127px -79px;}
+.icon.country-GN { background-position: -145px -79px;}
+.icon.country-GP { background-position: -163px -79px;}
+.icon.country-GQ { background-position: -181px -79px;}
+.icon.country-GR { background-position: -199px -79px;}
+.icon.country-GS { background-position: -217px -79px;}
+.icon.country-GT { background-position: -1px -92px;}
+.icon.country-GU { background-position: -19px -92px;}
+.icon.country-GW { background-position: -37px -92px;}
+.icon.country-GY { background-position: -55px -92px;}
+.icon.country-HK { background-position: -73px -92px;}
+.icon.country-HM { background-position: -91px -92px;}
+.icon.country-HN { background-position: -109px -92px;}
+.icon.country-HR { background-position: -127px -92px;}
+.icon.country-HT { background-position: -145px -92px;}
+.icon.country-HU { background-position: -163px -92px;}
+.icon.country-ID { background-position: -181px -92px;}
+.icon.country-IE { background-position: -199px -92px;}
+.icon.country-IL { background-position: -217px -92px;}
+.icon.country-IN { background-position: -1px -105px;}
+.icon.country-IO { background-position: -19px -105px;}
+.icon.country-IQ { background-position: -37px -105px;}
+.icon.country-IR { background-position: -55px -105px;}
+.icon.country-IS { background-position: -73px -105px;}
+.icon.country-IT { background-position: -91px -105px;}
+.icon.country-JM { background-position: -109px -105px;}
+.icon.country-JO { background-position: -127px -105px;}
+.icon.country-JP { background-position: -145px -105px;}
+.icon.country-KE { background-position: -163px -105px;}
+.icon.country-KG { background-position: -181px -105px;}
+.icon.country-KH { background-position: -199px -105px;}
+.icon.country-KI { background-position: -217px -105px;}
+.icon.country-KM { background-position: -1px -118px;}
+.icon.country-KN { background-position: -19px -118px;}
+.icon.country-KP { background-position: -37px -118px;}
+.icon.country-KR { background-position: -55px -118px;}
+.icon.country-KW { background-position: -73px -118px;}
+.icon.country-KY { background-position: -91px -118px;}
+.icon.country-KZ { background-position: -109px -118px;}
+.icon.country-LA { background-position: -127px -118px;}
+.icon.country-LB { background-position: -145px -118px;}
+.icon.country-LC { background-position: -163px -118px;}
+.icon.country-LI { background-position: -181px -118px;}
+.icon.country-LK { background-position: -199px -118px;}
+.icon.country-LR { background-position: -217px -118px;}
+.icon.country-LS { background-position: -1px -131px;}
+.icon.country-LT { background-position: -19px -131px;}
+.icon.country-LU { background-position: -37px -131px;}
+.icon.country-LV { background-position: -55px -131px;}
+.icon.country-LY { background-position: -73px -131px;}
+.icon.country-MA { background-position: -91px -131px;}
+.icon.country-MC { background-position: -109px -131px;}
+.icon.country-MD { background-position: -127px -131px;}
+.icon.country-ME { width: 16px; height: 12px; background-position: -145px -131px;}
+.icon.country-MG { background-position: -163px -131px;}
+.icon.country-MH { background-position: -181px -131px;}
+.icon.country-MK { background-position: -199px -131px;}
+.icon.country-ML { background-position: -217px -131px;}
+.icon.country-MM { background-position: -1px -144px;}
+.icon.country-MN { background-position: -19px -144px;}
+.icon.country-MO { background-position: -37px -144px;}
+.icon.country-MP { background-position: -55px -144px;}
+.icon.country-MQ { background-position: -73px -144px;}
+.icon.country-MR { background-position: -91px -144px;}
+.icon.country-MS { background-position: -109px -144px;}
+.icon.country-MT { background-position: -127px -144px;}
+.icon.country-MU { background-position: -163px -144px;}
+.icon.country-MV { background-position: -181px -144px;}
+.icon.country-MW { background-position: -199px -144px;}
+.icon.country-MX { background-position: -217px -144px;}
+.icon.country-MY { background-position: -1px -157px;}
+.icon.country-MZ { background-position: -19px -157px;}
+.icon.country-NA { background-position: -37px -157px;}
+.icon.country-NC { background-position: -55px -157px;}
+.icon.country-NE { background-position: -73px -157px;}
+.icon.country-NF { background-position: -91px -157px;}
+.icon.country-NG { background-position: -109px -157px;}
+.icon.country-NI { background-position: -127px -157px;}
+.icon.country-NL { background-position: -145px -157px;}
+.icon.country-NO { background-position: -163px -157px;}
+.icon.country-NP { width: 9px; height: 11px; background-position: -230px -40px;}
+.icon.country-NR { background-position: -181px -157px;}
+.icon.country-NU { background-position: -199px -157px;}
+.icon.country-NZ { background-position: -217px -157px;}
+.icon.country-OM { background-position: -1px -170px;}
+.icon.country-PA { background-position: -19px -170px;}
+.icon.country-PE { background-position: -37px -170px;}
+.icon.country-PF { background-position: -55px -170px;}
+.icon.country-PG { background-position: -73px -170px;}
+.icon.country-PH { background-position: -91px -170px;}
+.icon.country-PK { background-position: -109px -170px;}
+.icon.country-PL { background-position: -127px -170px;}
+.icon.country-PM { background-position: -145px -170px;}
+.icon.country-PN { background-position: -163px -170px;}
+.icon.country-PR { background-position: -181px -170px;}
+.icon.country-PS { background-position: -199px -170px;}
+.icon.country-PT { background-position: -217px -170px;}
+.icon.country-PW { background-position: -1px -183px;}
+.icon.country-PY { background-position: -19px -183px;}
+.icon.country-QA { background-position: -37px -183px;}
+.icon.country-RE { background-position: -55px -183px;}
+.icon.country-RO { background-position: -73px -183px;}
+.icon.country-RS { background-position: -91px -183px;}
+.icon.country-RU { background-position: -109px -183px;}
+.icon.country-RW { background-position: -127px -183px;}
+.icon.country-SA { background-position: -145px -183px;}
+.icon.country-SB { background-position: -163px -183px;}
+.icon.country-SC { background-position: -181px -183px;}
+.icon.country-SCOTLAND { background-position: -199px -183px;}
+.icon.country-SD { background-position: -217px -183px;}
+.icon.country-SE { background-position: -1px -196px;}
+.icon.country-SG { background-position: -19px -196px;}
+.icon.country-SH { background-position: -37px -196px;}
+.icon.country-SI { background-position: -55px -196px;}
+.icon.country-SJ { background-position: -73px -196px;}
+.icon.country-SK { background-position: -91px -196px;}
+.icon.country-SL { background-position: -109px -196px;}
+.icon.country-SM { background-position: -127px -196px;}
+.icon.country-SN { background-position: -145px -196px;}
+.icon.country-SO { background-position: -163px -196px;}
+.icon.country-SR { background-position: -181px -196px;}
+.icon.country-ST { background-position: -199px -196px;}
+.icon.country-SV { background-position: -217px -196px;}
+.icon.country-SY { background-position: -1px -209px;}
+.icon.country-SZ { background-position: -19px -209px;}
+.icon.country-TC { background-position: -37px -209px;}
+.icon.country-TD { background-position: -55px -209px;}
+.icon.country-TF { background-position: -73px -209px;}
+.icon.country-TG { background-position: -91px -209px;}
+.icon.country-TH { background-position: -109px -209px;}
+.icon.country-TJ { background-position: -127px -209px;}
+.icon.country-TK { background-position: -145px -209px;}
+.icon.country-TL { background-position: -163px -209px;}
+.icon.country-TM { background-position: -181px -209px;}
+.icon.country-TN { background-position: -199px -209px;}
+.icon.country-TO { background-position: -217px -209px;}
+.icon.country-TR { background-position: -1px -222px;}
+.icon.country-TT { background-position: -19px -222px;}
+.icon.country-TV { background-position: -37px -222px;}
+.icon.country-TW { background-position: -55px -222px;}
+.icon.country-TZ { background-position: -73px -222px;}
+.icon.country-UA { background-position: -91px -222px;}
+.icon.country-UG { background-position: -109px -222px;}
+.icon.country-UM { background-position: -127px -222px;}
+.icon.country-US { background-position: -145px -222px;}
+.icon.country-UY { background-position: -163px -222px;}
+.icon.country-UZ { background-position: -181px -222px;}
+.icon.country-VA { background-position: -199px -222px;}
+.icon.country-VC { background-position: -217px -222px;}
+.icon.country-VE { background-position: -235px -1px;}
+.icon.country-VG { background-position: -235px -14px;}
+.icon.country-VI { background-position: -235px -27px;}
+.icon.country-VN { background-position: -241px -40px;}
+.icon.country-VU { background-position: -235px -53px;}
+.icon.country-WALES { background-position: -235px -66px;}
+.icon.country-WF { background-position: -235px -79px;}
+.icon.country-WS { background-position: -235px -92px;}
+.icon.country-YE { background-position: -235px -105px;}
+.icon.country-YT { background-position: -235px -118px;}
+.icon.country-ZA { background-position: -235px -131px;}
+.icon.country-ZM { background-position: -235px -144px;}
+.icon.country-ZW { background-position: -235px -157px;}
+
+.icon.expansion {background-image: url('/img/expansions.png');}
 .expansion-SUS {width: 43px;height: 20px;background-position: -1px -1px;}
 .expansion-alarareborn {width: 18px;height: 20px;background-position: -46px -1px;}
 .expansion-alliances {width: 43px;height: 20px;background-position: -66px -1px;}

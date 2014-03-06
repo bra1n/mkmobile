@@ -9,7 +9,7 @@ mkmobileDirectives.directive('infiniteScroll', function() {
       var docElem, scrollHandler;
       docElem = document.documentElement;
       scrollHandler = function() {
-        if (docElem.scrollTop + docElem.clientHeight - elm[0].offsetTop >= elm[0].scrollHeight) {
+        if ((docElem.scrollTop || window.pageYOffset) + docElem.clientHeight - elm[0].offsetTop >= elm[0].scrollHeight) {
           return scope.$apply(attr.infiniteScroll);
         }
       };

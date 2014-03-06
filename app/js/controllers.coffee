@@ -15,7 +15,6 @@ mkmobileControllers.controller 'SearchCtrl', [
         # cache products
         data.product?.map (val) -> DataCache.product val.idProduct, val
         # update count
-        console.log headers()
         $scope.count = if headers().range? then headers().range.replace /^.*\//,'' else $scope.data.product?.length or 0
         $scope.data.product = [] unless $scope.count
     # init scope vars

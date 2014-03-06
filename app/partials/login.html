@@ -20,7 +20,7 @@
       <li ng-repeat="product in data.product | orderBy:sort">
         <a href="/product/{{product.idProduct}}">
           <span class="icon expansion expansion-{{product.expansion | expansionIcon}}"></span>
-          {{product.rarity}}
+          <span class="icon rarity rarity-{{product.rarity}}" ng-show="product.rarity"></span>
           {{product.name[0].productName}}
         </a>
       </li>

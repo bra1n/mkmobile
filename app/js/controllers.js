@@ -23,7 +23,6 @@ mkmobileControllers.controller('SearchCtrl', [
             return DataCache.product(val.idProduct, val);
           });
         }
-        console.log(headers());
         $scope.count = headers().range != null ? headers().range.replace(/^.*\//, '') : ((_ref1 = $scope.data.product) != null ? _ref1.length : void 0) || 0;
         if (!$scope.count) {
           return $scope.data.product = [];

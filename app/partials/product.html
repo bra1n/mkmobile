@@ -2,42 +2,50 @@
   {{product.name[0].productName}}
   {{product.number}}
   <span class="icon expansion expansion-{{product.expansion | expansionIcon}}"></span>
-  {{product.rarity}}
-  <div class="slider" ng-show="slider">
-    <img src="" ng-src="//www.mkmapi.eu/{{product.image}}">
-    Price Tendency: {{product.tendency}}<br/>
-    Available Items: {{count}}<br/>
-    From (EX+): {{product.priceGuide.LOW | currency:"€"}}<br/>
-    Average price (EX+): {{product.priceGuide.AVG | currency:"€"}}<br/>
-    Available foils: {{product.foils}}<br/>
-    Foils from: {{product.priceGuide.FOIL | currency:"€"}}
-  </div>
-  <span class="slider-toggle" ng-click="slider=!slider">Toggle</span>
+  <span ng-show="product.rarity" class="icon rarity rarity-{{product.rarity}}"></span>
 </header>
+<aside class="slider" ng-class="!!slider && 'open'">
+  <div class="content">
+    <img src="" ng-src="{{product.image | productImage}}">
+    <div class="tendency">Price Tendency: {{product.tendency}}</div>
+    <span>Available Items: {{count}}</span>
+    <span>From (EX+): {{product.priceGuide.LOW | currency:"€"}}</span>
+    <span>Average price (EX+): {{product.priceGuide.AVG | currency:"€"}}</span>
+    <span ng-show="product.foils">Available foils: {{product.foils}}</span>
+    <span ng-show="product.foils">Foils from: {{product.priceGuide.FOIL | currency:"€"}}</span>
+  </div>
+  <div class="toggle" ng-click="slider=!slider"></div>
+</aside>
 <article>
   <span ng-show="data.article && !count">No Offers :(</span>
   <ul ng-class="{loading:!data.article || running}" data-infinite-scroll="loadArticles()">
     <li ng-repeat="article in data.article">
-      <button ng-click="article.showSeller = !article.showSeller">+</button>
-      {{article.seller.username}}
-      {{article.language.idLanguage}}
-      {{article.condition}}
-      {{article.isFoil}}
-      {{article.isSigned}}
-      {{article.isPlayset}}
-      {{article.isAltered}}
-      <span class="icon comment" ng-hide="!article.comments" ng-click="article.showComment = !article.showComment"></span>
-      <span class="price">{{article.price | currency:"€"}}</span>
-      <span class="count">{{article.count}}</span>
-      <button>Cart</button>
-      <div class="comment" ng-hide="!article.showComment">
-        {{article.comments}}
+      <div class="seller">
+        <button ng-click="article.showSeller = !article.showSeller" ng-class="!!article.showSeller && 'open'"></button>
+        <span class="icon country country-{{article.seller.country}}"></span>
+        {{article.seller.username}}
       </div>
+      <div class="icons">
+        <span class="icon language language-{{article.language.idLanguage}}" ng-show="article.language.idLanguage"></span>
+        <span class="icon grading grading-{{article.condition}}" ng-show="article.condition"></span>
+        <span class="icon is-foil" ng-show="article.isFoil"></span>
+        <span class="icon is-signed" ng-show="article.isSigned"></span>
+        <span class="icon is-playset" ng-show="article.isPlayset"></span>
+        <span class="icon is-altered" ng-show="article.isAltered"></span>
+        <span class="icon comment" ng-show="article.comments" ng-click="article.showComment = !article.showComment"></span>
+      </div>
+      <div class="price">
+        {{article.price | currency:"€"}}
+        <span class="price-per-card" ng-show="article.isPlayset">({{article.price / 4 | currency:"€"}})</span>
+        <span class="count">{{article.count}}</span>
+        <button></button>
+      </div>
+      <div class="comment" ng-hide="!article.showComment">{{article.comments}}</div>
       <div class="seller" ng-hide="!article.showSeller">
         (123)
-        {{article.seller.country}}
-        {{article.seller.reputation}}
-        {{article.seller.isCommercial}}
+        <span class="icon country country-{{article.seller.country}}"></span>
+        <span class="icon reputation reputation-{{article.seller.reputation}}"></span>
+        <span class="icon is-commercial" ng-show="article.seller.isCommercial"></span>
         {{article.seller.speed}}
       </div>
     </li>
