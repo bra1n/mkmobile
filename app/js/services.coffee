@@ -1,7 +1,7 @@
 mkmobileServices = angular.module 'mkmobileServices', ['ngResource']
 
-mkmobileServices.factory 'MkmApi', [ '$resource', '$location', 'DataCache',
-($resource, $location, DataCache) ->
+mkmobileServices.factory 'MkmApi', [ '$resource', '$location', 'DataCache', '$http',
+($resource, $location, DataCache, $http) ->
   apiURL = '/api'
   # apiURL = 'https://www.mkmapi.eu/ws/bra1n/###/output.json'
   api = $resource apiURL+'/:type/:param1/:param2/:param3/:param4/:param5', {},
@@ -22,18 +22,19 @@ mkmobileServices.factory 'MkmApi', [ '$resource', '$location', 'DataCache',
   search: (query, response) ->
     # if response isn't passed in, create a base object that will be filled later
     response = count: 0, products: [] unless response?
-    # toggle loading flag
-    response.loading = yes
-    # query the API
-    api.search {param1: query, param5: response.products.length + 1}, (data, headers) ->
-      # cache products
-      data.product?.map (val) -> DataCache.product val.idProduct, val
-      # update count
-      response.count = parseRangeHeader(headers) or data.product?.length
-      # merge products
-      response.products = response.products.concat data.product if response.count
+    if query
       # toggle loading flag
-      response.loading = no
+      response.loading = yes
+      # query the API
+      api.search {param1: query, param5: response.products.length + 1}, (data, headers) ->
+        # cache products
+        data.product?.map (val) -> DataCache.product val.idProduct, val
+        # update count
+        response.count = parseRangeHeader(headers) or data.product?.length
+        # merge products
+        response.products = response.products.concat data.product if response.count
+        # toggle loading flag
+        response.loading = no
     # return the base object
     response
   # get product data
@@ -60,8 +61,18 @@ mkmobileServices.factory 'MkmApi', [ '$resource', '$location', 'DataCache',
     loggedIn
   # log the user in
   login: ->
-    loggedIn = yes
-    $location.path redirectAfterLogin if redirectAfterLogin
+    $http
+      method: 'POST'
+      url: 'https://www.mkmapi.eu/ws/authenticate'
+      headers:
+        'Content-type': 'application/xml'
+      data: '<?xml version="1.0" encoding="UTF-8" ?><request><app_key>alb03sLPpFNAhi6f</app_key><callback_uri>http://mobile.local/?requestToken=</callback_uri></request>'
+    .success (data, status) ->
+        console.log data, status
+    .error (data, status) ->
+        console.error data, status
+    #loggedIn = yes
+    #$location.path redirectAfterLogin if redirectAfterLogin
 ]
 
 mkmobileServices.factory 'DataCache', ['$cacheFactory', ($cacheFactory) ->

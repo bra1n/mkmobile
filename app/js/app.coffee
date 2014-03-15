@@ -10,11 +10,11 @@ mkmobileApp = angular.module 'mkmobileApp', [
 mkmobileApp.config ['$locationProvider','$routeProvider', ($locationProvider, $routeProvider) ->
   $locationProvider.html5Mode yes
   $routeProvider
-  .when '/login',
+  .when '/login/:search?',
     class:        'login'
     templateUrl:  '/partials/login.html'
     controller:   'SearchCtrl'
-    reloadOnSearch: no
+    #reloadOnSearch: no
   .when '/product/:productId',
     class:        'product'
     templateUrl:  '/partials/product.html'

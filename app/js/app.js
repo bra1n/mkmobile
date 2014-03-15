@@ -6,11 +6,10 @@ mkmobileApp = angular.module('mkmobileApp', ['ngRoute', 'ngAnimate', 'mkmobileCo
 mkmobileApp.config([
   '$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
     $locationProvider.html5Mode(true);
-    return $routeProvider.when('/login', {
+    return $routeProvider.when('/login/:search?', {
       "class": 'login',
       templateUrl: '/partials/login.html',
-      controller: 'SearchCtrl',
-      reloadOnSearch: false
+      controller: 'SearchCtrl'
     }).when('/product/:productId', {
       "class": 'product',
       templateUrl: '/partials/product.html',

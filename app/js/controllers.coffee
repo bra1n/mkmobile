@@ -4,12 +4,8 @@ mkmobileControllers = angular.module 'mkmobileControllers', []
 mkmobileControllers.controller 'SearchCtrl', [
   '$scope', '$routeParams', '$location', 'MkmApi'
   ($scope, $routeParams, $location, MkmApi) ->
-    $scope.search = ->
-      return unless $scope.query
-      # update URL to match what is entered
-      $location.search search: $scope.query
-      # fetch the data
-      $scope.data = MkmApi.search $scope.query
+    $scope.search = -> $scope.data = MkmApi.search $scope.query
+    $scope.updateHistory = -> $location.search search: $scope.query
     # init scope vars
     $scope.query = $routeParams.search
     $scope.search()

@@ -4,7 +4,7 @@ var mkmobileServices;
 mkmobileServices = angular.module('mkmobileServices', ['ngResource']);
 
 mkmobileServices.factory('MkmApi', [
-  '$resource', '$location', 'DataCache', function($resource, $location, DataCache) {
+  '$resource', '$location', 'DataCache', '$http', function($resource, $location, DataCache, $http) {
     var api, apiURL, loggedIn, parseRangeHeader, redirectAfterLogin;
     apiURL = '/api';
     api = $resource(apiURL + '/:type/:param1/:param2/:param3/:param4/:param5', {}, {
@@ -46,23 +46,25 @@ mkmobileServices.factory('MkmApi', [
             products: []
           };
         }
-        response.loading = true;
-        api.search({
-          param1: query,
-          param5: response.products.length + 1
-        }, function(data, headers) {
-          var _ref, _ref1;
-          if ((_ref = data.product) != null) {
-            _ref.map(function(val) {
-              return DataCache.product(val.idProduct, val);
-            });
-          }
-          response.count = parseRangeHeader(headers) || ((_ref1 = data.product) != null ? _ref1.length : void 0);
-          if (response.count) {
-            response.products = response.products.concat(data.product);
-          }
-          return response.loading = false;
-        });
+        if (query) {
+          response.loading = true;
+          api.search({
+            param1: query,
+            param5: response.products.length + 1
+          }, function(data, headers) {
+            var _ref, _ref1;
+            if ((_ref = data.product) != null) {
+              _ref.map(function(val) {
+                return DataCache.product(val.idProduct, val);
+              });
+            }
+            response.count = parseRangeHeader(headers) || ((_ref1 = data.product) != null ? _ref1.length : void 0);
+            if (response.count) {
+              response.products = response.products.concat(data.product);
+            }
+            return response.loading = false;
+          });
+        }
         return response;
       },
       product: function(id) {
@@ -108,10 +110,18 @@ mkmobileServices.factory('MkmApi', [
         return loggedIn;
       },
       login: function() {
-        loggedIn = true;
-        if (redirectAfterLogin) {
-          return $location.path(redirectAfterLogin);
-        }
+        return $http({
+          method: 'POST',
+          url: 'https://www.mkmapi.eu/ws/authenticate',
+          headers: {
+            'Content-type': 'application/xml'
+          },
+          data: '<?xml version="1.0" encoding="UTF-8" ?><request><app_key>alb03sLPpFNAhi6f</app_key><callback_uri>http://mobile.local/?requestToken=</callback_uri></request>'
+        }).success(function(data, status) {
+          return console.log(data, status);
+        }).error(function(data, status) {
+          return console.error(data, status);
+        });
       }
     };
   }

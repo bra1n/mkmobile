@@ -6,13 +6,12 @@ mkmobileControllers = angular.module('mkmobileControllers', []);
 mkmobileControllers.controller('SearchCtrl', [
   '$scope', '$routeParams', '$location', 'MkmApi', function($scope, $routeParams, $location, MkmApi) {
     $scope.search = function() {
-      if (!$scope.query) {
-        return;
-      }
-      $location.search({
+      return $scope.data = MkmApi.search($scope.query);
+    };
+    $scope.updateHistory = function() {
+      return $location.search({
         search: $scope.query
       });
-      return $scope.data = MkmApi.search($scope.query);
     };
     $scope.query = $routeParams.search;
     $scope.search();
