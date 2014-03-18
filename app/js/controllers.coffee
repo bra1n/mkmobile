@@ -2,8 +2,8 @@ mkmobileControllers = angular.module 'mkmobileControllers', []
 
 # /search
 mkmobileControllers.controller 'SearchCtrl', [
-  '$scope', '$routeParams', '$location', 'MkmApi'
-  ($scope, $routeParams, $location, MkmApi) ->
+  '$scope', '$routeParams', '$location', 'MkmApi', '$sce'
+  ($scope, $routeParams, $location, MkmApi, $sce) ->
     $scope.search = -> $scope.data = MkmApi.search $scope.query
     $scope.updateHistory = -> $location.search search: $scope.query
     # init scope vars
@@ -20,7 +20,8 @@ mkmobileControllers.controller 'SearchCtrl', [
     # handle login
     $scope.login = ->
       console.log "logging in"
-      MkmApi.login()
+      $scope.iframeSrc = $sce.trustAsResourceUrl MkmApi.getLoginURL()
+      #MkmApi.login()
 ]
 
 # /product
@@ -43,4 +44,13 @@ mkmobileControllers.controller 'ProductCtrl', [
       console.log "add", article.idArticle
       article.count--
 
+]
+
+# /callback
+mkmobileControllers.controller 'CallbackCtrl', [
+  '$scope', '$location', 'MkmApi'
+  ($scope, $location, MkmApi) ->
+    search = $location.search()
+    if search.request_token?
+      MkmApi.getAccess search.request_token
 ]

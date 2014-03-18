@@ -1,23 +1,64 @@
 mkmobileServices = angular.module 'mkmobileServices', ['ngResource']
 
-mkmobileServices.factory 'MkmApi', [ '$resource', '$location', 'DataCache', '$http',
-($resource, $location, DataCache, $http) ->
-  apiURL = '/api'
-  # apiURL = 'https://www.mkmapi.eu/ws/bra1n/###/output.json'
+mkmobileServices.factory 'MkmApi', [ '$resource', '$location', 'DataCache',
+($resource, $location, DataCache) ->
+  ## helper functions
+  parseRangeHeader = (headers) -> if headers().range? then parseInt(headers().range.replace(/^.*\//,''),10) else 0
+  generateOAuthHeader = (config) ->
+    params =
+      realm: config.url
+      oauth_consumer_key: auth.consumerKey
+      oauth_nonce: Math.random().toString(36).substr(2)+Math.random().toString(36).substr(2)
+      oauth_signature_method: "HMAC-SHA1"
+      oauth_timestamp: new Date().getTime()
+      oauth_token: auth.token
+      oauth_version: "1.0"
+      oauth_signature: ""
+    paramOrder = ["oauth_consumer_key","oauth_nonce","oauth_signature_method","oauth_timestamp","oauth_token","oauth_version"]
+    signatureParams = []
+    signatureParams.push param+"="+params[param] for param in paramOrder
+    signature = [ config.method, encodeURIComponent(params.realm), encodeURIComponent(signatureParams.join "&")].join "&"
+    salt = encodeURIComponent(auth.consumerSecret) + "&" + encodeURIComponent(auth.secret)
+    console.log "output", signature, salt
+    signature = CryptoJS.HmacSHA1 signature, salt
+    params.oauth_signature = signature.toString CryptoJS.enc.Base64
+
+    'OAuth
+      realm="'+params.realm+'",
+      oauth_version="'+params.oauth_version+'",
+      oauth_timestamp="'+params.oauth_timestamp+'",
+      oauth_nonce="'+params.oauth_nonce+'",
+      oauth_consumer_key="'+params.oauth_consumer_key+'",
+      oauth_token="'+params.oauth_token+'",
+      oauth_signature_method="'+params.oauth_signature_method+'",
+      oauth_signature="'+params.oauth_signature+'"
+    '
+
+  ## variables
+  apiURL = 'https://www.mkmapi.eu/ws/bra1n/a042b2e17c5cba981d6f684ec338b98a/output.json'
+  auth =
+    consumerKey: "alb03sLPpFNAhi6f"
+    consumerSecret: "HTIcbso87X22JdS3Yk89c2CojfZiNDMX"
+    token: ""
+    secret: ""
+  redirectAfterLogin = false
   api = $resource apiURL+'/:type/:param1/:param2/:param3/:param4/:param5', {},
     search:
       params: {type:"products",param2:"1",param3:"1",param4:"false"}
       unique: "search"
+      oauth: generateOAuthHeader.bind @
     articles:
-      params: {type:"articles"}
+      params: type:"articles"
       cache: no
     product:
-      params: {type:"product"}
+      params: type:"product"
+    access:
+      method: 'POST'
+      params: type: "access"
+      headers: {'Content-type': 'application/xml'}
+      oauth: generateOAuthHeader.bind @
 
-  parseRangeHeader = (headers) -> if headers().range? then parseInt(headers().range.replace(/^.*\//,''),10) else 0
-  loggedIn = false
-  redirectAfterLogin = false
-
+  ## interface
   # search for a product
   search: (query, response) ->
     # if response isn't passed in, create a base object that will be filled later
@@ -55,24 +96,21 @@ mkmobileServices.factory 'MkmApi', [ '$resource', '$location', 'DataCache', '$ht
     response
   # get login status
   isLoggedIn: ->
-    unless loggedIn
+    if auth.token is ""
       redirectAfterLogin = $location.path()
       $location.path '/login'
-    loggedIn
+    auth.token isnt ""
+  # return login URL
+  getLoginURL: ->
+    apiURL + '/authenticate/' + auth.consumerKey
   # log the user in
-  login: ->
-    $http
-      method: 'POST'
-      url: 'https://www.mkmapi.eu/ws/authenticate'
-      headers:
-        'Content-type': 'application/xml'
-      data: '<?xml version="1.0" encoding="UTF-8" ?><request><app_key>alb03sLPpFNAhi6f</app_key><callback_uri>http://mobile.local/?requestToken=</callback_uri></request>'
-    .success (data, status) ->
-        console.log data, status
-    .error (data, status) ->
-        console.error data, status
-    #loggedIn = yes
-    #$location.path redirectAfterLogin if redirectAfterLogin
+  getAccess: (requestToken) ->
+    payload = '<?xml version="1.0" encoding="UTF-8" ?><request><app_key>'+auth.consumerKey+'</app_key>
+               <request_token>'+requestToken+'</request_token></request>'
+    api.access payload, (data) ->
+      console.log data
+      #loggedIn = yes
+      #$location.path redirectAfterLogin
 ]
 
 mkmobileServices.factory 'DataCache', ['$cacheFactory', ($cacheFactory) ->

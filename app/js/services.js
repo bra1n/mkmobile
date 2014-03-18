@@ -4,9 +4,48 @@ var mkmobileServices;
 mkmobileServices = angular.module('mkmobileServices', ['ngResource']);
 
 mkmobileServices.factory('MkmApi', [
-  '$resource', '$location', 'DataCache', '$http', function($resource, $location, DataCache, $http) {
-    var api, apiURL, loggedIn, parseRangeHeader, redirectAfterLogin;
-    apiURL = '/api';
+  '$resource', '$location', 'DataCache', function($resource, $location, DataCache) {
+    var api, apiURL, auth, generateOAuthHeader, parseRangeHeader, redirectAfterLogin;
+    parseRangeHeader = function(headers) {
+      if (headers().range != null) {
+        return parseInt(headers().range.replace(/^.*\//, ''), 10);
+      } else {
+        return 0;
+      }
+    };
+    generateOAuthHeader = function(config) {
+      var param, paramOrder, params, salt, signature, signatureParams, _i, _len;
+      params = {
+        realm: config.url,
+        oauth_consumer_key: auth.consumerKey,
+        oauth_nonce: Math.random().toString(36).substr(2) + Math.random().toString(36).substr(2),
+        oauth_signature_method: "HMAC-SHA1",
+        oauth_timestamp: new Date().getTime(),
+        oauth_token: auth.token,
+        oauth_version: "1.0",
+        oauth_signature: ""
+      };
+      paramOrder = ["oauth_consumer_key", "oauth_nonce", "oauth_signature_method", "oauth_timestamp", "oauth_token", "oauth_version"];
+      signatureParams = [];
+      for (_i = 0, _len = paramOrder.length; _i < _len; _i++) {
+        param = paramOrder[_i];
+        signatureParams.push(param + "=" + params[param]);
+      }
+      signature = [config.method, encodeURIComponent(params.realm), encodeURIComponent(signatureParams.join("&"))].join("&");
+      salt = encodeURIComponent(auth.consumerSecret) + "&" + encodeURIComponent(auth.secret);
+      console.log("output", signature, salt);
+      signature = CryptoJS.HmacSHA1(signature, salt);
+      params.oauth_signature = signature.toString(CryptoJS.enc.Base64);
+      return 'OAuth realm="' + params.realm + '", oauth_version="' + params.oauth_version + '", oauth_timestamp="' + params.oauth_timestamp + '", oauth_nonce="' + params.oauth_nonce + '", oauth_consumer_key="' + params.oauth_consumer_key + '", oauth_token="' + params.oauth_token + '", oauth_signature_method="' + params.oauth_signature_method + '", oauth_signature="' + params.oauth_signature + '"';
+    };
+    apiURL = 'https://www.mkmapi.eu/ws/bra1n/a042b2e17c5cba981d6f684ec338b98a/output.json';
+    auth = {
+      consumerKey: "alb03sLPpFNAhi6f",
+      consumerSecret: "HTIcbso87X22JdS3Yk89c2CojfZiNDMX",
+      token: "",
+      secret: ""
+    };
+    redirectAfterLogin = false;
     api = $resource(apiURL + '/:type/:param1/:param2/:param3/:param4/:param5', {}, {
       search: {
         params: {
@@ -15,7 +54,8 @@ mkmobileServices.factory('MkmApi', [
           param3: "1",
           param4: "false"
         },
-        unique: "search"
+        unique: "search",
+        oauth: generateOAuthHeader.bind(this)
       },
       articles: {
         params: {
@@ -27,17 +67,18 @@ mkmobileServices.factory('MkmApi', [
         params: {
           type: "product"
         }
+      },
+      access: {
+        method: 'POST',
+        params: {
+          type: "access"
+        },
+        headers: {
+          'Content-type': 'application/xml'
+        },
+        oauth: generateOAuthHeader.bind(this)
       }
     });
-    parseRangeHeader = function(headers) {
-      if (headers().range != null) {
-        return parseInt(headers().range.replace(/^.*\//, ''), 10);
-      } else {
-        return 0;
-      }
-    };
-    loggedIn = false;
-    redirectAfterLogin = false;
     return {
       search: function(query, response) {
         if (response == null) {
@@ -103,24 +144,20 @@ mkmobileServices.factory('MkmApi', [
         return response;
       },
       isLoggedIn: function() {
-        if (!loggedIn) {
+        if (auth.token === "") {
           redirectAfterLogin = $location.path();
           $location.path('/login');
         }
-        return loggedIn;
+        return auth.token !== "";
       },
-      login: function() {
-        return $http({
-          method: 'POST',
-          url: 'https://www.mkmapi.eu/ws/authenticate',
-          headers: {
-            'Content-type': 'application/xml'
-          },
-          data: '<?xml version="1.0" encoding="UTF-8" ?><request><app_key>alb03sLPpFNAhi6f</app_key><callback_uri>http://mobile.local/?requestToken=</callback_uri></request>'
-        }).success(function(data, status) {
-          return console.log(data, status);
-        }).error(function(data, status) {
-          return console.error(data, status);
+      getLoginURL: function() {
+        return apiURL + '/authenticate/' + auth.consumerKey;
+      },
+      getAccess: function(requestToken) {
+        var payload;
+        payload = '<?xml version="1.0" encoding="UTF-8" ?><request><app_key>' + auth.consumerKey + '</app_key> <request_token>' + requestToken + '</request_token></request>';
+        return api.access(payload, function(data) {
+          return console.log(data);
         });
       }
     };

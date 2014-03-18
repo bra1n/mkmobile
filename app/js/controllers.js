@@ -4,7 +4,7 @@ var mkmobileControllers;
 mkmobileControllers = angular.module('mkmobileControllers', []);
 
 mkmobileControllers.controller('SearchCtrl', [
-  '$scope', '$routeParams', '$location', 'MkmApi', function($scope, $routeParams, $location, MkmApi) {
+  '$scope', '$routeParams', '$location', 'MkmApi', '$sce', function($scope, $routeParams, $location, MkmApi, $sce) {
     $scope.search = function() {
       return $scope.data = MkmApi.search($scope.query);
     };
@@ -24,7 +24,7 @@ mkmobileControllers.controller('SearchCtrl', [
     };
     return $scope.login = function() {
       console.log("logging in");
-      return MkmApi.login();
+      return $scope.iframeSrc = $sce.trustAsResourceUrl(MkmApi.getLoginURL());
     };
   }
 ]);
@@ -46,6 +46,16 @@ mkmobileControllers.controller('ProductCtrl', [
       console.log("add", article.idArticle);
       return article.count--;
     };
+  }
+]);
+
+mkmobileControllers.controller('CallbackCtrl', [
+  '$scope', '$location', 'MkmApi', function($scope, $location, MkmApi) {
+    var search;
+    search = $location.search();
+    if (search.request_token != null) {
+      return MkmApi.getAccess(search.request_token);
+    }
   }
 ]);
 

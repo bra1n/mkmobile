@@ -14,6 +14,10 @@ mkmobileApp.config([
       "class": 'product',
       templateUrl: '/partials/product.html',
       controller: 'ProductCtrl'
+    }).when('/callback', {
+      "class": 'callback',
+      templateUrl: '/partials/callback.html',
+      controller: 'CallbackCtrl'
     }).otherwise({
       redirectTo: '/login'
     });
@@ -38,6 +42,9 @@ mkmobileApp.config([
               }
               uniqueRequests[config.unique] = $q.defer();
               config.timeout = uniqueRequests[config.unique].promise;
+            }
+            if (config.oauth != null) {
+              config.headers.Authorization = config.oauth(config);
             }
             return config || $q.when(config);
           }

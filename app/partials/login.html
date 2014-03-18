@@ -20,10 +20,9 @@
   </ul>
 </aside>
 <article>
-  <form method="post" action="https://www.mkmapi.eu/ws/authenticate">
+  <form>
     <img src="/img/logo.jpg" alt="Logo"/><br>
-    <textarea name="data"><?xml version="1.0" encoding="UTF-8" ?><request><app_key>alb03sLPpFNAhi6f</app_key><callback_uri>http://mobile.local/?requestToken=</callback_uri></request></textarea>
-    <input type="submit">
+    <iframe src="" ng-src="{{iframeSrc}}" ng-show="iframeSrc"></iframe>
+    <button ng-hide="iframeSrc" ng-click="login()">Log In</button>
   </form>
-  <button ng-click="login()">Log In</button>
 </article>

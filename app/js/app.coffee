@@ -19,6 +19,10 @@ mkmobileApp.config ['$locationProvider','$routeProvider', ($locationProvider, $r
     class:        'product'
     templateUrl:  '/partials/product.html'
     controller:   'ProductCtrl'
+  .when '/callback',
+    class:        'callback'
+    templateUrl:  '/partials/callback.html'
+    controller:   'CallbackCtrl'
   .otherwise
     redirectTo: '/login'
 ]
@@ -35,6 +39,8 @@ mkmobileApp.config ['$httpProvider', ($httpProvider) ->
         uniqueRequests[config.unique]?.resolve()
         uniqueRequests[config.unique] = $q.defer()
         config.timeout = uniqueRequests[config.unique].promise
+      if config.oauth?
+        config.headers.Authorization = config.oauth config
       config or $q.when config
   ]
 ]
