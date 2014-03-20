@@ -5,6 +5,9 @@ mkmobileControllers = angular.module('mkmobileControllers', []);
 
 mkmobileControllers.controller('SearchCtrl', [
   '$scope', '$routeParams', '$location', 'MkmApi', '$sce', function($scope, $routeParams, $location, MkmApi, $sce) {
+    if ($location.path() === "/") {
+      MkmApi.checkLogin();
+    }
     $scope.search = function() {
       return $scope.data = MkmApi.search($scope.query);
     };
@@ -22,9 +25,18 @@ mkmobileControllers.controller('SearchCtrl', [
       }
       return MkmApi.search($scope.query, $scope.data);
     };
-    return $scope.login = function() {
-      console.log("logging in");
-      return $scope.iframeSrc = $sce.trustAsResourceUrl(MkmApi.getLoginURL());
+    $scope.loggedIn = MkmApi.isLoggedIn();
+    $scope.login = function() {
+      $scope.iframeSrc = $sce.trustAsResourceUrl(MkmApi.getLoginURL());
+      return window.handleCallback = function(token) {
+        $scope.iframeSrc = null;
+        $scope.login = MkmApi.getAccess(token);
+        return delete window.handleCallback;
+      };
+    };
+    return $scope.logout = function() {
+      MkmApi.logout();
+      return $scope.loggedIn = false;
     };
   }
 ]);
@@ -40,9 +52,7 @@ mkmobileControllers.controller('ProductCtrl', [
       return MkmApi.articles($routeParams.productId, $scope.data);
     };
     return $scope.addToCart = function(article) {
-      if (!MkmApi.isLoggedIn()) {
-        return;
-      }
+      MkmApi.checkLogin();
       console.log("add", article.idArticle);
       return article.count--;
     };
@@ -50,11 +60,11 @@ mkmobileControllers.controller('ProductCtrl', [
 ]);
 
 mkmobileControllers.controller('CallbackCtrl', [
-  '$scope', '$location', 'MkmApi', function($scope, $location, MkmApi) {
-    var search;
+  '$scope', '$location', function($scope, $location) {
+    var search, _base;
     search = $location.search();
-    if (search.request_token != null) {
-      return MkmApi.getAccess(search.request_token);
+    if (search['request_token'] != null) {
+      return typeof (_base = window.parent).handleCallback === "function" ? _base.handleCallback(search['request_token']) : void 0;
     }
   }
 ]);

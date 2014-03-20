@@ -10,6 +10,10 @@ mkmobileApp = angular.module 'mkmobileApp', [
 mkmobileApp.config ['$locationProvider','$routeProvider', ($locationProvider, $routeProvider) ->
   $locationProvider.html5Mode yes
   $routeProvider
+  .when '/',
+    class:        'home'
+    templateUrl:  '/partials/home.html'
+    controller:   'SearchCtrl'
   .when '/login/:search?',
     class:        'login'
     templateUrl:  '/partials/login.html'
@@ -24,7 +28,7 @@ mkmobileApp.config ['$locationProvider','$routeProvider', ($locationProvider, $r
     templateUrl:  '/partials/callback.html'
     controller:   'CallbackCtrl'
   .otherwise
-    redirectTo: '/login'
+    redirectTo: '/'
 ]
 
 mkmobileApp.config ['$httpProvider', ($httpProvider) ->

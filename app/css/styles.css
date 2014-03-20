@@ -71,6 +71,8 @@ footer {
 
 #content.login article {
   position: fixed; }
+  #content.login article img.logo {
+    width: 200px; }
   #content.login article input, #content.login article button {
     display: block; }
 #content.login aside {

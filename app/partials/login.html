@@ -21,8 +21,15 @@
 </aside>
 <article>
   <form>
-    <img src="/img/logo.jpg" alt="Logo"/><br>
-    <iframe src="" ng-src="{{iframeSrc}}" ng-show="iframeSrc"></iframe>
-    <button ng-hide="iframeSrc" ng-click="login()">Log In</button>
+    <img src="/img/logo.jpg" alt="Logo" class="logo"/><br>
+    <div ng-hide="loggedIn">
+      <iframe src="" ng-src="{{iframeSrc}}" ng-show="iframeSrc"></iframe>
+      <button ng-hide="iframeSrc || login.success" ng-click="login()">Log In</button>
+      <div ng-show="login.error">Error retrieving access, please retry</div>
+      <div ng-show="login.success">Logged in successfully!</div>
+    </div>
+    <div ng-show="loggedIn">
+      <button ng-click="logout()">Logout</button>
+    </div>
   </form>
 </article>

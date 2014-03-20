@@ -1,9 +1,10 @@
 mkmobileControllers = angular.module 'mkmobileControllers', []
 
-# /search
+# search for / or /login
 mkmobileControllers.controller 'SearchCtrl', [
   '$scope', '$routeParams', '$location', 'MkmApi', '$sce'
   ($scope, $routeParams, $location, MkmApi, $sce) ->
+    MkmApi.checkLogin() if $location.path() is "/"
     $scope.search = -> $scope.data = MkmApi.search $scope.query
     $scope.updateHistory = -> $location.search search: $scope.query
     # init scope vars
@@ -18,10 +19,16 @@ mkmobileControllers.controller 'SearchCtrl', [
       MkmApi.search $scope.query, $scope.data
 
     # handle login
+    $scope.loggedIn = MkmApi.isLoggedIn()
     $scope.login = ->
-      console.log "logging in"
       $scope.iframeSrc = $sce.trustAsResourceUrl MkmApi.getLoginURL()
-      #MkmApi.login()
+      window.handleCallback = (token) ->
+        $scope.iframeSrc = null
+        $scope.login = MkmApi.getAccess token
+        delete window.handleCallback
+    $scope.logout = ->
+      MkmApi.logout()
+      $scope.loggedIn = no
 ]
 
 # /product
@@ -40,7 +47,7 @@ mkmobileControllers.controller 'ProductCtrl', [
       MkmApi.articles $routeParams.productId, $scope.data
 
     $scope.addToCart = (article) ->
-      return unless MkmApi.isLoggedIn()
+      MkmApi.checkLogin()
       console.log "add", article.idArticle
       article.count--
 
@@ -48,9 +55,9 @@ mkmobileControllers.controller 'ProductCtrl', [
 
 # /callback
 mkmobileControllers.controller 'CallbackCtrl', [
-  '$scope', '$location', 'MkmApi'
-  ($scope, $location, MkmApi) ->
+  '$scope', '$location'
+  ($scope, $location) ->
     search = $location.search()
-    if search.request_token?
-      MkmApi.getAccess search.request_token
+    if search['request_token']?
+      window.parent.handleCallback? search['request_token']
 ]

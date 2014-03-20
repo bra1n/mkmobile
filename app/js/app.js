@@ -6,7 +6,11 @@ mkmobileApp = angular.module('mkmobileApp', ['ngRoute', 'ngAnimate', 'mkmobileCo
 mkmobileApp.config([
   '$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
     $locationProvider.html5Mode(true);
-    return $routeProvider.when('/login/:search?', {
+    return $routeProvider.when('/', {
+      "class": 'home',
+      templateUrl: '/partials/home.html',
+      controller: 'SearchCtrl'
+    }).when('/login/:search?', {
       "class": 'login',
       templateUrl: '/partials/login.html',
       controller: 'SearchCtrl'
@@ -19,7 +23,7 @@ mkmobileApp.config([
       templateUrl: '/partials/callback.html',
       controller: 'CallbackCtrl'
     }).otherwise({
-      redirectTo: '/login'
+      redirectTo: '/'
     });
   }
 ]);

@@ -10,7 +10,7 @@ mkmobileServices.factory 'MkmApi', [ '$resource', '$location', 'DataCache',
       oauth_consumer_key: auth.consumerKey
       oauth_nonce: Math.random().toString(36).substr(2)+Math.random().toString(36).substr(2)
       oauth_signature_method: "HMAC-SHA1"
-      oauth_timestamp: new Date().getTime()
+      oauth_timestamp: Math.round(new Date().getTime()/1000)
       oauth_token: auth.token
       oauth_version: "1.0"
       oauth_signature: ""
@@ -19,7 +19,7 @@ mkmobileServices.factory 'MkmApi', [ '$resource', '$location', 'DataCache',
     signatureParams.push param+"="+params[param] for param in paramOrder
     signature = [ config.method, encodeURIComponent(params.realm), encodeURIComponent(signatureParams.join "&")].join "&"
     salt = encodeURIComponent(auth.consumerSecret) + "&" + encodeURIComponent(auth.secret)
-    console.log "output", signature, salt
+    console.log "building oauth headers", auth, signature, salt
     signature = CryptoJS.HmacSHA1 signature, salt
     params.oauth_signature = signature.toString CryptoJS.enc.Base64
 
@@ -35,23 +35,30 @@ mkmobileServices.factory 'MkmApi', [ '$resource', '$location', 'DataCache',
     '
 
   ## variables
-  apiURL = 'https://www.mkmapi.eu/ws/bra1n/a042b2e17c5cba981d6f684ec338b98a/output.json'
   auth =
     consumerKey: "alb03sLPpFNAhi6f"
     consumerSecret: "HTIcbso87X22JdS3Yk89c2CojfZiNDMX"
-    token: ""
-    secret: ""
-  redirectAfterLogin = false
-  api = $resource apiURL+'/:type/:param1/:param2/:param3/:param4/:param5', {},
+    token: sessionStorage.getItem("token") or ""
+    secret: sessionStorage.getItem("secret") or ""
+  redirectAfterLogin = "/"
+  apiURL    = 'https://www.mkmapi.eu/ws'
+  apiAuth   = '/bra1n/a042b2e17c5cba981d6f684ec338b98a'
+  apiFormat = '/output.json'
+  api       = $resource apiURL+apiFormat+'/:type/:param1/:param2/:param3/:param4/:param5', {},
     search:
+      url: apiURL+apiAuth+apiFormat+'/:type/:param1/:param2/:param3/:param4/:param5'
       params: {type:"products",param2:"1",param3:"1",param4:"false"}
       unique: "search"
       oauth: generateOAuthHeader.bind @
     articles:
-      params: type:"articles"
+      url: apiURL+apiAuth+apiFormat+'/:type/:param1/:param2/:param3/:param4/:param5'
+      params: type: "articles"
       cache: no
+      oauth: generateOAuthHeader.bind @
     product:
-      params: type:"product"
+      url: apiURL+apiAuth+apiFormat+'/:type/:param1/:param2/:param3/:param4/:param5'
+      params: type: "product"
+      oauth: generateOAuthHeader.bind @
     access:
       method: 'POST'
       params: type: "access"
@@ -95,22 +102,36 @@ mkmobileServices.factory 'MkmApi', [ '$resource', '$location', 'DataCache',
       response.loading = no
     response
   # get login status
-  isLoggedIn: ->
-    if auth.token is ""
+  isLoggedIn: -> auth.secret isnt ""
+  # return login URL
+  getLoginURL: -> apiURL + '/authenticate/' + auth.consumerKey
+  # logout
+  logout: ->
+    auth.secret = auth.token = ""
+    sessionStorage.removeItem "secret"
+    sessionStorage.removeItem "token"
+  # checks whether a user is logged in and redirects if necessary
+  checkLogin: ->
+    console.log "login check", @isLoggedIn()
+    unless @isLoggedIn() and $location.path() isnt "/login"
       redirectAfterLogin = $location.path()
       $location.path '/login'
-    auth.token isnt ""
-  # return login URL
-  getLoginURL: ->
-    apiURL + '/authenticate/' + auth.consumerKey
-  # log the user in
+  # log the user in and store tokens in the session
   getAccess: (requestToken) ->
+    response = {}
+    auth.token = requestToken if requestToken?
     payload = '<?xml version="1.0" encoding="UTF-8" ?><request><app_key>'+auth.consumerKey+'</app_key>
-               <request_token>'+requestToken+'</request_token></request>'
+               <request_token>'+auth.token+'</request_token></request>'
     api.access payload, (data) ->
-      console.log data
-      #loggedIn = yes
-      #$location.path redirectAfterLogin
+      if data.oauth_token and data.oauth_token_secret
+        auth.token = data.oauth_token
+        auth.secret = data.oauth_token_secret
+        sessionStorage.setItem "auth", auth.token
+        sessionStorage.setItem "secret", auth.secret
+        response.success = yes
+        $location.path redirectAfterLogin
+    , -> response.error = yes
+    response = {}
 ]
 
 mkmobileServices.factory 'DataCache', ['$cacheFactory', ($cacheFactory) ->
