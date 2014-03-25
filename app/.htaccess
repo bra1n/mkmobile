@@ -1,5 +1,4 @@
 RewriteEngine On
 RewriteBase /
-RewriteRule ^api/.*?$ api.php [L]
-RewriteRule ^(api\.php|lib|img|js|partials|css)($|/) - [L]
+RewriteRule ^(lib|img|js|partials|css)($|/) - [L]
 RewriteRule ^(.*)$ index.html [L]
