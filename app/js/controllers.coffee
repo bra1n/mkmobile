@@ -20,7 +20,7 @@ mkmobileControllers.controller 'SearchCtrl', [
 
     # handle login
     $scope.loggedIn = MkmApi.isLoggedIn()
-    $scope.login = ->
+    $scope.handleLogin = ->
       $scope.iframeSrc = $sce.trustAsResourceUrl MkmApi.getLoginURL()
       window.handleCallback = (token) ->
         $scope.iframeSrc = null
@@ -41,6 +41,9 @@ mkmobileControllers.controller 'ProductCtrl', [
     # load articles
     $scope.data = MkmApi.articles $routeParams.productId
 
+    # bind cart count since it might change here
+    $scope.cart = MkmApi.getCartCount()
+
     # infinite scrolling
     $scope.loadArticles = ->
       return if $scope.data.articles.length >= $scope.data.count or $scope.data.loading
@@ -48,9 +51,24 @@ mkmobileControllers.controller 'ProductCtrl', [
 
     $scope.addToCart = (article) ->
       MkmApi.checkLogin()
-      console.log "add", article.idArticle
-      article.count--
+      MkmApi.addToCart article.idArticle, ->
+        article.count--
+        $scope.cart = MkmApi.getCartCount()
+]
 
+# /settings
+mkmobileControllers.controller 'SettingsCtrl', [
+  '$scope', 'MkmApi'
+  ($scope, MkmApi) ->
+    MkmApi.checkLogin()
+    $scope.vacation = false
+    $scope.logout = -> MkmApi.logout()
+]
+
+# home page
+mkmobileControllers.controller 'HomeCtrl', [
+  '$scope', 'MkmApi', ($scope, MkmApi) ->
+    MkmApi.checkLogin()
 ]
 
 # /callback

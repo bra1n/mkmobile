@@ -5,7 +5,7 @@ mkmobileServices = angular.module('mkmobileServices', ['ngResource']);
 
 mkmobileServices.factory('MkmApi', [
   '$resource', '$location', 'DataCache', function($resource, $location, DataCache) {
-    var api, apiAuth, apiFormat, apiURL, auth, generateOAuthHeader, parseRangeHeader, redirectAfterLogin;
+    var api, apiAuth, apiFormat, apiURL, auth, parseRangeHeader, redirectAfterLogin, toXML;
     parseRangeHeader = function(headers) {
       if (headers().range != null) {
         return parseInt(headers().range.replace(/^.*\//, ''), 10);
@@ -13,30 +13,23 @@ mkmobileServices.factory('MkmApi', [
         return 0;
       }
     };
-    generateOAuthHeader = function(config) {
-      var param, paramOrder, params, salt, signature, signatureParams, _i, _len;
-      params = {
-        realm: config.url,
-        oauth_consumer_key: auth.consumerKey,
-        oauth_nonce: Math.random().toString(36).substr(2) + Math.random().toString(36).substr(2),
-        oauth_signature_method: "HMAC-SHA1",
-        oauth_timestamp: Math.round(new Date().getTime() / 1000),
-        oauth_token: auth.token,
-        oauth_version: "1.0",
-        oauth_signature: ""
-      };
-      paramOrder = ["oauth_consumer_key", "oauth_nonce", "oauth_signature_method", "oauth_timestamp", "oauth_token", "oauth_version"];
-      signatureParams = [];
-      for (_i = 0, _len = paramOrder.length; _i < _len; _i++) {
-        param = paramOrder[_i];
-        signatureParams.push(param + "=" + params[param]);
+    toXML = function(obj, recursive) {
+      var prop, val, xml;
+      if (recursive == null) {
+        recursive = false;
       }
-      signature = [config.method, encodeURIComponent(params.realm), encodeURIComponent(signatureParams.join("&"))].join("&");
-      salt = encodeURIComponent(auth.consumerSecret) + "&" + encodeURIComponent(auth.secret);
-      console.log("building oauth headers", auth, signature, salt);
-      signature = CryptoJS.HmacSHA1(signature, salt);
-      params.oauth_signature = signature.toString(CryptoJS.enc.Base64);
-      return 'OAuth realm="' + params.realm + '", oauth_version="' + params.oauth_version + '", oauth_timestamp="' + params.oauth_timestamp + '", oauth_nonce="' + params.oauth_nonce + '", oauth_consumer_key="' + params.oauth_consumer_key + '", oauth_token="' + params.oauth_token + '", oauth_signature_method="' + params.oauth_signature_method + '", oauth_signature="' + params.oauth_signature + '"';
+      xml = '';
+      for (prop in obj) {
+        val = obj[prop];
+        if (typeof val === "object") {
+          val = toXML(val, true);
+        }
+        xml += "<" + prop + ">" + val + "</" + prop + ">";
+      }
+      if (!recursive) {
+        xml = '<?xml version="1.0" encoding="UTF-8" ?><request>' + xml + '</request>';
+      }
+      return xml;
     };
     auth = {
       consumerKey: "alb03sLPpFNAhi6f",
@@ -58,7 +51,7 @@ mkmobileServices.factory('MkmApi', [
           param4: "false"
         },
         unique: "search",
-        oauth: generateOAuthHeader.bind(this)
+        oauth: auth
       },
       articles: {
         url: apiURL + apiAuth + apiFormat + '/:type/:param1/:param2/:param3/:param4/:param5',
@@ -66,14 +59,14 @@ mkmobileServices.factory('MkmApi', [
           type: "articles"
         },
         cache: false,
-        oauth: generateOAuthHeader.bind(this)
+        oauth: auth
       },
       product: {
         url: apiURL + apiAuth + apiFormat + '/:type/:param1/:param2/:param3/:param4/:param5',
         params: {
           type: "product"
         },
-        oauth: generateOAuthHeader.bind(this)
+        oauth: auth
       },
       access: {
         method: 'POST',
@@ -83,7 +76,18 @@ mkmobileServices.factory('MkmApi', [
         headers: {
           'Content-type': 'application/xml'
         },
-        oauth: generateOAuthHeader.bind(this)
+        oauth: auth
+      },
+      shoppingcart: {
+        url: apiURL + apiAuth + apiFormat + '/:type/:param1/:param2/:param3/:param4/:param5',
+        method: 'PUT',
+        params: {
+          type: 'shoppingcart'
+        },
+        headers: {
+          'Content-type': 'application/xml'
+        },
+        oauth: auth
       }
     });
     return {
@@ -129,6 +133,38 @@ mkmobileServices.factory('MkmApi', [
         }
         return response;
       },
+      cart: function() {
+        return DataCache.cart();
+      },
+      getCartCount: function() {
+        var article, count, seller, _i, _j, _len, _len1, _ref, _ref1;
+        count = 0;
+        _ref = DataCache.cart();
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          seller = _ref[_i];
+          _ref1 = seller.article;
+          for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+            article = _ref1[_j];
+            count += parseInt(article.count, 10);
+          }
+        }
+        return count;
+      },
+      addToCart: function(article, cb) {
+        var request;
+        request = {
+          action: "add",
+          article: {
+            idArticle: article,
+            amount: 1
+          }
+        };
+        return api.shoppingcart(toXML(request), function(data) {
+          console.log(data);
+          DataCache.cart(data.shoppingCart);
+          return typeof cb === "function" ? cb() : void 0;
+        });
+      },
       articles: function(id, response) {
         if (response == null) {
           response = {
@@ -159,7 +195,8 @@ mkmobileServices.factory('MkmApi', [
       logout: function() {
         auth.secret = auth.token = "";
         sessionStorage.removeItem("secret");
-        return sessionStorage.removeItem("token");
+        sessionStorage.removeItem("token");
+        return $location.path('/login');
       },
       checkLogin: function() {
         console.log("login check", this.isLoggedIn());
@@ -169,13 +206,16 @@ mkmobileServices.factory('MkmApi', [
         }
       },
       getAccess: function(requestToken) {
-        var payload, response;
+        var request, response;
         response = {};
         if (requestToken != null) {
           auth.token = requestToken;
         }
-        payload = '<?xml version="1.0" encoding="UTF-8" ?><request><app_key>' + auth.consumerKey + '</app_key> <request_token>' + auth.token + '</request_token></request>';
-        api.access(payload, function(data) {
+        request = {
+          app_key: auth.consumerKey,
+          request_token: auth.token
+        };
+        api.access(toXML(request), function(data) {
           if (data.oauth_token && data.oauth_token_secret) {
             auth.token = data.oauth_token;
             auth.secret = data.oauth_token_secret;
@@ -199,6 +239,15 @@ mkmobileServices.factory('DataCache', [
     cache = {
       product: $cacheFactory('products', {
         capacity: 500
+      }),
+      article: $cacheFactory('article', {
+        capacity: 100
+      }),
+      cart: $cacheFactory('cart', {
+        capacity: 1
+      }),
+      user: $cacheFactory('user', {
+        capacity: 1
       })
     };
     return {
@@ -209,6 +258,26 @@ mkmobileServices.factory('DataCache', [
         if (id != null) {
           return cache.product.get(id);
         }
+      },
+      article: function(id, data) {
+        if (data != null) {
+          cache.article.put(id, data);
+        }
+        if (id != null) {
+          return cache.article.get(id);
+        }
+      },
+      cart: function(data) {
+        if (data != null) {
+          cache.cart.put(1, data);
+        }
+        return cache.cart.get(1) || [];
+      },
+      user: function(data) {
+        if (data != null) {
+          cache.user.put(1, data);
+        }
+        return cache.user.get(1) || [];
       }
     };
   }

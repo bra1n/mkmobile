@@ -16,7 +16,8 @@ header {
   background: #eee;
   z-index: 1000;
   max-height: 100%;
-  overflow: auto; }
+  overflow: auto;
+  height: 35px; }
 
 article {
   margin-bottom: 35px;
@@ -30,7 +31,14 @@ footer {
   bottom: -1px;
   padding-bottom: 1px;
   background: white;
-  z-index: 1000; }
+  z-index: 1000;
+  height: 35px; }
+  footer a {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background: red;
+    vertical-align: top; }
 
 .loading {
   position: relative;
@@ -77,10 +85,12 @@ footer {
     display: block; }
 #content.login aside {
   position: absolute;
-  top: 30px;
+  top: 35px;
   background-color: rgba(255, 255, 255, 0.75);
   width: 100%;
   z-index: 10; }
+#content.login footer .login {
+  background: green; }
 
 #content.product .icon.comment {
   cursor: pointer; }
@@ -92,14 +102,14 @@ footer {
   transition: 0.5s linear all;
   position: fixed;
   bottom: 100%;
-  margin-bottom: -30px;
+  margin-bottom: -45px;
   padding-bottom: 10px;
   background: white;
   width: 100%;
   height: 100%;
   overflow: hidden; }
   #content.product aside.slider.open {
-    bottom: 30px; }
+    bottom: 45px; }
   #content.product aside.slider .content {
     padding-top: 50px; }
     #content.product aside.slider .content img {
@@ -118,42 +128,55 @@ footer {
     bottom: 0; }
   #content.product aside.slider.open .toggle {
     cursor: n-resize; }
-#content.product article .icon.ng-hide {
-  display: inline-block !important;
-  visibility: hidden; }
-#content.product article .seller, #content.product article .icons, #content.product article .price {
-  display: inline-block;
-  width: 33%;
-  height: 30px;
-  vertical-align: middle;
-  line-height: 30px; }
-#content.product article .icons {
-  text-align: center; }
-#content.product article .price {
-  text-align: right; }
-#content.product article .count {
-  display: inline-block;
-  min-width: 30px;
-  text-align: center; }
-#content.product article button {
-  border: none;
-  background: gray;
-  color: white;
-  font-weight: bold;
-  height: 25px;
-  width: 25px;
-  padding: 0;
-  vertical-align: middle;
-  line-height: 25px;
-  border-radius: 12px;
-  outline: none; }
-#content.product article .seller button:before {
-  content: "+"; }
-#content.product article .seller button.open:before {
-  content: "-"; }
-#content.product article .price button {
-  background-image: url("/img/cart.png");
-  background-repeat: no-repeat;
-  background-position: 4px 4px; }
-#content.product article .comment {
-  text-align: center; }
+#content.product article {
+  margin-top: 45px; }
+  #content.product article .icon.ng-hide {
+    display: inline-block !important;
+    visibility: hidden; }
+  #content.product article .seller, #content.product article .icons, #content.product article .price {
+    display: inline-block;
+    width: 33%;
+    height: 30px;
+    vertical-align: middle;
+    line-height: 30px; }
+  #content.product article .icons {
+    text-align: center; }
+  #content.product article .price {
+    text-align: right; }
+  #content.product article .count {
+    display: inline-block;
+    min-width: 30px;
+    text-align: center; }
+  #content.product article button {
+    border: none;
+    background: gray;
+    color: white;
+    font-weight: bold;
+    height: 25px;
+    width: 25px;
+    padding: 0;
+    vertical-align: middle;
+    line-height: 25px;
+    border-radius: 12px;
+    outline: none; }
+  #content.product article .seller button:before {
+    content: "+"; }
+  #content.product article .seller button.open:before {
+    content: "-"; }
+  #content.product article .price button {
+    background-image: url("/img/cart.png");
+    background-repeat: no-repeat;
+    background-position: 4px 4px; }
+  #content.product article .comment {
+    text-align: center; }
+
+#content.home header img {
+  height: 35px; }
+#content.home footer .home {
+  background: green; }
+
+#content.search footer .search {
+  background: green; }
+
+#content.settings footer .settings {
+  background: green; }

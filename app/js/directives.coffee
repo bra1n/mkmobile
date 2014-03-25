@@ -9,3 +9,14 @@ mkmobileDirectives.directive 'infiniteScroll', ->
         scope.$apply attr.infiniteScroll
     $(window).bind 'scroll', scrollHandler
     scope.$on '$destroy', -> $(window).unbind 'scroll', scrollHandler
+
+mkmobileDirectives.directive 'footerMenu', [
+  'MkmApi', (MkmApi) ->
+    scope: cart: "=?"
+    link: (scope) ->
+      scope.loggedIn = MkmApi.isLoggedIn()
+      scope.cart = scope.cart or MkmApi.getCartCount()
+    restrict: 'E'
+    replace: yes
+    templateUrl: '/partials/footer.html'
+]

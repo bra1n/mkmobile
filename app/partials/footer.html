@@ -1,0 +1,11 @@
+<footer>
+  <div ng-show="loggedIn">
+    <a href="/" class="home"></a>
+    <a href="/search" class="search"></a>
+    <a href="/cart" class="cart">{{cart}}</a>
+    <a href="/settings" class="settings"></a>
+  </div>
+  <div ng-hide="loggedIn">
+    <a href="/login" class="login"></a>
+  </div>
+</footer>

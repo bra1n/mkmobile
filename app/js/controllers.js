@@ -26,7 +26,7 @@ mkmobileControllers.controller('SearchCtrl', [
       return MkmApi.search($scope.query, $scope.data);
     };
     $scope.loggedIn = MkmApi.isLoggedIn();
-    $scope.login = function() {
+    $scope.handleLogin = function() {
       $scope.iframeSrc = $sce.trustAsResourceUrl(MkmApi.getLoginURL());
       return window.handleCallback = function(token) {
         $scope.iframeSrc = null;
@@ -45,6 +45,7 @@ mkmobileControllers.controller('ProductCtrl', [
   '$scope', '$routeParams', 'MkmApi', function($scope, $routeParams, MkmApi) {
     $scope.productData = MkmApi.product($routeParams.productId);
     $scope.data = MkmApi.articles($routeParams.productId);
+    $scope.cart = MkmApi.getCartCount();
     $scope.loadArticles = function() {
       if ($scope.data.articles.length >= $scope.data.count || $scope.data.loading) {
         return;
@@ -53,9 +54,27 @@ mkmobileControllers.controller('ProductCtrl', [
     };
     return $scope.addToCart = function(article) {
       MkmApi.checkLogin();
-      console.log("add", article.idArticle);
-      return article.count--;
+      return MkmApi.addToCart(article.idArticle, function() {
+        article.count--;
+        return $scope.cart = MkmApi.getCartCount();
+      });
     };
+  }
+]);
+
+mkmobileControllers.controller('SettingsCtrl', [
+  '$scope', 'MkmApi', function($scope, MkmApi) {
+    MkmApi.checkLogin();
+    $scope.vacation = false;
+    return $scope.logout = function() {
+      return MkmApi.logout();
+    };
+  }
+]);
+
+mkmobileControllers.controller('HomeCtrl', [
+  '$scope', 'MkmApi', function($scope, MkmApi) {
+    return MkmApi.checkLogin();
   }
 ]);
 

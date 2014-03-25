@@ -21,4 +21,21 @@ mkmobileDirectives.directive('infiniteScroll', function() {
   };
 });
 
+mkmobileDirectives.directive('footerMenu', [
+  'MkmApi', function(MkmApi) {
+    return {
+      scope: {
+        cart: "=?"
+      },
+      link: function(scope) {
+        scope.loggedIn = MkmApi.isLoggedIn();
+        return scope.cart = scope.cart || MkmApi.getCartCount();
+      },
+      restrict: 'E',
+      replace: true,
+      templateUrl: '/partials/footer.html'
+    };
+  }
+]);
+
 //# sourceMappingURL=directives.map
