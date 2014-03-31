@@ -11,7 +11,7 @@ Buyer: ich
 </div>
 <ul class="articles">
   <li ng-repeat="article in order.article" ng-hide="!article.count">
-    <button ng-click="removeArticle(article)" ng-show="removeArticle">-</button>
+    <button ng-click="removeArticle(article, order)" ng-show="removeArticle">-</button>
     {{article.count}}
     {{article.idArticle}}
     <div class="icons">

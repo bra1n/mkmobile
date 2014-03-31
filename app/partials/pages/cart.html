@@ -18,7 +18,7 @@
       <div class="overview">{{data.cart.length}} orders ({{count}} articles) to buy now</div>
       <ul>
         <li ng-repeat="order in data.cart">
-          <button ng-click="removeOrder($index)">-</button>
+          <button ng-click="removeOrder(order)">-</button>
           <a href="/cart/{{order.seller.username}}">
             Order Nr.: {{order.idOrder}}<br>
             Seller: {{order.seller.username}}<br>

@@ -99,22 +99,22 @@ mkmobileControllers.controller 'CartCtrl', [
       $scope.sum = MkmApi.cart.sum()
       $location.path "/cart" if data.cart.length is 0 and $routeParams.orderId?
     # remove a single article
-    $scope.removeArticle = (article) ->
+    $scope.removeArticle = (article, order) ->
       console.log "removing", article
       article.count-- # card count for this article
       $scope.count-- # total cart count
-      newCount = --order.totalCount for order in $scope.data.cart when article in order.article # card count for this order
+      order.totalCount-- # reduce total order count
       MkmApi.cart.remove article.idArticle, ->
-        if $routeParams.orderId? and !newCount
+        if $routeParams.orderId? and !order.totalCount
           $location.path "/cart"
         else
           $scope.data = MkmApi.cart.get $routeParams.orderId # should be updated now, no need for callback
 
     # remove a whole order
-    $scope.removeOrder = (index) ->
+    $scope.removeOrder = (order) ->
       articles = {}
-      articles[article.idArticle] = article.count for article in $scope.data.cart[index].article if $scope.data.cart[index]?
-      $scope.data.cart.splice index, 1
+      articles[article.idArticle] = article.count for article in order.article if order.article?
+      $scope.data.cart.splice $scope.data.cart.indexOf(order), 1
       $scope.count = MkmApi.cart.count()
       $scope.sum = MkmApi.cart.sum()
       MkmApi.cart.remove articles
