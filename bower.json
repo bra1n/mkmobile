@@ -18,12 +18,12 @@
   ],
   "description": "MKMobile App",
   "dependencies": {
+    "angular-animate": "~1.2.15",
+    "angular-resource": "~1.2.15",
+    "angular-route": "~1.2.15",
+    "angular-i18n": "~1.2.15",
     "jquery": "~2.1.0",
-    "angular-animate": "~1.2.13",
-    "angular-resource": "~1.2.13",
-    "angular-route": "~1.2.13",
     "normalize-css": "~3.0.0",
-    "angular-i18n": "~1.2.13",
     "cryptojslib": "~3.1.2"
   }
 }

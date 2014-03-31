@@ -10,13 +10,30 @@ mkmobileDirectives.directive 'infiniteScroll', ->
     $(window).bind 'scroll', scrollHandler
     scope.$on '$destroy', -> $(window).unbind 'scroll', scrollHandler
 
-mkmobileDirectives.directive 'footerMenu', [
+mkmobileDirectives.directive 'mkmFooter', [
   'MkmApi', (MkmApi) ->
     scope: cart: "=?"
     link: (scope) ->
       scope.loggedIn = MkmApi.isLoggedIn()
-      scope.cart = scope.cart or MkmApi.getCartCount()
+      scope.cart = scope.cart or MkmApi.cart.count()
     restrict: 'E'
     replace: yes
-    templateUrl: '/partials/footer.html'
+    templateUrl: '/partials/directives/footer.html'
 ]
+
+mkmobileDirectives.directive 'mkmSearch', ->
+  restrict: 'E'
+  transclude: yes
+  templateUrl: '/partials/directives/search.html'
+
+mkmobileDirectives.directive 'mkmOrder', ->
+  restrict: 'E'
+  scope:
+    order: "="
+    removeArticle: "="
+  templateUrl: '/partials/directives/order.html'
+
+mkmobileDirectives.directive 'mkmSeller', ->
+  restrict: 'A'
+  scope: seller: "="
+  templateUrl: '/partials/directives/seller.html'

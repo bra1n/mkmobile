@@ -41,14 +41,8 @@
         <button ng-click="addToCart(article)"></button>
       </div>
       <div class="comment" ng-hide="!article.showComment">{{article.comments}}</div>
-      <div class="seller" ng-hide="!article.showSeller">
-        (123)
-        <span class="icon country country-{{article.seller.country}}"></span>
-        <span class="icon reputation reputation-{{article.seller.reputation}}"></span>
-        <span class="icon is-commercial" ng-show="article.seller.isCommercial"></span>
-        {{article.seller.speed}}
-      </div>
+      <div class="seller" ng-hide="!article.showSeller" mkm-seller seller="article.seller"></div>
     </li>
   </ul>
 </article>
-<footer-menu cart="cart"/>
+<mkm-footer cart="cart"></mkm-footer>

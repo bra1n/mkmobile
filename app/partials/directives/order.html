@@ -1,0 +1,35 @@
+Order Nr.: {{order.idOrder}}<br>
+<a class="icon comment" href="/messages/{{order.seller.username}}"></a>
+<button class="details" ng-click="order.showSeller = !order.showSeller">+</button>
+Seller: {{order.seller.username}}<br>
+<div class="seller" ng-show="order.showSeller" mkm-seller seller="order.seller"></div>
+Buyer: ich
+
+<div class="overview">
+  {{order.totalCount}} article(s)
+  <span>Price</span>
+</div>
+<ul class="articles">
+  <li ng-repeat="article in order.article" ng-hide="!article.count">
+    <button ng-click="removeArticle(article)" ng-show="removeArticle">-</button>
+    {{article.count}}
+    {{article.idArticle}}
+    <div class="icons">
+      <span class="icon language language-{{article.language.idLanguage}}" ng-show="article.language.idLanguage"></span>
+      <span class="icon grading grading-{{article.condition}}" ng-show="article.condition"></span>
+      <span class="icon is-foil" ng-show="article.isFoil"></span>
+      <span class="icon is-signed" ng-show="article.isSigned"></span>
+      <span class="icon is-playset" ng-show="article.isPlayset"></span>
+      <span class="icon is-altered" ng-show="article.isAltered"></span>
+    </div>
+    {{article.price | currency:"€"}}
+    <span class="price-per-card" ng-show="article.isPlayset">({{article.price / 4 | currency:"€"}})</span>
+  </li>
+</ul>
+<hr>
+{{order.shippingMethod.name}} - {{order.shippingMethod.price | currency:"€"}}
+<hr>
+<div class="total">
+  Total - {{order.totalValue | currency:"€"}}
+  <i>Items + Shipping Method</i>
+</div>

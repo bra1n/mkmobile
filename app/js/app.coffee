@@ -11,22 +11,25 @@ mkmobileApp.config ['$locationProvider','$routeProvider', ($locationProvider, $r
   $locationProvider.html5Mode yes
   $routeProvider
   .when '/',
-    templateUrl:  '/partials/home.html'
+    templateUrl:  '/partials/pages/home.html'
     controller:   'HomeCtrl'
   .when '/search',
-    templateUrl:  '/partials/search.html'
+    templateUrl:  '/partials/pages/search.html'
     controller:   'SearchCtrl'
+  .when '/cart/:orderId?',
+    templateUrl:  '/partials/pages/cart.html'
+    controller:   'CartCtrl'
   .when '/settings',
-    templateUrl:  '/partials/settings.html'
+    templateUrl:  '/partials/pages/settings.html'
     controller:   'SettingsCtrl'
   .when '/login',
-    templateUrl:  '/partials/login.html'
+    templateUrl:  '/partials/pages/login.html'
     controller:   'SearchCtrl'
   .when '/product/:productId',
-    templateUrl:  '/partials/product.html'
+    templateUrl:  '/partials/pages/product.html'
     controller:   'ProductCtrl'
   .when '/callback',
-    templateUrl:  '/partials/callback.html'
+    templateUrl:  '/partials/pages/callback.html'
     controller:   'CallbackCtrl'
   .otherwise
     redirectTo: '/'

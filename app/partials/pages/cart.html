@@ -1,0 +1,38 @@
+<header>
+  Shopping Cart
+</header>
+<article>
+  <mkm-search ng-hide="data.cart.length || data.loading">
+    You have no items on your shopping cart, if you want to search for articles, please use the search field above.
+  </mkm-search>
+  <div class="overview" ng-show="data.cart.length">
+    <div class="shipping">
+      Shipping Address<br>
+      To be implemented...
+    </div>
+    <hr>
+    <div class="single" ng-show="data.cart.length == 1">
+      <mkm-order order="data.cart[0]" remove-article="removeArticle"></mkm-order>
+    </div>
+    <div class="multiple" ng-show="data.cart.length > 1">
+      <div class="overview">{{data.cart.length}} orders ({{count}} articles) to buy now</div>
+      <ul>
+        <li ng-repeat="order in data.cart">
+          <button ng-click="removeOrder($index)">-</button>
+          <a href="/cart/{{order.seller.username}}">
+            Order Nr.: {{order.idOrder}}<br>
+            Seller: {{order.seller.username}}<br>
+            Item Value: {{order.articleValue | currency:"€"}}<br>
+            Shipping: {{order.shippingMethod.price | currency:"€"}}
+          </a>
+        </li>
+      </ul>
+      <div class="total">
+        Total - {{sum | currency:"€"}}
+        <i>Items + Shipping Methods</i>
+      </div>
+    </div>
+  </div>
+  <div class="loading" ng-show="data.loading">Loading cart...</div>
+</article>
+<mkm-footer cart="count"></mkm-footer>

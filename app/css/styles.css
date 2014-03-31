@@ -169,6 +169,8 @@ footer {
     background-position: 4px 4px; }
   #content.product article .comment {
     text-align: center; }
+#content.product footer .search {
+  background: green; }
 
 #content.home header img {
   height: 35px; }
@@ -179,4 +181,11 @@ footer {
   background: green; }
 
 #content.settings footer .settings {
+  background: green; }
+
+#content.cart article .icons {
+  display: inline-block; }
+#content.cart article i {
+  display: block; }
+#content.cart footer .cart {
   background: green; }

@@ -167,6 +167,7 @@ footer {
     .price button { background-image:url("/img/cart.png"); background-repeat:no-repeat; background-position:4px 4px; }
     .comment { text-align: center; }
   }
+  footer .search { background: green; }
 }
 
 // home page
@@ -185,4 +186,13 @@ footer {
 // settings page
 #content.settings {
   footer .settings { background: green; }
+}
+
+// cart page
+#content.cart {
+  article {
+    .icons { display: inline-block; }
+    i { display: block; }
+  }
+  footer .cart { background: green; }
 }
