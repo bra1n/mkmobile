@@ -77,6 +77,41 @@ footer {
   #container #content.ng-leave.ng-leave-active {
     opacity: 0; }
 
+aside.slider {
+  -webkit-transition: 0.5s linear all;
+  -moz-transition: 0.5s linear all;
+  -ms-transition: 0.5s linear all;
+  -o-transition: 0.5s linear all;
+  transition: 0.5s linear all;
+  position: fixed;
+  bottom: 100%;
+  margin-bottom: -45px;
+  padding-bottom: 10px;
+  background: white;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; }
+  aside.slider.open {
+    bottom: 80px; }
+  aside.slider .content {
+    padding-top: 80px; }
+    aside.slider .content img {
+      vertical-align: middle; }
+    aside.slider .content div.tendency {
+      display: inline-block;
+      vertical-align: middle; }
+    aside.slider .content span {
+      display: block; }
+  aside.slider .toggle {
+    height: 10px;
+    width: 100%;
+    background: grey;
+    cursor: s-resize;
+    position: absolute;
+    bottom: 0; }
+  aside.slider.open .toggle {
+    cursor: n-resize; }
+
 #content.login article {
   position: fixed; }
   #content.login article img.logo {
@@ -94,40 +129,6 @@ footer {
 
 #content.product .icon.comment {
   cursor: pointer; }
-#content.product aside.slider {
-  -webkit-transition: 0.5s linear all;
-  -moz-transition: 0.5s linear all;
-  -ms-transition: 0.5s linear all;
-  -o-transition: 0.5s linear all;
-  transition: 0.5s linear all;
-  position: fixed;
-  bottom: 100%;
-  margin-bottom: -45px;
-  padding-bottom: 10px;
-  background: white;
-  width: 100%;
-  height: 100%;
-  overflow: hidden; }
-  #content.product aside.slider.open {
-    bottom: 45px; }
-  #content.product aside.slider .content {
-    padding-top: 50px; }
-    #content.product aside.slider .content img {
-      vertical-align: middle; }
-    #content.product aside.slider .content div.tendency {
-      display: inline-block;
-      vertical-align: middle; }
-    #content.product aside.slider .content span {
-      display: block; }
-  #content.product aside.slider .toggle {
-    height: 10px;
-    width: 100%;
-    background: grey;
-    cursor: s-resize;
-    position: absolute;
-    bottom: 0; }
-  #content.product aside.slider.open .toggle {
-    cursor: n-resize; }
 #content.product article {
   margin-top: 45px; }
   #content.product article .icon.ng-hide {
@@ -189,3 +190,14 @@ footer {
   display: block; }
 #content.cart footer .cart {
   background: green; }
+
+#content.stock article .product, #content.stock article .icons, #content.stock article .price {
+  display: inline-block;
+  width: 33%; }
+#content.stock article .price {
+  text-align: right; }
+#content.stock article .icons {
+  text-align: center; }
+
+#content.article article {
+  margin-top: 45px; }

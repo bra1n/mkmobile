@@ -14,7 +14,7 @@ mkmobileDirectives.directive 'mkmFooter', [
   'MkmApi', (MkmApi) ->
     scope: cart: "=?"
     link: (scope) ->
-      scope.loggedIn = MkmApi.isLoggedIn()
+      scope.loggedIn = MkmApi.auth.isLoggedIn()
       scope.cart = scope.cart or MkmApi.cart.count()
     restrict: 'E'
     replace: yes
@@ -37,3 +37,8 @@ mkmobileDirectives.directive 'mkmSeller', ->
   restrict: 'A'
   scope: seller: "="
   templateUrl: '/partials/directives/seller.html'
+
+mkmobileDirectives.directive 'mkmProduct', ->
+  restrict: 'E'
+  scope: productData: "="
+  templateUrl: '/partials/directives/product.html'

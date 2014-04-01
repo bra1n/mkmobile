@@ -1,4 +1,4 @@
-<input ng-model="query" ng-change="search()" id="search">
+<input ng-model="query" ng-change="search()" id="search" placeholder="Search">
 <button ng-show="query" ng-click="query = null">X</button>
 <div class="results" ng-show="query">
   {{searchData.count}} Results

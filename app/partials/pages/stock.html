@@ -1,18 +1,20 @@
-<header>
-  {{productData.product.name[0].productName}}
-  {{productData.product.number}}
-  <span class="icon expansion expansion-{{productData.product.expansion | expansionIcon}}"></span>
-  <span ng-show="productData.product.rarity" class="icon rarity rarity-{{productData.product.rarity}}"></span>
-</header>
-<mkm-product product-data="productData"></mkm-product>
+<header>My Offers - {{data.count}} articles</header>
 <article>
-  <span ng-show="!data.loading && !data.count">No Offers :(</span>
+  <div class="header">
+    <input type="text" ng-model="query" ng-change="search()" placeholder="Search">
+    <button ng-show="query" ng-click="query = null">X</button>
+    <div class="tools" ng-show="selected.length">
+      <button class="minus">-</button>
+      <button class="plus">+</button>
+    </div>
+  </div>
+  <span ng-show="!data.loading && !data.count">No Articles :(</span>
   <ul ng-class="{loading:data.loading}" data-infinite-scroll="loadArticles()">
     <li ng-repeat="article in data.articles" ng-hide="!article.count">
-      <div class="seller">
-        <button ng-click="article.showSeller = !article.showSeller" ng-class="!!article.showSeller && 'open'"></button>
-        <span class="icon country country-{{article.seller.country}}"></span>
-        {{article.seller.username}}
+      <div class="product">
+        <input type="checkbox" ng-checked="selected.indexOf(article.idArticle) > -1" ng-click="select(article.idArticle)">
+        <span class="icon card"></span>
+        <a href="/stock/{{article.idArticle}}">{{article.idArticle}}</a>
       </div>
       <div class="icons">
         <span class="icon language language-{{article.language.idLanguage}}" ng-show="article.language.idLanguage"></span>
@@ -25,13 +27,10 @@
       </div>
       <div class="price">
         {{article.price | currency:"€"}}
-        <span class="price-per-card" ng-show="article.isPlayset">({{article.price / 4 | currency:"€"}})</span>
         <span class="count">{{article.count}}</span>
-        <button ng-click="addToCart(article)"></button>
       </div>
       <div class="comment" ng-hide="!article.showComment">{{article.comments}}</div>
-      <div class="seller" ng-hide="!article.showSeller" mkm-seller seller="article.seller"></div>
     </li>
   </ul>
 </article>
-<mkm-footer cart="cart"></mkm-footer>
+<mkm-footer cart="count"></mkm-footer>
