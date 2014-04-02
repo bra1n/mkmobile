@@ -4,19 +4,18 @@
     <input type="text" ng-model="query" ng-change="search()" placeholder="Search">
     <button ng-show="query" ng-click="query = null">X</button>
     <div class="tools" ng-show="selected.length">
-      <button class="minus">-</button>
-      <button class="plus">+</button>
+      <button class="minus" ng-click="decrease(selected)">-</button>
+      <button class="plus" ng-click="increase(selected)">+</button>
     </div>
   </div>
   <span ng-show="!data.loading && !data.count">No Articles :(</span>
   <ul ng-class="{loading:data.loading}" data-infinite-scroll="loadArticles()">
     <li ng-repeat="article in data.articles" ng-hide="!article.count">
       <div class="product">
-        <input type="checkbox" ng-checked="selected.indexOf(article.idArticle) > -1" ng-click="select(article.idArticle)">
+        <input type="checkbox" ng-checked="selected.indexOf(article) > -1" ng-click="select(article)">
         <span class="icon card"></span>
         <a href="/stock/{{article.idArticle}}">{{article.idArticle}}</a>
-      </div>
-      <div class="icons">
+      </div><div class="icons">
         <span class="icon language language-{{article.language.idLanguage}}" ng-show="article.language.idLanguage"></span>
         <span class="icon grading grading-{{article.condition}}" ng-show="article.condition"></span>
         <span class="icon is-foil" ng-show="article.isFoil"></span>
@@ -24,8 +23,7 @@
         <span class="icon is-playset" ng-show="article.isPlayset"></span>
         <span class="icon is-altered" ng-show="article.isAltered"></span>
         <span class="icon comment" ng-show="article.comments" ng-click="article.showComment = !article.showComment"></span>
-      </div>
-      <div class="price">
+      </div><div class="price">
         {{article.price | currency:"€"}}
         <span class="count">{{article.count}}</span>
       </div>

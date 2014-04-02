@@ -13,8 +13,7 @@
         <button ng-click="article.showSeller = !article.showSeller" ng-class="!!article.showSeller && 'open'"></button>
         <span class="icon country country-{{article.seller.country}}"></span>
         {{article.seller.username}}
-      </div>
-      <div class="icons">
+      </div><div class="icons">
         <span class="icon language language-{{article.language.idLanguage}}" ng-show="article.language.idLanguage"></span>
         <span class="icon grading grading-{{article.condition}}" ng-show="article.condition"></span>
         <span class="icon is-foil" ng-show="article.isFoil"></span>
@@ -22,8 +21,7 @@
         <span class="icon is-playset" ng-show="article.isPlayset"></span>
         <span class="icon is-altered" ng-show="article.isAltered"></span>
         <span class="icon comment" ng-show="article.comments" ng-click="article.showComment = !article.showComment"></span>
-      </div>
-      <div class="price">
+      </div><div class="price">
         {{article.price | currency:"€"}}
         <span class="price-per-card" ng-show="article.isPlayset">({{article.price / 4 | currency:"€"}})</span>
         <span class="count">{{article.count}}</span>

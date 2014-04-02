@@ -1,42 +1,44 @@
-class ServiceAuth
+mkmobileServices.factory 'MkmApiAuth', [ 'MkmApi', '$location', (MkmApi, $location) ->
   redirectAfterLogin = "/"
 
-  constructor: ({@api, @auth, @location}) ->
-
   # get login status
-  isLoggedIn: -> @auth.secret isnt ""
+  isLoggedIn: -> MkmApi.auth.secret isnt ""
 
   # return login URL
-  getLoginURL: -> 'https://www.mkmapi.eu/ws/authenticate/' + @auth.consumerKey
+  getLoginURL: -> 'https://www.mkmapi.eu/ws/authenticate/' + MkmApi.auth.consumerKey
 
   # logout
   logout: ->
-    @auth.secret = @auth.token = ""
+    MkmApi.auth.secret = MkmApi.auth.token = ""
     sessionStorage.removeItem "secret"
     sessionStorage.removeItem "token"
-    @location.path '/login'
+    $location.path '/login'
 
   # checks whether a user is logged in and redirects if necessary
   checkLogin: ->
     console.log "login check", @isLoggedIn()
-    unless @isLoggedIn() and @location.path() isnt "/login"
-      @redirectAfterLogin = @location.path()
-      @location.path '/login'
+    response = true
+    unless @isLoggedIn() and $location.path() isnt "/login"
+      redirectAfterLogin = $location.path()
+      $location.path '/login'
+      response = false
+    response
 
   # log the user in and store tokens in the session
   getAccess: (requestToken) ->
     response = {}
-    @auth.token = requestToken if requestToken?
+    MkmApi.auth.token = requestToken if requestToken?
     request =
-      app_key: @auth.consumerKey
-      request_token: @auth.token
+      app_key: MkmApi.auth.consumerKey
+      request_token: MkmApi.auth.token
     @api.access request, (data) =>
       if data.oauth_token and data.oauth_token_secret
-        @auth.token = data.oauth_token
-        @auth.secret = data.oauth_token_secret
-        sessionStorage.setItem "auth", @auth.token
-        sessionStorage.setItem "secret", @auth.secret
+        MkmApi.auth.token = data.oauth_token
+        MkmApi.auth.secret = data.oauth_token_secret
+        sessionStorage.setItem MkmApi.auth, MkmApi.auth.token
+        sessionStorage.setItem "secret", MkmApi.auth.secret
         response.success = yes
-        @location.path @redirectAfterLogin
+        $location.path redirectAfterLogin
     , -> response.error = yes
     response = {}
+]

@@ -13,21 +13,27 @@ mkmobileApp.config ['$locationProvider','$routeProvider', ($locationProvider, $r
   .when '/',
     templateUrl:  '/partials/pages/home.html'
     controller:   'HomeCtrl'
+    requireLogin: yes
   .when '/search',
     templateUrl:  '/partials/pages/search.html'
     controller:   'SearchCtrl'
+    requireLogin: yes
   .when '/cart/:orderId?',
     templateUrl:  '/partials/pages/cart.html'
     controller:   'CartCtrl'
+    requireLogin: yes
   .when '/stock',
     templateUrl:  '/partials/pages/stock.html'
     controller:   'StockCtrl'
+    requireLogin: yes
   .when '/stock/:articleId',
     templateUrl:  '/partials/pages/article.html'
     controller:   'StockCtrl'
+    requireLogin: yes
   .when '/settings',
     templateUrl:  '/partials/pages/settings.html'
     controller:   'SettingsCtrl'
+    requireLogin: yes
   .when '/login',
     templateUrl:  '/partials/pages/login.html'
     controller:   'SearchCtrl'
@@ -40,53 +46,6 @@ mkmobileApp.config ['$locationProvider','$routeProvider', ($locationProvider, $r
   .otherwise
     redirectTo: '/'
 ]
-
-# helper function to generate oauth headers
-generateOAuthHeader = (config) ->
-  auth = config.oauth
-  params =
-    realm: config.url
-    oauth_consumer_key: auth.consumerKey
-    oauth_nonce: Math.random().toString(36).substr(2)+Math.random().toString(36).substr(2)
-    oauth_signature_method: "HMAC-SHA1"
-    oauth_timestamp: Math.round(new Date().getTime()/1000)
-    oauth_token: auth.token
-    oauth_version: "1.0"
-    oauth_signature: ""
-  paramOrder = ["oauth_consumer_key","oauth_nonce","oauth_signature_method","oauth_timestamp","oauth_token","oauth_version"]
-  signatureParams = []
-  signatureParams.push param+"="+params[param] for param in paramOrder
-  signature = [ config.method, encodeURIComponent(params.realm), encodeURIComponent(signatureParams.join "&")].join "&"
-  salt = encodeURIComponent(auth.consumerSecret) + "&" + encodeURIComponent(auth.secret)
-  signature = CryptoJS.HmacSHA1 signature, salt
-  params.oauth_signature = signature.toString CryptoJS.enc.Base64
-
-  'OAuth
-    realm="'+params.realm+'",
-    oauth_version="'+params.oauth_version+'",
-    oauth_timestamp="'+params.oauth_timestamp+'",
-    oauth_nonce="'+params.oauth_nonce+'",
-    oauth_consumer_key="'+params.oauth_consumer_key+'",
-    oauth_token="'+params.oauth_token+'",
-    oauth_signature_method="'+params.oauth_signature_method+'",
-    oauth_signature="'+params.oauth_signature+'"
-  '
-
-# transform object into XML string
-toXML = (obj, recursive = no) ->
-  xml = ''
-  if typeof obj is "object"
-    for prop,val of obj
-      if typeof val is "object"
-        if val instanceof Array
-          val = val.map((elem) -> toXML elem, yes).join "</#{prop}><#{prop}>"
-        else
-          val = toXML val, yes
-      xml += "<#{prop}>#{val}</#{prop}>"
-  else
-    xml = obj
-  xml = '<?xml version="1.0" encoding="UTF-8" ?><request>'+xml+'</request>' unless recursive
-  xml
 
 mkmobileApp.config ['$httpProvider', ($httpProvider) ->
   $httpProvider.defaults.useXDomain = yes
@@ -114,8 +73,62 @@ mkmobileApp.config ['$httpProvider', ($httpProvider) ->
 ]
 
 # generate a base CSS class based on the template name
-mkmobileApp.run ['$rootScope', ($rootScope) ->
+mkmobileApp.run [ '$rootScope','MkmApiAuth', ($rootScope, MkmApiAuth) ->
+  $rootScope.$on '$routeChangeStart', (event, next, current) ->
+    if next.$$route.requireLogin
+      event.preventDefault() unless MkmApiAuth.checkLogin()
   $rootScope.$on '$routeChangeSuccess', (event, current) ->
     if current.$$route?.templateUrl?
       $rootScope.viewClass = current.$$route?.templateUrl.replace(/(^.*\/|\.html$)/ig,'')
 ]
+
+# init services and controllers
+mkmobileServices = angular.module 'mkmobileServices', ['ngResource']
+mkmobileControllers = angular.module 'mkmobileControllers', []
+
+# helper function to generate oauth headers
+generateOAuthHeader = (config) ->
+  auth = config.oauth
+  params =
+    realm: config.url
+    oauth_consumer_key: auth.consumerKey
+    oauth_nonce: Math.random().toString(36).substr(2)+Math.random().toString(36).substr(2)
+    oauth_signature_method: "HMAC-SHA1"
+    oauth_timestamp: Math.round(new Date().getTime()/1000)
+    oauth_token: auth.token
+    oauth_version: "1.0"
+    oauth_signature: ""
+  paramOrder = ["oauth_consumer_key","oauth_nonce","oauth_signature_method","oauth_timestamp","oauth_token","oauth_version"]
+  signatureParams = []
+  signatureParams.push param+"="+params[param] for param in paramOrder
+  signature = [ config.method, encodeURIComponent(params.realm), encodeURIComponent(signatureParams.join "&")].join "&"
+  salt = encodeURIComponent(auth.consumerSecret) + "&" + encodeURIComponent(auth.secret)
+  signature = CryptoJS.HmacSHA1 signature, salt
+  params.oauth_signature = signature.toString CryptoJS.enc.Base64
+
+  'OAuth
+      realm="'+params.realm+'",
+      oauth_version="'+params.oauth_version+'",
+      oauth_timestamp="'+params.oauth_timestamp+'",
+      oauth_nonce="'+params.oauth_nonce+'",
+      oauth_consumer_key="'+params.oauth_consumer_key+'",
+      oauth_token="'+params.oauth_token+'",
+      oauth_signature_method="'+params.oauth_signature_method+'",
+      oauth_signature="'+params.oauth_signature+'"
+    '
+
+# transform object into XML string
+toXML = (obj, recursive = no) ->
+  xml = ''
+  if typeof obj is "object"
+    for prop,val of obj
+      if typeof val is "object"
+        if val instanceof Array
+          val = val.map((elem) -> toXML elem, yes).join "</#{prop}><#{prop}>"
+        else
+          val = toXML val, yes
+      xml += "<#{prop}>#{val}</#{prop}>"
+  else
+    xml = obj
+  xml = '<?xml version="1.0" encoding="UTF-8" ?><request>'+xml+'</request>' unless recursive
+  xml
