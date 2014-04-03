@@ -1,4 +1,4 @@
-mkmobileServices.factory 'MkmApi', [ '$resource', ($resource) ->
+mkmobileServices.factory 'MkmApi', [ '$resource', 'DataCache', ($resource, DataCache) ->
   auth =
     consumerKey:    "alb03sLPpFNAhi6f"
     consumerSecret: "HTIcbso87X22JdS3Yk89c2CojfZiNDMX"
@@ -12,11 +12,11 @@ mkmobileServices.factory 'MkmApi', [ '$resource', ($resource) ->
       url: apiURL+apiAuth+apiFormat+'/:type/:param1/:param2/:param3/:param4/:param5' # deprecated
       params: {type:"products",param2:"1",param3:"1",param4:"false"}
       unique: "search"
+      cache: yes
       oauth: auth
     articles:
       url: apiURL+apiAuth+apiFormat+'/:type/:param1/:param2/:param3/:param4/:param5' # deprecated
       params: type: "articles"
-      cache: no
       oauth: auth
     product:
       url: apiURL+apiAuth+apiFormat+'/:type/:param1/:param2/:param3/:param4/:param5' # deprecated
@@ -41,7 +41,6 @@ mkmobileServices.factory 'MkmApi', [ '$resource', ($resource) ->
       url: apiURL+apiAuth+apiFormat+'/:type/:param1/:param2/:param3/:param4/:param5' # deprecated
       params: type: 'stock'
       oauth: auth
-      cache: no
     stockUpdate:
       url: apiURL+apiAuth+apiFormat+'/:type/:param1/:param2/:param3/:param4/:param5' # deprecated
       params: type: 'stock'
@@ -52,6 +51,16 @@ mkmobileServices.factory 'MkmApi', [ '$resource', ($resource) ->
       url: apiURL+apiAuth+apiFormat+'/:type/:param1/:param2/:param3/:param4/:param5' # deprecated
       params: {type: 'stock', param1: 'article', param2: "@param2", param3: "@param3", param4: "@param4"}
       method: 'PUT'
+      oauth: auth
+    orders:
+      url: apiURL+apiAuth+apiFormat+'/:type/:param1/:param2/:param3/:param4/:param5' # deprecated
+      params: type: 'orders'
+      oauth: auth
+      cache: yes
+      unique: "order"
+    order:
+      url: apiURL+apiAuth+apiFormat+'/:type/:param1/:param2/:param3/:param4/:param5' # deprecated
+      params: type: 'order'
       oauth: auth
   auth: auth
 ]

@@ -10,18 +10,29 @@ mkmobileApp = angular.module 'mkmobileApp', [
 mkmobileApp.config ['$locationProvider','$routeProvider', ($locationProvider, $routeProvider) ->
   $locationProvider.html5Mode yes
   $routeProvider
+  # home page
   .when '/',
     templateUrl:  '/partials/pages/home.html'
     controller:   'HomeCtrl'
     requireLogin: yes
+
+  # search
   .when '/search',
     templateUrl:  '/partials/pages/search.html'
     controller:   'SearchCtrl'
     requireLogin: yes
-  .when '/cart/:orderId?',
+
+  # shopping cart
+  .when '/cart',
     templateUrl:  '/partials/pages/cart.html'
     controller:   'CartCtrl'
     requireLogin: yes
+  .when '/cart/:orderId',
+    templateUrl:  '/partials/pages/order.html'
+    controller:   'CartCtrl'
+    requireLogin: yes
+
+  # stock management
   .when '/stock',
     templateUrl:  '/partials/pages/stock.html'
     controller:   'StockCtrl'
@@ -30,10 +41,34 @@ mkmobileApp.config ['$locationProvider','$routeProvider', ($locationProvider, $r
     templateUrl:  '/partials/pages/article.html'
     controller:   'StockCtrl'
     requireLogin: yes
+
+  # user settings
   .when '/settings',
     templateUrl:  '/partials/pages/settings.html'
     controller:   'SettingsCtrl'
     requireLogin: yes
+
+  # offer management
+  .when '/buys',
+    templateUrl:  '/partials/pages/orders.html'
+    controller:   'OrderCtrl'
+    requireLogin: yes
+    reloadOnSearch: no
+  .when '/buys/:orderId',
+    templateUrl:  '/partials/pages/order.html'
+    controller:   'OrderCtrl'
+    requireLogin: yes
+  .when '/sells',
+    templateUrl:  '/partials/pages/orders.html'
+    controller:   'OrderCtrl'
+    requireLogin: yes
+    reloadOnSearch: no
+  .when '/sells/:orderId',
+    templateUrl:  '/partials/pages/order.html'
+    controller:   'OrderCtrl'
+    requireLogin: yes
+
+  # anonymous routes
   .when '/login',
     templateUrl:  '/partials/pages/login.html'
     controller:   'SearchCtrl'
@@ -49,7 +84,6 @@ mkmobileApp.config ['$locationProvider','$routeProvider', ($locationProvider, $r
 
 mkmobileApp.config ['$httpProvider', ($httpProvider) ->
   $httpProvider.defaults.useXDomain = yes
-  $httpProvider.defaults.cache = yes
   delete $httpProvider.defaults.headers.common['X-Requested-With']
   $httpProvider.interceptors.push ['$q', ($q) ->
     uniqueRequests = {}
@@ -66,8 +100,8 @@ mkmobileApp.config ['$httpProvider', ($httpProvider) ->
       config or $q.when config
     # if the response has a Range header, parse it and put it into the data as _count property
     response: (response) ->
-      if response.headers().range?
-        response.data._range = parseInt(response.headers().range.replace(/^.*\//,''),10) or 0
+      if response.headers()['Content-Range']?
+        response.data._range = parseInt(response.headers()['Content-Range'].replace(/^.*\//,''),10) or 0
       response or $q.when response
   ]
 ]

@@ -9,11 +9,11 @@ mkmobileServices.factory 'MkmApiCart', [ 'MkmApi', 'DataCache', (MkmApi, DataCac
       MkmApi.api.shoppingcart {}, (data) =>
         response.loading = no
         response.cart = DataCache.cart data.shoppingCart
-        response.cart = (order for order in response.cart when order.seller.username is id) if id?
+        response.order = (order for order in response.cart when order.seller.username is id) if id?
         cb?(response)
     else
       # cart already there, yay!
-      response.cart = (order for order in response.cart when order.seller.username is id) if id?
+      response.order = (order for order in response.cart when order.seller.username is id) if id?
       cb?(response)
     response
 

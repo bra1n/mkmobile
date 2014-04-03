@@ -1,9 +1,8 @@
-Order Nr.: {{order.idOrder}}<br>
 <a class="icon comment" href="/messages/{{order.seller.username}}"></a>
 <button class="details" ng-click="order.showSeller = !order.showSeller">+</button>
 Seller: {{order.seller.username}}<br>
 <div class="seller" ng-show="order.showSeller" mkm-seller seller="order.seller"></div>
-Buyer: ich
+Buyer: {{order.buyer.username}}
 
 <div class="overview">
   {{order.totalCount}} article(s)

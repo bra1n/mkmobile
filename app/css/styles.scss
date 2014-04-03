@@ -115,7 +115,15 @@ aside.slider {
   &.open .toggle { cursor: n-resize; }
 }
 
+// Order directive
+mkm-order {
+  div.icons { display: inline-block; }
+  i { display: block; }
+}
+
+/***********************/
 // Styling per Screen
+/***********************/
 #content.login {
   article {
     // login form
@@ -214,5 +222,19 @@ aside.slider {
 #content.article {
   article {
     margin-top: 45px;
+  }
+}
+
+// order page
+#content.orders {
+  article {
+    .tabs li {
+      display: inline-block;
+      width: 25%;
+      vertical-align: top;
+      text-align: center;
+      cursor: pointer;
+      &.current { background: silver; }
+    }
   }
 }

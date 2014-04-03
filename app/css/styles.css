@@ -112,6 +112,13 @@ aside.slider {
   aside.slider.open .toggle {
     cursor: n-resize; }
 
+mkm-order div.icons {
+  display: inline-block; }
+mkm-order i {
+  display: block; }
+
+/***********************/
+/***********************/
 #content.login article {
   position: fixed; }
   #content.login article img.logo {
@@ -201,3 +208,12 @@ aside.slider {
 
 #content.article article {
   margin-top: 45px; }
+
+#content.orders article .tabs li {
+  display: inline-block;
+  width: 25%;
+  vertical-align: top;
+  text-align: center;
+  cursor: pointer; }
+  #content.orders article .tabs li.current {
+    background: silver; }

@@ -12,6 +12,7 @@
     </div>
     <hr>
     <div class="single" ng-show="data.cart.length == 1">
+      Order Nr.: {{data.cart[0].idOrder}}
       <mkm-order order="data.cart[0]" remove-article="removeArticle"></mkm-order>
     </div>
     <div class="multiple" ng-show="data.cart.length > 1">

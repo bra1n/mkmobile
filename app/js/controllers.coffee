@@ -144,3 +144,18 @@ mkmobileControllers.controller 'StockCtrl', [
     $scope.conditions = ["MT","NM","EX","GD","LP","PL","PO"]
     $scope.save = -> MkmApiStock.update $scope.data.article, -> $location.path "/stock"
 ]
+
+# /buys /sells
+mkmobileControllers.controller 'OrderCtrl', [
+  '$scope', '$location', '$routeParams', 'MkmApiOrder'
+  ($scope, $location, $routeParams, MkmApiOrder) ->
+    $scope.mode = $location.path().substr(1).replace /^(.*?)\/.*?$/, '$1'
+    $scope.orderId = $routeParams.orderId
+    $scope.$watch "tab", (status) ->
+      $location.search(tab: status) unless $scope.orderId?
+      $scope.data = MkmApiOrder.get {mode: $scope.mode, status, orderId: $scope.orderId}
+    $scope.tab = $location.search().tab or "bought"
+    $scope.loadOrders = ->
+      return if $scope.data.orders.length >= $scope.data.count or $scope.data.loading
+      MkmApiOrder.get {mode: $scope.mode, status, response:$scope.data}
+]

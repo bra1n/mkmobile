@@ -5,6 +5,7 @@ mkmobileServices.factory 'DataCache', ['$cacheFactory', ($cacheFactory) ->
     article: $cacheFactory 'article', capacity: 1000
     cart: $cacheFactory 'cart', capacity: 2
     user: $cacheFactory 'user', capacity: 1
+    order: $cacheFactory 'order', capacity: 1000
   product: (id, data) ->
     cache.product.put(id, data) if data?
     cache.product.get(id) if id?
@@ -26,10 +27,14 @@ mkmobileServices.factory 'DataCache', ['$cacheFactory', ($cacheFactory) ->
       # end of replace
       cache.cart.put('cart', data) if data?
     cache.cart.get('cart')
+  # cartCount is handled independently of cart contents
   cartCount: (count) ->
     cache.cart.put('count', count) if count?
     cache.cart.get('count') or 0
   user: (data) ->
     cache.user.put(1, data) if data?
     cache.user.get(1) or []
+  order: (id, data) ->
+    cache.order.put(id, data) if data?
+    cache.order.get(id) if id?
 ]
