@@ -31,7 +31,7 @@ mkmobileServices.factory 'MkmApiAuth', [ 'MkmApi', '$location', (MkmApi, $locati
     request =
       app_key: MkmApi.auth.consumerKey
       request_token: MkmApi.auth.token
-    @api.access request, (data) =>
+    MkmApi.api.access request, (data) =>
       if data.oauth_token and data.oauth_token_secret
         MkmApi.auth.token = data.oauth_token
         MkmApi.auth.secret = data.oauth_token_secret
