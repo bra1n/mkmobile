@@ -152,10 +152,18 @@ mkmobileControllers.controller 'OrderCtrl', [
     $scope.mode = $location.path().substr(1).replace /^(.*?)\/.*?$/, '$1'
     $scope.orderId = $routeParams.orderId
     $scope.$watch "tab", (status) ->
-      $location.search(tab: status) unless $scope.orderId?
+      sessionStorage.setItem $scope.mode + 'Tab', $scope.tab
       $scope.data = MkmApiOrder.get {mode: $scope.mode, status, orderId: $scope.orderId}
-    $scope.tab = $location.search().tab or "bought"
+    $scope.tab = sessionStorage.getItem($scope.mode + 'Tab') or "bought"
     $scope.loadOrders = ->
       return if $scope.data.orders.length >= $scope.data.count or $scope.data.loading
       MkmApiOrder.get {mode: $scope.mode, status, response:$scope.data}
+]
+
+
+# /messages
+mkmobileControllers.controller 'MessageCtrl', [
+  '$scope', '$routeParams', 'MkmApiMessage'
+  ($scope, $routeParams, MkmApiMessage) ->
+    $scope.recipient = $routeParams.user
 ]

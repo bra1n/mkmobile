@@ -53,7 +53,6 @@ mkmobileApp.config ['$locationProvider','$routeProvider', ($locationProvider, $r
     templateUrl:  '/partials/pages/orders.html'
     controller:   'OrderCtrl'
     requireLogin: yes
-    reloadOnSearch: no
   .when '/buys/:orderId',
     templateUrl:  '/partials/pages/order.html'
     controller:   'OrderCtrl'
@@ -62,10 +61,15 @@ mkmobileApp.config ['$locationProvider','$routeProvider', ($locationProvider, $r
     templateUrl:  '/partials/pages/orders.html'
     controller:   'OrderCtrl'
     requireLogin: yes
-    reloadOnSearch: no
   .when '/sells/:orderId',
     templateUrl:  '/partials/pages/order.html'
     controller:   'OrderCtrl'
+    requireLogin: yes
+
+  # messages
+  .when '/messages/:user?',
+    templateUrl:  '/partials/pages/messages.html'
+    controller:   'MessageCtrl'
     requireLogin: yes
 
   # anonymous routes
@@ -100,6 +104,9 @@ mkmobileApp.config ['$httpProvider', ($httpProvider) ->
       config or $q.when config
     # if the response has a Range header, parse it and put it into the data as _count property
     response: (response) ->
+      # todo remove
+      if response.headers()['range']?
+        response.data._range = parseInt(response.headers()['range'].replace(/^.*\//,''),10) or 0
       if response.headers()['Content-Range']?
         response.data._range = parseInt(response.headers()['Content-Range'].replace(/^.*\//,''),10) or 0
       response or $q.when response

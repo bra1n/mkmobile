@@ -11,9 +11,11 @@ mkmobileServices.factory 'MkmApiOrder', [ 'MkmApi', 'DataCache', (MkmApi, DataCa
     cancelled:  128
   get: ({mode, status, orderId, response}) ->
     if orderId?
-      response = loading: yes, order: DataCache.order orderId
+      response = order: DataCache.order orderId
       unless response.order?
+        response.loading = yes
         MkmApi.api.order {param1: orderId}, (data) =>
+          response.loading = no
           response.order = DataCache.order orderId, data.order
     else
       response = count: 0, orders: [] unless response?

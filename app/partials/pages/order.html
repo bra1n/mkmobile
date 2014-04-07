@@ -2,8 +2,9 @@
   Order Nr.: {{data.order.idOrder}}
 </header>
 <article>
-  <mkm-order order="data.order"></mkm-order>
-  <div ng-show="data.order.state">
+  <div class="loading" ng-show="data.loading">Loading order...</div>
+  <mkm-order ng-hide="data.loading" order="data.order"></mkm-order>
+  <div ng-show="data.order.state && !data.loading">
     <span ng-show="data.order.state.dateBought">Purchased: {{data.order.state.dateBought | date:'short'}}<br></span>
     <span ng-show="data.order.state.datePaid">Paid: {{data.order.state.datePaid | date:'short'}}<br></span>
     <span ng-show="data.order.state.dateSent">Sent: {{data.order.state.dateSent | date:'short'}}<br></span>

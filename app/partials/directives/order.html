@@ -1,18 +1,38 @@
 <a class="icon comment" href="/messages/{{order.seller.username}}"></a>
 <button class="details" ng-click="order.showSeller = !order.showSeller">+</button>
 Seller: {{order.seller.username}}<br>
-<div class="seller" ng-show="order.showSeller" mkm-seller seller="order.seller"></div>
+<div class="seller-details" ng-show="order.showSeller" mkm-seller seller="order.seller"></div>
+<div class="seller-address" ng-show="order.seller.address">
+  Seller's address<br>
+  {{order.seller.name.firstName}} {{order.seller.name.lastName}}<br>
+  {{order.seller.address.street}}
+  {{order.seller.address.extra}}
+  {{order.seller.address.zip}}
+  {{order.seller.address.city}}
+  {{order.seller.address.country}}
+  <hr>
+</div>
+
 Buyer: {{order.buyer.username}}
+<div class="buyer-address" ng-show="order.shippingAddress">
+  Shipping address<br>
+  {{order.shippingAddress.name}}<br>
+  {{order.shippingAddress.street}}
+  {{order.shippingAddress.extra}}
+  {{order.shippingAddress.zip}}
+  {{order.shippingAddress.city}}
+  {{order.shippingAddress.country}}
+</div>
 
 <div class="overview">
-  {{order.totalCount}} article(s)
+  <ng-pluralize count="order.totalCount" when="{0:'No articles',one:'1 article',other:'{} articles'}"></ng-pluralize>
   <span>Price</span>
 </div>
 <ul class="articles">
   <li ng-repeat="article in order.article" ng-hide="!article.count">
     <button ng-click="removeArticle(article, order)" ng-show="removeArticle">-</button>
     {{article.count}}
-    {{article.idArticle}}
+    <a href="/product/{{article.idProduct}}">{{article.idArticle}}</a>
     <div class="icons">
       <span class="icon language language-{{article.language.idLanguage}}" ng-show="article.language.idLanguage"></span>
       <span class="icon grading grading-{{article.condition}}" ng-show="article.condition"></span>

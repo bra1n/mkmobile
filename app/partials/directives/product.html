@@ -1,8 +1,7 @@
 <aside class="slider" ng-class="!!slider && 'open'">
   <div class="content">
     <img src="" ng-src="{{productData.product.image | productImage}}">
-    <div class="tendency">Price Tendency: {{productData.product.tendency}}</div>
-    <span>Available Items: {{data.count}}</span>
+    <span>Available Items: {{productData.product.articles}}</span>
     <span>From (EX+): {{productData.product.priceGuide.LOW | currency:"€"}}</span>
     <span>Average price (EX+): {{productData.product.priceGuide.AVG | currency:"€"}}</span>
     <span ng-show="productData.product.foils">Available foils: {{productData.product.foils}}</span>

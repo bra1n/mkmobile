@@ -35,7 +35,7 @@ mkmobileServices.factory 'MkmApiAuth', [ 'MkmApi', '$location', (MkmApi, $locati
       if data.oauth_token and data.oauth_token_secret
         MkmApi.auth.token = data.oauth_token
         MkmApi.auth.secret = data.oauth_token_secret
-        sessionStorage.setItem MkmApi.auth, MkmApi.auth.token
+        sessionStorage.setItem "token", MkmApi.auth.token
         sessionStorage.setItem "secret", MkmApi.auth.secret
         response.success = yes
         $location.path redirectAfterLogin

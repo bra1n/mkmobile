@@ -56,7 +56,7 @@ mkmobileServices.factory 'MkmApi', [ '$resource', 'DataCache', ($resource, DataC
       url: apiURL+apiAuth+apiFormat+'/:type/:param1/:param2/:param3/:param4/:param5' # deprecated
       params: type: 'orders'
       oauth: auth
-      cache: yes
+      cache: yes #todo: don't cache
       unique: "order"
     order:
       url: apiURL+apiAuth+apiFormat+'/:type/:param1/:param2/:param3/:param4/:param5' # deprecated

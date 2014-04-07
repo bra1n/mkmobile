@@ -98,10 +98,6 @@ aside.slider {
   .content {
     padding-top: 80px;
     img { vertical-align: middle; }
-    div.tendency {
-      display: inline-block;
-      vertical-align: middle;
-    }
     span { display: block; }
   }
   .toggle {
@@ -176,7 +172,6 @@ mkm-order {
     .price button { background-image:url("/img/cart.png"); background-repeat:no-repeat; background-position:4px 4px; }
     .comment { text-align: center; }
   }
-  footer .search { background: green; }
 }
 
 // home page

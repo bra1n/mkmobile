@@ -25,7 +25,7 @@ mkmobileServices.factory 'DataCache', ['$cacheFactory', ($cacheFactory) ->
         count += parseInt(article.count, 10) for article in seller.article
         data[index].totalCount = count
       # end of replace
-      cache.cart.put('cart', data) if data?
+    cache.cart.put('cart', data) if data?
     cache.cart.get('cart')
   # cartCount is handled independently of cart contents
   cartCount: (count) ->
@@ -35,6 +35,12 @@ mkmobileServices.factory 'DataCache', ['$cacheFactory', ($cacheFactory) ->
     cache.user.put(1, data) if data?
     cache.user.get(1) or []
   order: (id, data) ->
+    if data?
+      # todo replace with API field for "total count per seller"
+      count = 0
+      count += parseInt(article.count, 10) for article in data.article
+      data.totalCount = count
+    # end of replace
     cache.order.put(id, data) if data?
     cache.order.get(id) if id?
 ]
