@@ -169,9 +169,9 @@ toXML = (obj, recursive = no) ->
         else
           val = toXML val, yes
       else
-        val = val.toString().replace /[\u00A0-\u99999<>\&]/gim, (i) -> '&#'+i.charCodeAt(0)+';'
+        val = val.toString().replace /[\u00A0-\u9999<>\&]/gim, (i) -> '&#'+i.charCodeAt(0)+';'
       xml += "<#{prop}>#{val}</#{prop}>"
   else
-    xml = obj.toString().replace /[\u00A0-\u99999<>\&]/gim, (i) -> '&#'+i.charCodeAt(0)+';'
+    xml = obj.toString().replace /[\u00A0-\u9999<>\&]/gim, (i) -> '&#'+i.charCodeAt(0)+';'
   xml = '<?xml version="1.0" encoding="UTF-8" ?><request>'+xml+'</request>' unless recursive
   xml

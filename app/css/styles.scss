@@ -20,6 +20,8 @@ header {
   max-height: 100%;
   overflow: auto;
   height: 35px;
+  line-height: 35px;
+  text-align: center;
 }
 
 article {
@@ -37,6 +39,8 @@ footer {
   background: white;
   z-index: 1000;
   height: 35px;
+  line-height: 35px;
+  text-align: center;
   a {
     display: inline-block;
     width: 30px;
@@ -127,7 +131,14 @@ mkm-order {
     img.logo { width: 200px; }
     input, button { display: block; }
   }
-  aside {
+  .input {
+    @extend header;
+    button {
+      height: 24px;
+      line-height: 21px;
+    }
+  }
+  .results {
     // search results
     position: absolute;
     top: 35px;

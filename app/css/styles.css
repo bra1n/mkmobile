@@ -6,7 +6,7 @@ ul, li {
   padding: 0;
   margin: 0; }
 
-header {
+header, #content.login .input {
   position: fixed;
   left: 0;
   right: 0;
@@ -17,7 +17,9 @@ header {
   z-index: 1000;
   max-height: 100%;
   overflow: auto;
-  height: 35px; }
+  height: 35px;
+  line-height: 35px;
+  text-align: center; }
 
 article {
   margin-bottom: 35px;
@@ -32,7 +34,9 @@ footer {
   padding-bottom: 1px;
   background: white;
   z-index: 1000;
-  height: 35px; }
+  height: 35px;
+  line-height: 35px;
+  text-align: center; }
   footer a {
     display: inline-block;
     width: 30px;
@@ -122,7 +126,10 @@ mkm-order i {
     width: 200px; }
   #content.login article input, #content.login article button {
     display: block; }
-#content.login aside {
+#content.login .input button {
+  height: 24px;
+  line-height: 21px; }
+#content.login .results {
   position: absolute;
   top: 35px;
   background-color: rgba(255, 255, 255, 0.75);
@@ -175,7 +182,7 @@ mkm-order i {
   #content.product article .comment {
     text-align: center; }
 
-#content.home header img {
+#content.home header img, #content.home #content.login .input img, #content.login #content.home .input img {
   height: 35px; }
 #content.home footer .home {
   background: green; }

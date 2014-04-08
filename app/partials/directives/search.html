@@ -1,5 +1,7 @@
-<input ng-model="query" id="search" placeholder="Search">
-<button ng-show="query != ''" ng-click="query = ''">X</button>
+<div class="input">
+  <input ng-model="query" id="search" placeholder="Search">
+  <button ng-show="query != ''" ng-click="query = ''">X</button>
+</div>
 <div class="results" ng-show="query != ''">
   {{searchData.count}} Results
   <select ng-model="sort" ng-show="searchData.count > 0">

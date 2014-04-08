@@ -1,24 +1,4 @@
-<header>
-  <input ng-model="query" ng-change="search()" id="search">
-  <button ng-show="query" ng-click="query = null">X</button>
-</header>
-<aside class="results" ng-show="query">
-  {{searchData.count}} Results
-  <select ng-model="sort" ng-show="searchData.count > 0">
-    <option value="name">Alphabetical</option>
-    <option value="expansion">Expansion</option>
-    <option value="rarity">Rarity</option>
-  </select>
-  <ul ng-class="{loading:searchData.loading}" data-infinite-scroll="loadResults()">
-    <li ng-repeat="product in searchData.products | orderBy:sort">
-      <a href="/product/{{product.idProduct}}" ng-click="updateHistory()">
-        <span class="icon expansion expansion-{{product.expansion | expansionIcon}}"></span>
-        <span class="icon rarity rarity-{{product.rarity}}" ng-show="product.rarity"></span>
-        {{product.name[0].productName}}
-      </a>
-    </li>
-  </ul>
-</aside>
+<mkm-search></mkm-search>
 <article>
   <form>
     <img src="/img/logo.jpg" alt="Logo" class="logo"/><br>
