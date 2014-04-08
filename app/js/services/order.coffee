@@ -29,4 +29,12 @@ mkmobileServices.factory 'MkmApiOrder', [ 'MkmApi', 'DataCache', (MkmApi, DataCa
         response.orders = response.orders.concat data.order.map((val) => DataCache.order val.idOrder, val) if response.count
         response.loading = no
     response
+  update: ({orderId, status, reason}, cb) ->
+    request = action: status
+    request.reason = reason if reason?
+    MkmApi.api.orderUpdate {param1: orderId}, request, (data) ->
+      console.log data
+      DataCache.order orderId, data.order
+      cb?()
+    false
 ]

@@ -4,15 +4,17 @@
 <article>
   <div class="loading" ng-show="data.loading">Loading order...</div>
   <mkm-order ng-hide="data.loading" order="data.order"></mkm-order>
-  <div ng-show="data.order.state && !data.loading">
+  <form ng-show="data.order.state && !data.loading">
     <span ng-show="data.order.state.dateBought">Purchased: {{data.order.state.dateBought | date:'short'}}<br></span>
     <span ng-show="data.order.state.datePaid">Paid: {{data.order.state.datePaid | date:'short'}}<br></span>
     <span ng-show="data.order.state.dateSent">Sent: {{data.order.state.dateSent | date:'short'}}<br></span>
     <span ng-show="data.order.state.dateReceived">Received: {{data.order.state.dateReceived | date:'short'}}<br></span>
     Status: {{data.order.state.state}}
-    <div ng-show="data.order.state.state == 'sent'"><button>Confirm Reception</button></div>
-    <div ng-show="data.order.state.state == 'bought'"><button>Request Cancellation</button></div>
-    <div ng-show="data.order.state.state == 'paid'"><button>Request Cancellation</button></div>
-  </div>
+    <div ng-show="data.order.showReason"><textarea ng-model="data.order.state.reason"></textarea></div>
+    <div ng-show="data.order.state.state == 'sent'"><button ng-click="update('confirmReception')">Confirm Reception</button></div>
+    <div ng-show="data.order.state.state == 'bought'"><button ng-click="update('requestCancellation')">Request Cancellation</button></div>
+    <div ng-show="data.order.state.state == 'paid'"><button ng-click="update('send')">Mark as sent</button></div>
+    <div ng-show="data.order.state.state !== 'paid'"><button ng-click="update('requestCancellation')">Request Cancellation</button></div>
+  </form>
 </article>
 <mkm-footer></mkm-footer>
