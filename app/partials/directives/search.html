@@ -1,6 +1,6 @@
-<input ng-model="query" ng-change="search()" id="search" placeholder="Search">
-<button ng-show="query" ng-click="query = null">X</button>
-<div class="results" ng-show="query">
+<input ng-model="query" id="search" placeholder="Search">
+<button ng-show="query != ''" ng-click="query = ''">X</button>
+<div class="results" ng-show="query != ''">
   {{searchData.count}} Results
   <select ng-model="sort" ng-show="searchData.count > 0">
     <option value="name">Alphabetical</option>
@@ -9,7 +9,7 @@
   </select>
   <ul ng-class="{loading:searchData.loading}" data-infinite-scroll="loadResults()">
     <li ng-repeat="product in searchData.products | orderBy:sort">
-      <a href="/product/{{product.idProduct}}" ng-click="updateHistory()">
+      <a href="/product/{{product.idProduct}}">
         <span class="icon expansion expansion-{{product.expansion | expansionIcon}}"></span>
         <span class="icon rarity rarity-{{product.rarity}}" ng-show="product.rarity"></span>
         {{product.name[0].productName}}

@@ -1,12 +1,12 @@
 # search for / or /login
 mkmobileControllers.controller 'SearchCtrl', [
-  '$scope', '$routeParams', '$location', 'MkmApiAuth', 'MkmApiMarket', '$sce'
-  ($scope, $routeParams, $location, MkmApiAuth, MkmApiMarket, $sce) ->
-    $scope.search = -> $scope.searchData = MkmApiMarket.search $scope.query
-    $scope.updateHistory = -> $location.search search: $scope.query
+  '$scope', '$routeParams', 'MkmApiAuth', 'MkmApiMarket', '$sce'
+  ($scope, $routeParams, MkmApiAuth, MkmApiMarket, $sce) ->
+    $scope.$watch 'query', (query) ->
+      sessionStorage.setItem "search", query
+      $scope.searchData = MkmApiMarket.search query
     # init scope vars
-    $scope.query = $routeParams.search
-    $scope.search()
+    $scope.query = sessionStorage.getItem "search" or ""
     $scope.sort = "name"
 
     # infinite scrolling
@@ -158,8 +158,15 @@ mkmobileControllers.controller 'OrderCtrl', [
     $scope.loadOrders = ->
       return if $scope.data.orders.length >= $scope.data.count or $scope.data.loading
       MkmApiOrder.get {mode: $scope.mode, status, response:$scope.data}
+    # update order status
+    $scope.update = (status) ->
+      if status is 'requestCancellation' and !$scope.data.order.showReason
+        $scope.data.order.showReason = yes
+      else
+        MkmApiOrder.update {orderId:$scope.orderId, status, reason:$scope.data.order.state.reason}, ->
+          $scope.data = MkmApiOrder.get {orderId: $scope.orderId}
+      false
 ]
-
 
 # /messages
 mkmobileControllers.controller 'MessageCtrl', [
