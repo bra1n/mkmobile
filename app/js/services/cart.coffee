@@ -43,7 +43,6 @@ mkmobileServices.factory 'MkmApiCart', [ 'MkmApi', 'DataCache', (MkmApi, DataCac
         idArticle: article
         amount: 1
     MkmApi.api.cartUpdate request, (data) =>
-      console.log data
       DataCache.cart data.shoppingCart
       cb?()
 

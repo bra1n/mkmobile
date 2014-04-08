@@ -5,23 +5,26 @@ Seller: {{order.seller.username}}<br>
 <div class="seller-address" ng-show="order.seller.address">
   Seller's address<br>
   {{order.seller.name.firstName}} {{order.seller.name.lastName}}<br>
-  {{order.seller.address.street}}
-  {{order.seller.address.extra}}
-  {{order.seller.address.zip}}
-  {{order.seller.address.city}}
-  {{order.seller.address.country}}
+  <span ng-show="order.seller.address.street"> {{order.seller.address.street}}, </span>
+  <span ng-show="order.seller.address.extra">  {{order.seller.address.extra}},  </span>
+  <span ng-show="order.seller.address.zip">    {{order.seller.address.zip}}     </span>
+  <span ng-show="order.seller.address.city">   {{order.seller.address.city}},   </span>
+  <span ng-show="order.seller.address.country">{{order.seller.address.country}} </span>
   <hr>
 </div>
 
+<a class="icon comment" href="/messages/{{order.buyer.username}}"></a>
+<button class="details" ng-click="order.showBuyer = !order.showBuyer">+</button>
 Buyer: {{order.buyer.username}}
+<div class="buyer-details" ng-show="order.showBuyer" mkm-seller seller="order.buyer"></div>
 <div class="buyer-address" ng-show="order.shippingAddress">
   Shipping address<br>
   {{order.shippingAddress.name}}<br>
-  {{order.shippingAddress.street}}
-  {{order.shippingAddress.extra}}
-  {{order.shippingAddress.zip}}
-  {{order.shippingAddress.city}}
-  {{order.shippingAddress.country}}
+  <span ng-show="order.shippingAddress.street"> {{order.shippingAddress.street}}, </span>
+  <span ng-show="order.shippingAddress.extra">  {{order.shippingAddress.extra}},  </span>
+  <span ng-show="order.shippingAddress.zip">    {{order.shippingAddress.zip}}     </span>
+  <span ng-show="order.shippingAddress.city">   {{order.shippingAddress.city}},   </span>
+  <span ng-show="order.shippingAddress.country">{{order.shippingAddress.country}} </span>
 </div>
 
 <div class="overview">

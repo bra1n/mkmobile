@@ -1,4 +1,4 @@
 app/lib
-app/js/*.js
-app/js/*.map
+*.js
+*.map
 .idea

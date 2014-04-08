@@ -48,6 +48,7 @@ mkmobileServices.factory 'MkmApiStock', [ 'MkmApi', 'DataCache', (MkmApi, DataCa
         DataCache.article article.idArticle, false
         DataCache.article data.updatedArticles[0].idArticle, data.updatedArticles[0]
         cb?()
+    false
 
   increase: (article, cb) ->
     MkmApi.api.stockAmount {param2: article.idArticle, param3: 'increase', param4: 1}, (data) ->

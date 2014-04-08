@@ -8,7 +8,7 @@
 <article>
   <div class="loading" ng-show="data.loading">Loading...</div>
   <div class="error" ng-show="data.error">Article not found!</div>
-  <div ng-show="data.article">
+  <form ng-show="data.article">
     <label for="language">Language</label>
     <select id="language" ng-options="id as language for (id,language) in languages" ng-model="data.article.language.idLanguage"></select>
     <hr>
@@ -30,6 +30,6 @@
     <label for="price">Price</label>
     <input id="price" type="number" step="0.01" min="0.01" ng-model="data.article.price"><br>
     <button ng-click="save()">Save Changes</button>
-  </div>
+  </form>
 </article>
 <mkm-footer></mkm-footer>
