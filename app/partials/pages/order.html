@@ -14,7 +14,7 @@
     <div ng-show="data.order.state.state == 'sent'"><button ng-click="update('confirmReception')">Confirm Reception</button></div>
     <div ng-show="data.order.state.state == 'bought'"><button ng-click="update('requestCancellation')">Request Cancellation</button></div>
     <div ng-show="data.order.state.state == 'paid'"><button ng-click="update('send')">Mark as sent</button></div>
-    <div ng-show="data.order.state.state !== 'paid'"><button ng-click="update('requestCancellation')">Request Cancellation</button></div>
+    <div ng-show="data.order.state.state == 'paid'"><button ng-click="update('requestCancellation')">Request Cancellation</button></div>
   </form>
 </article>
 <mkm-footer></mkm-footer>

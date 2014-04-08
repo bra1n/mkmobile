@@ -35,7 +35,6 @@ mkmobileServices.factory 'MkmApi', [ '$resource', ($resource) ->
     orders:
       params: type: 'orders'
       unique: "order"
-      cache:  yes #todo: don't cache
     order:
       params: type: 'order'
     orderUpdate:
@@ -44,7 +43,7 @@ mkmobileServices.factory 'MkmApi', [ '$resource', ($resource) ->
   # augment the configs
   for param,config of apiParams
     # oauth for all the requests
-    apiParams[param].pauth = auth
+    apiParams[param].oauth = auth
     # PUT / POST should send the right content-type header
     apiParams[param].headers = {'Content-type': 'application/xml'} if config.method in ['PUT', 'POST']
     # use the old API url until the new version is live
