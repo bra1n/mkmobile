@@ -104,7 +104,7 @@ mkmobileApp.config ['$httpProvider', ($httpProvider) ->
       config or $q.when config
     # if the response has a Range header, parse it and put it into the data as _count property
     response: (response) ->
-      # todo remove
+      # todo remove old header
       if response.headers()['range']?
         response.data._range = parseInt(response.headers()['range'].replace(/^.*\//,''),10) or 0
       if response.headers()['Content-Range']?
@@ -168,8 +168,10 @@ toXML = (obj, recursive = no) ->
           val = val.map((elem) -> toXML elem, yes).join "</#{prop}><#{prop}>"
         else
           val = toXML val, yes
+      else
+        val = val.toString().replace /[\u00A0-\u99999<>\&]/gim, (i) -> '&#'+i.charCodeAt(0)+';'
       xml += "<#{prop}>#{val}</#{prop}>"
   else
-    xml = obj
+    xml = obj.toString().replace /[\u00A0-\u99999<>\&]/gim, (i) -> '&#'+i.charCodeAt(0)+';'
   xml = '<?xml version="1.0" encoding="UTF-8" ?><request>'+xml+'</request>' unless recursive
   xml
