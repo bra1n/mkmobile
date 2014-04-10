@@ -17,6 +17,9 @@ mkmobileServices.factory 'MkmApiOrder', [ 'MkmApi', 'DataCache', (MkmApi, DataCa
         MkmApi.api.order {param1: orderId}, (data) =>
           response.loading = no
           response.order = DataCache.order orderId, data.order
+        , (error) ->
+          response.error = error
+          response.loading = no
     else
       response = count: 0, orders: [] unless response?
       query =
@@ -27,6 +30,9 @@ mkmobileServices.factory 'MkmApiOrder', [ 'MkmApi', 'DataCache', (MkmApi, DataCa
       MkmApi.api.orders query, (data) =>
         response.count = data._range or data.order?.length
         response.orders = response.orders.concat data.order.map((val) => DataCache.order val.idOrder, val) if response.count
+        response.loading = no
+      , (error) ->
+        response.error = error
         response.loading = no
     response
   update: ({orderId, status, reason}, cb) ->

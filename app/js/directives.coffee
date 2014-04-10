@@ -32,10 +32,10 @@ mkmobileDirectives.directive 'mkmOrder', ->
     removeArticle: "="
   templateUrl: '/partials/directives/order.html'
 
-mkmobileDirectives.directive 'mkmSeller', ->
+mkmobileDirectives.directive 'mkmUser', ->
   restrict: 'A'
-  scope: seller: "="
-  templateUrl: '/partials/directives/seller.html'
+  scope: user: "="
+  templateUrl: '/partials/directives/user.html'
 
 mkmobileDirectives.directive 'mkmProduct', ->
   restrict: 'E'

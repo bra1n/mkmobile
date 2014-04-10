@@ -5,13 +5,14 @@ mkmobileServices.factory 'MkmApiAuth', [ 'MkmApi', '$location', (MkmApi, $locati
   isLoggedIn: -> MkmApi.auth.secret isnt ""
 
   # return login URL
-  getLoginURL: -> 'https://www.mkmapi.eu/ws/authenticate/' + MkmApi.auth.consumerKey
+  getLoginURL: -> MkmApi.url + MkmApi.auth.consumerKey
 
   # logout
   logout: ->
     MkmApi.auth.secret = MkmApi.auth.token = ""
     sessionStorage.removeItem "secret"
     sessionStorage.removeItem "token"
+    sessionStorage.removeItem "search"
     $location.path '/login'
 
   # checks whether a user is logged in and redirects if necessary
@@ -20,6 +21,7 @@ mkmobileServices.factory 'MkmApiAuth', [ 'MkmApi', '$location', (MkmApi, $locati
     response = true
     unless @isLoggedIn() and $location.path() isnt "/login"
       redirectAfterLogin = $location.path()
+      sessionStorage.removeItem "search"
       $location.path '/login'
       response = false
     response

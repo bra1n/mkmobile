@@ -10,10 +10,6 @@ mkmobileServices.factory 'DataCache', ['$cacheFactory', ($cacheFactory) ->
     cache.product.put(id, data) if data?
     cache.product.get(id) if id?
   article: (id, data) ->
-    # todo take out once the api returns the right format
-    if data?
-      data.price = parseFloat(data.price) if data.price?
-      data.count = parseInt(data.count, 10) if data.count?
     cache.article.put(id, data) if data?
     cache.article.remove(id) if data is false
     cache.article.get(id) if id?

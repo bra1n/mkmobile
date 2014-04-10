@@ -1,11 +1,11 @@
 <aside class="slider" ng-class="!!slider && 'open'">
   <div class="content">
     <img src="" ng-src="{{productData.product.image | productImage}}">
-    <span>Available Items: {{productData.product.articles}}</span>
+    <span>Available Items: {{productData.product.countArticles}}</span>
     <span>From (EX+): {{productData.product.priceGuide.LOW | currency:"€"}}</span>
     <span>Average price (EX+): {{productData.product.priceGuide.AVG | currency:"€"}}</span>
-    <span ng-show="productData.product.foils">Available foils: {{productData.product.foils}}</span>
-    <span ng-show="productData.product.foils">Foils from: {{productData.product.priceGuide.FOIL | currency:"€"}}</span>
+    <span ng-show="productData.product.countFoils">Available foils: {{productData.product.countFoils}}</span>
+    <span ng-show="productData.product.countFoils">Foils from: {{productData.product.priceGuide.LOWFOIL | currency:"€"}}</span>
   </div>
   <div class="toggle" ng-click="slider=!slider"></div>
 </aside>

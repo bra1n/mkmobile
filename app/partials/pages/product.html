@@ -1,12 +1,14 @@
 <header>
+  <span class="error" ng-show="productData.error">Error loading product</span>
   {{productData.product.name[0].productName}}
-  {{productData.product.number}}
+  <span ng-show="productData.product.number">(Nr. {{productData.product.number}})</span>
   <span class="icon expansion expansion-{{productData.product.expansion | expansionIcon}}"></span>
   <span ng-show="productData.product.rarity" class="icon rarity rarity-{{productData.product.rarity}}"></span>
 </header>
 <mkm-product product-data="productData"></mkm-product>
 <article>
-  <span ng-show="!data.loading && !data.count">No Offers :(</span>
+  <span ng-show="data.error" class="error">Error loading articles</span>
+  <span ng-show="!data.loading && !data.count && !data.error">No Offers :(</span>
   <ul ng-class="{loading:data.loading}" data-infinite-scroll="loadArticles()">
     <li ng-repeat="article in data.articles" ng-hide="!article.count">
       <div class="seller">
@@ -28,7 +30,7 @@
         <button ng-click="addToCart(article)"></button>
       </div>
       <div class="comment" ng-hide="!article.showComment">{{article.comments}}</div>
-      <div class="seller" ng-hide="!article.showSeller" mkm-seller seller="article.seller"></div>
+      <div class="seller" ng-hide="!article.showSeller" mkm-user user="article.seller"></div>
     </li>
   </ul>
 </article>

@@ -4,6 +4,7 @@
 </div>
 <div class="results" ng-show="query != ''">
   {{searchData.count}} Results
+  <span class="error" ng-show="searchData.error">Error loading search results</span>
   <select ng-model="sort" ng-show="searchData.count > 0">
     <option value="name">Alphabetical</option>
     <option value="expansion">Expansion</option>

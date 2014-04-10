@@ -1,7 +1,6 @@
+<b>Seller: {{order.seller.username}}</b>
+<span class="seller-details" mkm-user user="order.seller"></span>
 <a class="icon comment" href="/messages/{{order.seller.username}}"></a>
-<button class="details" ng-click="order.showSeller = !order.showSeller">+</button>
-Seller: {{order.seller.username}}<br>
-<div class="seller-details" ng-show="order.showSeller" mkm-seller seller="order.seller"></div>
 <div class="seller-address" ng-show="order.seller.address">
   Seller's address<br>
   {{order.seller.name.firstName}} {{order.seller.name.lastName}}<br>
@@ -13,10 +12,9 @@ Seller: {{order.seller.username}}<br>
   <hr>
 </div>
 
+<b>Buyer: {{order.buyer.username}}</b>
+<span class="buyer-details" mkm-user user="order.buyer"></span>
 <a class="icon comment" href="/messages/{{order.buyer.username}}"></a>
-<button class="details" ng-click="order.showBuyer = !order.showBuyer">+</button>
-Buyer: {{order.buyer.username}}
-<div class="buyer-details" ng-show="order.showBuyer" mkm-seller seller="order.buyer"></div>
 <div class="buyer-address" ng-show="order.shippingAddress">
   Shipping address<br>
   {{order.shippingAddress.name}}<br>

@@ -16,6 +16,9 @@ mkmobileServices.factory 'MkmApiMarket', [ 'MkmApi', 'DataCache', (MkmApi, DataC
         response.products = response.products.concat data.product if response.count
         # toggle loading flag
         response.loading = no
+      , (error) ->
+        response.error = error
+        response.loading = no
     # return the base object
     response
 
@@ -23,8 +26,13 @@ mkmobileServices.factory 'MkmApiMarket', [ 'MkmApi', 'DataCache', (MkmApi, DataC
   product: (id) ->
     response = product: DataCache.product id
     unless response.product? # no product data in cache, retrieve it!
+      response.loading = yes
       MkmApi.api.product param1: id, (data) =>
         response.product = DataCache.product id, data.product
+        response.loading = no
+      , (error) ->
+        response.error = error
+        response.loading = no
     response
 
   # get articles for a product
@@ -34,6 +42,9 @@ mkmobileServices.factory 'MkmApiMarket', [ 'MkmApi', 'DataCache', (MkmApi, DataC
     MkmApi.api.articles {param1: id, param2: response.articles.length + 1}, (data) ->
       response.count = data._range or data.article?.length
       response.articles = response.articles.concat data.article if response.count
+      response.loading = no
+    , (error) ->
+      response.error = error
       response.loading = no
     response
 ]

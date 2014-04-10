@@ -154,7 +154,6 @@ mkm-order {
   .icon.comment { cursor:pointer; }
   article {
     margin-top: 45px;
-    .icon.ng-hide { display: inline-block !important; visibility: hidden; }
     .seller, .icons, .price {
       display: inline-block;
       width: 33%;
@@ -162,7 +161,10 @@ mkm-order {
       vertical-align: middle;
       line-height: 30px;
     }
-    .icons { text-align: center; }
+    .icons {
+      text-align: center;
+      .icon.ng-hide { display: inline-block !important; visibility: hidden; }
+    }
     .price { text-align: right; }
     .count { display: inline-block; min-width: 30px; text-align: center; }
     button {

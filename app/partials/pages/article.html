@@ -1,6 +1,7 @@
 <header>
+  <span class="error" ng-show="data.product.error">Error loading product</span>
   {{data.product.product.name[0].productName}}
-  {{data.product.product.number}}
+  <span ng-show="data.product.product.number">(Nr. {{data.product.product.number}})</span>
   <span class="icon expansion expansion-{{data.product.product.expansion | expansionIcon}}"></span>
   <span ng-show="data.product.product.rarity" class="icon rarity rarity-{{data.product.product.rarity}}"></span>
 </header>
@@ -10,10 +11,11 @@
   <div class="error" ng-show="data.error">Article not found!</div>
   <form ng-show="data.article">
     <label for="language">Language</label>
-    <select id="language" ng-options="id as language for (id,language) in languages" ng-model="data.article.language.idLanguage"></select>
+    <select id="language" ng-options="language.id as language.label for language in languages"
+            ng-model="data.article.language.idLanguage" required></select>
     <hr>
     <label for="condition">Condition</label>
-    <select id="condition" ng-options="condition for condition in conditions" ng-model="data.article.condition"></select>
+    <select id="condition" ng-options="condition for condition in conditions" ng-model="data.article.condition" required></select>
     <hr>
     <input type="checkbox" ng-model="data.article.isFoil" id="isFoil">
     <label for="isFoil">Foil?</label><br>

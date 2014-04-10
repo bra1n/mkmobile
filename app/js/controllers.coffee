@@ -6,7 +6,7 @@ mkmobileControllers.controller 'SearchCtrl', [
       sessionStorage.setItem "search", query
       $scope.searchData = MkmApiMarket.search query
     # init scope vars
-    $scope.query = sessionStorage.getItem "search" or ""
+    $scope.query = sessionStorage.getItem("search") or ""
     $scope.sort = "name"
 
     # infinite scrolling
@@ -140,7 +140,19 @@ mkmobileControllers.controller 'StockCtrl', [
       for article in articles
         MkmApiStock.decrease article, -> article.count--
     # edit article stuff
-    $scope.languages = {1:"EN",2:"FR",3:"DE",4:"SP",5:"IT",6:"CH",7:"JP",8:"PT",9:"RU",10:"KO",11:"TW"}
+    $scope.languages = [
+      {id: 1, label: "EN"}
+      {id: 2, label: "FR"}
+      {id: 3, label: "DE"}
+      {id: 4, label: "SP"}
+      {id: 5, label: "IT"}
+      {id: 6, label: "CH"}
+      {id: 7, label: "JP"}
+      {id: 8, label: "PT"}
+      {id: 9, label: "RU"}
+      {id: 10, label: "KO"}
+      {id: 11, label: "TW"}
+    ]
     $scope.conditions = ["MT","NM","EX","GD","LP","PL","PO"]
     $scope.save = -> MkmApiStock.update $scope.data.article, -> $location.path "/stock"
 ]

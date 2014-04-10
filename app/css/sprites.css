@@ -4,7 +4,11 @@
 .icon.is-altered { background-image: url('/img/altered.png'); width:16px;height: 16px; }
 .icon.is-signed { background-image: url('/img/signed.png'); width:16px;height: 16px; }
 .icon.is-playset { background-image: url('/img/playset.png'); width:16px;height: 16px; }
-.icon.is-commercial { background-image: url('/img/commercial.png'); width:16px;height: 16px; }
+
+.icon.commercial { width:16px; height:16px; }
+.commercial-0 { display:none; }
+.commercial-1 { background-image: url('/img/commercial.png'); width:16px; height:16px; }
+.commercial-2 { background-image: url('/img/powerseller.png'); width:16px; height:16px; }
 
 .icon.rarity { background-image: url('/img/rarities.png');  width: 16px; height: 16px; }
 .rarity-Common { background-position: -1px -1px; }
@@ -38,6 +42,11 @@
 .language-9 { background-position: -144px 0; }
 .language-10 { background-position: -160px 0; }
 .language-11 { background-position: -176px 0; }
+
+.icon.shipspeed { background-image: url('/img/shipspeed.png'); width:16px; height: 16px; }
+.shipspeed-0 { display:none; }
+.shipspeed-1 { background-position: -1px -1px; }
+.shipspeed-2 { background-position: -19px -1px; }
 
 .icon.reputation { background-image: url('/img/reputation.png'); background-repeat: no-repeat; }
 .reputation-0 { width: 16px; height: 16px; background-position: -1px -1px; }

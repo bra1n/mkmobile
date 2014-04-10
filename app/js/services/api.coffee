@@ -4,8 +4,7 @@ mkmobileServices.factory 'MkmApi', [ '$resource', ($resource) ->
     consumerSecret: "HTIcbso87X22JdS3Yk89c2CojfZiNDMX"
     token:          sessionStorage.getItem("token") or ""
     secret:         sessionStorage.getItem("secret") or ""
-  apiURL    = 'https://www.mkmapi.eu/ws'
-  apiAuth   = '/bra1n/a042b2e17c5cba981d6f684ec338b98a'
+  apiURL    = 'https://sandbox.mkmapi.eu/ws'
   apiFormat = '/output.json'
   apiParams =
     search:
@@ -47,7 +46,8 @@ mkmobileServices.factory 'MkmApi', [ '$resource', ($resource) ->
     # PUT / POST should send the right content-type header
     apiParams[param].headers = {'Content-type': 'application/xml'} if config.method in ['PUT', 'POST']
     # use the old API url until the new version is live
-    apiParams[param].url = apiURL+apiAuth+apiFormat+'/:type/:param1/:param2/:param3/:param4/:param5' unless param is "access"
+    apiParams[param].url = apiURL+'/0/0'+apiFormat+'/:type/:param1/:param2/:param3/:param4/:param5' unless param is "access"
   api: $resource apiURL+apiFormat+'/:type/:param1/:param2/:param3/:param4/:param5', {}, apiParams
   auth: auth
+  url: apiURL+'/authenticate/'
 ]

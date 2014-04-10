@@ -142,9 +142,6 @@ mkm-order i {
   cursor: pointer; }
 #content.product article {
   margin-top: 45px; }
-  #content.product article .icon.ng-hide {
-    display: inline-block !important;
-    visibility: hidden; }
   #content.product article .seller, #content.product article .icons, #content.product article .price {
     display: inline-block;
     width: 33%;
@@ -153,6 +150,9 @@ mkm-order i {
     line-height: 30px; }
   #content.product article .icons {
     text-align: center; }
+    #content.product article .icons .icon.ng-hide {
+      display: inline-block !important;
+      visibility: hidden; }
   #content.product article .price {
     text-align: right; }
   #content.product article .count {
