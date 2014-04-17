@@ -64,7 +64,7 @@ mkmobileControllers.controller 'SettingsCtrl', [
 
 # home page
 mkmobileControllers.controller 'HomeCtrl', [
-  '$scope', ($scope) ->
+  '$scope', ($scope) -> # do nothing!
 ]
 
 # /callback
@@ -185,6 +185,5 @@ mkmobileControllers.controller 'OrderCtrl', [
 mkmobileControllers.controller 'MessageCtrl', [
   '$scope', '$routeParams', 'MkmApiMessage'
   ($scope, $routeParams, MkmApiMessage) ->
-    $scope.recipient = $routeParams.user
-    MkmApiMessage.get()
+    $scope.data = MkmApiMessage.get $routeParams.userId
 ]

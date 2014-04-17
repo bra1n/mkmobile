@@ -1,5 +1,5 @@
 mkmobileServices.factory 'MkmApiMessage', [ 'MkmApi', 'DataCache', (MkmApi, DataCache) ->
-  get: ->
+  get: (id) ->
     MkmApi.api.messages()
 
   count: ->

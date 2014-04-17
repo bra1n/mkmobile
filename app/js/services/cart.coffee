@@ -2,7 +2,7 @@ mkmobileServices.factory 'MkmApiCart', [ 'MkmApi', 'DataCache', (MkmApi, DataCac
   # get the cart object (optionally filtered by ID)
   # todo replace seller.username with idOrder
   get: (id, cb) ->
-    response = cart: DataCache.cart(), address: DataCache.address(), account: DataCache.account()
+    response = cart: DataCache.cart(), address: DataCache.address()
     unless response.cart?
       # fetch the cart
       response.loading = yes
