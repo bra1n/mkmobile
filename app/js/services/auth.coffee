@@ -1,5 +1,6 @@
-mkmobileServices.factory 'MkmApiAuth', [ 'MkmApi', '$location', (MkmApi, $location) ->
+mkmobileServices.factory 'MkmApiAuth', [ 'MkmApi', '$location', 'DataCache', (MkmApi, $location, DataCache) ->
   redirectAfterLogin = "/"
+  promises = {}
 
   # get login status
   isLoggedIn: -> MkmApi.auth.secret isnt ""
@@ -39,8 +40,31 @@ mkmobileServices.factory 'MkmApiAuth', [ 'MkmApi', '$location', (MkmApi, $locati
         MkmApi.auth.secret = data.oauth_token_secret
         sessionStorage.setItem "token", MkmApi.auth.token
         sessionStorage.setItem "secret", MkmApi.auth.secret
+        DataCache.account data.user
+        DataCache.cartCount data.articlesInShoppingCart
+        DataCache.messageCount data.unreadMessages
         response.success = yes
         $location.path redirectAfterLogin
     , -> response.error = yes
     response = {}
+
+  # return the user object or load it if necessary
+  getAccount: (cb) ->
+    response = account: DataCache.account()
+    unless response.account?
+      promises.account = (promises.account or MkmApi.api.account().$promise).then (data) ->
+        response.account = DataCache.account data.account
+        DataCache.cartCount data.articlesInShoppingCart
+        DataCache.messageCount data.unreadMessages
+        cb?()
+        data # pass data to the next callback
+    response
+
+  # update vacation status
+  setVacation: (vacation) ->
+    MkmApi.api.accountVacation {param2: vacation}, (data) ->
+      account = DataCache.account()
+      if account?
+        account.onVacation = data.onVacation
+        DataCache.account account
 ]

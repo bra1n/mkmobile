@@ -1,5 +1,5 @@
 <header>
-  Order Nr.: {{data.order.idOrder}}
+  Order Nr.: {{data.order.idOrder || data.order.idReservation}}
 </header>
 <article>
   <div class="error" ng-show="data.error">Error loading order</div>

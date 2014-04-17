@@ -10,14 +10,23 @@ mkmobileDirectives.directive 'infiniteScroll', ->
     $(window).bind 'scroll', scrollHandler
     scope.$on '$destroy', -> $(window).unbind 'scroll', scrollHandler
 
-mkmobileDirectives.directive 'mkmFooter', [ 'MkmApiAuth', 'MkmApiCart', (MkmApiAuth, MkmApiCart) ->
-  scope: cart: "=?"
-  link: (scope) ->
-    scope.loggedIn = MkmApiAuth.isLoggedIn()
-    scope.cart = scope.cart or MkmApiCart.count()
-  restrict: 'E'
-  replace: yes
-  templateUrl: '/partials/directives/footer.html'
+mkmobileDirectives.directive 'mkmFooter', [
+  'MkmApiAuth', 'MkmApiCart', 'MkmApiMessage'
+  (MkmApiAuth, MkmApiCart, MkmApiMessages) ->
+    scope:
+      cart: "=?"
+      messages: "=?"
+    link: (scope) ->
+      scope.loggedIn = MkmApiAuth.isLoggedIn()
+      scope.cart or= MkmApiCart.count()
+      scope.messages or= MkmApiMessages.count()
+      unless scope.cart? and scope.messages?
+        MkmApiAuth.getAccount ->
+          scope.cart = MkmApiCart.count() unless scope.cart?
+          scope.messages = MkmApiMessages.count() unless scope.messages?
+    restrict: 'E'
+    replace: yes
+    templateUrl: '/partials/directives/footer.html'
 ]
 
 mkmobileDirectives.directive 'mkmSearch', ->

@@ -113,8 +113,13 @@ aside.slider {
   aside.slider.open .toggle {
     cursor: n-resize; }
 
+mkm-order div.icons, mkm-order div.price, mkm-order div.card {
+  display: inline-block;
+  width: 33%; }
 mkm-order div.icons {
-  display: inline-block; }
+  text-align: center; }
+mkm-order div.price {
+  text-align: right; }
 mkm-order i {
   display: block; }
 
@@ -193,8 +198,6 @@ mkm-order i {
 #content.settings footer .settings {
   background: green; }
 
-#content.cart article .icons {
-  display: inline-block; }
 #content.cart article i {
   display: block; }
 #content.cart footer .cart {
@@ -211,11 +214,11 @@ mkm-order i {
 #content.article article {
   margin-top: 45px; }
 
-#content.orders article .tabs li {
+#content.buys article .tabs li, #content.sells article .tabs li {
   display: inline-block;
   width: 25%;
   vertical-align: top;
   text-align: center;
   cursor: pointer; }
-  #content.orders article .tabs li.current {
+  #content.buys article .tabs li.current, #content.sells article .tabs li.current {
     background: silver; }

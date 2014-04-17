@@ -42,11 +42,15 @@ mkmobileServices.factory 'MkmApiStock', [ 'MkmApi', 'MkmApiMarket', 'DataCache',
         cb?()
     false
 
+  # increase article count
+  # todo handle response
   increase: (article, cb) ->
     MkmApi.api.stockAmount {param2: article.idArticle, param3: 'increase', param4: 1}, (data) ->
       console.log data
       cb?()
 
+  # decrease article count
+  # todo handle response
   decrease: (article, cb) ->
     MkmApi.api.stockAmount {param2: article.idArticle, param3: 'decrease', param4: 1}, (data) ->
       console.log data

@@ -1,6 +1,6 @@
 <b>Seller: {{order.seller.username}}</b>
 <span class="seller-details" mkm-user user="order.seller"></span>
-<a class="icon comment" href="/messages/{{order.seller.username}}"></a>
+<a class="icon comment" href="/messages/{{order.seller.idUser}}"></a>
 <div class="seller-address" ng-show="order.seller.address">
   Seller's address<br>
   {{order.seller.name.firstName}} {{order.seller.name.lastName}}<br>
@@ -12,29 +12,35 @@
   <hr>
 </div>
 
-<b>Buyer: {{order.buyer.username}}</b>
-<span class="buyer-details" mkm-user user="order.buyer"></span>
-<a class="icon comment" href="/messages/{{order.buyer.username}}"></a>
-<div class="buyer-address" ng-show="order.shippingAddress">
-  Shipping address<br>
-  {{order.shippingAddress.name}}<br>
-  <span ng-show="order.shippingAddress.street"> {{order.shippingAddress.street}}, </span>
-  <span ng-show="order.shippingAddress.extra">  {{order.shippingAddress.extra}},  </span>
-  <span ng-show="order.shippingAddress.zip">    {{order.shippingAddress.zip}}     </span>
-  <span ng-show="order.shippingAddress.city">   {{order.shippingAddress.city}},   </span>
-  <span ng-show="order.shippingAddress.country">{{order.shippingAddress.country}} </span>
+<div ng-show="order.buyer">
+  <b>Buyer: {{order.buyer.username}}</b>
+  <span class="buyer-details" mkm-user user="order.buyer"></span>
+  <a class="icon comment" href="/messages/{{order.buyer.idUser}}"></a>
+  <div class="buyer-address" ng-show="order.shippingAddress">
+    Shipping address<br>
+    {{order.shippingAddress.name}}<br>
+    <span ng-show="order.shippingAddress.street"> {{order.shippingAddress.street}}, </span>
+    <span ng-show="order.shippingAddress.extra">  {{order.shippingAddress.extra}},  </span>
+    <span ng-show="order.shippingAddress.zip">    {{order.shippingAddress.zip}}     </span>
+    <span ng-show="order.shippingAddress.city">   {{order.shippingAddress.city}},   </span>
+    <span ng-show="order.shippingAddress.country">{{order.shippingAddress.country}} </span>
+  </div>
 </div>
 
 <div class="overview">
-  <ng-pluralize count="order.totalCount" when="{0:'No articles',one:'1 article',other:'{} articles'}"></ng-pluralize>
+  <ng-pluralize count="order.articleCount" when="{0:'No articles',one:'1 article',other:'{} articles'}"></ng-pluralize>
   <span>Price</span>
 </div>
 <ul class="articles">
   <li ng-repeat="article in order.article" ng-hide="!article.count">
-    <button ng-click="removeArticle(article, order)" ng-show="removeArticle">-</button>
-    {{article.count}}
-    <a href="/product/{{article.idProduct}}">{{article.idArticle}}</a>
+    <div class="card">
+      <button ng-click="removeArticle(article, order)" ng-show="removeArticle">-</button>
+      {{article.count}}
+      <a href="/product/{{article.idProduct}}">{{article.product.name}}</a>
+    </div>
     <div class="icons">
+      <span class="icon rarity rarity-{{article.product.rarity}}" ng-show="article.product.rarity"></span>
+      <span class="icon expansion expansion-{{article.product.expansion | expansionIcon}}" ng-show="article.product.expansion"></span>
       <span class="icon language language-{{article.language.idLanguage}}" ng-show="article.language.idLanguage"></span>
       <span class="icon grading grading-{{article.condition}}" ng-show="article.condition"></span>
       <span class="icon is-foil" ng-show="article.isFoil"></span>
@@ -42,8 +48,10 @@
       <span class="icon is-playset" ng-show="article.isPlayset"></span>
       <span class="icon is-altered" ng-show="article.isAltered"></span>
     </div>
-    {{article.price | currency:"€"}}
-    <span class="price-per-card" ng-show="article.isPlayset">({{article.price / 4 | currency:"€"}})</span>
+    <div class="price">
+      {{article.price | currency:"€"}}
+      <span class="price-per-card" ng-show="article.isPlayset">({{article.price / 4 | currency:"€"}})</span>
+    </div>
   </li>
 </ul>
 <hr>

@@ -117,7 +117,12 @@ aside.slider {
 
 // Order directive
 mkm-order {
-  div.icons { display: inline-block; }
+  div.icons, div.price, div.card {
+    display: inline-block;
+    width: 33%;
+  }
+  div.icons { text-align: center; }
+  div.price { text-align: right; }
   i { display: block; }
 }
 
@@ -208,7 +213,6 @@ mkm-order {
 // cart page
 #content.cart {
   article {
-    .icons { display: inline-block; }
     i { display: block; }
   }
   footer .cart { background: green; }
@@ -234,7 +238,7 @@ mkm-order {
 }
 
 // order page
-#content.orders {
+#content.buys, #content.sells {
   article {
     .tabs li {
       display: inline-block;

@@ -13,9 +13,11 @@
     <li ng-repeat="article in data.articles" ng-hide="!article.count">
       <div class="product">
         <input type="checkbox" ng-checked="selected.indexOf(article) > -1" ng-click="select(article)">
-        <span class="icon card"></span>
-        <a href="/stock/{{article.idArticle}}">{{article.idArticle}}</a>
+        <span class="icon card" ng-show="article.product.image" ng-click="article.showImage = !article.showImage"></span>
+        <a href="/stock/{{article.idArticle}}">{{article.product.name}}</a>
       </div><div class="icons">
+        <span class="icon rarity rarity-{{article.product.rarity}}" ng-show="article.product.rarity"></span>
+        <span class="icon expansion expansion-{{article.product.expansion | expansionIcon}}" ng-show="article.product.expansion"></span>
         <span class="icon language language-{{article.language.idLanguage}}" ng-show="article.language.idLanguage"></span>
         <span class="icon grading grading-{{article.condition}}" ng-show="article.condition"></span>
         <span class="icon is-foil" ng-show="article.isFoil"></span>
@@ -28,6 +30,9 @@
         <span class="count">{{article.count}}</span>
       </div>
       <div class="comment" ng-hide="!article.showComment">{{article.comments}}</div>
+      <div class="card-image" ng-hide="!article.showImage">
+        <img src="" ng-src="{{article.showImage && article.product.image | productImage}}">
+      </div>
     </li>
   </ul>
 </article>

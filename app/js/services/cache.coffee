@@ -3,8 +3,8 @@ mkmobileServices.factory 'DataCache', ['$cacheFactory', ($cacheFactory) ->
   cache =
     product: $cacheFactory 'products', capacity: 500
     article: $cacheFactory 'article', capacity: 1000
-    cart: $cacheFactory 'cart', capacity: 2
-    user: $cacheFactory 'user', capacity: 1
+    cart: $cacheFactory 'cart', capacity: 1
+    account: $cacheFactory 'account', capacity: 4
     order: $cacheFactory 'order', capacity: 1000
   product: (id, data) ->
     cache.product.put(id, data) if data?
@@ -14,29 +14,21 @@ mkmobileServices.factory 'DataCache', ['$cacheFactory', ($cacheFactory) ->
     cache.article.remove(id) if data is false
     cache.article.get(id) if id?
   cart: (data) ->
-    if data?
-      # todo replace with API field for "total count per seller"
-      for seller,index in data
-        count = 0
-        count += parseInt(article.count, 10) for article in seller.article
-        data[index].totalCount = count
-      # end of replace
     cache.cart.put('cart', data) if data?
     cache.cart.get('cart')
-  # cartCount is handled independently of cart contents
+  account: (data) ->
+    cache.account.put('account', data) if data?
+    cache.account.get('account')
   cartCount: (count) ->
-    cache.cart.put('count', count) if count?
-    cache.cart.get('count') or 0
-  user: (data) ->
-    cache.user.put(1, data) if data?
-    cache.user.get(1) or []
+    cache.account.put('articlesInShoppingCart', count) if count?
+    cache.account.get('articlesInShoppingCart')
+  messageCount: (count) ->
+    cache.account.put('unreadMessages', count) if count?
+    cache.account.get('unreadMessages')
+  address: (data) ->
+    cache.account.put('address', data) if data?
+    cache.account.get('address')
   order: (id, data) ->
-    if data?
-      # todo replace with API field for "total count per seller"
-      count = 0
-      count += parseInt(article.count, 10) for article in data.article
-      data.totalCount = count
-    # end of replace
     cache.order.put(id, data) if data?
     cache.order.get(id) if id?
 ]

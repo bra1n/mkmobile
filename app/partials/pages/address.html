@@ -1,0 +1,11 @@
+<header>
+  Shopping Cart
+</header>
+<article>
+  {{data.address.name}}<br>
+  <span ng-show="data.address.street"> {{data.address.street}}, </span>
+  <span ng-show="data.address.extra">  {{data.address.extra}},  </span>
+  <span ng-show="data.address.zip">    {{data.address.zip}}     </span>
+  <span ng-show="data.address.city">   {{data.address.city}}    </span>
+</article>
+<mkm-footer></mkm-footer>

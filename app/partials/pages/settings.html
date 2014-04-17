@@ -2,8 +2,8 @@
 <article>
   <ul>
     <li>
-      <label for="vaction">MKM Vacation Status</label>
-      <input type="checkbox" id="vaction" ng-model="vacation">
+      <label for="vacation">MKM Vacation Status</label>
+      <input type="checkbox" id="vacation" ng-change="updateVacation()" ng-model="data.account.onVacation">
     </li>
     <li><a class="language" href="/language">Language</a></li>
     <li><a href="#">Help & About</a></li>

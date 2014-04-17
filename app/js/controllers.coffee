@@ -57,7 +57,8 @@ mkmobileControllers.controller 'ProductCtrl', [
 mkmobileControllers.controller 'SettingsCtrl', [
   '$scope', 'MkmApiAuth'
   ($scope, MkmApiAuth) ->
-    $scope.vacation = false
+    $scope.data = MkmApiAuth.getAccount()
+    $scope.updateVacation = -> MkmApiAuth.setVacation $scope.data.account.onVacation
     $scope.logout = -> MkmApiAuth.logout()
 ]
 
@@ -80,13 +81,13 @@ mkmobileControllers.controller 'CartCtrl', [
   '$scope', '$location', '$routeParams', 'MkmApiCart', 'MkmApiMarket'
   ($scope, $location, $routeParams, MkmApiCart, MkmApiMarket) ->
     # search logic
-    $scope.search = -> $scope.searchData = MkmApiMarket.search $scope.query
-    $scope.updateHistory = -> $location.search search: $scope.query
+    $scope.$watch 'query', (query) ->
+      sessionStorage.setItem "search", query
+      $scope.searchData = MkmApiMarket.search(query) unless $routeParams.orderId
     $scope.loadResults = ->
       unless $scope.searchData.products.length >= $scope.searchData.count or $scope.searchData.loading
         MkmApiMarket.search($scope.query, $scope.searchData)
-    $scope.query = $routeParams.search
-    $scope.search()
+    $scope.query = sessionStorage.getItem("search") or ""
     $scope.sort = "name"
 
     # load cart data
@@ -99,9 +100,9 @@ mkmobileControllers.controller 'CartCtrl', [
       console.log "removing", article
       article.count-- # card count for this article
       $scope.count-- # total cart count
-      order.totalCount-- # reduce total order count
+      order.articleCount-- # reduce total order count
       MkmApiCart.remove article.idArticle, ->
-        if $routeParams.orderId? and !order.totalCount
+        if $routeParams.orderId? and !order.articleCount
           $location.path "/cart"
         else
           $scope.data = MkmApiCart.get $routeParams.orderId # should be updated now, no need for callback
@@ -185,4 +186,5 @@ mkmobileControllers.controller 'MessageCtrl', [
   '$scope', '$routeParams', 'MkmApiMessage'
   ($scope, $routeParams, MkmApiMessage) ->
     $scope.recipient = $routeParams.user
+    MkmApiMessage.get()
 ]

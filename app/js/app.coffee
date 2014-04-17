@@ -11,79 +11,73 @@ mkmobileApp.config ['$locationProvider','$routeProvider', ($locationProvider, $r
   $locationProvider.html5Mode yes
   $routeProvider
   # home page
-  .when '/',
+  .when '/home',
     templateUrl:  '/partials/pages/home.html'
     controller:   'HomeCtrl'
-    requireLogin: yes
 
   # search
   .when '/search',
     templateUrl:  '/partials/pages/search.html'
     controller:   'SearchCtrl'
-    requireLogin: yes
 
   # shopping cart
   .when '/cart',
     templateUrl:  '/partials/pages/cart.html'
     controller:   'CartCtrl'
-    requireLogin: yes
+  .when '/cart/address',
+    templateUrl:  '/partials/pages/address.html'
+    controller:   'CartCtrl'
   .when '/cart/:orderId',
     templateUrl:  '/partials/pages/order.html'
     controller:   'CartCtrl'
-    requireLogin: yes
 
   # stock management
   .when '/stock',
     templateUrl:  '/partials/pages/stock.html'
     controller:   'StockCtrl'
-    requireLogin: yes
   .when '/stock/:articleId',
     templateUrl:  '/partials/pages/article.html'
     controller:   'StockCtrl'
-    requireLogin: yes
 
   # user settings
   .when '/settings',
     templateUrl:  '/partials/pages/settings.html'
     controller:   'SettingsCtrl'
-    requireLogin: yes
 
   # offer management
   .when '/buys',
     templateUrl:  '/partials/pages/orders.html'
     controller:   'OrderCtrl'
-    requireLogin: yes
   .when '/buys/:orderId',
     templateUrl:  '/partials/pages/order.html'
     controller:   'OrderCtrl'
-    requireLogin: yes
   .when '/sells',
     templateUrl:  '/partials/pages/orders.html'
     controller:   'OrderCtrl'
-    requireLogin: yes
   .when '/sells/:orderId',
     templateUrl:  '/partials/pages/order.html'
     controller:   'OrderCtrl'
-    requireLogin: yes
 
   # messages
   .when '/messages/:user?',
     templateUrl:  '/partials/pages/messages.html'
     controller:   'MessageCtrl'
-    requireLogin: yes
 
   # anonymous routes
   .when '/login',
     templateUrl:  '/partials/pages/login.html'
     controller:   'SearchCtrl'
+    noLogin:      yes
   .when '/product/:productId',
     templateUrl:  '/partials/pages/product.html'
     controller:   'ProductCtrl'
+    noLogin:      yes
   .when '/callback',
     templateUrl:  '/partials/pages/callback.html'
     controller:   'CallbackCtrl'
+    noLogin:      yes
   .otherwise
-    redirectTo: '/'
+    redirectTo: '/home'
 ]
 
 mkmobileApp.config ['$httpProvider', ($httpProvider) ->
@@ -104,23 +98,20 @@ mkmobileApp.config ['$httpProvider', ($httpProvider) ->
       config or $q.when config
     # if the response has a Range header, parse it and put it into the data as _count property
     response: (response) ->
-      # todo remove old header
-      if response.headers()['range']?
-        response.data._range = parseInt(response.headers()['range'].replace(/^.*\//,''),10) or 0
-      if response.headers()['Content-Range']?
-        response.data._range = parseInt(response.headers()['Content-Range'].replace(/^.*\//,''),10) or 0
+      if response.headers()['content-range']?
+        response.data._range = parseInt(response.headers()['content-range'].replace(/^.*\//,''),10) or 0
       response or $q.when response
   ]
 ]
 
-# generate a base CSS class based on the template name
+# generate a base CSS class based on the route path and check login for auth routes
 mkmobileApp.run [ '$rootScope','MkmApiAuth', ($rootScope, MkmApiAuth) ->
-  $rootScope.$on '$routeChangeStart', (event, next, current) ->
-    if next.$$route.requireLogin
+  $rootScope.$on '$routeChangeStart', (event, next) ->
+    unless next.$$route.noLogin
       event.preventDefault() unless MkmApiAuth.checkLogin()
   $rootScope.$on '$routeChangeSuccess', (event, current) ->
-    if current.$$route?.templateUrl?
-      $rootScope.viewClass = current.$$route?.templateUrl.replace(/(^.*\/|\.html$)/ig,'')
+    if current.$$route?.originalPath? and current.$$route?.originalPath.split("/").length > 1
+      $rootScope.viewClass = current.$$route?.originalPath.split("/")[1]
 ]
 
 # init services and controllers
@@ -168,7 +159,7 @@ toXML = (obj, recursive = no) ->
           val = val.map((elem) -> toXML elem, yes).join "</#{prop}><#{prop}>"
         else
           val = toXML val, yes
-      else
+      else if typeof val isnt "undefined"
         val = val.toString().replace /[\u00A0-\u9999<>\&]/gim, (i) -> '&#'+i.charCodeAt(0)+';'
       xml += "<#{prop}>#{val}</#{prop}>"
   else

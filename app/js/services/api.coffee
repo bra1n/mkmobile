@@ -1,52 +1,69 @@
 mkmobileServices.factory 'MkmApi', [ '$resource', ($resource) ->
   auth =
-    consumerKey:    "alb03sLPpFNAhi6f"
-    consumerSecret: "HTIcbso87X22JdS3Yk89c2CojfZiNDMX"
-    token:          sessionStorage.getItem("token") or ""
-    secret:         sessionStorage.getItem("secret") or ""
-  apiURL    = 'https://sandbox.mkmapi.eu/ws'
+    consumerKey:    'alb03sLPpFNAhi6f'
+    consumerSecret: 'HTIcbso87X22JdS3Yk89c2CojfZiNDMX'
+    token:          sessionStorage.getItem('token') or ''
+    secret:         sessionStorage.getItem('secret') or ''
+  apiURL    = 'https://sandbox.mkmapi.eu/ws/v1.1'
   apiFormat = '/output.json'
   apiParams =
-    search:
-      params: {type:"products",param2:"1",param3:"1",param4:"false"}
-      unique: "search"
+    search: # search for a product
+      params: {type:'products',param2:'1',param3:'1',param4:'false'}
+      unique: 'search'
       cache:  yes
-    articles:
-      params: type: "articles"
-    product:
-      params: type: "product"
-    access:
-      params: type: "access"
+    articles: # get all articles for a product
+      params: type: 'articles'
+    product: # get a single product
+      params: type: 'product'
+    access: # exchange temporary token with access token, get user details
+      params: type: 'access'
       method: 'POST'
-    shoppingcart:
+
+    shoppingcart: # get shoppingcart contents
       params: type: 'shoppingcart'
-    cartUpdate:
+    cartUpdate: # update shoppingcart contents
       params: type: 'shoppingcart'
       method: 'PUT'
-    stock:
+    shippingAddress: # update shipping address for shoppingcart
+      params: {type: 'shoppingcart', param1: 'shippingaddress'}
+      method: 'PUT'
+    checkout: # checkout shoppingcart
+      param: {type: 'shoppingcart', param2: 'checkout'}
+
+    stock: # get stock articles
       params: type: 'stock'
-    stockUpdate:
+    stockSearch: # search stock
+      params: {type: 'stock', param1: 'articles', param3: '1'}
+    stockUpdate: # update stock articles
       params: type: 'stock'
       method: 'PUT'
-    stockAmount:
-      params: {type: 'stock', param1: 'article', param2: "@param2", param3: "@param3", param4: "@param4"}
+    stockAmount: # change stock article amount
+      params: {type: 'stock', param1: 'article', param2: '@param2', param3: '@param3', param4: '@param4'}
       method: 'PUT'
-    orders:
+
+    orders: # get buys / sells
       params: type: 'orders'
-      unique: "order"
-    order:
+      unique: 'order'
+    order: # get a single order
       params: type: 'order'
-    orderUpdate:
+    orderUpdate: # update an order (status)
       params: type: 'order'
       method: 'PUT'
+
+    account: # get account data
+      params: type: 'account'
+    accountVacation: # change vacation flag for account
+      params: {type: 'account', param1: 'vacation', param2: '@param2'}
+      method: 'PUT'
+
+    messages: # get all messages
+      params: {type: 'account', param1: 'messages'}
   # augment the configs
   for param,config of apiParams
     # oauth for all the requests
     apiParams[param].oauth = auth
     # PUT / POST should send the right content-type header
     apiParams[param].headers = {'Content-type': 'application/xml'} if config.method in ['PUT', 'POST']
-    # use the old API url until the new version is live
-    apiParams[param].url = apiURL+'/0/0'+apiFormat+'/:type/:param1/:param2/:param3/:param4/:param5' unless param is "access"
   api: $resource apiURL+apiFormat+'/:type/:param1/:param2/:param3/:param4/:param5', {}, apiParams
   auth: auth
   url: apiURL+'/authenticate/'
