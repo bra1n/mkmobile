@@ -8,8 +8,11 @@ mkmobileServices.factory 'MkmApiMarket', [ 'MkmApi', 'DataCache', (MkmApi, DataC
       response.loading = yes
       # query the API
       MkmApi.api.search {param1: query, param5: response.products.length + 1}, (data) =>
-        # cache products
-        data.product?.map (val) => DataCache.product val.idProduct, val
+        # cache products - but flag them as shallow caches
+        # todo update when search products contain reprint count
+        data.product?.map (val) =>
+          val._shallow = yes
+          DataCache.product val.idProduct, val
         # update count
         response.count = data._range or data.product?.length
         # merge products
@@ -25,7 +28,8 @@ mkmobileServices.factory 'MkmApiMarket', [ 'MkmApi', 'DataCache', (MkmApi, DataC
   # get product data
   product: (id) ->
     response = product: DataCache.product id
-    unless response.product? # no product data in cache, retrieve it!
+    # if there is no (deep) product data in cache, retrieve it!
+    if !response.product? or response.product._shallow
       response.loading = yes
       MkmApi.api.product param1: id, (data) =>
         response.product = DataCache.product id, data.product

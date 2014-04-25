@@ -45,12 +45,12 @@ footer {
     vertical-align: top; }
 
 .loading {
-  position: relative;
-  background: red; }
-  .loading:before {
-    content: "LOADING";
-    position: absolute;
-    color: red; }
+  background: url("/img/loading.gif") no-repeat center center; }
+
+ul.loading {
+  background-position: center bottom;
+  padding-bottom: 20px;
+  margin-bottom: 4px; }
 
 .icon {
   display: inline-block;
@@ -98,11 +98,16 @@ aside.slider {
   aside.slider.open {
     bottom: 80px; }
   aside.slider .content {
-    padding-top: 80px; }
+    padding-top: 80px;
+    white-space: nowrap; }
     aside.slider .content img {
       vertical-align: middle; }
-    aside.slider .content span {
-      display: block; }
+    aside.slider .content .data {
+      display: inline-block;
+      vertical-align: middle;
+      white-space: normal; }
+    aside.slider .content .reprints {
+      margin-top: 10px; }
   aside.slider .toggle {
     height: 10px;
     width: 100%;
@@ -139,7 +144,8 @@ mkm-order i {
   top: 35px;
   background-color: rgba(255, 255, 255, 0.75);
   width: 100%;
-  z-index: 10; }
+  z-index: 10;
+  min-height: 100px; }
 #content.login footer .login {
   background: green; }
 

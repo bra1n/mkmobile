@@ -51,13 +51,12 @@ footer {
 }
 
 .loading {
-  position: relative;
-  background: red;
-  &:before {
-    content: "LOADING";
-    position: absolute;
-    color: red;
-  }
+  background: url("/img/loading.gif") no-repeat center center;
+}
+ul.loading {
+  background-position: center bottom;
+  padding-bottom: 20px;
+  margin-bottom: 4px;
 }
 
 .icon {
@@ -101,8 +100,14 @@ aside.slider {
   &.open { bottom: 80px; }
   .content {
     padding-top: 80px;
+    white-space: nowrap;
     img { vertical-align: middle; }
-    span { display: block; }
+    .data {
+      display: inline-block;
+      vertical-align: middle;
+      white-space: normal;
+    }
+    .reprints { margin-top: 10px; }
   }
   .toggle {
     height: 10px;
@@ -150,6 +155,7 @@ mkm-order {
     background-color: rgba(255,255,255,0.75);
     width: 100%;
     z-index: 10;
+    min-height: 100px;
   }
   footer .login { background: green; }
 }

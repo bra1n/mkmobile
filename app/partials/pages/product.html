@@ -1,4 +1,4 @@
-<header>
+<header ng-class="{loading:productData.loading}">
   <span class="error" ng-show="productData.error">Error loading product</span>
   {{productData.product.name[0].productName}}
   <span ng-show="productData.product.number">(Nr. {{productData.product.number}})</span>

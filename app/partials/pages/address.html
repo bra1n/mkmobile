@@ -1,11 +1,15 @@
 <header>
-  Shopping Cart
+  Change shipping address
 </header>
 <article>
-  {{data.address.name}}<br>
-  <span ng-show="data.address.street"> {{data.address.street}}, </span>
-  <span ng-show="data.address.extra">  {{data.address.extra}},  </span>
-  <span ng-show="data.address.zip">    {{data.address.zip}}     </span>
-  <span ng-show="data.address.city">   {{data.address.city}}    </span>
+  <form>
+    <label for="name">Name:</label> <input id="name" type="text" ng-model="data.address.name"><br>
+    <label for="street">Street/Housenr.:</label> <input id="street" type="text" ng-model="data.address.street"><br>
+    <label for="extra">Additional info:</label> <input id="extra" type="text" ng-model="data.address.extra"><br>
+    <label for="city">City:</label> <input id="city" type="text" ng-model="data.address.city"><br>
+    <label for="zip">Post code:</label> <input id="zip" type="text" ng-model="data.address.zip"><br>
+    <label for="country">Country:</label> <input id="country" type="text" ng-model="data.address.country"><br>
+    <button ng-click="shippingAddress(data.address)">Save</button>
+  </form>
 </article>
 <mkm-footer></mkm-footer>

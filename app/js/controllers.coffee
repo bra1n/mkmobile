@@ -1,4 +1,4 @@
-# search for / or /login
+# search
 mkmobileControllers.controller 'SearchCtrl', [
   '$scope', '$routeParams', 'MkmApiAuth', 'MkmApiMarket', '$sce'
   ($scope, $routeParams, MkmApiAuth, MkmApiMarket, $sce) ->
@@ -94,13 +94,14 @@ mkmobileControllers.controller 'CartCtrl', [
     $scope.data = MkmApiCart.get $routeParams.orderId, (data) ->
       $scope.count = MkmApiCart.count()
       $scope.sum = MkmApiCart.sum()
-      $location.path "/cart" if data.cart.length is 0 and $routeParams.orderId?
+      $location.path "/cart" if $scope.count is 0 and ($routeParams.orderId? or $routeParams.method?)
+
     # remove a single article
     $scope.removeArticle = (article, order) ->
-      console.log "removing", article
       article.count-- # card count for this article
       $scope.count-- # total cart count
       order.articleCount-- # reduce total order count
+      order.totalValue -= article.price # reduce total order count
       MkmApiCart.remove article.idArticle, ->
         if $routeParams.orderId? and !order.articleCount
           $location.path "/cart"
@@ -112,10 +113,22 @@ mkmobileControllers.controller 'CartCtrl', [
       articles = {}
       articles[article.idArticle] = article.count for article in order.article if order.article?
       $scope.data.cart.splice $scope.data.cart.indexOf(order), 1
-      $scope.count = MkmApiCart.count()
-      $scope.sum = MkmApiCart.sum()
-      MkmApiCart.remove articles
+      MkmApiCart.remove articles, ->
+        $scope.count = MkmApiCart.count()
+        $scope.sum = MkmApiCart.sum()
 
+    # change shipping address
+    $scope.countries = MkmApiCart.getCountries()
+    $scope.shippingAddress = (address) ->
+      MkmApiCart.shippingAddress address
+
+    # checkout
+    $scope.method = $routeParams.method
+    console.log $scope.method
+    $scope.checkout = ->
+      MkmApiCart.checkout ->
+        sessionStorage.setItem 'buysTab', (if $scope.method is 'instabuy' then 'paid' else 'bought')
+        $location.path '/buys'
 ]
 
 # /stock

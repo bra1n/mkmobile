@@ -27,6 +27,9 @@ mkmobileApp.config ['$locationProvider','$routeProvider', ($locationProvider, $r
   .when '/cart/address',
     templateUrl:  '/partials/pages/address.html'
     controller:   'CartCtrl'
+  .when '/cart/checkout/:method',
+    templateUrl:  '/partials/pages/checkout.html'
+    controller:   'CartCtrl'
   .when '/cart/:orderId',
     templateUrl:  '/partials/pages/order.html'
     controller:   'CartCtrl'
@@ -107,7 +110,7 @@ mkmobileApp.config ['$httpProvider', ($httpProvider) ->
 # generate a base CSS class based on the route path and check login for auth routes
 mkmobileApp.run [ '$rootScope','MkmApiAuth', ($rootScope, MkmApiAuth) ->
   $rootScope.$on '$routeChangeStart', (event, next) ->
-    unless next.$$route.noLogin
+    unless next.$$route?.noLogin
       event.preventDefault() unless MkmApiAuth.checkLogin()
   $rootScope.$on '$routeChangeSuccess', (event, current) ->
     if current.$$route?.originalPath? and current.$$route?.originalPath.split("/").length > 1

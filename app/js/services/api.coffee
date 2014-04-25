@@ -15,6 +15,7 @@ mkmobileServices.factory 'MkmApi', [ '$resource', ($resource) ->
       params: type: 'articles'
     product: # get a single product
       params: type: 'product'
+      cache: yes
     access: # exchange temporary token with access token, get user details
       params: type: 'access'
       method: 'POST'
@@ -28,7 +29,7 @@ mkmobileServices.factory 'MkmApi', [ '$resource', ($resource) ->
       params: {type: 'shoppingcart', param1: 'shippingaddress'}
       method: 'PUT'
     checkout: # checkout shoppingcart
-      param: {type: 'shoppingcart', param2: 'checkout'}
+      params: {type: 'shoppingcart', param2: 'checkout'}
 
     stock: # get stock articles
       params: type: 'stock'

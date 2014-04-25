@@ -1,11 +1,19 @@
 <aside class="slider" ng-class="!!slider && 'open'">
   <div class="content">
     <img src="" ng-src="{{productData.product.image | productImage}}">
-    <span>Available Items: {{productData.product.countArticles}}</span>
-    <span>From (EX+): {{productData.product.priceGuide.LOW | currency:"€"}}</span>
-    <span>Average price (EX+): {{productData.product.priceGuide.AVG | currency:"€"}}</span>
-    <span ng-show="productData.product.countFoils">Available foils: {{productData.product.countFoils}}</span>
-    <span ng-show="productData.product.countFoils">Foils from: {{productData.product.priceGuide.LOWFOIL | currency:"€"}}</span>
+    <div class="data">
+      Available Items: {{productData.product.countArticles}}<br>
+      From (EX+): {{productData.product.priceGuide.LOW | currency:"€"}}<br>
+      Average price (EX+): {{productData.product.priceGuide.AVG | currency:"€"}}<br>
+      <span ng-show="productData.product.countFoils">Available foils: {{productData.product.countFoils}}<br></span>
+      <span ng-show="productData.product.countFoils">Foils from: {{productData.product.priceGuide.LOWFOIL | currency:"€"}}<br></span>
+      <div class="reprints" ng-show="productData.product.reprint">
+        Also available in:
+        <a href="/product/{{reprint.idProduct}}" ng-repeat="reprint in productData.product.reprint">
+          <span class="icon expansion expansion-{{reprint.expansion | expansionIcon}}"></span>
+        </a>
+      </div>
+    </div>
   </div>
   <div class="toggle" ng-click="slider=!slider"></div>
 </aside>

@@ -10,6 +10,7 @@ mkmobileDirectives.directive 'infiniteScroll', ->
     $(window).bind 'scroll', scrollHandler
     scope.$on '$destroy', -> $(window).unbind 'scroll', scrollHandler
 
+# footer logic, accepts cart and messages count variables
 mkmobileDirectives.directive 'mkmFooter', [
   'MkmApiAuth', 'MkmApiCart', 'MkmApiMessage'
   (MkmApiAuth, MkmApiCart, MkmApiMessages) ->
@@ -20,7 +21,7 @@ mkmobileDirectives.directive 'mkmFooter', [
       scope.loggedIn = MkmApiAuth.isLoggedIn()
       scope.cart or= MkmApiCart.count()
       scope.messages or= MkmApiMessages.count()
-      unless scope.cart? and scope.messages?
+      unless (scope.cart? and scope.messages?) or !scope.loggedIn
         MkmApiAuth.getAccount ->
           scope.cart = MkmApiCart.count() unless scope.cart?
           scope.messages = MkmApiMessages.count() unless scope.messages?
@@ -29,6 +30,7 @@ mkmobileDirectives.directive 'mkmFooter', [
     templateUrl: '/partials/directives/footer.html'
 ]
 
+# dumb templates
 mkmobileDirectives.directive 'mkmSearch', ->
   restrict: 'E'
   transclude: yes

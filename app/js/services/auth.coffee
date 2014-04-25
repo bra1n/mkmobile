@@ -58,6 +58,9 @@ mkmobileServices.factory 'MkmApiAuth', [ 'MkmApi', '$location', 'DataCache', (Mk
         DataCache.messageCount data.unreadMessages
         cb?()
         data # pass data to the next callback
+      , (error) =>
+        # if request for account returns with a 403, it means we're logged out and don't know it yet
+        @logout() if error.status is 403
     response
 
   # update vacation status

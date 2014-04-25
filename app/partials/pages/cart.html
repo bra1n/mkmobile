@@ -29,7 +29,8 @@
           <a href="/cart/{{order.idReservation}}">
             Order Nr.: {{order.idReservation}}<br>
             Seller: {{order.seller.username}}<br>
-            Item Value: {{order.articleValue | currency:"€"}}<br>
+            <ng-pluralize count="order.articleCount" when="{0:'No articles',one:'1 article',other:'{} articles'}"></ng-pluralize>
+            for {{order.articleValue | currency:"€"}}<br>
             Shipping: {{order.shippingMethod.price | currency:"€"}}
           </a>
         </li>
@@ -38,6 +39,14 @@
         Total - {{sum | currency:"€"}}
         <i>Items + Shipping Methods</i>
       </div>
+    </div>
+    <div class="overview">Account balance: {{data.balance | currency:"€"}}</div>
+    <div ng-show="data.balance < sum">
+      <a href="/cart/checkout/bank">Bank Transfer</a>
+      <a href="/cart/checkout/paypal">Paypal</a>
+    </div>
+    <div ng-show="data.balance >= sum">
+      <a href="/cart/checkout/instabuy">Instabuy</a>
     </div>
   </div>
   <div class="loading" ng-show="data.loading">Loading cart...</div>

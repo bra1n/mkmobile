@@ -4,7 +4,7 @@
 <article>
   <div class="error" ng-show="data.error">Error loading order</div>
   <div class="loading" ng-show="data.loading">Loading order...</div>
-  <mkm-order ng-hide="data.loading || data.error" order="data.order"></mkm-order>
+  <mkm-order ng-hide="data.loading || data.error" remove-article="removeArticle" order="data.order"></mkm-order>
   <form ng-show="data.order.state && !data.loading && !data.error">
     <span ng-show="data.order.state.dateBought">Purchased: {{data.order.state.dateBought | date:'short'}}<br></span>
     <span ng-show="data.order.state.datePaid">Paid: {{data.order.state.datePaid | date:'short'}}<br></span>
@@ -12,10 +12,10 @@
     <span ng-show="data.order.state.dateReceived">Received: {{data.order.state.dateReceived | date:'short'}}<br></span>
     Status: {{data.order.state.state}}
     <div ng-show="data.order.showReason"><textarea ng-model="data.order.state.reason"></textarea></div>
-    <div ng-show="data.order.state.state == 'sent'"><button ng-click="update('confirmReception')">Confirm Reception</button></div>
+    <div ng-show="data.order.state.state == 'sent'  && data.order.actor == 'buyer'"><button ng-click="update('confirmReception')">Confirm Reception</button></div>
     <div ng-show="data.order.state.state == 'bought'"><button ng-click="update('requestCancellation')">Request Cancellation</button></div>
-    <div ng-show="data.order.state.state == 'paid'"><button ng-click="update('send')">Mark as sent</button></div>
+    <div ng-show="data.order.state.state == 'paid' && data.order.actor == 'seller'"><button ng-click="update('send')">Mark as sent</button></div>
     <div ng-show="data.order.state.state == 'paid'"><button ng-click="update('requestCancellation')">Request Cancellation</button></div>
   </form>
 </article>
-<mkm-footer></mkm-footer>
+<mkm-footer cart="count"></mkm-footer>
