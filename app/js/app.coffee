@@ -62,8 +62,11 @@ mkmobileApp.config ['$locationProvider','$routeProvider', ($locationProvider, $r
     controller:   'OrderCtrl'
 
   # messages
-  .when '/messages/:user?',
+  .when '/messages',
     templateUrl:  '/partials/pages/messages.html'
+    controller:   'MessageCtrl'
+  .when '/messages/:userId',
+    templateUrl:  '/partials/pages/message.html'
     controller:   'MessageCtrl'
 
   # anonymous routes

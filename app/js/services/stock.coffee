@@ -43,16 +43,47 @@ mkmobileServices.factory 'MkmApiStock', [ 'MkmApi', 'MkmApiMarket', 'DataCache',
     false
 
   # increase article count
-  # todo handle response
   increase: (article, cb) ->
+    article.loading = yes
     MkmApi.api.stockAmount {param2: article.idArticle, param3: 'increase', param4: 1}, (data) ->
-      console.log data
+      DataCache.article article.idArticle, data.article
+      article.count++
+      article.loading = no
       cb?()
 
   # decrease article count
-  # todo handle response
   decrease: (article, cb) ->
+    article.loading = yes
     MkmApi.api.stockAmount {param2: article.idArticle, param3: 'decrease', param4: 1}, (data) ->
-      console.log data
+      DataCache.article article.idArticle, data.article
+      article.count--
+      article.loading = no
       cb?()
+
+  search: (query, response) ->
+    response = count: 0, articles: [] unless response?
+    response.loading = yes
+    MkmApi.api.stockSearch {param2: query, param3: response.articles.length + 1}, (data) =>
+      response.count = data._range or data.article?.length
+      response.articles = response.articles.concat data.article.map((val) => DataCache.article val.idArticle, val) if response.count
+      response.loading = no
+    response
+
+  getLanguages: -> [
+    {id: 1, label: "EN"}
+    {id: 2, label: "FR"}
+    {id: 3, label: "DE"}
+    {id: 4, label: "SP"}
+    {id: 5, label: "IT"}
+    {id: 6, label: "CH"}
+    {id: 7, label: "JP"}
+    {id: 8, label: "PT"}
+    {id: 9, label: "RU"}
+    {id: 10, label: "KO"}
+    {id: 11, label: "TW"}
+  ]
+
+  getGradings: -> [
+    "MT","NM","EX","GD","LP","PL","PO"
+  ]
 ]

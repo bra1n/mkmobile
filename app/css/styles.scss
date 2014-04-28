@@ -99,8 +99,18 @@ aside.slider {
   overflow: hidden;
   &.open { bottom: 80px; }
   .content {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
     padding-top: 80px;
+    height: 100%;
     white-space: nowrap;
+    .aligner {
+      display: inline-block;
+      vertical-align: middle;
+      height: 100%;
+      width: 0;
+    }
     img { vertical-align: middle; }
     .data {
       display: inline-block;
@@ -227,6 +237,7 @@ mkm-order {
 // stock page
 #content.stock {
   article {
+    &.product { margin-top: 45px; }
     .product, .icons, .price {
       display: inline-block;
       width: 33%;
@@ -253,6 +264,27 @@ mkm-order {
       text-align: center;
       cursor: pointer;
       &.current { background: silver; }
+    }
+  }
+}
+
+// messages page
+#content.messages {
+  article {
+    ul.thread {
+      li.sending span { float:right; }
+      li.receiving span { float: left; }
+      li.receiving { text-align: right; }
+    }
+    ul.overview {
+      h3 { margin:0; }
+      span { float:right; }
+      p {
+        margin:0;
+        max-height: 40px;
+        overflow: hidden;
+      }
+      li { border-bottom: 1px solid black; }
     }
   }
 }

@@ -1,5 +1,14 @@
 <header>My Messages</header>
 <article>
-  Here be messages or a form for {{data.recipient}}
+  <div></div>
+  <ul class="overview" ng-class="{loading:data.loading}" data-infinite-scroll="loadMessages()">
+    <li ng-repeat="message in data.messages">
+      <a href="/messages/{{message.partner.idUser}}">
+        <span>{{message.date | date:'short'}}</span>
+        <h3>{{message.partner.username}}</h3>
+        <p>{{message.text}}</p>
+      </a>
+    </li>
+  </ul>
 </article>
 <mkm-footer></mkm-footer>

@@ -4,8 +4,7 @@ mkmobileServices.factory 'MkmApi', [ '$resource', ($resource) ->
     consumerSecret: 'HTIcbso87X22JdS3Yk89c2CojfZiNDMX'
     token:          sessionStorage.getItem('token') or ''
     secret:         sessionStorage.getItem('secret') or ''
-  apiURL    = 'https://sandbox.mkmapi.eu/ws/v1.1'
-  apiFormat = '/output.json'
+  apiURL    = 'https://sandbox.mkmapi.eu/ws/v1.1/output.json/:type/:param1/:param2/:param3/:param4/:param5'
   apiParams =
     search: # search for a product
       params: {type:'products',param2:'1',param3:'1',param4:'false'}
@@ -35,6 +34,7 @@ mkmobileServices.factory 'MkmApi', [ '$resource', ($resource) ->
       params: type: 'stock'
     stockSearch: # search stock
       params: {type: 'stock', param1: 'articles', param3: '1'}
+      unique: 'searchStock'
     stockUpdate: # update stock articles
       params: type: 'stock'
       method: 'PUT'
@@ -59,13 +59,16 @@ mkmobileServices.factory 'MkmApi', [ '$resource', ($resource) ->
 
     messages: # get all messages
       params: {type: 'account', param1: 'messages'}
+    messageSend: # send a message
+      params: {type: 'account', param1: 'messages'}
+      method: 'POST'
   # augment the configs
   for param,config of apiParams
     # oauth for all the requests
     apiParams[param].oauth = auth
     # PUT / POST should send the right content-type header
     apiParams[param].headers = {'Content-type': 'application/xml'} if config.method in ['PUT', 'POST']
-  api: $resource apiURL+apiFormat+'/:type/:param1/:param2/:param3/:param4/:param5', {}, apiParams
+  api: $resource apiURL, {}, apiParams
   auth: auth
   url: apiURL+'/authenticate/'
 ]

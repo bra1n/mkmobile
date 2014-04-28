@@ -1,0 +1,14 @@
+<header>{{data.partner.username}}</header>
+<article>
+  <ul class="thread" ng-class="{loading:data.loading}" data-infinite-scroll="loadMessages()">
+    <li ng-repeat="message in data.messages" ng-class="message.action">
+      <span>{{message.date | date:'short'}}</span>
+      <p>{{message.text}}</p>
+    </li>
+  </ul>
+  <form>
+    <textarea placeholder="Message" required ng-model="message"></textarea>
+    <button ng-click="send()">Send</button>
+  </form>
+</article>
+<mkm-footer></mkm-footer>

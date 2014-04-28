@@ -135,39 +135,37 @@ mkmobileControllers.controller 'CartCtrl', [
 mkmobileControllers.controller 'StockCtrl', [
   '$scope', '$location', '$routeParams', 'MkmApiStock'
   ($scope, $location, $routeParams, MkmApiStock) ->
-    $scope.data = MkmApiStock.get $routeParams.articleId
+    # selecting an article in stock
     $scope.selected = []
     $scope.select = (id) ->
       if id in $scope.selected
         $scope.selected.splice $scope.selected.indexOf(id), 1
       else
         $scope.selected.push id
+
+    # search logic
+    $scope.$watch 'query', (query) ->
+      sessionStorage.setItem "searchStock", query
+      if query.length < 3 or $routeParams.articleId
+        $scope.data = MkmApiStock.get $routeParams.articleId
+      else
+        $scope.data = MkmApiStock.search query
     $scope.loadArticles = ->
-      return if $scope.data.articles.length >= $scope.data.count or $scope.data.loading
-      MkmApiStock.get $routeParams.articleId, $scope.data
-    $scope.search = ->
-      console.log $scope.query
-    $scope.increase = (articles) ->
-      for article in articles
-        MkmApiStock.increase article, -> article.count++
-    $scope.decrease = (articles) ->
-      for article in articles
-        MkmApiStock.decrease article, -> article.count--
+      unless $scope.data.articles.length >= $scope.data.count or $scope.data.loading
+        if query.length < 3 or $routeParams.articleId
+          MkmApiStock.get $routeParams.articleId, $scope.data
+        else
+          MkmApiStock.search $scope.query, $scope.data
+    $scope.query = sessionStorage.getItem("searchStock") or ""
+
+    # increase article count
+    $scope.increase = (articles) -> MkmApiStock.increase(article) for article in articles
+    # decrease article count
+    $scope.decrease = (articles) -> MkmApiStock.decrease(article) for article in articles
+
     # edit article stuff
-    $scope.languages = [
-      {id: 1, label: "EN"}
-      {id: 2, label: "FR"}
-      {id: 3, label: "DE"}
-      {id: 4, label: "SP"}
-      {id: 5, label: "IT"}
-      {id: 6, label: "CH"}
-      {id: 7, label: "JP"}
-      {id: 8, label: "PT"}
-      {id: 9, label: "RU"}
-      {id: 10, label: "KO"}
-      {id: 11, label: "TW"}
-    ]
-    $scope.conditions = ["MT","NM","EX","GD","LP","PL","PO"]
+    $scope.languages = MkmApiStock.getLanguages()
+    $scope.conditions = MkmApiStock.getGradings()
     $scope.save = -> MkmApiStock.update $scope.data.article, -> $location.path "/stock"
 ]
 
@@ -199,4 +197,7 @@ mkmobileControllers.controller 'MessageCtrl', [
   '$scope', '$routeParams', 'MkmApiMessage'
   ($scope, $routeParams, MkmApiMessage) ->
     $scope.data = MkmApiMessage.get $routeParams.userId
+    $scope.loadMessages = ->
+      return if $scope.data.messages.length >= $scope.data.count or $scope.data.loading
+      MkmApiOrder.get $routeParams.userId, $scope.data
 ]

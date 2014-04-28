@@ -1,8 +1,8 @@
 <header>My Offers - {{data.count}} articles</header>
 <article>
   <div class="header">
-    <input type="text" ng-model="query" ng-change="search()" placeholder="Search">
-    <button ng-show="query" ng-click="query = null">X</button>
+    <input type="text" ng-model="query" placeholder="Search">
+    <button ng-show="query" ng-click="query = ''">X</button>
     <div class="tools" ng-show="selected.length">
       <button class="minus" ng-click="decrease(selected)">-</button>
       <button class="plus" ng-click="increase(selected)">+</button>
@@ -10,7 +10,7 @@
   </div>
   <span ng-show="!data.loading && !data.count">No Articles :(</span>
   <ul ng-class="{loading:data.loading}" data-infinite-scroll="loadArticles()">
-    <li ng-repeat="article in data.articles" ng-hide="!article.count">
+    <li ng-repeat="article in data.articles" ng-class="{loading:article.loading}" ng-hide="!article.count">
       <div class="product">
         <input type="checkbox" ng-checked="selected.indexOf(article) > -1" ng-click="select(article)">
         <span class="icon card" ng-show="article.product.image" ng-click="article.showImage = !article.showImage"></span>

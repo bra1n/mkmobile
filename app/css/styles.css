@@ -98,8 +98,17 @@ aside.slider {
   aside.slider.open {
     bottom: 80px; }
   aside.slider .content {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
     padding-top: 80px;
+    height: 100%;
     white-space: nowrap; }
+    aside.slider .content .aligner {
+      display: inline-block;
+      vertical-align: middle;
+      height: 100%;
+      width: 0; }
     aside.slider .content img {
       vertical-align: middle; }
     aside.slider .content .data {
@@ -209,6 +218,8 @@ mkm-order i {
 #content.cart footer .cart {
   background: green; }
 
+#content.stock article.product {
+  margin-top: 45px; }
 #content.stock article .product, #content.stock article .icons, #content.stock article .price {
   display: inline-block;
   width: 33%; }
@@ -228,3 +239,20 @@ mkm-order i {
   cursor: pointer; }
   #content.buys article .tabs li.current, #content.sells article .tabs li.current {
     background: silver; }
+
+#content.messages article ul.thread li.sending span {
+  float: right; }
+#content.messages article ul.thread li.receiving span {
+  float: left; }
+#content.messages article ul.thread li.receiving {
+  text-align: right; }
+#content.messages article ul.overview h3 {
+  margin: 0; }
+#content.messages article ul.overview span {
+  float: right; }
+#content.messages article ul.overview p {
+  margin: 0;
+  max-height: 40px;
+  overflow: hidden; }
+#content.messages article ul.overview li {
+  border-bottom: 1px solid black; }
