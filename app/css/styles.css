@@ -140,7 +140,12 @@ mkm-order i {
 /***********************/
 /***********************/
 #content.login article {
-  position: fixed; }
+  position: fixed;
+  width: 100%; }
+  #content.login article iframe {
+    width: 100%;
+    height: 360px;
+    border: none; }
   #content.login article img.logo {
     width: 200px; }
   #content.login article input, #content.login article button {

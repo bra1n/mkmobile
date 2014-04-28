@@ -3,7 +3,7 @@
   <form>
     <img src="/img/logo.jpg" alt="Logo" class="logo"/><br>
     <div ng-hide="loggedIn">
-      <iframe src="" ng-src="{{iframeSrc}}" ng-show="iframeSrc"></iframe>
+      <iframe src="" ng-src="{{iframeSrc}}" ng-show="iframeSrc" scrolling="no"></iframe>
       <button ng-hide="iframeSrc || login.success" ng-click="handleLogin()">Log In</button>
       <div ng-show="login.error">Error retrieving access, please retry</div>
       <div ng-show="login.success">Logged in successfully!</div>
