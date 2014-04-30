@@ -6,7 +6,7 @@
   <span ng-show="!searchData.loading">{{searchData.count}} Results</span>
   <span class="error" ng-show="searchData.error">Error loading search results</span>
   <select ng-model="sort" ng-show="searchData.count > 0">
-    <option value="name">Alphabetical</option>
+    <option value="name[0]['productName']">Alphabetical</option>
     <option value="expansion">Expansion</option>
     <option value="rarity">Rarity</option>
   </select>

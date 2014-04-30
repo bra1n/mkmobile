@@ -70,4 +70,14 @@ mkmobileServices.factory 'MkmApiAuth', [ 'MkmApi', '$location', 'DataCache', (Mk
       if account?
         account.onVacation = data.onVacation
         DataCache.account account
+
+  # update interface language
+  setLanguage: (language) ->
+    # todo needs API function
+
+  # return list of available languages
+  getLanguages: -> [
+    "English", "German", "Spanish", "Italian", "French"
+  ]
+
 ]

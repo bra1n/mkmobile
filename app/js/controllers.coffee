@@ -7,7 +7,7 @@ mkmobileControllers.controller 'SearchCtrl', [
       $scope.searchData = MkmApiMarket.search query
     # init scope vars
     $scope.query = sessionStorage.getItem("search") or ""
-    $scope.sort = "name"
+    $scope.sort = "name[0]['productName']"
 
     # infinite scrolling
     $scope.loadResults = ->
@@ -58,7 +58,9 @@ mkmobileControllers.controller 'SettingsCtrl', [
   '$scope', 'MkmApiAuth'
   ($scope, MkmApiAuth) ->
     $scope.data = MkmApiAuth.getAccount()
+    $scope.languages = MkmApiAuth.getLanguages()
     $scope.updateVacation = -> MkmApiAuth.setVacation $scope.data.account.onVacation
+    $scope.updateLanguage = -> MkmApiAuth.setLanguage $scope.data.account.language
     $scope.logout = -> MkmApiAuth.logout()
 ]
 
@@ -88,7 +90,7 @@ mkmobileControllers.controller 'CartCtrl', [
       unless $scope.searchData.products.length >= $scope.searchData.count or $scope.searchData.loading
         MkmApiMarket.search($scope.query, $scope.searchData)
     $scope.query = sessionStorage.getItem("search") or ""
-    $scope.sort = "name"
+    $scope.sort = "name[0]['productName']"
 
     # load cart data
     $scope.data = MkmApiCart.get $routeParams.orderId, (data) ->
@@ -119,12 +121,10 @@ mkmobileControllers.controller 'CartCtrl', [
 
     # change shipping address
     $scope.countries = MkmApiCart.getCountries()
-    $scope.shippingAddress = (address) ->
-      MkmApiCart.shippingAddress address
+    $scope.shippingAddress = (address) -> MkmApiCart.shippingAddress address, -> $location.path '/cart'
 
     # checkout
     $scope.method = $routeParams.method
-    console.log $scope.method
     $scope.checkout = ->
       MkmApiCart.checkout ->
         sessionStorage.setItem 'buysTab', (if $scope.method is 'instabuy' then 'paid' else 'bought')

@@ -5,7 +5,11 @@
       <label for="vacation">MKM Vacation Status</label>
       <input type="checkbox" id="vacation" ng-change="updateVacation()" ng-model="data.account.onVacation">
     </li>
-    <li><a class="language" href="/language">Language</a></li>
+    <li>
+      <label for="languages">Language</label>
+      <select id="languages" ng-options="language as language for language in languages"
+              ng-model="data.account.language" ng-change="updateLanguage()"></select>
+    </li>
     <li><a href="#">Help & About</a></li>
     <li><a href="#">Contact Us</a></li>
     <li><a href="#">Legal</a></li>

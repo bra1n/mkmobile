@@ -1,16 +1,16 @@
 mkmobileServices.factory 'MkmApiCart', [ 'MkmApi', 'DataCache', (MkmApi, DataCache) ->
   # get the cart object (optionally filtered by ID)
-  # todo replace seller.username with idOrder
   get: (id, cb) ->
     response = cart: DataCache.cart(), address: DataCache.address(), balance: DataCache.balance()
     unless response.cart?
       # fetch the cart
       response.loading = yes
       MkmApi.api.shoppingcart {}, (data) =>
+        @cache data
         response.loading = no
-        response.balance = DataCache.balance data.accountBalance
-        response.cart = DataCache.cart data.shoppingCart
-        response.address = DataCache.address data.shippingAddress
+        response.balance = DataCache.balance()
+        response.cart = DataCache.cart()
+        response.address = DataCache.address()
         response.order = order for order in response.cart when order.idReservation is parseInt(id,10) if id?
         cb?(response)
       , (error) =>
@@ -48,11 +48,7 @@ mkmobileServices.factory 'MkmApiCart', [ 'MkmApi', 'DataCache', (MkmApi, DataCac
         idArticle: article
         amount: 1
     MkmApi.api.cartUpdate request, (data) =>
-      data = data.shoppingCart # todo needs to be fixed in the api
-      DataCache.cart data.shoppingCart
-      DataCache.address data.shippingAddress
-      DataCache.account data.account
-      DataCache.balance data.accountBalance
+      @cache data
       cb?()
 
   # remove article(s) from cart
@@ -65,11 +61,14 @@ mkmobileServices.factory 'MkmApiCart', [ 'MkmApi', 'DataCache', (MkmApi, DataCac
     else
       request.article = {idArticle:articles, amount: 1}
     MkmApi.api.cartUpdate request, (data) =>
-      data = data.shoppingCart # todo needs to be fixed in the api
-      DataCache.cart data.shoppingCart or []
-      DataCache.address data.shippingAddress
-      DataCache.account data.account
+      @cache data
       cb?()
+
+  # cache cart data
+  cache: (data) ->
+    DataCache.cart data.shoppingCart
+    DataCache.address data.shippingAddress
+    DataCache.balance data.accountBalance
 
   # checkout
   checkout: (cb) ->
@@ -79,10 +78,14 @@ mkmobileServices.factory 'MkmApiCart', [ 'MkmApi', 'DataCache', (MkmApi, DataCac
       cb?()
 
   # change the shipping address
-  shippingAddress: (address) ->
-    DataCache.address address
+  shippingAddress: (address, cb) ->
+    # todo map country label to code - should be simplified on api level
+    address.country = country.code for country in @getCountries() when country.label is address.country
     MkmApi.api.shippingAddress address, (data) =>
-      console.log data
+      @cache data
+      # revert to label
+      address.country = data.shippingAddress.country
+      cb?()
 
   getCountries: ->
     [

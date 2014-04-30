@@ -27,7 +27,7 @@ mkmobileServices.factory 'MkmApiStock', [ 'MkmApi', 'MkmApiMarket', 'DataCache',
       idArticle: article.idArticle
       idLanguage: article.language.idLanguage
       comments: article.comments
-      amount: article.count
+      count: article.count
       price: article.price
       condition: article.condition
       isFoil: article.isFoil
