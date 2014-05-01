@@ -19,7 +19,7 @@ mkmobileServices.factory 'MkmApi', [ '$resource', ($resource) ->
       params: type: 'access'
       method: 'POST'
 
-    shoppingcart: # get shoppingcart contents
+    cart: # get shoppingcart contents
       params: type: 'shoppingcart'
     cartUpdate: # update shoppingcart contents
       params: type: 'shoppingcart'
@@ -50,6 +50,9 @@ mkmobileServices.factory 'MkmApi', [ '$resource', ($resource) ->
     orderUpdate: # update an order (status)
       params: type: 'order'
       method: 'PUT'
+    orderEvaluate: # evaluate an order
+      params: {type: 'order', param1: '@orderId', param2: 'evaluation'}
+      method: 'POST'
 
     account: # get account data
       params: type: 'account'
@@ -60,7 +63,7 @@ mkmobileServices.factory 'MkmApi', [ '$resource', ($resource) ->
     messages: # get all messages
       params: {type: 'account', param1: 'messages'}
     messageSend: # send a message
-      params: {type: 'account', param1: 'messages'}
+      params: {type: 'account', param1: 'messages', param2: '@param2'}
       method: 'POST'
   # augment the configs
   for param,config of apiParams

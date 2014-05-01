@@ -1,6 +1,6 @@
 <b>Seller: {{order.seller.username}}</b>
 <span class="seller-details" mkm-user user="order.seller"></span>
-<a class="icon comment" href="/messages/{{order.seller.idUser}}"></a>
+<a class="icon comment" ng-hide="order.actor == 'seller'" href="/messages/{{order.seller.idUser}}"></a>
 <div class="seller-address" ng-show="order.seller.address">
   Seller's address<br>
   {{order.seller.name.firstName}} {{order.seller.name.lastName}}<br>
@@ -8,14 +8,17 @@
   <span ng-show="order.seller.address.extra">  {{order.seller.address.extra}},  </span>
   <span ng-show="order.seller.address.zip">    {{order.seller.address.zip}}     </span>
   <span ng-show="order.seller.address.city">   {{order.seller.address.city}},   </span>
-  <span ng-show="order.seller.address.country">{{order.seller.address.country}} </span>
+  <span ng-show="order.seller.address.country">
+    <span class="icon country country-{{order.seller.address.country}}"></span>
+    {{order.seller.address.country | findInMap:countries}}
+  </span>
   <hr>
 </div>
 
 <div ng-show="order.buyer">
   <b>Buyer: {{order.buyer.username}}</b>
   <span class="buyer-details" mkm-user user="order.buyer"></span>
-  <a class="icon comment" href="/messages/{{order.buyer.idUser}}"></a>
+  <a class="icon comment" ng-hide="order.actor == 'buyer'" href="/messages/{{order.buyer.idUser}}"></a>
   <div class="buyer-address" ng-show="order.shippingAddress">
     Shipping address<br>
     {{order.shippingAddress.name}}<br>
@@ -23,7 +26,10 @@
     <span ng-show="order.shippingAddress.extra">  {{order.shippingAddress.extra}},  </span>
     <span ng-show="order.shippingAddress.zip">    {{order.shippingAddress.zip}}     </span>
     <span ng-show="order.shippingAddress.city">   {{order.shippingAddress.city}},   </span>
-    <span ng-show="order.shippingAddress.country">{{order.shippingAddress.country}} </span>
+    <span ng-show="order.shippingAddress.country">
+      <span class="icon country country-{{order.shippingAddress.country}}"></span>
+      {{order.shippingAddress.country | findInMap:countries}}
+    </span>
   </div>
 </div>
 

@@ -30,18 +30,20 @@ mkmobileDirectives.directive 'mkmFooter', [
     templateUrl: '/partials/directives/footer.html'
 ]
 
+mkmobileDirectives.directive 'mkmOrder', [ 'MkmApiCart', (MkmApiCart) ->
+  scope:
+    order: "="
+    removeArticle: "="
+  link: (scope) -> scope.countries = MkmApiCart.getCountries()
+  restrict: 'E'
+  templateUrl: '/partials/directives/order.html'
+]
+
 # dumb templates
 mkmobileDirectives.directive 'mkmSearch', ->
   restrict: 'E'
   transclude: yes
   templateUrl: '/partials/directives/search.html'
-
-mkmobileDirectives.directive 'mkmOrder', ->
-  restrict: 'E'
-  scope:
-    order: "="
-    removeArticle: "="
-  templateUrl: '/partials/directives/order.html'
 
 mkmobileDirectives.directive 'mkmUser', ->
   restrict: 'A'

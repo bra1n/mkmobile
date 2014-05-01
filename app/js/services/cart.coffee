@@ -5,7 +5,7 @@ mkmobileServices.factory 'MkmApiCart', [ 'MkmApi', 'DataCache', (MkmApi, DataCac
     unless response.cart?
       # fetch the cart
       response.loading = yes
-      MkmApi.api.shoppingcart {}, (data) =>
+      MkmApi.api.cart {}, (data) =>
         @cache data
         response.loading = no
         response.balance = DataCache.balance()
@@ -87,38 +87,37 @@ mkmobileServices.factory 'MkmApiCart', [ 'MkmApi', 'DataCache', (MkmApi, DataCac
       address.country = data.shippingAddress.country
       cb?()
 
-  getCountries: ->
-    [
-      { code:"AT", label:"Austria"        }
-      { code:"BE", label:"Belgium"        }
-      { code:"BG", label:"Bulgaria"       }
-      { code:"CH", label:"Switzerland"    }
-      { code:"CY", label:"Cyprus"         }
-      { code:"CZ", label:"Czech Republic" }
-      { code:"D",  label:"Germany"        }
-      { code:"DK", label:"Denmark"        }
-      { code:"EE", label:"Estonia"        }
-      { code:"ES", label:"Spain"          }
-      { code:"FI", label:"Finland"        }
-      { code:"FR", label:"France"         }
-      { code:"GB", label:"Great Britain"  }
-      { code:"GR", label:"Greece"         }
-      { code:"HR", label:"Croatia"        }
-      { code:"HU", label:"Hungary"        }
-      { code:"IE", label:"Ireland"        }
-      { code:"IT", label:"Italy"          }
-      { code:"LI", label:"Liechtenstein"  }
-      { code:"LT", label:"Lithuania"      }
-      { code:"LU", label:"Luxembourg"     }
-      { code:"LV", label:"Latvia"         }
-      { code:"MT", label:"Malta"          }
-      { code:"NL", label:"Netherlands"    }
-      { code:"NO", label:"Norway"         }
-      { code:"PL", label:"Poland"         }
-      { code:"PT", label:"Portugal"       }
-      { code:"RO", label:"Romania"        }
-      { code:"SE", label:"Sweden"         }
-      { code:"SI", label:"Slovenia"       }
-      { code:"SK", label:"Slovakia"       }
-    ]
+  getCountries: -> [
+    { value:"AT", label:"Austria"        }
+    { value:"BE", label:"Belgium"        }
+    { value:"BG", label:"Bulgaria"       }
+    { value:"CH", label:"Switzerland"    }
+    { value:"CY", label:"Cyprus"         }
+    { value:"CZ", label:"Czech Republic" }
+    { value:"D",  label:"Germany"        }
+    { value:"DK", label:"Denmark"        }
+    { value:"EE", label:"Estonia"        }
+    { value:"ES", label:"Spain"          }
+    { value:"FI", label:"Finland"        }
+    { value:"FR", label:"France"         }
+    { value:"GB", label:"Great Britain"  }
+    { value:"GR", label:"Greece"         }
+    { value:"HR", label:"Croatia"        }
+    { value:"HU", label:"Hungary"        }
+    { value:"IE", label:"Ireland"        }
+    { value:"IT", label:"Italy"          }
+    { value:"LI", label:"Liechtenstein"  }
+    { value:"LT", label:"Lithuania"      }
+    { value:"LU", label:"Luxembourg"     }
+    { value:"LV", label:"Latvia"         }
+    { value:"MT", label:"Malta"          }
+    { value:"NL", label:"Netherlands"    }
+    { value:"NO", label:"Norway"         }
+    { value:"PL", label:"Poland"         }
+    { value:"PT", label:"Portugal"       }
+    { value:"RO", label:"Romania"        }
+    { value:"SE", label:"Sweden"         }
+    { value:"SI", label:"Slovenia"       }
+    { value:"SK", label:"Slovakia"       }
+  ]
 ]

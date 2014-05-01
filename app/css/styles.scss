@@ -263,6 +263,7 @@ mkm-order {
 // order page
 #content.buys, #content.sells {
   article {
+    position: relative;
     .tabs li {
       display: inline-block;
       width: 25%;
@@ -270,6 +271,17 @@ mkm-order {
       text-align: center;
       cursor: pointer;
       &.current { background: silver; }
+    }
+    // evaluation
+    form.evaluation {
+      label { display: block; }
+    }
+    div.overlay {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      background: rgba(255,255,255,0.9);
+      width: 100%;
     }
   }
 }

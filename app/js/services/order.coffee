@@ -9,6 +9,7 @@ mkmobileServices.factory 'MkmApiOrder', [ 'MkmApi', 'DataCache', (MkmApi, DataCa
     received:   8
     lost:       32
     cancelled:  128
+
   get: ({mode, status, orderId, response}) ->
     if orderId?
       response = order: DataCache.order orderId
@@ -35,12 +36,36 @@ mkmobileServices.factory 'MkmApiOrder', [ 'MkmApi', 'DataCache', (MkmApi, DataCa
         response.error = error
         response.loading = no
     response
+
   update: ({orderId, status, reason}, cb) ->
     request = action: status
     request.reason = reason if reason?
     MkmApi.api.orderUpdate {param1: orderId}, request, (data) ->
-      console.log data
       DataCache.order orderId, data.order
       cb?()
     false
+
+  evaluate: (evaluation, cb) ->
+    MkmApi.api.orderEvaluate evaluation, (data) ->
+      DataCache.order data.idOrder, data.order
+      cb?()
+    false
+
+  getComplaints: -> [
+    {value: "badCommunication",   label:"Bad communication"}
+    {value: "incompleteShipment", label:"Items were missing"}
+    {value: "notFoil",            label:"Ordered Foil - Got Non Foil"}
+    {value: "rudeSeller",         label:"Rude seller"}
+    {value: "shipDamage",         label:"Damaged during shipping"}
+    {value: "unorderedShipment",  label:"Contents was unordered"}
+    {value: "wrongEd",            label:"Wrong version"}
+    {value: "wrongLang",          label:"Wrong language"}
+  ]
+
+  getEvaluations: -> [
+    {label: "Very good", value: 1}
+    {label: "Good",      value: 2}
+    {label: "Neutral",   value: 3}
+    {label: "Bad",       value: 4}
+  ]
 ]

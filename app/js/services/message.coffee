@@ -5,9 +5,17 @@ mkmobileServices.factory 'MkmApiMessage', [ 'MkmApi', 'DataCache', (MkmApi, Data
     MkmApi.api.messages {param2: id}, (data) ->
       response.count = data._range or data.message?.length
       response.messages = response.messages.concat data.message if response.count
-      response.partner = response.messages[0].partner if id? # todo replace with general user for single message thread
+      response.partner = data.partner
       response.loading = no
+    , (err) ->
+      response.loading = no
+      response.error = err.error
     response
+
+  send: (id, message, cb) ->
+    if id and message
+      MkmApi.api.messageSend {param2: id, message: message}, (data) ->
+        cb?(data.message[0])
 
   count: ->
     DataCache.messageCount()

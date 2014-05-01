@@ -236,14 +236,24 @@ mkm-order i {
 #content.article article {
   margin-top: 45px; }
 
-#content.buys article .tabs li, #content.sells article .tabs li {
-  display: inline-block;
-  width: 25%;
-  vertical-align: top;
-  text-align: center;
-  cursor: pointer; }
-  #content.buys article .tabs li.current, #content.sells article .tabs li.current {
-    background: silver; }
+#content.buys article, #content.sells article {
+  position: relative; }
+  #content.buys article .tabs li, #content.sells article .tabs li {
+    display: inline-block;
+    width: 25%;
+    vertical-align: top;
+    text-align: center;
+    cursor: pointer; }
+    #content.buys article .tabs li.current, #content.sells article .tabs li.current {
+      background: silver; }
+  #content.buys article form.evaluation label, #content.sells article form.evaluation label {
+    display: block; }
+  #content.buys article div.overlay, #content.sells article div.overlay {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    width: 100%; }
 
 #content.messages article ul.thread li.sending span {
   float: right; }

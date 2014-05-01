@@ -20,6 +20,12 @@
 .rarity-Token { background-position: -1px -37px; }
 .rarity-Uncommon { background-position: -19px -37px; }
 
+.icon.evaluation { background-image: url('/img/evaluation.png'); width: 16px; height: 16px; }
+.evaluation-1 { background-position: 0 0; }
+.evaluation-2 { background-position: -16px 0; }
+.evaluation-3 { background-position: 0 -16px; }
+.evaluation-4 { background-position: -16px -16px; }
+
 .icon.grading { background-image: url('/img/grading.png');  width: 16px; height: 16px; }
 .grading-EX { background-position: -1px -1px; }
 .grading-GD { background-position: -19px -1px; }

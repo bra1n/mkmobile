@@ -47,12 +47,15 @@ mkmobileApp.config ['$locationProvider','$routeProvider', ($locationProvider, $r
     templateUrl:  '/partials/pages/settings.html'
     controller:   'SettingsCtrl'
 
-  # offer management
+  # order management
   .when '/buys',
     templateUrl:  '/partials/pages/orders.html'
     controller:   'OrderCtrl'
   .when '/buys/:orderId',
     templateUrl:  '/partials/pages/order.html'
+    controller:   'OrderCtrl'
+  .when '/buys/:orderId/evaluate',
+    templateUrl:  '/partials/pages/evaluate.html'
     controller:   'OrderCtrl'
   .when '/sells',
     templateUrl:  '/partials/pages/orders.html'
@@ -118,6 +121,7 @@ mkmobileApp.run [ '$rootScope','MkmApiAuth', ($rootScope, MkmApiAuth) ->
   $rootScope.$on '$routeChangeSuccess', (event, current) ->
     if current.$$route?.originalPath? and current.$$route?.originalPath.split("/").length > 1
       $rootScope.viewClass = current.$$route?.originalPath.split("/")[1]
+      $rootScope.viewTitle = $rootScope.viewClass?.replace /\w\S*/g, (txt) -> txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
 ]
 
 # init services and controllers
@@ -168,7 +172,7 @@ toXML = (obj, recursive = no) ->
       else if typeof val isnt "undefined"
         val = val.toString().replace /[\u00A0-\u9999<>\&]/gim, (i) -> '&#'+i.charCodeAt(0)+';'
       xml += "<#{prop}>#{val}</#{prop}>"
-  else
+  else if typeof obj isnt "undefined"
     xml = obj.toString().replace /[\u00A0-\u9999<>\&]/gim, (i) -> '&#'+i.charCodeAt(0)+';'
   xml = '<?xml version="1.0" encoding="UTF-8" ?><request>'+xml+'</request>' unless recursive
   xml

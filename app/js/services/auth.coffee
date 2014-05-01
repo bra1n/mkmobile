@@ -40,9 +40,9 @@ mkmobileServices.factory 'MkmApiAuth', [ 'MkmApi', '$location', 'DataCache', (Mk
         MkmApi.auth.secret = data.oauth_token_secret
         sessionStorage.setItem "token", MkmApi.auth.token
         sessionStorage.setItem "secret", MkmApi.auth.secret
-        DataCache.account data.user
-        DataCache.cartCount data.articlesInShoppingCart
-        DataCache.messageCount data.unreadMessages
+        DataCache.account data.account
+        DataCache.cartCount data.account.articlesInShoppingCart
+        DataCache.messageCount data.account.unreadMessages
         response.success = yes
         $location.path redirectAfterLogin
     , -> response.error = yes
@@ -54,8 +54,8 @@ mkmobileServices.factory 'MkmApiAuth', [ 'MkmApi', '$location', 'DataCache', (Mk
     unless response.account?
       promises.account = (promises.account or MkmApi.api.account().$promise).then (data) ->
         response.account = DataCache.account data.account
-        DataCache.cartCount data.articlesInShoppingCart
-        DataCache.messageCount data.unreadMessages
+        DataCache.cartCount data.account.articlesInShoppingCart
+        DataCache.messageCount data.account.unreadMessages
         cb?()
         data # pass data to the next callback
       , (error) =>

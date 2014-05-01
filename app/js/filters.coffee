@@ -7,3 +7,7 @@ angular.module 'mkmobileFilters', []
   # return productImage
   (image) ->
     image? and '//tcgimages.eu/' + image.substr(2) or '/img/card.jpg'
+.filter 'findInMap', ->
+  (needle, haystack) ->
+    for obj in haystack
+      return obj.label if obj.value is needle

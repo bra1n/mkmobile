@@ -9,7 +9,7 @@
     <label for="city">City:</label> <input id="city" type="text" ng-model="data.address.city"><br>
     <label for="zip">Post code:</label> <input id="zip" type="text" ng-model="data.address.zip"><br>
     <label for="country">Country:</label>
-    <select id="country" ng-options="country.label as country.label for country in countries"
+    <select id="country" ng-options="country.value as country.label for country in countries"
             ng-model="data.address.country" required></select><br>
     <button ng-click="shippingAddress(data.address)">Save</button>
   </form>

@@ -146,13 +146,13 @@ mkmobileControllers.controller 'StockCtrl', [
     # search logic
     $scope.$watch 'query', (query) ->
       sessionStorage.setItem "searchStock", query
-      if query.length < 3 or $routeParams.articleId
+      if !query or $routeParams.articleId
         $scope.data = MkmApiStock.get $routeParams.articleId
       else
         $scope.data = MkmApiStock.search query
     $scope.loadArticles = ->
       unless $scope.data.articles.length >= $scope.data.count or $scope.data.loading
-        if query.length < 3 or $routeParams.articleId
+        if !queryg or $routeParams.articleId
           MkmApiStock.get $routeParams.articleId, $scope.data
         else
           MkmApiStock.search $scope.query, $scope.data
@@ -189,7 +189,12 @@ mkmobileControllers.controller 'OrderCtrl', [
       else
         MkmApiOrder.update {orderId:$scope.orderId, status, reason:$scope.data.order.state.reason}, ->
           $scope.data = MkmApiOrder.get {orderId: $scope.orderId}
+          $location.path('/'+$scope.mode+'/'+$scope.orderId+'/evaluate') if status is "confirmReception"
       false
+    # evaluate order
+    $scope.evaluations = MkmApiOrder.getEvaluations()
+    $scope.complaints = MkmApiOrder.getComplaints()
+    $scope.evaluate = -> MkmApiOrder.evaluate $scope.evaluation, -> $location.path "/"+$scope.mode+"/"+$scope.orderId
 ]
 
 # /messages
@@ -197,7 +202,7 @@ mkmobileControllers.controller 'MessageCtrl', [
   '$scope', '$routeParams', 'MkmApiMessage'
   ($scope, $routeParams, MkmApiMessage) ->
     $scope.data = MkmApiMessage.get $routeParams.userId
-    $scope.loadMessages = ->
-      return if $scope.data.messages.length >= $scope.data.count or $scope.data.loading
-      MkmApiOrder.get $routeParams.userId, $scope.data
+    $scope.send = -> MkmApiMessage.send $routeParams.userId, $scope.message, (message) ->
+      $scope.data.messages.unshift message
+      $scope.data.count++
 ]

@@ -1,0 +1,50 @@
+<header>
+  Evaluation for Order {{data.order.idOrder}} from {{data.order.seller.username}}
+</header>
+<article>
+  <div class="error" ng-show="data.error">Error loading order</div>
+  <div class="loading" ng-show="data.loading">Loading order...</div>
+  <form ng-show="data.order && !data.loading && !data.error" class="evaluation" ng-submit="evaluate()">
+    <label for="evaluationGrade">Overall Evaluation</label>
+    <span class="icon evaluation" ng-class="'evaluation-'+data.order.evaluation.evaluationGrade"></span>
+    <select id="evaluationGrade" ng-options="evaluation.value as evaluation.label for evaluation in evaluations"
+            ng-model="data.order.evaluation.evaluationGrade" required ng-disabled="data.order.evaluation"></select><br>
+    <input type="text" ng-model="data.order.evaluation.comment" ng-disabled="data.order.evaluation"
+           ng-required="data.order.evaluation.evaluationGrade > 1 && !data.order.evaluation.complaint.length">
+
+    <label for="itemDescription">Description of Items</label>
+    <span class="icon evaluation" ng-class="'evaluation-'+data.order.evaluation.itemDescription"></span>
+    <select id="itemDescription" ng-options="evaluation.value as evaluation.label for evaluation in evaluations"
+            ng-model="data.order.evaluation.itemDescription" required ng-disabled="data.order.evaluation"></select>
+
+    <label for="packaging">Packaging of Shipment</label>
+    <span class="icon evaluation" ng-class="'evaluation-'+data.order.evaluation.packaging"></span>
+    <select id="packaging" ng-options="evaluation.value as evaluation.label for evaluation in evaluations"
+            ng-model="data.order.evaluation.packaging" required ng-disabled="data.order.evaluation"></select>
+
+    <label for="speed">Processing Speed</label>
+    <span class="icon evaluation" ng-class="'evaluation-'+data.order.evaluation.speed"></span>
+    <select id="speed" ng-options="evaluation.value as evaluation.label for evaluation in evaluations"
+            ng-model="data.order.evaluation.speed" required ng-disabled="data.order.evaluation"></select>
+
+    <label for="complaints">Complaints</label>
+    <select id="complaints" ng-options="complaint.value as complaint.label for complaint in complaints"
+            ng-model="data.order.evaluation.complaint" multiple ng-disabled="data.order.evaluation"></select><br>
+
+    <button ng-hide="data.order.evaluation">Evaluate</button>
+    <a href="/{{mode}}/{{data.order.idOrder}}" ng-show="data.order.evaluation">Back to Order</a>
+  </form>
+  <div ng-hide="hideOverlay || data.order.evaluation || data.loading || data.error" class="overlay">
+    <h1>Evaluation Guidelines</h1>
+    <ul>
+      <li>Do not give an overall neutral or bad evaluation before trying to contact the seller first. Sellers are human and can make mistakes. Give them a chance to fix them.</li>
+      <li>Do not give an overall neutral or bad evaluation if you would buy from this seller again.</li>
+      <li>Do not give an overall neutral or bad evaluation if the seller made mistakes but fixed them.</li>
+      <li>Do not give an overall neutral or bad evaluation if the packaging was not good but the items where unharmed.</li>
+      <li>If you did not receive this shipment do not evaluate it. Contact our support so they mark it as lost.</li>
+      <li>Mark or explain why you give overall neutral or bad evaluations, otherwise they will be neutralized.</li>
+    </ul>
+    <button ng-click="hideOverlay = true">Continue</button>
+  </div>
+</article>
+<mkm-footer></mkm-footer>
