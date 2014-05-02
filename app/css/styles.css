@@ -246,14 +246,24 @@ mkm-order i {
     cursor: pointer; }
     #content.buys article .tabs li.current, #content.sells article .tabs li.current {
       background: silver; }
-  #content.buys article form.evaluation label, #content.sells article form.evaluation label {
-    display: block; }
-  #content.buys article div.overlay, #content.sells article div.overlay {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.9);
-    width: 100%; }
+  #content.buys article .evaluation b, #content.sells article .evaluation b {
+    display: inline-block;
+    vertical-align: middle;
+    min-width: 200px; }
+#content.buys article.evaluation label, #content.sells article.evaluation label {
+  display: block; }
+#content.buys article.evaluation div.overlay, #content.sells article.evaluation div.overlay {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  width: 100%;
+  opacity: 1;
+  transition: all linear 0.5s; }
+  #content.buys article.evaluation div.overlay.ng-hide-add, #content.buys article.evaluation div.overlay.ng-hide-remove, #content.sells article.evaluation div.overlay.ng-hide-add, #content.sells article.evaluation div.overlay.ng-hide-remove {
+    display: block !important; }
+  #content.buys article.evaluation div.overlay.ng-hide, #content.sells article.evaluation div.overlay.ng-hide {
+    opacity: 0; }
 
 #content.messages article ul.thread li.sending span {
   float: right; }

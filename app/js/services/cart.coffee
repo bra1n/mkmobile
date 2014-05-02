@@ -79,12 +79,8 @@ mkmobileServices.factory 'MkmApiCart', [ 'MkmApi', 'DataCache', (MkmApi, DataCac
 
   # change the shipping address
   shippingAddress: (address, cb) ->
-    # todo map country label to code - should be simplified on api level
-    address.country = country.code for country in @getCountries() when country.label is address.country
     MkmApi.api.shippingAddress address, (data) =>
       @cache data
-      # revert to label
-      address.country = data.shippingAddress.country
       cb?()
 
   getCountries: -> [

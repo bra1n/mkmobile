@@ -40,9 +40,9 @@ mkmobileServices.factory 'MkmApiAuth', [ 'MkmApi', '$location', 'DataCache', (Mk
         MkmApi.auth.secret = data.oauth_token_secret
         sessionStorage.setItem "token", MkmApi.auth.token
         sessionStorage.setItem "secret", MkmApi.auth.secret
-        DataCache.account data.account
-        DataCache.cartCount data.account.articlesInShoppingCart
-        DataCache.messageCount data.account.unreadMessages
+        DataCache.account data.user
+        DataCache.cartCount data.user.articlesInShoppingCart
+        DataCache.messageCount data.user.unreadMessages
         response.success = yes
         $location.path redirectAfterLogin
     , -> response.error = yes
@@ -79,5 +79,4 @@ mkmobileServices.factory 'MkmApiAuth', [ 'MkmApi', '$location', 'DataCache', (Mk
   getLanguages: -> [
     "English", "German", "Spanish", "Italian", "French"
   ]
-
 ]

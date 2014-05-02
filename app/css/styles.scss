@@ -270,18 +270,31 @@ mkm-order {
       vertical-align: top;
       text-align: center;
       cursor: pointer;
-      &.current { background: silver; }
+      &.current {
+        background: silver;
+      }
     }
-    // evaluation
-    form.evaluation {
-      label { display: block; }
+    .evaluation {
+      b {
+        display: inline-block;
+        vertical-align: middle;
+        min-width: 200px;
+      }
     }
+  }
+  // evaluation
+  article.evaluation {
+    label { display: block; }
     div.overlay {
       position: absolute;
       top: 0;
       height: 100%;
       background: rgba(255,255,255,0.9);
       width: 100%;
+      opacity: 1;
+      transition:all linear 0.5s;
+      &.ng-hide-add, &.ng-hide-remove { display:block!important; }
+      &.ng-hide { opacity:0; }
     }
   }
 }

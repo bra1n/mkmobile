@@ -13,6 +13,7 @@ mkmobileServices.factory 'MkmApiOrder', [ 'MkmApi', 'DataCache', (MkmApi, DataCa
   get: ({mode, status, orderId, response}) ->
     if orderId?
       response = order: DataCache.order orderId
+      console.log "got cache", response
       unless response.order?
         response.loading = yes
         MkmApi.api.order {param1: orderId}, (data) =>
@@ -45,11 +46,20 @@ mkmobileServices.factory 'MkmApiOrder', [ 'MkmApi', 'DataCache', (MkmApi, DataCa
       cb?()
     false
 
-  evaluate: (evaluation, cb) ->
+  evaluate: (orderId, evaluation, cb) ->
+    evaluation.orderId = orderId
     MkmApi.api.orderEvaluate evaluation, (data) ->
-      DataCache.order data.idOrder, data.order
+      DataCache.order orderId, data # todo update to data.order
       cb?()
     false
+
+  getEvaluation: ->
+    evaluationGrade: 1
+    itemDescription: 1
+    packaging: 1
+    speed: 1
+    complaint: []
+    comment: ""
 
   getComplaints: -> [
     {value: "badCommunication",   label:"Bad communication"}

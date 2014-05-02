@@ -45,7 +45,7 @@ mkmobileServices.factory 'MkmApiStock', [ 'MkmApi', 'MkmApiMarket', 'DataCache',
   # increase article count
   increase: (article, cb) ->
     article.loading = yes
-    MkmApi.api.stockAmount {param2: article.idArticle, param3: 'increase', param4: 1}, (data) ->
+    MkmApi.api.stockAmount {idArticle: article.idArticle, action: 'increase', amount: 1}, (data) ->
       DataCache.article article.idArticle, data.article
       article.count++
       article.loading = no
@@ -54,7 +54,7 @@ mkmobileServices.factory 'MkmApiStock', [ 'MkmApi', 'MkmApiMarket', 'DataCache',
   # decrease article count
   decrease: (article, cb) ->
     article.loading = yes
-    MkmApi.api.stockAmount {param2: article.idArticle, param3: 'decrease', param4: 1}, (data) ->
+    MkmApi.api.stockAmount {idArticle: article.idArticle, action: 'decrease', amount: 1}, (data) ->
       DataCache.article article.idArticle, data.article
       article.count--
       article.loading = no

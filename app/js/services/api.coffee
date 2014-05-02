@@ -27,6 +27,11 @@ mkmobileServices.factory 'MkmApi', [ '$resource', ($resource) ->
     shippingAddress: # update shipping address for shoppingcart
       params: {type: 'shoppingcart', param1: 'shippingaddress'}
       method: 'PUT'
+    shippingMethod: # get shipping methods for order
+      params: {type: 'shoppingcart', param1: 'shippingmethod'}
+    shippingMethodUpdate: # change shipping methods for order
+      params: {type: 'shoppingcart', param1: 'shippingmethod'}
+      method: 'PUT'
     checkout: # checkout shoppingcart
       params: {type: 'shoppingcart', param2: 'checkout'}
 
@@ -39,7 +44,7 @@ mkmobileServices.factory 'MkmApi', [ '$resource', ($resource) ->
       params: type: 'stock'
       method: 'PUT'
     stockAmount: # change stock article amount
-      params: {type: 'stock', param1: 'article', param2: '@param2', param3: '@param3', param4: '@param4'}
+      params: {type: 'stock', param1: 'article', param2: '@idArticle', param3: '@action', param4: '@amount'}
       method: 'PUT'
 
     orders: # get buys / sells

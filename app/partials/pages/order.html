@@ -17,15 +17,22 @@
     <div ng-show="data.order.state.state == 'paid' && data.order.actor == 'seller'"><button ng-click="update('send')">Mark as sent</button></div>
     <div ng-show="data.order.state.state == 'paid'"><button ng-click="update('requestCancellation')">Request Cancellation</button></div>
     <div ng-show="data.order.state.state == 'received' && data.order.actor == 'buyer' && !data.order.evaluation"><a href="/buys/{{data.order.idOrder}}/evaluate">Evaluate order</a></div>
-    <div ng-show="data.order.evaluation">
+    <div class="evaluation" ng-show="data.order.evaluation">
       <hr>
       Evaluation:<br>
-      Overall <span class="icon evaluation" ng-class="'evaluation-'+data.order.evaluation.evaluationGrade"></span><br>
-      <span ng-show="data.order.evaluation.comment">Comment: {{data.order.evaluation.comment}}<br></span>
-      Item Description <span class="icon evaluation" ng-class="'evaluation-'+data.order.evaluation.itemDescription"></span><br>
-      Packaging <span class="icon evaluation" ng-class="'evaluation-'+data.order.evaluation.packaging"></span><br>
-      Speed <span class="icon evaluation" ng-class="'evaluation-'+data.order.evaluation.speed"></span><br>
-      <!-- todo: complaints!-->HERE BE COMPLAINTS
+      <b>Overall</b> <span class="icon evaluation" ng-class="'evaluation-'+data.order.evaluation.evaluationGrade"></span><br>
+      <span ng-show="data.order.evaluation.comment">
+        <b>Comment</b> {{data.order.evaluation.comment}}<br>
+      </span>
+      <b>Item Description</b> <span class="icon evaluation" ng-class="'evaluation-'+data.order.evaluation.itemDescription"></span><br>
+      <b>Packaging</b> <span class="icon evaluation" ng-class="'evaluation-'+data.order.evaluation.packaging"></span><br>
+      <b>Speed</b> <span class="icon evaluation" ng-class="'evaluation-'+data.order.evaluation.speed"></span><br>
+      <div ng-show="data.order.evaluation.complaint">
+        <b>Complaints</b>
+        <span ng-repeat="complaint in data.order.evaluation.complaint">
+          {{complaint | findInMap:complaints}}{{$last ? '' : ', '}}
+        </span>
+      </div>
     </div>
   </form>
 </article>

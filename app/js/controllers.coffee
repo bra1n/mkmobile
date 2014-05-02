@@ -194,7 +194,8 @@ mkmobileControllers.controller 'OrderCtrl', [
     # evaluate order
     $scope.evaluations = MkmApiOrder.getEvaluations()
     $scope.complaints = MkmApiOrder.getComplaints()
-    $scope.evaluate = -> MkmApiOrder.evaluate $scope.evaluation, -> $location.path "/"+$scope.mode+"/"+$scope.orderId
+    $scope.evaluation = MkmApiOrder.getEvaluation()
+    $scope.evaluate = -> MkmApiOrder.evaluate $scope.orderId, $scope.evaluation, -> $location.path "/"+$scope.mode+"/"+$scope.orderId
 ]
 
 # /messages
