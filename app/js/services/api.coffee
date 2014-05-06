@@ -41,10 +41,7 @@ mkmobileServices.factory 'MkmApi', [ '$resource', ($resource) ->
       params: {type: 'stock', param1: 'articles', param3: '1'}
       unique: 'searchStock'
     stockUpdate: # update stock articles
-      params: type: 'stock'
-      method: 'PUT'
-    stockAmount: # change stock article amount
-      params: {type: 'stock', param1: 'article', param2: '@idArticle', param3: '@action', param4: '@amount'}
+      params: {type: 'stock', param1: '@action'}
       method: 'PUT'
 
     orders: # get buys / sells

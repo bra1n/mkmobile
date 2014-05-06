@@ -149,6 +149,7 @@ mkmobileControllers.controller 'StockCtrl', [
 
     # search logic / loading article data
     $scope.$watch 'query', (query) ->
+      $scope.selected = []
       sessionStorage.setItem "searchStock", query
       if !query or $routeParams.articleId
         $scope.data = MkmApiStock.get $routeParams.articleId
@@ -162,10 +163,9 @@ mkmobileControllers.controller 'StockCtrl', [
           MkmApiStock.search $scope.query, $scope.data
     $scope.query = sessionStorage.getItem("searchStock") or ""
 
-    # increase article count
-    $scope.increase = (articles) -> MkmApiStock.increase(article) for article in articles
-    # decrease article count
-    $scope.decrease = (articles) -> MkmApiStock.decrease(article) for article in articles
+    # change article counts
+    $scope.increase = (articles) -> MkmApiStock.updateBatch articles, 1
+    $scope.decrease = (articles) -> MkmApiStock.updateBatch articles, -1
 
     # edit article stuff
     $scope.languages = MkmApiStock.getLanguages()

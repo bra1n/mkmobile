@@ -42,24 +42,17 @@ mkmobileServices.factory 'MkmApiStock', [ 'MkmApi', 'MkmApiMarket', 'DataCache',
         cb?()
     false
 
-  # increase article count
-  increase: (article, cb) ->
-    article.loading = yes
-    MkmApi.api.stockAmount {idArticle: article.idArticle, action: 'increase', amount: 1}, (data) ->
-      DataCache.article article.idArticle, data.article
-      article.count++
-      article.loading = no
-      cb?()
+  # increase/decrease article count
+  updateBatch: (articles, direction) ->
+    request =
+      action: if direction > 0 then 'increase' else 'decrease'
+      article: []
+    request.article.push {idArticle: article.idArticle, amount: 1} for article in articles
+    MkmApi.api.stockUpdate request, (data) ->
+      DataCache.article article.idArticle, article for article in data.article
+      article.count += direction for article in articles
 
-  # decrease article count
-  decrease: (article, cb) ->
-    article.loading = yes
-    MkmApi.api.stockAmount {idArticle: article.idArticle, action: 'decrease', amount: 1}, (data) ->
-      DataCache.article article.idArticle, data.article
-      article.count--
-      article.loading = no
-      cb?()
-
+  # search in articles
   search: (query, response) ->
     response = count: 0, articles: [] unless response?
     response.loading = yes
