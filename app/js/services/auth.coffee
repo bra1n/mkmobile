@@ -14,6 +14,7 @@ mkmobileServices.factory 'MkmApiAuth', [ 'MkmApi', '$location', 'DataCache', (Mk
     sessionStorage.removeItem "secret"
     sessionStorage.removeItem "token"
     sessionStorage.removeItem "search"
+    DataCache.reset()
     $location.path '/login'
 
   # checks whether a user is logged in and redirects if necessary

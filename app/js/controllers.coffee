@@ -93,7 +93,7 @@ mkmobileControllers.controller 'CartCtrl', [
     $scope.sort = "name[0]['productName']"
 
     # load cart data
-    $scope.data = MkmApiCart.get $routeParams.orderId, (data) ->
+    $scope.data = MkmApiCart.get $routeParams.orderId, ->
       $scope.count = MkmApiCart.count()
       $scope.sum = MkmApiCart.sum()
       $location.path "/cart" if $scope.count is 0 and ($routeParams.orderId? or $routeParams.method?)
@@ -118,10 +118,14 @@ mkmobileControllers.controller 'CartCtrl', [
       MkmApiCart.remove articles, ->
         $scope.count = MkmApiCart.count()
         $scope.sum = MkmApiCart.sum()
+        $scope.data = MkmApiCart.get $routeParams.orderId # should be updated now, no need for callback
 
     # change shipping address
     $scope.countries = MkmApiCart.getCountries()
     $scope.shippingAddress = (address) -> MkmApiCart.shippingAddress address, -> $location.path '/cart'
+
+    # change shipping method
+    $scope.shippingMethod = (order) -> MkmApiCart.shippingMethod order
 
     # checkout
     $scope.method = $routeParams.method

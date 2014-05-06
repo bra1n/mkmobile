@@ -20,7 +20,7 @@
     <hr>
     <div class="single" ng-show="data.cart.length == 1">
       Order Nr.: {{data.cart[0].idReservation}}<br>
-      <mkm-order order="data.cart[0]" remove-article="removeArticle"></mkm-order>
+      <mkm-order order="data.cart[0]" remove-article="removeArticle" shipping-method="shippingMethod"></mkm-order>
     </div>
     <div class="multiple" ng-show="data.cart.length > 1">
       <div class="overview">{{data.cart.length}} orders ({{count}} articles) to buy now</div>

@@ -61,7 +61,11 @@
   </li>
 </ul>
 <hr>
-{{order.shippingMethod.name}} - {{order.shippingMethod.price | currency:"€"}}
+<span ng-hide="order.shippingMethods">
+  {{order.shippingMethod.name}} - {{order.shippingMethod.price | currency:"€"}}
+</span>
+<select ng-model="order.shippingMethod.idShippingMethod" ng-change="shippingMethod(order)" ng-show="order.shippingMethods"
+        ng-options="sm.value as sm.label group by sm.group for sm in order.shippingMethods"></select>
 <hr>
 <div class="total">
   Total - {{order.totalValue | currency:"€"}}

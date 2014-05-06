@@ -30,7 +30,7 @@ mkmobileServices.factory 'MkmApi', [ '$resource', ($resource) ->
     shippingMethod: # get shipping methods for order
       params: {type: 'shoppingcart', param1: 'shippingmethod'}
     shippingMethodUpdate: # change shipping methods for order
-      params: {type: 'shoppingcart', param1: 'shippingmethod'}
+      params: {type: 'shoppingcart', param1: 'shippingmethod', param2: '@orderId'}
       method: 'PUT'
     checkout: # checkout shoppingcart
       params: {type: 'shoppingcart', param2: 'checkout'}

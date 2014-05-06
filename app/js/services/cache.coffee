@@ -1,37 +1,39 @@
 mkmobileServices.factory 'DataCache', ['$cacheFactory', ($cacheFactory) ->
   # all glory to the mighty cache object
-  cache =
+  caches =
     product: $cacheFactory 'products', capacity: 500
     article: $cacheFactory 'article', capacity: 1000
     cart: $cacheFactory 'cart', capacity: 1
     account: $cacheFactory 'account', capacity: 5
     order: $cacheFactory 'order', capacity: 1000
+  reset: ->
+    cache.removeAll() for index, cache of caches
   product: (id, data) ->
-    cache.product.put(id, data) if data?
-    cache.product.get(id) if id?
+    caches.product.put(id, data) if data?
+    caches.product.get(id) if id?
   article: (id, data) ->
-    cache.article.put(id, data) if data?
-    cache.article.remove(id) if data is false
-    cache.article.get(id) if id?
+    caches.article.put(id, data) if data?
+    caches.article.remove(id) if data is false
+    caches.article.get(id) if id?
   cart: (data) ->
-    cache.cart.put('cart', data) if data?
-    cache.cart.get('cart')
+    caches.cart.put('cart', data) if data?
+    caches.cart.get('cart')
   account: (data) ->
-    cache.account.put('account', data) if data?
-    cache.account.get('account')
+    caches.account.put('account', data) if data?
+    caches.account.get('account')
   balance: (balance) ->
-    cache.account.put('balance', balance) if balance?
-    cache.account.get('balance')
+    caches.account.put('balance', balance) if balance?
+    caches.account.get('balance')
   cartCount: (count) ->
-    cache.account.put('articlesInShoppingCart', count) if count?
-    cache.account.get('articlesInShoppingCart')
+    caches.account.put('articlesInShoppingCart', count) if count?
+    caches.account.get('articlesInShoppingCart')
   messageCount: (count) ->
-    cache.account.put('unreadMessages', count) if count?
-    cache.account.get('unreadMessages')
+    caches.account.put('unreadMessages', count) if count?
+    caches.account.get('unreadMessages')
   address: (data) ->
-    cache.account.put('address', data) if data?
-    cache.account.get('address')
+    caches.account.put('address', data) if data?
+    caches.account.get('address')
   order: (id, data) ->
-    cache.order.put(id, data) if data?
-    cache.order.get(id) if id?
+    caches.order.put(id, data) if data?
+    caches.order.get(id) if id?
 ]

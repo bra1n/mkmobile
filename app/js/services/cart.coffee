@@ -1,4 +1,4 @@
-mkmobileServices.factory 'MkmApiCart', [ 'MkmApi', 'DataCache', (MkmApi, DataCache) ->
+mkmobileServices.factory 'MkmApiCart', [ 'MkmApi', 'DataCache', '$filter', (MkmApi, DataCache, $filter) ->
   # get the cart object (optionally filtered by ID)
   get: (id, cb) ->
     response = cart: DataCache.cart(), address: DataCache.address(), balance: DataCache.balance()
@@ -12,6 +12,7 @@ mkmobileServices.factory 'MkmApiCart', [ 'MkmApi', 'DataCache', (MkmApi, DataCac
         response.cart = DataCache.cart()
         response.address = DataCache.address()
         response.order = order for order in response.cart when order.idReservation is parseInt(id,10) if id?
+        @getShippingMethods response
         cb?(response)
       , (error) =>
         response.error = error
@@ -19,8 +20,22 @@ mkmobileServices.factory 'MkmApiCart', [ 'MkmApi', 'DataCache', (MkmApi, DataCac
     else
       # cart already there, yay!
       response.order = order for order in response.cart when order.idReservation is parseInt(id,10) if id?
+      @getShippingMethods response
       cb?(response)
     response
+
+  # augments a single order with the available shipping methods
+  getShippingMethods: (response) ->
+    return unless response.cart.length is 1 or response.order? # check if it's a single order
+    createOption = (method) ->
+      value: method.idShippingMethod
+      label: method.name+" - "+$filter('currency')(method.price,'€')
+      group: if method.isInsured then "Insured" else "Uninsured"
+    order = response.order or response.cart[0]
+    order.shippingMethods = [ createOption order.shippingMethod ]
+    MkmApi.api.shippingMethod {param2: order.idReservation}, (data) ->
+      order.shippingMethods = []
+      order.shippingMethods.push createOption method for method in data.availableMethod
 
   # get number of articles in cart
   count: ->
@@ -82,6 +97,17 @@ mkmobileServices.factory 'MkmApiCart', [ 'MkmApi', 'DataCache', (MkmApi, DataCac
     MkmApi.api.shippingAddress address, (data) =>
       @cache data
       cb?()
+
+  # change the shipping method
+  shippingMethod: (order)  ->
+    request =
+      orderId: order.idReservation
+      idShippingMethod: order.shippingMethod.idShippingMethod
+    MkmApi.api.shippingMethodUpdate request, (data) =>
+      @cache data
+      newOrder = thatOrder for thatOrder in data.shoppingCart when thatOrder.idReservation is order.idReservation
+      order.shippingMethod = newOrder.shippingMethod
+      order.totalValue = newOrder.totalValue
 
   getCountries: -> [
     { value:"AT", label:"Austria"        }
