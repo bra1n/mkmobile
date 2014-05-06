@@ -147,7 +147,7 @@ mkmobileControllers.controller 'StockCtrl', [
       else
         $scope.selected.push id
 
-    # search logic
+    # search logic / loading article data
     $scope.$watch 'query', (query) ->
       sessionStorage.setItem "searchStock", query
       if !query or $routeParams.articleId

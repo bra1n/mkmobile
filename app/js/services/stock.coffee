@@ -7,7 +7,7 @@ mkmobileServices.factory 'MkmApiStock', [ 'MkmApi', 'MkmApiMarket', 'DataCache',
         MkmApi.api.stock {param1: 'article', param2: id}, (data) =>
           response.article = DataCache.article id, data.article
           response.loading = no
-          response.product = MkmApiMarket.product response.article.idProduct
+          response.product = product: DataCache.product data.product.idProduct, data.product
         , ->
           response.error = yes
           response.loading = no
@@ -27,7 +27,7 @@ mkmobileServices.factory 'MkmApiStock', [ 'MkmApi', 'MkmApiMarket', 'DataCache',
       idArticle: article.idArticle
       idLanguage: article.language.idLanguage
       comments: article.comments
-      count: article.count
+      count: article.amount or article.count
       price: article.price
       condition: article.condition
       isFoil: article.isFoil
@@ -70,20 +70,26 @@ mkmobileServices.factory 'MkmApiStock', [ 'MkmApi', 'MkmApiMarket', 'DataCache',
     response
 
   getLanguages: -> [
-    {id: 1, label: "EN"}
-    {id: 2, label: "FR"}
-    {id: 3, label: "DE"}
-    {id: 4, label: "SP"}
-    {id: 5, label: "IT"}
-    {id: 6, label: "CH"}
-    {id: 7, label: "JP"}
-    {id: 8, label: "PT"}
-    {id: 9, label: "RU"}
-    {id: 10, label: "KO"}
-    {id: 11, label: "TW"}
+    {value: 1, label: "English"}
+    {value: 2, label: "French"}
+    {value: 3, label: "German"}
+    {value: 4, label: "Spanish"}
+    {value: 5, label: "Italian"}
+    {value: 6, label: "Chinese"}
+    {value: 7, label: "Japanese"}
+    {value: 8, label: "Portuguese"}
+    {value: 9, label: "Russian"}
+    {value: 10, label: "Korean"}
+    {value: 11, label: "T-Chinese"}
   ]
 
   getGradings: -> [
-    "MT","NM","EX","GD","LP","PL","PO"
+    {value: "MT", label: "Mint"}
+    {value: "NM", label: "Near Mint"}
+    {value: "EX", label: "Excellent"}
+    {value: "GD", label: "Good"}
+    {value: "LP", label: "Light Played"}
+    {value: "PL", label: "Played"}
+    {value: "PO", label: "Poor"}
   ]
 ]

@@ -11,3 +11,4 @@ angular.module 'mkmobileFilters', []
   (needle, haystack) ->
     for obj in haystack
       return obj.label if obj.value is needle
+.filter 'range', -> (input) -> [1..input]
