@@ -3,9 +3,13 @@ mkmobileServices.factory 'MkmApiMessage', [ 'MkmApi', 'DataCache', (MkmApi, Data
     response = messages: [], count: 0 unless response?
     response.loading = yes
     MkmApi.api.messages {param2: id}, (data) ->
-      response.count = data._range or data.message?.length
-      response.messages = response.messages.concat data.message if response.count
-      response.partner = data.partner
+      if id?
+        response.count = data._range or data.message?.length
+        response.messages = response.messages.concat data.message if response.count
+        response.partner = data.partner
+      else
+        response.count = data._range or data.thread?.length
+        response.messages = response.messages.concat data.thread if response.count
       response.loading = no
     , (err) ->
       response.loading = no

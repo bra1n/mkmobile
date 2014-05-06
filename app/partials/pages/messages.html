@@ -2,11 +2,11 @@
 <article>
   <div></div>
   <ul class="overview" ng-class="{loading:data.loading}">
-    <li ng-repeat="message in data.messages">
-      <a href="/messages/{{message.partner.idUser}}">
-        <span>{{message.date | date:'short'}}</span>
-        <h3>{{message.partner.username}}</h3>
-        <p>{{message.text}}</p>
+    <li ng-repeat="thread in data.messages">
+      <a href="/messages/{{thread.partner.idUser}}">
+        <span>{{thread.message.date | date:'short'}}</span>
+        <h3>{{thread.partner.username}}</h3>
+        <p>{{thread.message.text}}</p>
       </a>
     </li>
   </ul>
