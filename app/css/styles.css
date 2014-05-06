@@ -265,7 +265,11 @@ mkm-order i {
   #content.buys article.evaluation div.overlay.ng-hide, #content.sells article.evaluation div.overlay.ng-hide {
     opacity: 0; }
 
-#content.messages article ul.thread li.sending span {
+#content.messages article ul.thread li {
+  text-align: left; }
+  #content.messages article ul.thread li.unread {
+    background: #c9d1ff; }
+#content.messages article ul.thread li span {
   float: right; }
 #content.messages article ul.thread li.receiving span {
   float: left; }
@@ -281,3 +285,5 @@ mkm-order i {
   overflow: hidden; }
 #content.messages article ul.overview li {
   border-bottom: 1px solid black; }
+  #content.messages article ul.overview li.unread {
+    background: #c9d1ff; }

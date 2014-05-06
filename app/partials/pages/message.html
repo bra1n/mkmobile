@@ -1,7 +1,7 @@
 <header>{{data.partner.username}}</header>
 <article>
   <ul class="thread" ng-class="{loading:data.loading}">
-    <li ng-repeat="message in data.messages" ng-class="message.action">
+    <li ng-repeat="message in data.messages" ng-class="{receiving: message.action == 'receiving', unread: message.unread}">
       <span>{{message.date | date:'short'}}</span>
       <p>{{message.text}}</p>
     </li>

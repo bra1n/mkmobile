@@ -2,7 +2,7 @@
 <article>
   <div></div>
   <ul class="overview" ng-class="{loading:data.loading}">
-    <li ng-repeat="thread in data.messages">
+    <li ng-repeat="thread in data.messages" ng-class="{unread: thread.unreadMessages}">
       <a href="/messages/{{thread.partner.idUser}}">
         <span>{{thread.message.date | date:'short'}}</span>
         <h3>{{thread.partner.username}}</h3>

@@ -303,7 +303,13 @@ mkm-order {
 #content.messages {
   article {
     ul.thread {
-      li.sending span { float:right; }
+      li {
+        text-align: left;
+        &.unread {
+          background: #c9d1ff;
+        }
+      }
+      li span { float:right; }
       li.receiving span { float: left; }
       li.receiving { text-align: right; }
     }
@@ -315,7 +321,12 @@ mkm-order {
         max-height: 40px;
         overflow: hidden;
       }
-      li { border-bottom: 1px solid black; }
+      li {
+        border-bottom: 1px solid black;
+        &.unread {
+          background: #c9d1ff;
+        }
+      }
     }
   }
 }
