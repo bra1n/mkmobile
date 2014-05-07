@@ -185,7 +185,7 @@ mkmobileControllers.controller 'OrderCtrl', [
     $scope.tab = sessionStorage.getItem($scope.mode + 'Tab') or "bought"
     $scope.loadOrders = ->
       return if $scope.data.orders.length >= $scope.data.count or $scope.data.loading
-      MkmApiOrder.get {mode: $scope.mode, status, response:$scope.data}
+      MkmApiOrder.get {mode: $scope.mode, status:$scope.tab, response:$scope.data}
     # update order status
     $scope.update = (status) ->
       if status is 'requestCancellation' and !$scope.data.order.showReason

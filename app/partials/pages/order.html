@@ -11,12 +11,33 @@
     <span ng-show="data.order.state.dateSent">Sent: {{data.order.state.dateSent | date:'short'}}<br></span>
     <span ng-show="data.order.state.dateReceived">Received: {{data.order.state.dateReceived | date:'short'}}<br></span>
     Status: {{data.order.state.state}}
-    <div ng-show="data.order.showReason"><textarea ng-model="data.order.state.reason"></textarea></div>
-    <div ng-show="data.order.state.state == 'sent'  && data.order.actor == 'buyer'"><button ng-click="update('confirmReception')">Confirm Reception</button></div>
-    <div ng-show="data.order.state.state == 'bought'"><button ng-click="update('requestCancellation')">Request Cancellation</button></div>
-    <div ng-show="data.order.state.state == 'paid' && data.order.actor == 'seller'"><button ng-click="update('send')">Mark as sent</button></div>
-    <div ng-show="data.order.state.state == 'paid'"><button ng-click="update('requestCancellation')">Request Cancellation</button></div>
-    <div ng-show="data.order.state.state == 'received' && data.order.actor == 'buyer' && !data.order.evaluation"><a href="/buys/{{data.order.idOrder}}/evaluate">Evaluate order</a></div>
+    <div ng-show="data.order.state.reason">Reason: {{data.order.state.reason}}</div>
+    <div ng-show="data.order.showReason"><textarea ng-model="data.order.state.reason" ng-required="data.order.showReason"></textarea></div>
+    <div class="evaluation" ng-show="data.order.cancellationRequest">
+      <b>Cancellation requested on {{data.order.cancellationRequest.date | date:'short'}}</b><br>
+      Reason: {{data.order.cancellationRequest.reason}}<br>
+      <span ng-show="data.order.cancellationRequest.rejected">
+        <b>Cancellation has been rejected</b><br>
+        Reason: {{data.order.cancellationRequest.rejectAnswer}}
+      </span>
+    </div>
+
+    <div ng-show="data.order.state.state == 'bought' && !data.order.cancellationRequest">
+      <button ng-click="update('requestCancellation')">Request Cancellation</button>
+    </div>
+    <div ng-show="data.order.state.state == 'paid' && !data.order.cancellationRequest">
+      <button ng-click="update('requestCancellation')">Request Cancellation</button>
+    </div>
+    <div ng-show="data.order.state.state == 'sent'  && data.order.isBuyer">
+      <button ng-click="update('confirmReception')">Confirm Reception</button>
+    </div>
+    <div ng-show="data.order.state.state == 'paid' && !data.order.isBuyer">
+      <button ng-click="update('send')">Mark as sent</button>
+    </div>
+    <div ng-show="data.order.state.state == 'received' && data.order.isBuyer">
+      <a href="/buys/{{data.order.idOrder}}/evaluate">Evaluate order</a>
+    </div>
+
     <div class="evaluation" ng-show="data.order.evaluation">
       <hr>
       Evaluation:<br>
