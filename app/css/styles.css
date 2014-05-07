@@ -24,8 +24,8 @@ header, #content.login .input {
   text-align: center; }
 
 article {
-  margin-bottom: 55px;
-  margin-top: 35px; }
+  padding-bottom: 55px;
+  padding-top: 35px; }
 
 footer {
   position: fixed;
@@ -200,7 +200,7 @@ mkm-order i {
 #content.product .icon.comment {
   cursor: pointer; }
 #content.product article {
-  margin-top: 45px; }
+  padding-top: 45px; }
   #content.product article .seller, #content.product article .icons, #content.product article .price {
     display: inline-block;
     width: 33%;
@@ -245,8 +245,6 @@ mkm-order i {
   height: 35px; }
 #content.home article {
   margin: 0;
-  padding-bottom: 55px;
-  padding-top: 35px;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   height: 100%; }
