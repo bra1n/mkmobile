@@ -1,6 +1,6 @@
 .icon.expansion {background-image: url('//www.mkmapi.eu/img/expansionicons/expicons.png'); width:21px; height: 21px;}
-.icon.comment { background-image: url('/img/comment.png'); width:20px; }
-.icon.card { background-image: url('/img/card.png'); width:16px; }
+.icon.comment { background-image: url('/img/comment.png'); width:20px;height: 20px; }
+.icon.card { background-image: url('/img/card.png'); width:16px;height: 16px; }
 .icon.is-foil { background-image: url('/img/foil.png'); width:16px;height: 16px; }
 .icon.is-altered { background-image: url('/img/altered.png'); width:16px;height: 16px; }
 .icon.is-signed { background-image: url('/img/signed.png'); width:16px;height: 16px; }
@@ -8,8 +8,8 @@
 
 .icon.commercial { width:16px; height:16px; }
 .commercial-0 { display:none; }
-.commercial-1 { background-image: url('/img/commercial.png'); width:16px; height:16px; }
-.commercial-2 { background-image: url('/img/powerseller.png'); width:16px; height:16px; }
+.commercial-1 { background-image: url('/img/commercial.png'); }
+.commercial-2 { background-image: url('/img/powerseller.png'); }
 
 .icon.rarity { background-image: url('/img/rarities.png');  width: 16px; height: 16px; }
 .rarity-Common { background-position: -1px -1px; }

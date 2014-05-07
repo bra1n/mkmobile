@@ -59,7 +59,10 @@ mkmobileServices.factory 'MkmApi', [ '$resource', ($resource) ->
     account: # get account data
       params: type: 'account'
     accountVacation: # change vacation flag for account
-      params: {type: 'account', param1: 'vacation', param2: '@param2'}
+      params: {type: 'account', param1: 'vacation', param2: '@vacation'}
+      method: 'PUT'
+    accountLanguage: # update account language
+      params: {type: 'account', param1: 'language', param2: '@languageId'}
       method: 'PUT'
 
     messages: # get all messages

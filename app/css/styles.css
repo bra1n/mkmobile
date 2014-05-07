@@ -1,3 +1,6 @@
+body, html {
+  height: 100%; }
+
 a {
   text-decoration: none; }
 
@@ -16,13 +19,12 @@ header, #content.login .input {
   background: #eee;
   z-index: 1000;
   max-height: 100%;
-  overflow: auto;
   height: 35px;
   line-height: 35px;
   text-align: center; }
 
 article {
-  margin-bottom: 35px;
+  margin-bottom: 55px;
   margin-top: 35px; }
 
 footer {
@@ -34,15 +36,44 @@ footer {
   padding-bottom: 1px;
   background: white;
   z-index: 1000;
-  height: 35px;
-  line-height: 35px;
-  text-align: center; }
+  height: 55px;
+  line-height: 50px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 25px; }
   footer a {
     display: inline-block;
-    width: 30px;
-    height: 30px;
-    background: red;
-    vertical-align: top; }
+    width: 50px;
+    height: 50px;
+    background: url("/img/menu.png") no-repeat;
+    -webkit-background-size: 500%;
+    background-size: 500%;
+    vertical-align: top;
+    text-shadow: 0 0 5px #000, 0 0 5px #000, 0 0 5px #000, 0 0 5px #000, 0 0 5px #000;
+    color: white;
+    margin: 0 5px; }
+    footer a.home {
+      background-position: 25% 50%;
+      line-height: 44px; }
+    footer a.home:hover {
+      background-position: 0% 50%; }
+    footer a.login {
+      background-position: 50% 25%; }
+    footer a.login:hover {
+      background-position: 75% 25%; }
+    footer a.search {
+      background-position: 75% 75%; }
+    footer a.search:hover {
+      background-position: 50% 75%; }
+    footer a.cart {
+      background-position: 0% 25%;
+      text-indent: 6px; }
+    footer a.cart:hover {
+      background-position: 25% 25%; }
+    footer a.settings {
+      background-position: 75% 50%; }
+    footer a.settings:hover {
+      background-position: 50% 50%; }
 
 .loading {
   background: url("/img/loading.gif") no-repeat center center; }
@@ -55,31 +86,34 @@ ul.loading {
 .icon {
   display: inline-block;
   vertical-align: middle;
-  height: 20px;
+  height: 16px;
   background-repeat: no-repeat; }
 
 #container {
-  position: relative; }
-  #container #content.ng-enter, #container #content.ng-leave {
-    -webkit-transition: 0.5s linear all;
-    -moz-transition: 0.5s linear all;
-    -ms-transition: 0.5s linear all;
-    -o-transition: 0.5s linear all;
-    transition: 0.5s linear all;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    background: white; }
-  #container #content.ng-enter {
-    opacity: 0; }
-  #container #content.ng-enter.ng-enter-active {
-    opacity: 1; }
-  #container #content.ng-leave {
-    opacity: 1; }
-  #container #content.ng-leave.ng-leave-active {
-    opacity: 0; }
+  position: relative;
+  height: 100%; }
+  #container #content {
+    height: 100%; }
+    #container #content.ng-enter, #container #content.ng-leave {
+      -webkit-transition: 0.5s linear all;
+      -moz-transition: 0.5s linear all;
+      -ms-transition: 0.5s linear all;
+      -o-transition: 0.5s linear all;
+      transition: 0.5s linear all;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      background: white; }
+    #container #content.ng-enter {
+      opacity: 0; }
+    #container #content.ng-enter.ng-enter-active {
+      opacity: 1; }
+    #container #content.ng-leave {
+      opacity: 1; }
+    #container #content.ng-leave.ng-leave-active {
+      opacity: 0; }
 
 aside.slider {
   -webkit-transition: 0.5s linear all;
@@ -96,7 +130,7 @@ aside.slider {
   height: 100%;
   overflow: hidden; }
   aside.slider.open {
-    bottom: 80px; }
+    bottom: 100px; }
   aside.slider .content {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -161,7 +195,7 @@ mkm-order i {
   z-index: 10;
   min-height: 100px; }
 #content.login footer .login {
-  background: green; }
+  background-position: 75% 25%; }
 
 #content.product .icon.comment {
   cursor: pointer; }
@@ -209,19 +243,75 @@ mkm-order i {
 
 #content.home header img, #content.home #content.login .input img, #content.login #content.home .input img {
   height: 35px; }
+#content.home article {
+  margin: 0;
+  padding-bottom: 55px;
+  padding-top: 35px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 100%; }
+  #content.home article span {
+    display: inline-block;
+    width: 0;
+    height: 33%;
+    vertical-align: middle; }
+  #content.home article a {
+    color: #444;
+    text-align: center;
+    width: 50%;
+    display: inline-block;
+    position: relative;
+    padding-top: 90px;
+    font-weight: bold;
+    vertical-align: middle; }
+    #content.home article a:hover {
+      color: #012169; }
+    #content.home article a:before {
+      content: " ";
+      display: inline-block;
+      width: 80px;
+      height: 80px;
+      background: url("/img/menu.png") no-repeat;
+      -webkit-background-size: 500%;
+      background-size: 500%;
+      vertical-align: top;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      margin-left: -40px; }
+    #content.home article a.stock {
+      width: 100%; }
+    #content.home article a.stock:before {
+      background-position: 0 0; }
+    #content.home article a.stock:hover:before {
+      background-position: 25% 0%; }
+    #content.home article a.buys:before {
+      background-position: 50% 0%; }
+    #content.home article a.buys:hover:before {
+      background-position: 75% 0%; }
+    #content.home article a.sells:before {
+      background-position: 100% 25%; }
+    #content.home article a.sells:hover:before {
+      background-position: 100% 0%; }
+    #content.home article a.messages {
+      width: 100%; }
+    #content.home article a.messages:before {
+      background-position: 0% 75%; }
+    #content.home article a.messages:hover:before {
+      background-position: 25% 75%; }
 #content.home footer .home {
-  background: green; }
+  background-position: 0% 50%; }
 
 #content.search footer .search {
-  background: green; }
+  background-position: 50% 75%; }
 
 #content.settings footer .settings {
-  background: green; }
+  background-position: 50% 50%; }
 
 #content.cart article i {
   display: block; }
 #content.cart footer .cart {
-  background: green; }
+  background-position: 25% 25%; }
 
 #content.stock article.product {
   margin-top: 45px; }

@@ -8,7 +8,7 @@ mkmobileServices.factory 'MkmApiAuth', [ 'MkmApi', '$location', 'DataCache', (Mk
   # return login URL
   getLoginURL: -> MkmApi.url + MkmApi.auth.consumerKey
 
-  # logout
+  # logout: remove session data, trash the cache, redirect to /login
   logout: ->
     MkmApi.auth.secret = MkmApi.auth.token = ""
     sessionStorage.removeItem "secret"
@@ -41,9 +41,7 @@ mkmobileServices.factory 'MkmApiAuth', [ 'MkmApi', '$location', 'DataCache', (Mk
         MkmApi.auth.secret = data.oauth_token_secret
         sessionStorage.setItem "token", MkmApi.auth.token
         sessionStorage.setItem "secret", MkmApi.auth.secret
-        DataCache.account data.user
-        DataCache.cartCount data.user.articlesInShoppingCart
-        DataCache.messageCount data.user.unreadMessages
+        @cache data.account
         response.success = yes
         $location.path redirectAfterLogin
     , -> response.error = yes
@@ -53,10 +51,8 @@ mkmobileServices.factory 'MkmApiAuth', [ 'MkmApi', '$location', 'DataCache', (Mk
   getAccount: (cb) ->
     response = account: DataCache.account()
     unless response.account?
-      promises.account = (promises.account or MkmApi.api.account().$promise).then (data) ->
-        response.account = DataCache.account data.account
-        DataCache.cartCount data.account.articlesInShoppingCart
-        DataCache.messageCount data.account.unreadMessages
+      promises.account = (promises.account or MkmApi.api.account().$promise).then (data) =>
+        response.account = @cache data.account
         cb?()
         data # pass data to the next callback
       , (error) =>
@@ -65,19 +61,23 @@ mkmobileServices.factory 'MkmApiAuth', [ 'MkmApi', '$location', 'DataCache', (Mk
     response
 
   # update vacation status
-  setVacation: (vacation) ->
-    MkmApi.api.accountVacation {param2: vacation}, (data) ->
-      account = DataCache.account()
-      if account?
-        account.onVacation = data.onVacation
-        DataCache.account account
+  setVacation: (vacation) -> MkmApi.api.accountVacation {vacation}, (data) -> @cache data.account
 
   # update interface language
-  setLanguage: (language) ->
-    # todo needs API function
+  setLanguage: (languageId) -> MkmApi.api.accountLanguage {languageId}, (data) -> @cache data.account
+
+  # cache account data
+  cache: (account) ->
+    DataCache.cartCount account.articlesInShoppingCart
+    DataCache.messageCount account.unreadMessages
+    DataCache.account account
 
   # return list of available languages
   getLanguages: -> [
-    "English", "German", "Spanish", "Italian", "French"
+    { value: 1, label: "English" }
+    { value: 2, label: "French" }
+    { value: 3, label: "German" }
+    { value: 4, label: "Spanish" }
+    { value: 5, label: "Italian" }
   ]
 ]

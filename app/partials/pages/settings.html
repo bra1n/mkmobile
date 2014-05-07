@@ -7,12 +7,12 @@
     </li>
     <li>
       <label for="languages">Language</label>
-      <select id="languages" ng-options="language as language for language in languages"
-              ng-model="data.account.language" ng-change="updateLanguage()"></select>
+      <select id="languages" ng-options="language.value as language.label for language in languages"
+              ng-model="data.account.idDisplayLanguage" ng-change="updateLanguage()"></select>
     </li>
-    <li><a href="#">Help & About</a></li>
-    <li><a href="#">Contact Us</a></li>
-    <li><a href="#">Legal</a></li>
+    <li><a href="/help">Help & About</a></li>
+    <li><a href="/contact">Contact Us</a></li>
+    <li><a href="/legal">Legal</a></li>
   </ul>
   <button ng-click="logout()">Logout</button>
 </article>

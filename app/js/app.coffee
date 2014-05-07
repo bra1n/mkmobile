@@ -10,9 +10,18 @@ mkmobileApp = angular.module 'mkmobileApp', [
 mkmobileApp.config ['$locationProvider','$routeProvider', ($locationProvider, $routeProvider) ->
   $locationProvider.html5Mode yes
   $routeProvider
-  # home page
+  # static pages
   .when '/home',
     templateUrl:  '/partials/pages/home.html'
+    controller:   'HomeCtrl'
+  .when '/help',
+    templateUrl:  '/partials/pages/help.html'
+    controller:   'HomeCtrl'
+  .when '/contact',
+    templateUrl:  '/partials/pages/contact.html'
+    controller:   'HomeCtrl'
+  .when '/legal',
+    templateUrl:  '/partials/pages/legal.html'
     controller:   'HomeCtrl'
 
   # search

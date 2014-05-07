@@ -1,4 +1,5 @@
 // General styling
+body, html { height: 100%; }
 a {
   text-decoration: none;
 }
@@ -18,14 +19,13 @@ header {
   background: #eee;
   z-index: 1000;
   max-height: 100%;
-  overflow: auto;
   height: 35px;
   line-height: 35px;
   text-align: center;
 }
 
 article {
-  margin-bottom: 35px;
+  margin-bottom: 55px;
   margin-top: 35px;
 }
 
@@ -38,15 +38,32 @@ footer {
   padding-bottom: 1px;
   background: white;
   z-index: 1000;
-  height: 35px;
-  line-height: 35px;
+  height: 55px;
+  line-height: 50px;
   text-align: center;
+  font-weight: bold;
+  font-size: 25px;
   a {
     display: inline-block;
-    width: 30px;
-    height: 30px;
-    background: red;
+    width: 50px;
+    height: 50px;
+    background: url("/img/menu.png") no-repeat;
+    -webkit-background-size: 500%;
+    background-size: 500%;
     vertical-align: top;
+    text-shadow: 0 0 5px #000, 0 0 5px #000, 0 0 5px #000, 0 0 5px #000, 0 0 5px #000;
+    color: white;
+    margin: 0 5px;
+    &.home { background-position: 25% 50%; line-height: 44px; }
+    &.home:hover { background-position: 0% 50%; }
+    &.login { background-position: 50% 25%; }
+    &.login:hover { background-position: 75% 25%; }
+    &.search { background-position: 75% 75%; }
+    &.search:hover { background-position: 50% 75%; }
+    &.cart { background-position: 0% 25%; text-indent: 6px; }
+    &.cart:hover { background-position: 25% 25%; }
+    &.settings { background-position: 75% 50%; }
+    &.settings:hover { background-position: 50% 50%; }
   }
 }
 
@@ -62,14 +79,16 @@ ul.loading {
 .icon {
   display: inline-block;
   vertical-align: middle;
-  height: 20px;
+  height: 16px;
   background-repeat: no-repeat;
 }
 
 // Transition between screens
 #container {
   position: relative;
+  height: 100%;
   #content {
+    height: 100%;
     &.ng-enter, &.ng-leave {
       -webkit-transition: 0.5s linear all;-moz-transition: 0.5s linear all;-ms-transition: 0.5s linear all;-o-transition: 0.5s linear all;transition: 0.5s linear all;
       position: absolute;
@@ -97,7 +116,7 @@ aside.slider {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  &.open { bottom: 80px; }
+  &.open { bottom: 100px; }
   .content {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -173,7 +192,7 @@ mkm-order {
     z-index: 10;
     min-height: 100px;
   }
-  footer .login { background: green; }
+  footer .login { background-position: 75% 25%; }
 }
 
 // product page
@@ -219,17 +238,66 @@ mkm-order {
   header img {
     height: 35px;
   }
-  footer .home { background: green; }
+  article {
+    margin: 0;
+    padding-bottom: 55px;
+    padding-top: 35px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 100%;
+    span {
+      display: inline-block;
+      width: 0;
+      height: 33%;
+      vertical-align: middle;
+    }
+    a {
+      color: #444;
+      text-align: center;
+      width: 50%;
+      display: inline-block;
+      position: relative;
+      padding-top: 90px;
+      font-weight: bold;
+      vertical-align: middle;
+      &:hover { color:#012169; }
+      &:before {
+        content: " ";
+        display: inline-block;
+        width: 80px;
+        height: 80px;
+        background: url("/img/menu.png") no-repeat;
+        -webkit-background-size: 500%;
+        background-size: 500%;
+        vertical-align: top;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        margin-left: -40px;
+      }
+      &.stock { width: 100% }
+      &.stock:before { background-position: 0 0; }
+      &.stock:hover:before { background-position: 25% 0%; }
+      &.buys:before { background-position: 50% 0%; }
+      &.buys:hover:before { background-position: 75% 0%; }
+      &.sells:before { background-position: 100% 25%; }
+      &.sells:hover:before { background-position: 100% 0%; }
+      &.messages { width: 100%; }
+      &.messages:before { background-position: 0% 75%; }
+      &.messages:hover:before { background-position: 25% 75%; }
+    }
+  }
+  footer .home { background-position: 0% 50%; }
 }
 
 // search page
 #content.search {
-  footer .search { background: green; }
+  footer .search { background-position: 50% 75%; }
 }
 
 // settings page
 #content.settings {
-  footer .settings { background: green; }
+  footer .settings { background-position: 50% 50%; }
 }
 
 // cart page
@@ -237,7 +305,7 @@ mkm-order {
   article {
     i { display: block; }
   }
-  footer .cart { background: green; }
+  footer .cart { background-position: 25% 25%; }
 }
 
 // stock page
