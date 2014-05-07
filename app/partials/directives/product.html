@@ -11,7 +11,7 @@
       <div class="reprints" ng-show="productData.product.reprint">
         Also available in:
         <a href="/product/{{reprint.idProduct}}" ng-repeat="reprint in productData.product.reprint">
-          <span class="icon expansion expansion-{{reprint.expansion | expansionIcon}}"></span>
+          <span class="icon expansion" ng-style="reprint.expIcon | expansionIcon"></span>
         </a>
       </div>
     </div>

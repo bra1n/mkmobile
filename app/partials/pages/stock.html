@@ -21,7 +21,7 @@
         <a href="/stock/{{article.idArticle}}">{{article.product.name}}</a>
       </div><div class="icons">
         <span class="icon rarity rarity-{{article.product.rarity}}" ng-show="article.product.rarity"></span>
-        <span class="icon expansion expansion-{{article.product.expansion | expansionIcon}}" ng-show="article.product.expansion"></span>
+        <span class="icon expansion" ng-style="article.product.expIcon | expansionIcon" ng-show="article.product.expansion"></span>
         <span class="icon language language-{{article.language.idLanguage}}" ng-show="article.language.idLanguage"></span>
         <span class="icon grading grading-{{article.condition}}" ng-show="article.condition"></span>
         <span class="icon is-foil" ng-show="article.isFoil"></span>

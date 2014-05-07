@@ -1,14 +1,9 @@
 angular.module 'mkmobileFilters', []
-.filter 'expansionIcon', ->
-  # return expansion
-  (expansion) ->
-    expansion? and expansion.toLowerCase().replace(/[^a-z0-9]/gi,'').replace(/^wcd\d+.*$/,'worldchampionshipdecks') or 'error'
-.filter 'productImage', ->
-  # return productImage
-  (image) ->
-    image? and '//tcgimages.eu/' + image.substr(2) or '/img/card.jpg'
-.filter 'findInMap', ->
-  (needle, haystack) ->
-    for obj in haystack
-      return obj.label if obj.value is needle
+# calculate expansion icon position
+.filter 'expansionIcon', -> (index) -> {backgroundPosition: (index % 10)*-21+"px "+Math.floor(index/10)*-21+"px" }
+# get product image url
+.filter 'productImage', -> (image) -> image? and '//www.mkmapi.eu/' + image.substr(2) or '/img/card.jpg'
+# return label for needle value in haystack object
+.filter 'findInMap', -> (needle, haystack) -> return obj.label for obj in haystack when obj.value is needle
+# return array with range of 1 to input elements
 .filter 'range', -> (input) -> [1..input]

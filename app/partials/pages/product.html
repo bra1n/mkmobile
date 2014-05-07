@@ -2,7 +2,7 @@
   <span class="error" ng-show="productData.error">Error loading product</span>
   {{productData.product.name[0].productName}}
   <span ng-show="productData.product.number">(Nr. {{productData.product.number}})</span>
-  <span class="icon expansion expansion-{{productData.product.expansion | expansionIcon}}"></span>
+  <span class="icon expansion" ng-style="productData.product.expIcon | expansionIcon" ng-show="productData.product.expansion"></span>
   <span ng-show="productData.product.rarity" class="icon rarity rarity-{{productData.product.rarity}}"></span>
 </header>
 <mkm-product product-data="productData"></mkm-product>

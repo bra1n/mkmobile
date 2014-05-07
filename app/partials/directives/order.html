@@ -1,6 +1,6 @@
 <b>Seller: {{order.seller.username}}</b>
 <span class="seller-details" mkm-user user="order.seller"></span>
-<a class="icon comment" ng-hide="order.actor == 'seller'" href="/messages/{{order.seller.idUser}}"></a>
+<a class="icon comment" ng-show="order.isBuyer" href="/messages/{{order.seller.idUser}}"></a>
 <div class="seller-address" ng-show="order.seller.address">
   Seller's address<br>
   {{order.seller.name.firstName}} {{order.seller.name.lastName}}<br>
@@ -18,7 +18,7 @@
 <div ng-show="order.buyer">
   <b>Buyer: {{order.buyer.username}}</b>
   <span class="buyer-details" mkm-user user="order.buyer"></span>
-  <a class="icon comment" ng-hide="order.actor == 'buyer'" href="/messages/{{order.buyer.idUser}}"></a>
+  <a class="icon comment" ng-hide="order.isBuyer" href="/messages/{{order.buyer.idUser}}"></a>
   <div class="buyer-address" ng-show="order.shippingAddress">
     Shipping address<br>
     {{order.shippingAddress.name}}<br>
@@ -46,7 +46,7 @@
     </div>
     <div class="icons">
       <span class="icon rarity rarity-{{article.product.rarity}}" ng-show="article.product.rarity"></span>
-      <span class="icon expansion expansion-{{article.product.expansion | expansionIcon}}" ng-show="article.product.expansion"></span>
+      <span class="icon expansion" ng-style="article.product.expIcon | expansionIcon" ng-show="article.product.expansion"></span>
       <span class="icon language language-{{article.language.idLanguage}}" ng-show="article.language.idLanguage"></span>
       <span class="icon grading grading-{{article.condition}}" ng-show="article.condition"></span>
       <span class="icon is-foil" ng-show="article.isFoil"></span>
