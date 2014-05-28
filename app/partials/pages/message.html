@@ -1,4 +1,7 @@
-<header>{{data.partner.username}}</header>
+<header>
+  {{data.partner.username}}
+  <span mkm-user user="data.partner"></span>
+</header>
 <article>
   <div class="search" ng-show="data.messages">
     <label for="search"></label>
