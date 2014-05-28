@@ -18,6 +18,10 @@ mkmobileServices.factory 'MkmApi', [ '$resource', ($resource) ->
     access: # exchange temporary token with access token, get user details
       params: type: 'access'
       method: 'POST'
+    user: # search for a user
+      params: {type: 'user', param1: 'find'}
+      cache: yes
+      unique: 'user'
 
     cart: # get shoppingcart contents
       params: type: 'shoppingcart'
@@ -70,6 +74,9 @@ mkmobileServices.factory 'MkmApi', [ '$resource', ($resource) ->
     messageSend: # send a message
       params: {type: 'account', param1: 'messages', param2: '@param2'}
       method: 'POST'
+    messageDelete: #delete a message (thread)
+      params: {type: 'account', param1: 'messages'}
+      method: 'DELETE'
   # augment the configs
   for param,config of apiParams
     # oauth for all the requests

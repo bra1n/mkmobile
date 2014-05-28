@@ -1,14 +1,22 @@
 <header>{{data.partner.username}}</header>
 <article>
+  <div class="search" ng-show="data.messages">
+    <label for="search"></label>
+    <input id="search" type="text" ng-model="search" placeholder="Search">
+  </div>
   <ul class="thread" ng-class="{loading:data.loading}">
-    <li ng-repeat="message in data.messages" ng-class="{receiving: message.action == 'receiving', unread: message.unread}">
-      <span>{{message.date | date:'short'}}</span>
-      <p>{{message.text}}</p>
+    <li ng-repeat="message in data.messages | filter:search" ng-class="{sending: message.isSending, unread: message.unread}">
+      <h3 ng-show="!$index || message.date.toDateString() != data.messages[$index - 1].date.toDateString()">{{message.date | date:'fullDate'}}</h3>
+      <div>
+        <button ng-click="delete($index,data.partner.idUser,message.idMessage)">&ndash;</button>
+        <span class="time">{{message.date | date:'shortTime'}}</span>
+        <p>{{message.text}}</p>
+      </div>
     </li>
   </ul>
-  <form>
+  <form ng-submit="send()">
     <textarea placeholder="Message" required ng-model="message"></textarea>
-    <button ng-click="send()">Send</button>
+    <button>Send</button>
   </form>
 </article>
-<mkm-footer></mkm-footer>
+<mkm-footer messages="unreadCount"></mkm-footer>

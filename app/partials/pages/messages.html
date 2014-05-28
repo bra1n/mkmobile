@@ -1,14 +1,30 @@
 <header>My Messages</header>
 <article>
-  <div></div>
+  <div class="search">
+    <label for="search"></label>
+    <input id="search" type="text" placeholder="Search" ng-model="search">
+  </div>
   <ul class="overview" ng-class="{loading:data.loading}">
-    <li ng-repeat="thread in data.messages" ng-class="{unread: thread.unreadMessages}">
+    <li ng-repeat="thread in data.messages | filter:search" ng-class="{sending:thread.message.isSending, unread:thread.unreadMessages}">
+      <button ng-click="delete($index,thread.partner.idUser)">&ndash;</button>
+      <span class="time">{{thread.message.date | date:'short'}}</span>
       <a href="/messages/{{thread.partner.idUser}}">
-        <span>{{thread.message.date | date:'short'}}</span>
-        <h3>{{thread.partner.username}}</h3>
-        <p>{{thread.message.text}}</p>
+        <h3>
+          {{thread.partner.username}}
+          <span mkm-user user="thread.partner"></span>
+        </h3>
+        <p>{{thread.message.text | truncate:150}}</p>
+      </a>
+    </li>
+    <li ng-repeat="user in users">
+      <a href="/messages/{{user.idUser}}">
+        <h3>
+          {{user.username}}
+          <span mkm-user user="user"></span>
+        </h3>
+        Write a new message
       </a>
     </li>
   </ul>
 </article>
-<mkm-footer></mkm-footer>
+<mkm-footer messages="unreadCount"></mkm-footer>

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 body, html {
   height: 100%; }
 
@@ -353,25 +354,52 @@ mkm-order i {
   #content.buys article.evaluation div.overlay.ng-hide, #content.sells article.evaluation div.overlay.ng-hide {
     opacity: 0; }
 
-#content.messages article ul.thread li {
-  text-align: left; }
-  #content.messages article ul.thread li.unread {
-    background: #c9d1ff; }
-#content.messages article ul.thread li span {
-  float: right; }
-#content.messages article ul.thread li.receiving span {
-  float: left; }
-#content.messages article ul.thread li.receiving {
-  text-align: right; }
-#content.messages article ul.overview h3 {
+#content.messages article h3 {
   margin: 0; }
-#content.messages article ul.overview span {
-  float: right; }
+#content.messages article div.search label {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url("/img/menu.png") no-repeat;
+  -webkit-background-size: 500%;
+  background-size: 500%;
+  vertical-align: middle;
+  background-position: 75% 75%; }
+#content.messages article div.search input {
+  vertical-align: middle; }
+#content.messages article li span.time, #content.messages article li button {
+  float: right;
+  line-height: 24px; }
+#content.messages article li button {
+  margin-left: 10px;
+  border: 0;
+  background: #444;
+  color: white;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  line-height: 16px;
+  font-weight: bold; }
+#content.messages article ul.thread li {
+  margin-bottom: 10px; }
+  #content.messages article ul.thread li h3 {
+    text-align: center; }
+  #content.messages article ul.thread li div {
+    background: #d1d7e5;
+    padding: 10px; }
+  #content.messages article ul.thread li p {
+    margin: 0;
+    white-space: pre-wrap; }
+  #content.messages article ul.thread li.unread div {
+    border-left: 5px solid #012269; }
+  #content.messages article ul.thread li.sending div {
+    background: #f5f5f5; }
 #content.messages article ul.overview p {
   margin: 0;
-  max-height: 40px;
-  overflow: hidden; }
+  clear: right; }
 #content.messages article ul.overview li {
   border-bottom: 1px solid black; }
   #content.messages article ul.overview li.unread {
-    background: #c9d1ff; }
+    border-left: 5px solid #012269; }
+  #content.messages article ul.overview li.sending p:before {
+    content: "↪ "; }

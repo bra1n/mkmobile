@@ -368,30 +368,58 @@ mkm-order {
 // messages page
 #content.messages {
   article {
+    h3 { margin:0; }
+    div.search {
+      label {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background: url("/img/menu.png") no-repeat;
+        -webkit-background-size: 500%;
+        background-size: 500%;
+        vertical-align: middle;
+        background-position: 75% 75%;
+      }
+      input {
+        vertical-align: middle;
+      }
+    }
+    li {
+      span.time, button { float:right; line-height: 24px; }
+      button {
+        margin-left: 10px;
+        border: 0;
+        background: #444;
+        color: white;
+        border-radius: 50%;
+        width: 22px;
+        height: 22px;
+        line-height: 16px;
+        font-weight: bold;
+      }
+    }
     ul.thread {
       li {
-        text-align: left;
-        &.unread {
-          background: #c9d1ff;
+        margin-bottom: 10px;
+        h3 { text-align: center; }
+        div {
+          background: #d1d7e5;
+          padding: 10px;
         }
+        p { margin:0; white-space: pre-wrap; }
+        &.unread div { border-left: 5px solid #012269; }
+        &.sending div { background: #f5f5f5; }
       }
-      li span { float:right; }
-      li.receiving span { float: left; }
-      li.receiving { text-align: right; }
     }
     ul.overview {
-      h3 { margin:0; }
-      span { float:right; }
       p {
         margin:0;
-        max-height: 40px;
-        overflow: hidden;
+        clear: right;
       }
       li {
         border-bottom: 1px solid black;
-        &.unread {
-          background: #c9d1ff;
-        }
+        &.unread { border-left: 5px solid #012269; }
+        &.sending p:before { content:"↪ "; }
       }
     }
   }
