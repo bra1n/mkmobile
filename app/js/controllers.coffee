@@ -221,6 +221,7 @@ mkmobileControllers.controller 'MessageCtrl', [
       false
     # delete a message
     $scope.delete = (index, threadId, messageId) ->
+      return unless confirm "Are you sure?"
       $scope.data.count--
       $scope.data.messages.splice index, 1
       MkmApiMessage.delete threadId, messageId
