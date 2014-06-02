@@ -32,5 +32,11 @@
       </li>
     </ul>
   </div>
+  <div class="outstanding" ng-show="data.outstanding">
+    <hr>
+    You must still transfer {{data.outstanding | currency:"€"}} to pay for your unpaid orders.<br>
+    <a href="/payment/bank">Bank Transfer</a>
+    <a href="/payment/paypal">Paypal</a>
+  </div>
 </article>
 <mkm-footer></mkm-footer>

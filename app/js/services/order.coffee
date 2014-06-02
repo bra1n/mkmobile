@@ -1,4 +1,4 @@
-mkmobileServices.factory 'MkmApiOrder', [ 'MkmApi', 'DataCache', (MkmApi, DataCache) ->
+mkmobileServices.factory 'MkmApiOrder', [ 'MkmApi', 'MkmApiAuth', 'DataCache', (MkmApi, MkmApiAuth, DataCache) ->
   actorMap =
     sells:      1
     buys:       2
@@ -32,6 +32,11 @@ mkmobileServices.factory 'MkmApiOrder', [ 'MkmApi', 'DataCache', (MkmApi, DataCa
         response.count = data._range or data.order?.length
         response.orders = response.orders.concat data.order.map((val) => DataCache.order val.idOrder, val) if response.count
         response.loading = no
+        if mode is "buys" and status is "bought" and response.orders.length
+          MkmApiAuth.getAccount -> # we need to wait for account data to be loaded to get the balance
+            # todo replace with outstanding amount from account
+            response.outstanding = DataCache.balance() * -1
+            response.outstanding += order.totalValue for order in response.orders
       , (error) ->
         response.error = error
         response.loading = no

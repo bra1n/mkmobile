@@ -24,6 +24,11 @@ mkmobileApp.config ['$locationProvider','$routeProvider', ($locationProvider, $r
     templateUrl:  '/partials/pages/legal.html'
     controller:   'HomeCtrl'
 
+  # payment pages
+  .when '/payment/:method',
+    templateUrl:  '/partials/pages/payment.html'
+    controller:   'PaymentCtrl'
+
   # search
   .when '/search',
     templateUrl:  '/partials/pages/search.html'

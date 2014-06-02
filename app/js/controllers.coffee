@@ -66,7 +66,23 @@ mkmobileControllers.controller 'SettingsCtrl', [
 
 # home page
 mkmobileControllers.controller 'HomeCtrl', [
-  '$scope', ($scope) -> # do nothing!
+  '$scope', ($scope) -> # nothing to do!
+]
+
+# payment pages
+mkmobileControllers.controller 'PaymentCtrl', [
+  '$scope', '$routeParams', 'MkmApiAuth', '$location'
+  ($scope, $routeParams, MkmApiAuth, $location) ->
+    $scope.method = $routeParams.method
+    # try closing the window straight away
+    window.close() if $scope.method in ['done', 'cancel']
+    $scope.data = MkmApiAuth.getAccount (data) ->
+      $location.path("/").replace() if !data.account.paypalRecharge and $scope.method is "paypal"
+      # todo update field name
+      $location.path("/").replace() if !data.account.bankRecharge and $scope.method is "bank"
+    $scope.location = $location
+    $scope.languages = MkmApiAuth.getLanguageCodes()
+    $scope.redirect = -> $location.path("/").replace()
 ]
 
 # /callback
@@ -96,7 +112,8 @@ mkmobileControllers.controller 'CartCtrl', [
     $scope.data = MkmApiCart.get $routeParams.orderId, ->
       $scope.count = MkmApiCart.count()
       $scope.sum = MkmApiCart.sum()
-      $location.path "/cart" if $scope.count is 0 and ($routeParams.orderId? or $routeParams.method?)
+      if $scope.count is 0 and ($routeParams.orderId? or $routeParams.method?)
+        $location.path("/cart").replace()
 
     # remove a single article
     $scope.removeArticle = (article, order) ->
@@ -106,7 +123,7 @@ mkmobileControllers.controller 'CartCtrl', [
       order.totalValue -= article.price # reduce total order count
       MkmApiCart.remove article.idArticle, ->
         if $routeParams.orderId? and !order.articleCount
-          $location.path "/cart"
+          $location.path("/cart").replace()
         else
           $scope.data = MkmApiCart.get $routeParams.orderId # should be updated now, no need for callback
 
@@ -130,9 +147,14 @@ mkmobileControllers.controller 'CartCtrl', [
     # checkout
     $scope.method = $routeParams.method
     $scope.checkout = ->
+      return unless confirm "Are you sure?"
+      $scope.clicked = yes
       MkmApiCart.checkout ->
         sessionStorage.setItem 'buysTab', (if $scope.method is 'instabuy' then 'paid' else 'bought')
-        $location.path '/buys'
+        $location.path switch $scope.method
+          when 'paypal' then '/payment/paypal'
+          when 'bank' then '/payment/bank'
+          else '/buys'
 ]
 
 # /stock

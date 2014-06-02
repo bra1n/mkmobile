@@ -4,7 +4,7 @@ mkmobileServices.factory 'DataCache', ['$cacheFactory', ($cacheFactory) ->
     product: $cacheFactory 'products', capacity: 500
     article: $cacheFactory 'article', capacity: 1000
     cart: $cacheFactory 'cart', capacity: 1
-    account: $cacheFactory 'account', capacity: 5
+    account: $cacheFactory 'account', capacity: 10
     order: $cacheFactory 'order', capacity: 1000
   reset: ->
     cache.removeAll() for index, cache of caches

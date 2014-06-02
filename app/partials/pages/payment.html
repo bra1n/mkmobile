@@ -1,0 +1,57 @@
+<header>
+  Payment
+</header>
+<article>
+  <div ng-show="method == 'done'">
+    Thank you for your payment!<br>
+    You can now <a href="javascript:window.close();">close this tab</a>.
+  </div>
+  <div ng-show="method == 'cancel'">
+    Your Paypal account has not been charged.<br>
+    You can now <a href="javascript:window.close();">close this tab</a>.
+  </div>
+  <div ng-show="method == 'paypal'">
+    <div class="loading" ng-show="data.loading">Loading payment data...</div>
+    <div class="headline">Credit my Account via PayPal</div>
+    When crediting your account with PayPal, a fee of 0.35 Euro + 5% of the credited amount applies.<br>
+    Please remember that crediting your account via a SEPA bank transfer is free of charge. A european bank transfer usually takes no longer than two business days.<br>
+    Alternate Method: <a href="/payment/bank">Credit your account via bank transfer</a><br>
+    Total amount for PayPal: <b>{{data.account.paypalRecharge | currency:"€"}}</b>
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+      <input type="hidden" name="cmd" value="_xclick">
+      <input type="hidden" name="business" value="paypal@magickartenmarkt.de">
+      <input type="hidden" name="item_name" value="Digital Goods">
+      <input type="hidden" name="custom" value="{{data.account.idUser}}">
+      <input type="hidden" name="amount" value="{{data.account.paypalRecharge}}">
+      <input type="hidden" name="currency_code" value="EUR">
+      <input type="hidden" name="return" value="{{location.protocol()}}://{{location.host()}}/payment/done">
+      <input type="hidden" name="cancel_return" value="{{location.protocol()}}://{{location.host()}}/payment/cancel">
+      <input type="hidden" name="rm" value="2">
+      <input type="hidden" name="lc" value="{{data.account.idDisplayLanguage | findInMap:languages}}">
+      <input type="hidden" name="image_url" value="http://mkmapi.eu/img/localisation/english/banner_750_90.png">
+      <button ng-click="redirect()">Pay with Paypal</button>
+    </form>
+  </div>
+  <div ng-show="method == 'bank'">
+    <div class="loading" ng-show="data.loading">Loading payment data...</div>
+    <div class="headline">Credit my Account via Bank Transfer</div>
+    To transfer money to your user account, please wire the desired amount to the following bank account.
+    <ul>
+      <li><b>Bank Account</b></li>
+      <li><b>Amount:</b> {{data.account.bankRecharge | currency:"€"}}</li>
+      <li><b>Recipient:</b> Sammelkartenmarkt</li>
+      <li><b>Account Nr:</b> 107541500</li>
+      <li><b>Bank:</b> Commerzbank AG</li>
+      <li><b>Bank Code:</b> 10040000</li>
+      <li><b>IBAN:</b> DE80100400000107541500</li>
+      <li><b>BIC:</b> COBADEFFXXX</li>
+      <li><b>Transfer Reason:</b> {{data.account.username}}-{{data.account.idUser}}</li>
+    </ul>
+    <b>Attention:</b> Always indicate <b>{{data.account.username}}-{{data.account.idUser}}</b> in the transfer reason (reference) field while wire transferring money to your MKM Account!<br>
+    Do not enter any other information in this field since it may slow down the payment process.<br>
+    <b>Atention:</b> Make sure that you (or your bank) use(s) an International Payment Order Form in conformity with the <b>SEPA</b> (Single European Payment Area) agreement.<br>
+    Banks charge <b>extra fees</b> on any transactions done <b>without the correct form</b>.<br>
+    Alternate Method: <a href="/payment/paypal">Credit your account via PayPal</a><br>
+  </div>
+</article>
+<mkm-footer ng-hide="method == 'done' || method == 'cancel'"></mkm-footer>

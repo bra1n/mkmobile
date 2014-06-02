@@ -1,13 +1,18 @@
 mkmobileServices.factory 'MkmApiCart', [ 'MkmApi', 'DataCache', '$filter', (MkmApi, DataCache, $filter) ->
   # get the cart object (optionally filtered by ID)
   get: (id, cb) ->
-    response = cart: DataCache.cart(), address: DataCache.address(), balance: DataCache.balance()
+    response =
+      cart: DataCache.cart()
+      address: DataCache.address()
+      balance: DataCache.balance()
+      account: DataCache.account()
     unless response.cart?
       # fetch the cart
       response.loading = yes
       MkmApi.api.cart {}, (data) =>
         @cache data
         response.loading = no
+        response.account = DataCache.account()
         response.balance = DataCache.balance()
         response.cart = DataCache.cart()
         response.address = DataCache.address()
@@ -82,6 +87,7 @@ mkmobileServices.factory 'MkmApiCart', [ 'MkmApi', 'DataCache', '$filter', (MkmA
   # cache cart data
   cache: (data) ->
     DataCache.cart data.shoppingCart
+    DataCache.account(data.account) if data.account?
     DataCache.address data.shippingAddress
     DataCache.balance data.accountBalance
 
@@ -90,6 +96,7 @@ mkmobileServices.factory 'MkmApiCart', [ 'MkmApi', 'DataCache', '$filter', (MkmA
     MkmApi.api.checkout {}, (data) ->
       DataCache.order(order.idOrder, order) for order in data.order
       DataCache.cart []
+      DataCache.account(data.account) if data.account?
       cb?()
 
   # change the shipping address

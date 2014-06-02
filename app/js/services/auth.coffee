@@ -51,13 +51,17 @@ mkmobileServices.factory 'MkmApiAuth', [ 'MkmApi', '$location', 'DataCache', (Mk
   getAccount: (cb) ->
     response = account: DataCache.account()
     unless response.account?
+      response.loading = yes
       promises.account = (promises.account or MkmApi.api.account().$promise).then (data) =>
         response.account = @cache data.account
-        cb?()
+        response.loading = no
+        cb?(response)
         data # pass data to the next callback
       , (error) =>
         # if request for account returns with a 403, it means we're logged out and don't know it yet
         @logout() if error.status is 403
+    else
+      cb?(response)
     response
 
   # update vacation status
@@ -66,11 +70,12 @@ mkmobileServices.factory 'MkmApiAuth', [ 'MkmApi', '$location', 'DataCache', (Mk
   # update interface language
   setLanguage: (languageId) -> MkmApi.api.accountLanguage {languageId}, (data) -> @cache data.account
 
-  # cache account data
+  # cache account data, returns account
   cache: (account) ->
     DataCache.cartCount account.articlesInShoppingCart
     DataCache.messageCount account.unreadMessages
-    DataCache.account account
+    DataCache.balance account.accountBalance
+    return DataCache.account account
 
   # return list of available languages
   getLanguages: -> [
@@ -79,5 +84,14 @@ mkmobileServices.factory 'MkmApiAuth', [ 'MkmApi', '$location', 'DataCache', (Mk
     { value: 3, label: "German" }
     { value: 4, label: "Spanish" }
     { value: 5, label: "Italian" }
+  ]
+
+  # return list of language ID to ISO code
+  getLanguageCodes: -> [
+    { value: 1, label: "US" }
+    { value: 2, label: "FR" }
+    { value: 3, label: "DE" }
+    { value: 4, label: "ES" }
+    { value: 5, label: "IT" }
   ]
 ]
