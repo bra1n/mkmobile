@@ -28,6 +28,7 @@
           <span ng-show="order.state.dateSent">Sent: {{order.state.dateSent | date:'short'}}<br></span>
           <span ng-show="order.state.dateReceived">Received: {{order.state.dateReceived | date:'short'}}<br></span>
           <span ng-show="order.cancellationRequest">Cancellation Requested: {{order.cancellationRequest.date | date:'short'}}<br></span>
+          <span ng-show="order.state.state == 'received'">Please evaluate this order<br></span>
         </a>
       </li>
     </ul>

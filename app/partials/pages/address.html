@@ -1,17 +1,20 @@
-<header>
-  Change shipping address
-</header>
+<header translate="address.title"></header>
 <article>
   <form>
-    <label for="name">Name:</label> <input id="name" type="text" ng-model="data.address.name"><br>
-    <label for="street">Street/Housenr.:</label> <input id="street" type="text" ng-model="data.address.street"><br>
-    <label for="extra">Additional info:</label> <input id="extra" type="text" ng-model="data.address.extra"><br>
-    <label for="city">City:</label> <input id="city" type="text" ng-model="data.address.city"><br>
-    <label for="zip">Post code:</label> <input id="zip" type="text" ng-model="data.address.zip"><br>
-    <label for="country">Country:</label>
+    <label for="name" translate="address.name"></label>
+    <input id="name" type="text" ng-model="data.address.name"><br>
+    <label for="street" translate="address.street"></label>
+    <input id="street" type="text" ng-model="data.address.street"><br>
+    <label for="extra" translate="address.additional"></label>
+    <input id="extra" type="text" ng-model="data.address.extra"><br>
+    <label for="city" translate="address.city"></label>
+    <input id="city" type="text" ng-model="data.address.city"><br>
+    <label for="zip" translate="address.zip"></label>
+    <input id="zip" type="text" ng-model="data.address.zip"><br>
+    <label for="country" translate="address.country"></label>
     <select id="country" ng-options="country.value as country.label for country in countries"
             ng-model="data.address.country" required></select><br>
-    <button ng-click="shippingAddress(data.address)">Save</button>
+    <button ng-click="shippingAddress(data.address)" translate="common.save"></button>
   </form>
 </article>
 <mkm-footer></mkm-footer>

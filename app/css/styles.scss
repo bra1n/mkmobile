@@ -302,6 +302,8 @@ mkm-order {
 #content.cart {
   article {
     i { display: block; }
+    .order a { font-weight: bold; }
+    .order a span { font-weight: normal; }
   }
   footer .cart { background-position: 25% 25%; }
 }
@@ -309,7 +311,7 @@ mkm-order {
 // stock page
 #content.stock {
   article {
-    &.product { margin-top: 45px; }
+    &.product { margin-top: 15px; }
     .product, .icons, .price {
       display: inline-block;
       width: 33%;
@@ -353,7 +355,7 @@ mkm-order {
     label { display: block; }
     div.overlay {
       position: absolute;
-      top: 0;
+      top: 15px;
       height: 100%;
       background: rgba(255,255,255,0.9);
       width: 100%;

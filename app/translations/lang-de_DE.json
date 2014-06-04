@@ -1,0 +1,28 @@
+{
+  "titles": {
+    "app": "MKM Mobil",
+    "home": "Übersicht",
+    "stock": "Meine Angebote",
+    "buys": "Meine Einkäufe",
+    "sells": "Meine Verkäufe",
+    "messages": "Meine Nachrichten",
+    "search": "Suche",
+    "cart": "Einkaufswagen",
+    "settings": "Einstellungen",
+    "payment": "Bezahlen",
+    "help": "Hilfe & Über MKM",
+    "contact": "Kontakt",
+    "legal": "Rechtliches",
+    "login": "Anmelden",
+    "product": "Produktseite"
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "vacation": "Ferienstatus",
+    "language": "Sprache",
+    "help": "Hilfe & Über MKM",
+    "contact": "Kontakt",
+    "legal": "Rechtliches",
+    "logout": "Abmelden"
+  }
+}

@@ -1,23 +1,8 @@
-<header>
-  Checkout
-</header>
+<header translate="checkout.title"></header>
 <article>
-  <div ng-show="method == 'paypal'">
-    The balance of your user account is not sufficient to pay for this order.
-    You are going to reserve the cards in your shopping cart and credit your user account directy using Paypal(R).
-    Your user account will be credited immediately and the purchase will then be paid from your user account.
-    Additional fees apply if you credit your account with Paypal(R).
-  </div>
-  <div ng-show="method == 'bank'">
-    The balance of your user account is not sufficient to pay for this order.
-    You are going to reserve the cards in your shopping cart and credit your user account later per money transfer.
-    As soon as the money is transferred to your user account, your order will be paid from your user account.
-    <a href="#">How to credit my account?</a>
-  </div>
-  <div ng-show="method == 'instabuy'">
-    You have sufficient balance on your account.
-    The order will be paid with your online funds.
-  </div>
-  <button ng-click="checkout()">Confirm Order</button>
+  <div ng-show="method == 'paypal'" translate="checkout.paypal"></div>
+  <div ng-show="method == 'bank'" translate="checkout.bank"></div>
+  <div ng-show="method == 'instabuy'" translate="checkout.instabuy"></div>
+  <button ng-click="checkout()" translate="checkout.confirm"></button>
 </article>
 <mkm-footer></mkm-footer>

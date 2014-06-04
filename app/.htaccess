@@ -1,4 +1,4 @@
 RewriteEngine On
 RewriteBase /
-RewriteRule ^(lib|img|js|partials|css)($|/) - [L]
+RewriteRule ^(lib|img|js|partials|css|translations)($|/) - [L]
 RewriteRule ^(.*)$ index.html [L]

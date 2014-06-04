@@ -1,73 +1,74 @@
-<header>
-  Evaluation for Order {{data.order.idOrder}} from {{data.order.seller.username}}
+<header translate="evaluation.title" translate-values="{id:data.order.idOrder, seller:data.order.seller.username}">
+  Evaluation for Order 1 from Seller
 </header>
 <article class="evaluation">
-  <div class="error" ng-show="data.error">Error loading order</div>
-  <div class="loading" ng-show="data.loading">Loading order...</div>
+  <div class="error" ng-show="data.error" translate="order.error">Error loading order</div>
+  <div class="loading" ng-show="data.loading" translate="order.loading">Loading order...</div>
   <form ng-show="data.order && !data.order.evaluation && !data.loading && !data.error" ng-submit="evaluate()">
-    <label for="evaluationGrade">Overall Evaluation</label>
+    <label for="evaluationGrade" translate="evaluation.overall">Overall Evaluation</label>
     <span class="icon evaluation" ng-class="'evaluation-'+evaluation.evaluationGrade"></span>
     <select id="evaluationGrade" ng-options="evaluation.value as evaluation.label for evaluation in evaluations"
             ng-model="evaluation.evaluationGrade" required></select><br>
-    <input type="text" ng-model="evaluation.comment"
+    <input type="text" ng-model="evaluation.comment" placeholder="{{'evaluation.comment' | translate}}"
            ng-required="evaluation.evaluationGrade > 1 && !evaluation.complaint.length">
-
-    <label for="itemDescription">Description of Items</label>
+    <label for="itemDescription" translate="evaluation.description">Description of Items</label>
     <span class="icon evaluation" ng-class="'evaluation-'+evaluation.itemDescription"></span>
     <select id="itemDescription" ng-options="evaluation.value as evaluation.label for evaluation in evaluations"
             ng-model="evaluation.itemDescription" required></select>
 
-    <label for="packaging">Packaging of Shipment</label>
+    <label for="packaging" translate="evaluation.packaging">Packaging of Shipment</label>
     <span class="icon evaluation" ng-class="'evaluation-'+evaluation.packaging"></span>
     <select id="packaging" ng-options="evaluation.value as evaluation.label for evaluation in evaluations"
             ng-model="evaluation.packaging" required></select>
 
-    <label for="speed">Processing Speed</label>
+    <label for="speed" translate="evaluation.speed">Processing Speed</label>
     <span class="icon evaluation" ng-class="'evaluation-'+evaluation.speed"></span>
     <select id="speed" ng-options="evaluation.value as evaluation.label for evaluation in evaluations"
             ng-model="evaluation.speed" required></select>
 
-    <label for="complaints">Complaints</label>
+    <label for="complaints" translate="evaluation.complaints">Complaints</label>
     <select id="complaints" ng-options="complaint.value as complaint.label for complaint in complaints"
             ng-model="evaluation.complaint" multiple></select><br>
 
-    <button>Evaluate</button>
+    <button translate="evaluation.evaluate">Evaluate</button>
   </form>
   <div ng-show="!hideOverlay && data.order && !data.order.evaluation && !data.loading && !data.error" class="overlay ng-hide">
-    <h1>Evaluation Guidelines</h1>
+    <h1 translate="evaluation.guidelines">Evaluation Guidelines</h1>
     <ul>
-      <li>Do not give an overall neutral or bad evaluation before trying to contact the seller first. Sellers are human and can make mistakes. Give them a chance to fix them.</li>
-      <li>Do not give an overall neutral or bad evaluation if you would buy from this seller again.</li>
-      <li>Do not give an overall neutral or bad evaluation if the seller made mistakes but fixed them.</li>
-      <li>Do not give an overall neutral or bad evaluation if the packaging was not good but the items where unharmed.</li>
-      <li>If you did not receive this shipment do not evaluate it. Contact our support so they mark it as lost.</li>
-      <li>Mark or explain why you give overall neutral or bad evaluations, otherwise they will be neutralized.</li>
+      <li translate="evaluation.guide1">Do not give an overall neutral or bad evaluation before trying to contact the seller first. Sellers are human and can make mistakes. Give them a chance to fix them.</li>
+      <li translate="evaluation.guide2">Do not give an overall neutral or bad evaluation if you would buy from this seller again.</li>
+      <li translate="evaluation.guide3">Do not give an overall neutral or bad evaluation if the seller made mistakes but fixed them.</li>
+      <li translate="evaluation.guide4">Do not give an overall neutral or bad evaluation if the packaging was not good but the items where unharmed.</li>
+      <li translate="evaluation.guide5">If you did not receive this shipment do not evaluate it. Contact our support so they mark it as lost.</li>
+      <li translate="evaluation.guide6">Mark or explain why you give overall neutral or bad evaluations, otherwise they will be neutralized.</li>
     </ul>
-    <button ng-click="hideOverlay = true">Continue</button>
+    <button ng-click="hideOverlay = true">{{'evaluation.continue' | translate}}</button>
   </div>
   <div ng-show="data.order.evaluation">
-    Overall:
+    <span translate="evaluation.overall">Overall:</span>
     <span class="icon evaluation" ng-class="'evaluation-'+data.order.evaluation.evaluationGrade"></span>
     {{data.order.evaluation.evaluationGrade | findInMap:evaluations}}<br>
-    <span ng-show="data.order.evaluation.comment">Comment: {{data.order.evaluation.comment}}<br></span>
-    Item Description:
+    <span ng-show="data.order.evaluation.comment">
+      {{'evaluation.comment' | translate}}: {{data.order.evaluation.comment}}<br>
+    </span>
+    <span translate="evaluation.description">Item Description:</span>
     <span class="icon evaluation" ng-class="'evaluation-'+data.order.evaluation.itemDescription"></span>
     {{data.order.evaluation.itemDescription | findInMap:evaluations}}<br>
-    Packaging:
+    <span translate="evaluation.packaging">Packaging:</span>
     <span class="icon evaluation" ng-class="'evaluation-'+data.order.evaluation.packaging"></span>
     {{data.order.evaluation.packaging | findInMap:evaluations}}<br>
-    Speed:
+    <span translate="evaluation.speed">Speed:</span>
     <span class="icon evaluation" ng-class="'evaluation-'+data.order.evaluation.speed"></span>
     {{data.order.evaluation.speed | findInMap:evaluations}}<br>
     <div ng-show="data.order.evaluation.complaint">
-      Complaints:
+      <span translate="evaluation.complaints">Complaints:</span>
       <ul>
         <li ng-repeat="complaint in data.order.evaluation.complaint">
           {{complaint | findInMap:complaints}}
         </li>
       </ul>
     </div>
-    <a href="/{{mode}}/{{data.order.idOrder}}">Back to Order</a>
+    <a href="/{{mode}}/{{data.order.idOrder}}" translate="evaluation.back">Back to Order</a>
   </div>
 </article>
 <mkm-footer></mkm-footer>

@@ -1,6 +1,11 @@
 mkmobileApp = angular.module 'mkmobileApp', [
+  # core modules
   'ngRoute'
   'ngAnimate'
+  # i18n
+  'tmh.dynamicLocale'
+  'pascalprecht.translate'
+  # app code
   'mkmobileControllers'
   'mkmobileFilters'
   'mkmobileServices'
@@ -103,6 +108,7 @@ mkmobileApp.config ['$locationProvider','$routeProvider', ($locationProvider, $r
     redirectTo: '/home'
 ]
 
+# configure the $http behaviours
 mkmobileApp.config ['$httpProvider', ($httpProvider) ->
   $httpProvider.defaults.useXDomain = yes
   delete $httpProvider.defaults.headers.common['X-Requested-With']
@@ -127,15 +133,38 @@ mkmobileApp.config ['$httpProvider', ($httpProvider) ->
   ]
 ]
 
+# i18n
+mkmobileApp.config [
+  'tmhDynamicLocaleProvider', '$translateProvider'
+  (tmhDynamicLocaleProvider, $translateProvider) ->
+    # locale
+    tmhDynamicLocaleProvider.localeLocationPattern '/lib/angular-i18n/angular-locale_{{locale}}.js'
+    tmhDynamicLocaleProvider.defaultLocale 'en-GB'
+    # translations
+    $translateProvider
+    .useStaticFilesLoader
+      prefix: 'dd/translations/lang-',
+      suffix: '.json'
+    .fallbackLanguage 'en_GB'
+    .preferredLanguage 'en_GB'
+    #.determinePreferredLanguage()
+]
+
 # generate a base CSS class based on the route path and check login for auth routes
-mkmobileApp.run [ '$rootScope','MkmApiAuth', ($rootScope, MkmApiAuth) ->
+mkmobileApp.run [ '$rootScope','MkmApiAuth','$translate', ($rootScope, MkmApiAuth, $translate) ->
+  # check login
   $rootScope.$on '$routeChangeStart', (event, next) ->
     unless next.$$route?.noLogin
       event.preventDefault() unless MkmApiAuth.checkLogin()
+  # update title and view class
+  translateTitle = -> $translate(['titles.app','titles.'+$rootScope.viewClass]).then (texts) ->
+    $rootScope.viewTitle = texts['titles.app'] + ' — ' + texts['titles.'+$rootScope.viewClass]
   $rootScope.$on '$routeChangeSuccess', (event, current) ->
     if current.$$route?.originalPath? and current.$$route?.originalPath.split("/").length > 1
       $rootScope.viewClass = current.$$route?.originalPath.split("/")[1]
-      $rootScope.viewTitle = $rootScope.viewClass?.replace /\w\S*/g, (txt) -> txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
+      translateTitle()
+  # update title on language change
+  $rootScope.$on '$translateChangeSuccess', -> translateTitle()
 ]
 
 # init services and controllers

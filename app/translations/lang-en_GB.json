@@ -1,0 +1,108 @@
+{
+  "titles": {
+    "app": "MCM Mobile",
+    "home": "Home",
+    "stock": "My Articles",
+    "buys": "My Buys",
+    "sells": "My Sells",
+    "messages": "My Messages",
+    "search": "Search",
+    "cart": "My Shopping Cart",
+    "settings": "Settings",
+    "payment": "Payment",
+    "help": "Help & About",
+    "contact": "Contact Us",
+    "legal": "Legal",
+    "login": "Login",
+    "product": "Product Page"
+  },
+  "common": {
+    "loading": "Loading...",
+    "save": "Save Changes",
+    "language": "Language",
+    "price": "Price",
+    "bank": "Bank transfer",
+    "paypal": "PayPal",
+    "instabuy": "Instabuy"
+  },
+  "address": {
+    "title": "Change shipping address",
+    "name": "Name:",
+    "street": "Street/Housenr.:",
+    "additional": "Additional info:",
+    "city": "City:",
+    "zip": "Post code:",
+    "country": "Country:"
+  },
+  "article": {
+    "not_found": "Article not found!",
+    "count": "Number of articles to change",
+    "condition": "Condition",
+    "foil": "Foil?",
+    "signed": "Signed?",
+    "playset": "Playset?",
+    "altered": "Altered?"
+  },
+  "callback": "Processing login...",
+  "cart": {
+    "empty": "You have no items on your shopping cart, if you want to search for articles, please use the search field above.",
+    "shipping_address": "Shipping Address:",
+    "headline": "{{orders}} orders ({{articles}} articles) to buy now",
+    "order": "Order Nr.:",
+    "seller": "Seller:",
+    "article": "article for",
+    "articles": "articles for",
+    "shipping": "Shipping:",
+    "total": "Total",
+    "explanation": "Items + Shipping Methods",
+    "balance": "Account balance",
+    "loading": "Loading cart..."
+  },
+  "checkout": {
+    "title": "Checkout",
+    "paypal": "The balance of your user account is not sufficient to pay for this order. You are going to reserve the cards in your shopping cart and credit your user account directy using Paypal(R). Your user account will be credited immediately and the purchase will then be paid from your user account. Additional fees apply if you credit your account with Paypal(R).",
+    "bank": "The balance of your user account is not sufficient to pay for this order. You are going to reserve the cards in your shopping cart and credit your user account later per money transfer. As soon as the money is transferred to your user account, your order will be paid from your user account.",
+    "instabuy": "You have sufficient balance on your account. The order will be paid with your online funds.",
+    "confirm": "Confirm Order",
+    "are_you_sure": "Are you sure you want to buy these articles?"
+  },
+  "contact": {
+    "p1": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cumque, deserunt doloribus ea harum in ipsa ipsum molestias officiis omnis, pariatur possimus provident quisquam sequi similique tempora temporibus vero voluptatem?",
+    "p2": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cumque, deserunt doloribus ea harum in ipsa ipsum molestias officiis omnis, pariatur possimus provident quisquam sequi similique tempora temporibus vero voluptatem?",
+    "p3": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cumque, deserunt doloribus ea harum in ipsa ipsum molestias officiis omnis, pariatur possimus provident quisquam sequi similique tempora temporibus vero voluptatem?"
+  },
+  "evaluation": {
+    "title": "Evaluation for Order {{id}} from {{seller}}",
+    "overall": "Overall Evaluation:",
+    "description": "Description of Items:",
+    "packaging": "Packaging of Shipment:",
+    "speed": "Processing Speed:",
+    "complaints": "Complaints:",
+    "evaluate": "Evaluate",
+    "guidelines": "Evaluation Guidelines",
+    "guide1":"Do not give an overall neutral or bad evaluation before trying to contact the seller first. Sellers are human and can make mistakes. Give them a chance to fix them.",
+    "guide2":"Do not give an overall neutral or bad evaluation if you would buy from this seller again.",
+    "guide3":"Do not give an overall neutral or bad evaluation if the seller made mistakes but fixed them.",
+    "guide4":"Do not give an overall neutral or bad evaluation if the packaging was not good but the items where unharmed.",
+    "guide5":"If you did not receive this shipment do not evaluate it. Contact our support so they mark it as lost.",
+    "guide6":"Mark or explain why you give overall neutral or bad evaluations, otherwise they will be neutralized.",
+    "continue": "Continue",
+    "comment": "Comment",
+    "back": "Back to Order"
+  },
+  "order": {
+    "error": "Error loading order",
+    "loading": "Loading order..."
+  },
+  "product": {
+    "error": "Error loading product data",
+    "nr": "(Nr. {{number}})"
+  },
+  "settings": {
+    "vacation": "MKM Vacation Status",
+    "help": "Help & About",
+    "contact": "Contact Us",
+    "legal": "Legal",
+    "logout": "Logout"
+  }
+}

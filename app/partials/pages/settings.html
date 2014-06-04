@@ -1,19 +1,19 @@
-<header>Settings</header>
+<header translate="titles.settings">Settings</header>
 <article>
   <ul>
     <li>
-      <label for="vacation">MKM Vacation Status</label>
+      <label for="vacation" translate="settings.vacation"></label>
       <input type="checkbox" id="vacation" ng-change="updateVacation()" ng-model="data.account.onVacation">
     </li>
     <li>
-      <label for="languages">Language</label>
+      <label for="languages" translate="common.language"></label>
       <select id="languages" ng-options="language.value as language.label for language in languages"
               ng-model="data.account.idDisplayLanguage" ng-change="updateLanguage()"></select>
     </li>
-    <li><a href="/help">Help & About</a></li>
-    <li><a href="/contact">Contact Us</a></li>
-    <li><a href="/legal">Legal</a></li>
+    <li><a href="/help" translate="settings.logout"></a></li>
+    <li><a href="/contact" translate="settings.contact"></a></li>
+    <li><a href="/legal" translate="settings.legal"></a></li>
   </ul>
-  <button ng-click="logout()">Logout</button>
+  <button ng-click="logout()" translate="settings.logout"></button>
 </article>
 <mkm-footer></mkm-footer>

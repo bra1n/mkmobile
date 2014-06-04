@@ -95,8 +95,8 @@ mkmobileControllers.controller 'CallbackCtrl', [
 
 # /cart
 mkmobileControllers.controller 'CartCtrl', [
-  '$scope', '$location', '$routeParams', 'MkmApiCart', 'MkmApiMarket'
-  ($scope, $location, $routeParams, MkmApiCart, MkmApiMarket) ->
+  '$scope', '$location', '$routeParams', 'MkmApiCart', 'MkmApiMarket', '$translate'
+  ($scope, $location, $routeParams, MkmApiCart, MkmApiMarket, $translate) ->
     # search logic
     $scope.$watch 'query', (query) ->
       sessionStorage.setItem "search", query
@@ -145,8 +145,8 @@ mkmobileControllers.controller 'CartCtrl', [
 
     # checkout
     $scope.method = $routeParams.method
-    $scope.checkout = ->
-      return unless confirm "Are you sure?"
+    $scope.checkout = -> $translate('checkout.are_you_sure').then (text) ->
+      return unless confirm text
       $scope.clicked = yes
       MkmApiCart.checkout ->
         sessionStorage.setItem 'buysTab', (if $scope.method is 'instabuy' then 'paid' else 'bought')
@@ -220,6 +220,7 @@ mkmobileControllers.controller 'OrderCtrl', [
     $scope.evaluations = MkmApiOrder.getEvaluations()
     $scope.complaints = MkmApiOrder.getComplaints()
     $scope.evaluation = MkmApiOrder.getEvaluation()
+    $scope.hideOverlay = 0
     $scope.evaluate = -> MkmApiOrder.evaluate $scope.orderId, $scope.evaluation, -> $location.path "/"+$scope.mode+"/"+$scope.orderId
 ]
 

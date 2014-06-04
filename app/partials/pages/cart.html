@@ -1,14 +1,10 @@
-<header>
-  Shopping Cart
-</header>
+<header translate="titles.cart"></header>
 <article>
-  <mkm-search ng-hide="data.cart.length || data.loading">
-    You have no items on your shopping cart, if you want to search for articles, please use the search field above.
-  </mkm-search>
+  <mkm-search ng-hide="data.cart.length || data.loading">cart.empty</mkm-search>
   <div class="overview" ng-show="data.cart.length">
     <div class="shipping">
       <a href="/cart/address">
-        Shipping Address:<br>
+        <span translate="cart.shipping_address"></span><br>
         {{data.address.name}}<br>
         <span ng-show="data.address.street"> {{data.address.street}}, </span>
         <span ng-show="data.address.extra">  {{data.address.extra}},  </span>
@@ -19,37 +15,46 @@
     </div>
     <hr>
     <div class="single" ng-show="data.cart.length == 1">
-      Order Nr.: {{data.cart[0].idReservation}}<br>
+      <span translate="cart.order"></span>
+      {{data.cart[0].idReservation}}<br>
       <mkm-order order="data.cart[0]" remove-article="removeArticle" shipping-method="shippingMethod"></mkm-order>
     </div>
     <div class="multiple" ng-show="data.cart.length > 1">
-      <div class="overview">{{data.cart.length}} orders ({{count}} articles) to buy now</div>
+      <div class="overview" translate="cart.headline" translate-values="{orders:data.cart.length, articles:count}"></div>
       <ul>
-        <li ng-repeat="order in data.cart">
+        <li class="order" ng-repeat="order in data.cart">
           <button ng-click="removeOrder(order)">-</button>
           <a href="/cart/{{order.idReservation}}">
-            Order Nr.: {{order.idReservation}}<br>
-            Seller: {{order.seller.username}}<br>
-            <ng-pluralize count="order.articleCount" when="{0:'No articles',one:'1 article',other:'{} articles'}"></ng-pluralize>
-            for {{order.articleValue | currency:"€"}}<br>
-            Shipping: {{order.shippingMethod.price | currency:"€"}}
+            <span translate="cart.order"></span>
+            {{order.idReservation}}<br>
+            <span translate="cart.seller"></span>
+            {{order.seller.username}}<br>
+            {{order.articleCount}}
+            <span ng-show="order.articleCount == 1" translate="cart.article"></span>
+            <span ng-show="order.articleCount != 1" translate="cart.articles"></span>
+            {{order.articleValue | currency:"€"}}<br>
+            <span translate="cart.shipping"></span>
+            {{order.shippingMethod.price | currency:"€"}}
           </a>
         </li>
       </ul>
       <div class="total">
-        Total - {{sum | currency:"€"}}
-        <i>Items + Shipping Methods</i>
+        <span translate="cart.total"></span> - {{sum | currency:"€"}}
+        <i translate="cart.explanation"></i>
       </div>
     </div>
-    <div class="overview">Account balance: {{data.balance | currency:"€"}}</div>
+    <div class="overview">
+      <span translate="cart.balance"></span>
+      {{data.balance | currency:"€"}}
+    </div>
     <div ng-show="data.balance < sum">
-      <a href="/cart/checkout/bank">Bank Transfer</a>
-      <a href="/cart/checkout/paypal">Paypal</a>
+      <a href="/cart/checkout/bank" translate="common.bank"></a>
+      <a href="/cart/checkout/paypal" translate="common.paypal"></a>
     </div>
     <div ng-show="data.balance >= sum">
-      <a href="/cart/checkout/instabuy">Instabuy</a>
+      <a href="/cart/checkout/instabuy" translate="common.instabuy"></a>
     </div>
   </div>
-  <div class="loading" ng-show="data.loading">Loading cart...</div>
+  <div class="loading" ng-show="data.loading" translate="cart.loading"></div>
 </article>
 <mkm-footer cart="count"></mkm-footer>

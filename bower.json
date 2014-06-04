@@ -1,6 +1,6 @@
 {
   "name": "mkmobile",
-  "version": "0.0.2",
+  "version": "0.8.0",
   "homepage": "https://github.com/bra1n/mkmobile",
   "authors": [
     "Steffen Baumgart <steffen@baumgart.biz>"
@@ -18,12 +18,15 @@
   ],
   "description": "MKMobile App",
   "dependencies": {
-    "angular-animate": "~1.2.15",
-    "angular-resource": "~1.2.15",
-    "angular-route": "~1.2.15",
-    "angular-i18n": "~1.2.15",
-    "jquery": "~2.1.0",
-    "normalize-css": "~3.0.0",
-    "cryptojslib": "~3.1.2"
+    "angular-animate": "~1.2.16",
+    "angular-resource": "~1.2.16",
+    "angular-route": "~1.2.16",
+    "angular-i18n": "~1.2.16",
+    "jquery": "~2.1.1",
+    "normalize-css": "~3.0.1",
+    "cryptojslib": "~3.1.2",
+    "angular-dynamic-locale": "~0.1.11",
+    "angular-translate": "~2.2.0",
+    "angular-translate-loader-static-files": "~2.2.0"
   }
 }

@@ -1,6 +1,6 @@
-<header>
+<header ng-class="{loading:data.loading}">
   {{data.partner.username}}
-  <span mkm-user user="data.partner"></span>
+  <span mkm-user ng-show="data.partner" user="data.partner"></span>
 </header>
 <article>
   <div class="search" ng-show="data.messages">
