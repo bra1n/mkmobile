@@ -87,16 +87,19 @@ mkmobileServices.factory 'MkmApiCart', [ 'MkmApi', 'DataCache', '$filter', (MkmA
   # cache cart data
   cache: (data) ->
     DataCache.cart data.shoppingCart
-    DataCache.account(data.account) if data.account?
+    if data.account?
+      DataCache.account data.account
+      DataCache.balance data.account.accountBalance
     DataCache.address data.shippingAddress
-    DataCache.balance data.accountBalance
 
   # checkout
   checkout: (cb) ->
     MkmApi.api.checkout {}, (data) ->
       DataCache.order(order.idOrder, order) for order in data.order
       DataCache.cart []
-      DataCache.account(data.account) if data.account?
+      if data.account?
+        DataCache.account data.account
+        DataCache.balance data.account.accountBalance
       cb?()
 
   # change the shipping address

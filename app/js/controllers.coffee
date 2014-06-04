@@ -78,7 +78,6 @@ mkmobileControllers.controller 'PaymentCtrl', [
     window.close() if $scope.method in ['done', 'cancel']
     $scope.data = MkmApiAuth.getAccount (data) ->
       $location.path("/").replace() if !data.account.paypalRecharge and $scope.method is "paypal"
-      # todo update field name
       $location.path("/").replace() if !data.account.bankRecharge and $scope.method is "bank"
     $scope.location = $location
     $scope.languages = MkmApiAuth.getLanguageCodes()

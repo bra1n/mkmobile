@@ -32,9 +32,9 @@
       </li>
     </ul>
   </div>
-  <div class="outstanding" ng-show="data.outstanding">
+  <div class="outstanding" ng-show="data.account.bankRecharge">
     <hr>
-    You must still transfer {{data.outstanding | currency:"€"}} to pay for your unpaid orders.<br>
+    You must still transfer {{data.account.bankRecharge | currency:"€"}} to pay for your unpaid orders.<br>
     <a href="/payment/bank">Bank Transfer</a>
     <a href="/payment/paypal">Paypal</a>
   </div>
