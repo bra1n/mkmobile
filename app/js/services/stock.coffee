@@ -62,27 +62,6 @@ mkmobileServices.factory 'MkmApiStock', [ 'MkmApi', 'MkmApiMarket', 'DataCache',
       response.loading = no
     response
 
-  getLanguages: -> [
-    {value: 1, label: "English"}
-    {value: 2, label: "French"}
-    {value: 3, label: "German"}
-    {value: 4, label: "Spanish"}
-    {value: 5, label: "Italian"}
-    {value: 6, label: "Chinese"}
-    {value: 7, label: "Japanese"}
-    {value: 8, label: "Portuguese"}
-    {value: 9, label: "Russian"}
-    {value: 10, label: "Korean"}
-    {value: 11, label: "T-Chinese"}
-  ]
-
-  getGradings: -> [
-    {value: "MT", label: "Mint"}
-    {value: "NM", label: "Near Mint"}
-    {value: "EX", label: "Excellent"}
-    {value: "GD", label: "Good"}
-    {value: "LP", label: "Light Played"}
-    {value: "PL", label: "Played"}
-    {value: "PO", label: "Poor"}
-  ]
+  getLanguages: -> [1..11]
+  getConditions: -> ["MT","NM","EX","GD","LP","PL","PO"]
 ]

@@ -5,7 +5,7 @@
 </header>
 <article>
   <div class="header">
-    <input type="text" ng-model="query" placeholder="Search">
+    <input type="text" ng-model="query" placeholder="{{'common.search' | translate}}">
     <button ng-show="query" ng-click="query = ''">X</button>
     <div class="tools" ng-show="selected.length">
       <button class="minus" ng-click="decrease(selected)">-</button>

@@ -63,21 +63,7 @@ mkmobileServices.factory 'MkmApiOrder', [ 'MkmApi', 'MkmApiAuth', 'DataCache', (
     complaint: []
     comment: ""
 
-  getComplaints: -> [
-    {value: "badCommunication",   label:"Bad communication"}
-    {value: "incompleteShipment", label:"Items were missing"}
-    {value: "notFoil",            label:"Ordered Foil - Got Non Foil"}
-    {value: "rudeSeller",         label:"Rude seller"}
-    {value: "shipDamage",         label:"Damaged during shipping"}
-    {value: "unorderedShipment",  label:"Contents was unordered"}
-    {value: "wrongEd",            label:"Wrong version"}
-    {value: "wrongLang",          label:"Wrong language"}
-  ]
-
-  getEvaluations: -> [
-    {label: "Very good", value: 1}
-    {label: "Good",      value: 2}
-    {label: "Neutral",   value: 3}
-    {label: "Bad",       value: 4}
-  ]
+  getComplaints: -> ["badCommunication","incompleteShipment","notFoil","rudeSeller","shipDamage","unorderedShipment",
+                     "wrongEd","wrongLang"]
+  getEvaluations: -> [1..4]
 ]

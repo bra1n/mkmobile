@@ -12,7 +12,7 @@
     <label for="zip" translate="address.zip"></label>
     <input id="zip" type="text" ng-model="data.address.zip"><br>
     <label for="country" translate="address.country"></label>
-    <select id="country" ng-options="country.value as country.label for country in countries"
+    <select id="country" ng-options="country as 'address.countries.'+country | translate for country in countries"
             ng-model="data.address.country" required></select><br>
     <button ng-click="shippingAddress(data.address)" translate="common.save"></button>
   </form>

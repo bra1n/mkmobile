@@ -139,15 +139,16 @@ mkmobileApp.config [
   (tmhDynamicLocaleProvider, $translateProvider) ->
     # locale
     tmhDynamicLocaleProvider.localeLocationPattern '/lib/angular-i18n/angular-locale_{{locale}}.js'
-    tmhDynamicLocaleProvider.defaultLocale 'en-GB'
+    tmhDynamicLocaleProvider.defaultLocale 'en-gb'
     # translations
     $translateProvider
     .useStaticFilesLoader
-      prefix: 'dd/translations/lang-',
+      prefix: '/translations/lang-',
       suffix: '.json'
     .fallbackLanguage 'en_GB'
     .preferredLanguage 'en_GB'
     #.determinePreferredLanguage()
+    #todo implement detection
 ]
 
 # generate a base CSS class based on the route path and check login for auth routes

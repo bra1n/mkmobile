@@ -1,43 +1,66 @@
 <header>
-  <span ng-show="mode == 'buys'">My Buys</span>
-  <span ng-show="mode == 'sells'">My Sells</span>
+  <span ng-show="mode == 'buys'" translate="titles.buys">My Buys</span>
+  <span ng-show="mode == 'sells'" translate="titles.sells">My Sells</span>
 </header>
 <article>
-  Orders
-  <ul class="tabs"><!-- no spaces between elements
-    --><li ng-class="{current:tab=='bought'}" ng-click="tab = 'bought'">Unpaid</li><!--
-    --><li ng-class="{current:tab=='paid'}" ng-click="tab = 'paid'">Paid</li><!--
-    --><li ng-class="{current:tab=='sent'}" ng-click="tab = 'sent'">Sent</li><!--
-    --><li ng-class="{current:tab=='received'}" ng-click="tab = 'received'">Received</li><!--
-  --></ul>
+  <ul class="tabs">
+    <li ng-class="{current:tab=='bought'}" ng-click="tab = 'bought'">
+      <span translate="order.statuses.bought">Unpaid</span>
+    </li><li ng-class="{current:tab=='paid'}" ng-click="tab = 'paid'">
+      <span translate="order.statuses.paid">Paid</span>
+    </li><li ng-class="{current:tab=='sent'}" ng-click="tab = 'sent'">
+      <span translate="order.statuses.sent">Sent</span>
+    </li><li ng-class="{current:tab=='received'}" ng-click="tab = 'received'">
+      <span translate="order.statuses.received">Received</span>
+    </li>
+  </ul>
   <div class="orders">
-    <ng-pluralize ng-hide="data.loading" count="data.count" when="{0:'No shipments',one:'1 shipment',other:'{} shipments'}"></ng-pluralize>
+    <span ng-show="!data.loading && data.count > 1" translate="order.shipments" translate-value-count="{{data.count | number}}"></span>
+    <span ng-show="!data.loading && data.count == 1" translate="order.shipments_1"></span>
+    <span ng-show="!data.loading && data.count == 0" translate="order.shipments_0"></span>
     <ul ng-class="{loading:data.loading}" data-infinite-scroll="loadOrders()">
       <li ng-repeat="order in data.orders">
         <a href="/{{mode}}/{{order.idOrder}}">
           <div ng-show="mode == 'buys'">
-            <b>Seller: {{order.seller.username}}</b><br>
-            Last name: {{order.seller.name.lastName}}
+            <b translate="order.seller">Seller:</b>
+            <b>{{order.seller.username}}</b><br>
+            <span translate="order.last_name">Last name:</span>
+            {{order.seller.name.lastName}}
           </div>
           <div ng-show="mode == 'sells'">
-            <b>Buyer: {{order.buyer.username}}</b><br>
-            Last name: {{order.buyer.name.lastName}}
+            <b translate="order.buyer">Buyer:</b>
+            <b>{{order.buyer.username}}</b><br>
+            <span translate="order.last_name">Last name:</span>
+            {{order.buyer.name.lastName}}
           </div>
-          <span ng-show="order.state.dateBought">Purchased: {{order.state.dateBought | date:'short'}}<br></span>
-          <span ng-show="order.state.datePaid">Paid: {{order.state.datePaid | date:'short'}}<br></span>
-          <span ng-show="order.state.dateSent">Sent: {{order.state.dateSent | date:'short'}}<br></span>
-          <span ng-show="order.state.dateReceived">Received: {{order.state.dateReceived | date:'short'}}<br></span>
-          <span ng-show="order.cancellationRequest">Cancellation Requested: {{order.cancellationRequest.date | date:'short'}}<br></span>
-          <span ng-show="order.state.state == 'received'">Please evaluate this order<br></span>
+
+          <span ng-show="order.state.dateBought">
+            <b translate="order.purchased">Purchased:</b> {{order.state.dateBought | date:'short'}}<br>
+          </span>
+          <span ng-show="order.state.datePaid">
+            <b translate="order.paid">Paid:</b> {{order.state.datePaid | date:'short'}}<br>
+          </span>
+          <span ng-show="order.state.dateSent">
+            <b translate="order.sent">Sent:</b> {{order.state.dateSent | date:'short'}}<br>
+          </span>
+          <span ng-show="order.state.dateReceived">
+            <b translate="order.received">Received:</b>
+            {{order.state.dateReceived | date:'short'}}<br>
+          </span>
+          <span ng-show="order.cancellationRequest">
+            <b translate="order.cancellation">Cancellation Requested:</b>
+            {{order.cancellationRequest.date | date:'short'}}<br>
+          </span>
+          <span ng-show="order.state.state == 'received'" translate="order.please_evaluate">Please evaluate this order</span>
         </a>
       </li>
     </ul>
   </div>
   <div class="outstanding" ng-show="data.account.bankRecharge">
     <hr>
-    You must still transfer {{data.account.bankRecharge | currency:"€"}} to pay for your unpaid orders.<br>
-    <a href="/payment/bank">Bank Transfer</a>
-    <a href="/payment/paypal">Paypal</a>
+    <span translate="order.outstanding" translate-value-sum="{{data.account.bankRecharge | currency:'€'}}"></span><br>
+    <a href="/payment/bank" translate="common.bank">Bank Transfer</a>
+    <a href="/payment/paypal" translate="common.paypal">Paypal</a>
   </div>
 </article>
 <mkm-footer></mkm-footer>

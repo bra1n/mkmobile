@@ -1,57 +1,78 @@
 <header>
-  Order Nr.: {{data.order.idOrder || data.order.idReservation}}
+  <span translate="order.title">Order Nr.:</span>
+  {{data.order.idOrder || data.order.idReservation}}
 </header>
 <article>
-  <div class="error" ng-show="data.error">Error loading order</div>
-  <div class="loading" ng-show="data.loading">Loading order...</div>
-  <mkm-order ng-hide="data.loading || data.error" remove-article="removeArticle" shipping-method="shippingMethod" order="data.order"></mkm-order>
+  <div class="error" ng-show="data.error" translate="order.error">Error loading order</div>
+  <div class="loading" ng-show="data.loading" translate="order.loading">Loading order...</div>
+
+  <mkm-order ng-hide="data.loading || data.error" remove-article="removeArticle"
+             shipping-method="shippingMethod" order="data.order"></mkm-order>
+
   <form ng-show="data.order.state && !data.loading && !data.error">
-    <span ng-show="data.order.state.dateBought">Purchased: {{data.order.state.dateBought | date:'short'}}<br></span>
-    <span ng-show="data.order.state.datePaid">Paid: {{data.order.state.datePaid | date:'short'}}<br></span>
-    <span ng-show="data.order.state.dateSent">Sent: {{data.order.state.dateSent | date:'short'}}<br></span>
-    <span ng-show="data.order.state.dateReceived">Received: {{data.order.state.dateReceived | date:'short'}}<br></span>
-    Status: {{data.order.state.state}}
-    <div ng-show="data.order.state.reason">Reason: {{data.order.state.reason}}</div>
-    <div ng-show="data.order.showReason"><textarea ng-model="data.order.state.reason" ng-required="data.order.showReason"></textarea></div>
-    <div class="evaluation" ng-show="data.order.cancellationRequest">
-      <b>Cancellation requested on {{data.order.cancellationRequest.date | date:'short'}}</b><br>
-      Reason: {{data.order.cancellationRequest.reason}}<br>
+    <span ng-show="data.order.state.dateBought">
+      <b translate="order.purchased">Purchased:</b> {{data.order.state.dateBought | date:'short'}}<br>
+    </span>
+    <span ng-show="data.order.state.datePaid">
+      <b translate="order.paid">Paid:</b> {{data.order.state.datePaid | date:'short'}}<br>
+    </span>
+    <span ng-show="data.order.state.dateSent">
+      <b translate="order.sent">Sent:</b> {{data.order.state.dateSent | date:'short'}}<br>
+    </span>
+    <span ng-show="data.order.state.dateReceived">
+      <b translate="order.received">Received:</b> {{data.order.state.dateReceived | date:'short'}}<br>
+    </span>
+    <b translate="order.status">Status:</b> {{'order.statuses.'+data.order.state.state | translate}}
+    <div ng-show="data.order.state.reason">
+      <b translate="order.reason">Reason:</b> {{data.order.state.reason}}
+    </div>
+    <div ng-show="data.order.showReason">
+      <textarea ng-model="data.order.state.reason" ng-required="data.order.showReason"></textarea>
+    </div>
+    <div class="cancellation" ng-show="data.order.cancellationRequest">
+      <b translate="order.cancellation">Cancellation requested on</b>
+      <b>{{data.order.cancellationRequest.date | date:'short'}}</b><br>
+      <b translate="order.reason">Reason:</b> {{data.order.cancellationRequest.reason}}<br>
       <span ng-show="data.order.cancellationRequest.rejected">
-        <b>Cancellation has been rejected</b><br>
-        Reason: {{data.order.cancellationRequest.rejectAnswer}}
+        <b translate="order.rejected">Cancellation has been rejected</b><br>
+        <b translate="order.reason">Reason:</b> {{data.order.cancellationRequest.rejectAnswer}}
       </span>
     </div>
 
     <div ng-show="data.order.state.state == 'bought' && !data.order.cancellationRequest">
-      <button ng-click="update('requestCancellation')">Request Cancellation</button>
+      <button ng-click="update('requestCancellation')" translate="order.cancel">Request Cancellation</button>
     </div>
     <div ng-show="data.order.state.state == 'paid' && !data.order.cancellationRequest">
-      <button ng-click="update('requestCancellation')">Request Cancellation</button>
+      <button ng-click="update('requestCancellation')" translate="order.cancel">Request Cancellation</button>
     </div>
     <div ng-show="data.order.state.state == 'sent'  && data.order.isBuyer">
-      <button ng-click="update('confirmReception')">Confirm Reception</button>
+      <button ng-click="update('confirmReception')" translate="order.confirm">Confirm Reception</button>
     </div>
     <div ng-show="data.order.state.state == 'paid' && !data.order.isBuyer">
-      <button ng-click="update('send')">Mark as sent</button>
+      <button ng-click="update('send')" translate="order.mark">Mark as sent</button>
     </div>
     <div ng-show="data.order.state.state == 'received' && data.order.isBuyer">
-      <a href="/buys/{{data.order.idOrder}}/evaluate">Evaluate order</a>
+      <a href="/buys/{{data.order.idOrder}}/evaluate" translate="order.evaluate">Evaluate order</a>
     </div>
 
     <div class="evaluation" ng-show="data.order.evaluation">
       <hr>
-      Evaluation:<br>
-      <b>Overall</b> <span class="icon evaluation" ng-class="'evaluation-'+data.order.evaluation.evaluationGrade"></span><br>
+      <h3 translate="order.evaluation">Evaluation:</h3>
+      <b translate="evaluation.overall">Overall</b>
+      <span class="icon evaluation" ng-class="'evaluation-'+data.order.evaluation.evaluationGrade"></span><br>
       <span ng-show="data.order.evaluation.comment">
-        <b>Comment</b> {{data.order.evaluation.comment}}<br>
+        <b translate="evaluation.comment">Comment</b> {{data.order.evaluation.comment}}<br>
       </span>
-      <b>Item Description</b> <span class="icon evaluation" ng-class="'evaluation-'+data.order.evaluation.itemDescription"></span><br>
-      <b>Packaging</b> <span class="icon evaluation" ng-class="'evaluation-'+data.order.evaluation.packaging"></span><br>
-      <b>Speed</b> <span class="icon evaluation" ng-class="'evaluation-'+data.order.evaluation.speed"></span><br>
+      <b translate="evaluation.description">Item Description</b>
+      <span class="icon evaluation" ng-class="'evaluation-'+data.order.evaluation.itemDescription"></span><br>
+      <b translate="evaluation.packaging">Packaging</b>
+      <span class="icon evaluation" ng-class="'evaluation-'+data.order.evaluation.packaging"></span><br>
+      <b translate="evaluation.speed">Speed</b>
+      <span class="icon evaluation" ng-class="'evaluation-'+data.order.evaluation.speed"></span><br>
       <div ng-show="data.order.evaluation.complaint">
-        <b>Complaints</b>
+        <b translate="evaluation.complaint">Complaints</b>
         <span ng-repeat="complaint in data.order.evaluation.complaint">
-          {{complaint | findInMap:complaints}}{{$last ? '' : ', '}}
+          {{'evaluation.complaints.'+complaint | translate}}{{$last ? '' : ', '}}
         </span>
       </div>
     </div>

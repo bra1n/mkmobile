@@ -1,5 +1,5 @@
 <div class="input">
-  <input ng-model="query" id="search" placeholder="Search">
+  <input ng-model="query" id="search" placeholder="{{'common.search' | translate}}">
   <button ng-show="query != ''" ng-click="query = ''">X</button>
 </div>
 <div class="results" ng-show="query != ''">

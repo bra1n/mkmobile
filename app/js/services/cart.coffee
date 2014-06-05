@@ -119,37 +119,6 @@ mkmobileServices.factory 'MkmApiCart', [ 'MkmApi', 'DataCache', '$filter', (MkmA
       order.shippingMethod = newOrder.shippingMethod
       order.totalValue = newOrder.totalValue
 
-  getCountries: -> [
-    { value:"AT", label:"Austria"        }
-    { value:"BE", label:"Belgium"        }
-    { value:"BG", label:"Bulgaria"       }
-    { value:"CH", label:"Switzerland"    }
-    { value:"CY", label:"Cyprus"         }
-    { value:"CZ", label:"Czech Republic" }
-    { value:"D",  label:"Germany"        }
-    { value:"DK", label:"Denmark"        }
-    { value:"EE", label:"Estonia"        }
-    { value:"ES", label:"Spain"          }
-    { value:"FI", label:"Finland"        }
-    { value:"FR", label:"France"         }
-    { value:"GB", label:"Great Britain"  }
-    { value:"GR", label:"Greece"         }
-    { value:"HR", label:"Croatia"        }
-    { value:"HU", label:"Hungary"        }
-    { value:"IE", label:"Ireland"        }
-    { value:"IT", label:"Italy"          }
-    { value:"LI", label:"Liechtenstein"  }
-    { value:"LT", label:"Lithuania"      }
-    { value:"LU", label:"Luxembourg"     }
-    { value:"LV", label:"Latvia"         }
-    { value:"MT", label:"Malta"          }
-    { value:"NL", label:"Netherlands"    }
-    { value:"NO", label:"Norway"         }
-    { value:"PL", label:"Poland"         }
-    { value:"PT", label:"Portugal"       }
-    { value:"RO", label:"Romania"        }
-    { value:"SE", label:"Sweden"         }
-    { value:"SI", label:"Slovenia"       }
-    { value:"SK", label:"Slovakia"       }
-  ]
+  getCountries: -> ["AT","BE","BG","CH","CY","CZ","D","DK","EE","ES","FI","FR","GB","GR","HR","HU","IE","IT","LI","LT",
+                    "LU","LV","MT","NL","NO","PL","PT","RO","SE","SI","SK"]
 ]

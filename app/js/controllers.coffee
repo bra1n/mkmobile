@@ -190,7 +190,7 @@ mkmobileControllers.controller 'StockCtrl', [
 
     # edit article stuff
     $scope.languages = MkmApiStock.getLanguages()
-    $scope.conditions = MkmApiStock.getGradings()
+    $scope.conditions = MkmApiStock.getConditions()
     $scope.save = -> MkmApiStock.update $scope.data.article, -> $location.path "/stock"
 ]
 

@@ -2,18 +2,18 @@
 <article>
   <ul>
     <li>
-      <label for="vacation" translate="settings.vacation"></label>
+      <label for="vacation" translate="settings.vacation">MKM Vacation Status</label>
       <input type="checkbox" id="vacation" ng-change="updateVacation()" ng-model="data.account.onVacation">
     </li>
     <li>
-      <label for="languages" translate="common.language"></label>
+      <label for="languages" translate="common.language">Language</label>
       <select id="languages" ng-options="language.value as language.label for language in languages"
               ng-model="data.account.idDisplayLanguage" ng-change="updateLanguage()"></select>
     </li>
-    <li><a href="/help" translate="settings.logout"></a></li>
-    <li><a href="/contact" translate="settings.contact"></a></li>
-    <li><a href="/legal" translate="settings.legal"></a></li>
+    <li><a href="/help" translate="titles.help">Help & About</a></li>
+    <li><a href="/contact" translate="titles.contact">Contact Us</a></li>
+    <li><a href="/legal" translate="titles.legal">Legal</a></li>
   </ul>
-  <button ng-click="logout()" translate="settings.logout"></button>
+  <button ng-click="logout()" translate="common.logout">Logout</button>
 </article>
 <mkm-footer></mkm-footer>

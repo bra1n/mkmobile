@@ -23,7 +23,10 @@
     "price": "Price",
     "bank": "Bank transfer",
     "paypal": "PayPal",
-    "instabuy": "Instabuy"
+    "instabuy": "Instabuy",
+    "logout": "Logout",
+    "search": "Search",
+    "comment": "Comment"
   },
   "address": {
     "title": "Change shipping address",
@@ -32,7 +35,40 @@
     "additional": "Additional info:",
     "city": "City:",
     "zip": "Post code:",
-    "country": "Country:"
+    "country": "Country:",
+    "countries": {
+      "AT": "Austria",
+      "BE": "Belgium",
+      "BG": "Bulgaria",
+      "CH": "Switzerland",
+      "CY": "Cyprus",
+      "CZ": "Czech Republic",
+      "D" : "Germany",
+      "DK": "Denmark",
+      "EE": "Estonia",
+      "ES": "Spain",
+      "FI": "Finland",
+      "FR": "France",
+      "GB": "Great Britain" ,
+      "GR": "Greece",
+      "HR": "Croatia",
+      "HU": "Hungary",
+      "IE": "Ireland",
+      "IT": "Italy",
+      "LI": "Liechtenstein" ,
+      "LT": "Lithuania",
+      "LU": "Luxembourg",
+      "LV": "Latvia",
+      "MT": "Malta",
+      "NL": "Netherlands",
+      "NO": "Norway",
+      "PL": "Poland",
+      "PT": "Portugal",
+      "RO": "Romania",
+      "SE": "Sweden",
+      "SI": "Slovenia",
+      "SK": "Slovakia"
+    }
   },
   "article": {
     "not_found": "Article not found!",
@@ -41,7 +77,29 @@
     "foil": "Foil?",
     "signed": "Signed?",
     "playset": "Playset?",
-    "altered": "Altered?"
+    "altered": "Altered?",
+    "languages": {
+      "1": "English",
+      "2": "French",
+      "3": "German",
+      "4": "Spanish",
+      "5": "Italian",
+      "6": "Chinese",
+      "7": "Japanese",
+      "8": "Portuguese",
+      "9": "Russian",
+      "10":"Korean",
+      "11":"T-Chinese"
+    },
+    "conditions": {
+      "MT": "Mint",
+      "NM": "Near Mint",
+      "EX": "Excellent",
+      "GD": "Good",
+      "LP": "Light Played",
+      "PL": "Played",
+      "PO": "Poor"
+    }
   },
   "callback": "Processing login...",
   "cart": {
@@ -77,7 +135,8 @@
     "description": "Description of Items:",
     "packaging": "Packaging of Shipment:",
     "speed": "Processing Speed:",
-    "complaints": "Complaints:",
+    "complaint": "Complaints:",
+    "comment": "Comment:",
     "evaluate": "Evaluate",
     "guidelines": "Evaluation Guidelines",
     "guide1":"Do not give an overall neutral or bad evaluation before trying to contact the seller first. Sellers are human and can make mistakes. Give them a chance to fix them.",
@@ -87,22 +146,84 @@
     "guide5":"If you did not receive this shipment do not evaluate it. Contact our support so they mark it as lost.",
     "guide6":"Mark or explain why you give overall neutral or bad evaluations, otherwise they will be neutralized.",
     "continue": "Continue",
-    "comment": "Comment",
-    "back": "Back to Order"
+    "back": "Back to Order",
+    "complaints": {
+      "badCommunication": "Bad communication",
+      "incompleteShipment": "Items were missing",
+      "notFoil": "Ordered Foil - Got Non Foil",
+      "rudeSeller": "Rude seller",
+      "shipDamage": "Damaged during shipping",
+      "unorderedShipment": "Contents was unordered",
+      "wrongEd": "Wrong version",
+      "wrongLang": "Wrong language"
+    },
+    "evaluations": {
+      "1": "Very good",
+      "2": "Good",
+      "3": "Neutral",
+      "4": "Bad"
+    }
+  },
+  "help": {
+    "p1": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cumque, deserunt doloribus ea harum in ipsa ipsum molestias officiis omnis, pariatur possimus provident quisquam sequi similique tempora temporibus vero voluptatem?",
+    "p2": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cumque, deserunt doloribus ea harum in ipsa ipsum molestias officiis omnis, pariatur possimus provident quisquam sequi similique tempora temporibus vero voluptatem?",
+    "p3": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cumque, deserunt doloribus ea harum in ipsa ipsum molestias officiis omnis, pariatur possimus provident quisquam sequi similique tempora temporibus vero voluptatem?"
+  },
+  "legal": {
+    "p1": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cumque, deserunt doloribus ea harum in ipsa ipsum molestias officiis omnis, pariatur possimus provident quisquam sequi similique tempora temporibus vero voluptatem?",
+    "p2": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cumque, deserunt doloribus ea harum in ipsa ipsum molestias officiis omnis, pariatur possimus provident quisquam sequi similique tempora temporibus vero voluptatem?",
+    "p3": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cumque, deserunt doloribus ea harum in ipsa ipsum molestias officiis omnis, pariatur possimus provident quisquam sequi similique tempora temporibus vero voluptatem?"
+  },
+  "login": {
+    "login": "Log In",
+    "error": "Error retrieving access, please retry",
+    "success": "Logged in successfully!"
+  },
+  "messages": {
+    "send": "Send",
+    "message": "Message",
+    "new": "Write a new message"
   },
   "order": {
     "error": "Error loading order",
-    "loading": "Loading order..."
+    "loading": "Loading order...",
+    "title": "Order Nr.:",
+    "purchased": "Purchased:",
+    "paid": "Paid:",
+    "sent": "Sent:",
+    "received": "Received:",
+    "status": "Status:",
+    "reason": "Reason:",
+    "cancellation": "Cancellation requested on",
+    "rejected": "Cancellation has been rejected",
+    "cancel": "Request Cancellation",
+    "confirm": "Confirm Reception",
+    "mark": "Mark as sent",
+    "please_evaluate": "Please evaluate this order",
+    "evaluate": "Evaluate order",
+    "evaluation": "Evaluation:",
+    "shipments_0": "No shipments",
+    "shipments_1": "One shipment",
+    "shipments": "{{count}} shipments",
+    "seller": "Seller:",
+    "buyer": "Buyer:",
+    "last_name": "Last name:",
+    "outstanding": "You must still transfer {{sum}} to pay for your unpaid orders.",
+    "statuses": {
+      "received": "Received",
+      "sent": "Sent",
+      "evaluated": "Evaluated",
+      "paid": "Paid",
+      "bought": "Unpaid",
+      "lost": "Lost",
+      "cancelled": "Cancelled"
+    }
   },
   "product": {
     "error": "Error loading product data",
     "nr": "(Nr. {{number}})"
   },
   "settings": {
-    "vacation": "MKM Vacation Status",
-    "help": "Help & About",
-    "contact": "Contact Us",
-    "legal": "Legal",
-    "logout": "Logout"
+    "vacation": "MKM Vacation Status"
   }
 }

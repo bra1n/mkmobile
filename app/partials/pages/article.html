@@ -18,12 +18,12 @@
       </select><br>
     </span>
     <label for="language" translate="common.language"></label>
-    <select id="language" ng-options="language.value as language.label for language in languages"
+    <select id="language" ng-options="language as 'article.languages.'+language | translate for language in languages"
             ng-model="data.article.language.idLanguage" required></select>
     <span class="icon language language-{{data.article.language.idLanguage}}"></span>
     <hr>
     <label for="condition" translate="article.condition"></label>
-    <select id="condition" ng-options="condition.value as condition.label for condition in conditions"
+    <select id="condition" ng-options="condition as 'article.conditions.'+condition | translate for condition in conditions"
             ng-model="data.article.condition" required></select>
     <span class="icon grading grading-{{data.article.condition}}"></span>
     <hr>
@@ -36,7 +36,7 @@
     <input type="checkbox" ng-model="data.article.isAltered" id="isAltered">
     <label for="isAltered" translate="article.altered"></label>
     <hr>
-    <input type="text" ng-model="data.article.comments" placeholder="Comment"><br>
+    <input type="text" ng-model="data.article.comments" placeholder="{{'common.comment' | translate}}"><br>
     <label for="price" translate="common.price"></label>
     <input id="price" type="number" step="0.01" min="0.01" ng-model="data.article.price"><br>
     <button ng-click="save()" translate="common.save"></button>
