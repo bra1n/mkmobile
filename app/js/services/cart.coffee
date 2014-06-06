@@ -35,7 +35,7 @@ mkmobileServices.factory 'MkmApiCart', [ 'MkmApi', 'DataCache', '$filter', (MkmA
     createOption = (method) ->
       value: method.idShippingMethod
       label: method.name+" - "+$filter('currency')(method.price,'€')
-      group: if method.isInsured then "Insured" else "Uninsured"
+      group: if method.isInsured then "insured" else "uninsured"
     order = response.order or response.cart[0]
     order.shippingMethods = [ createOption order.shippingMethod ]
     MkmApi.api.shippingMethod {param2: order.idReservation}, (data) ->

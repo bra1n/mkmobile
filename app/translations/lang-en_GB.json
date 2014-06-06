@@ -19,14 +19,27 @@
   "common": {
     "loading": "Loading...",
     "save": "Save Changes",
-    "language": "Language",
     "price": "Price",
     "bank": "Bank transfer",
     "paypal": "PayPal",
     "instabuy": "Instabuy",
     "logout": "Logout",
     "search": "Search",
-    "comment": "Comment"
+    "comment": "Comment",
+    "article": "article",
+    "articles": "articles",
+    "total": "Total",
+    "items_shipping": "Items + Shipping Methods",
+    "insured": "Insured",
+    "uninsured": "Uninsured",
+    "language": "Language",
+    "languages": {
+      "1": "English",
+      "2": "French",
+      "3": "German",
+      "4": "Spanish",
+      "5": "Italian"
+    }
   },
   "address": {
     "title": "Change shipping address",
@@ -111,8 +124,6 @@
     "article": "article for",
     "articles": "articles for",
     "shipping": "Shipping:",
-    "total": "Total",
-    "explanation": "Items + Shipping Methods",
     "balance": "Account balance",
     "loading": "Loading cart..."
   },
@@ -208,6 +219,8 @@
     "seller": "Seller:",
     "buyer": "Buyer:",
     "last_name": "Last name:",
+    "shipping_address": "Shipping address",
+    "seller_address": "Seller's address",
     "outstanding": "You must still transfer {{sum}} to pay for your unpaid orders.",
     "statuses": {
       "received": "Received",
@@ -219,11 +232,57 @@
       "cancelled": "Cancelled"
     }
   },
+  "payment": {
+    "done": "Thank you for your payment!",
+    "cancel": "Your Paypal account has not been charged.",
+    "close": "You can now close this tab.",
+    "loading": "Loading payment data...",
+    "alternate": "Alternate Method:",
+    "paypal": "Credit my Account via PayPal",
+    "paypal_p1": "When crediting your account with PayPal, a fee of 0.35 Euro + 5% of the credited amount applies.",
+    "paypal_p2": "Please remember that crediting your account via a SEPA bank transfer is free of charge. A european bank transfer usually takes no longer than two business days.",
+    "paypal_p3": "Total amount for PayPal:",
+    "paypal_p4": "Pay with Paypal",
+    "bank": "Credit my Account via Bank Transfer",
+    "bank_p1": "To transfer money to your user account, please wire the desired amount to the following bank account.",
+    "bank_p2": "Bank Account",
+    "bank_p3": "Amount:",
+    "bank_p4": "Recipient",
+    "bank_p5": "Account Nr:",
+    "bank_p6": "Bank:",
+    "bank_p7": "Bank Code:",
+    "bank_p8": "IBAN:",
+    "bank_p9": "BIC",
+    "bank_p10": "Transfer Reason:",
+    "bank_p11": "Attention:",
+    "bank_p12": "Always indicate <b>{{user}}</b> in the transfer reason (reference) field while wire transferring money to your MKM Account!",
+    "bank_p13": "Do not enter any other information in this field since it may slow down the payment process.",
+    "bank_p14": "Make sure that you (or your bank) use(s) an International Payment Order Form in conformity with the <b>SEPA</b> (Single European Payment Area) agreement.",
+    "bank_p15": "Banks charge <b>extra fees</b> on any transactions done <b>without the correct form</b>."
+  },
   "product": {
     "error": "Error loading product data",
-    "nr": "(Nr. {{number}})"
+    "nr": "(Nr. {{number}})",
+    "articles_error": "Error loading articles",
+    "no_articles": "No articles found.",
+    "available": "Available Items:",
+    "from": "From (EX+):",
+    "average": "Average price (EX+):",
+    "foils": "Available foils:",
+    "foils_from": "Foils from:",
+    "reprints": "Also available in:"
+  },
+  "search": {
+    "results": "{{count}} Results",
+    "error": "Error loading search results",
+    "alphabetical": "Alphabetical",
+    "expansion": "Expansion",
+    "rarity": "Rarity"
   },
   "settings": {
     "vacation": "MKM Vacation Status"
+  },
+  "stock": {
+    "no_articles": "No articles"
   }
 }

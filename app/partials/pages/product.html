@@ -1,14 +1,14 @@
 <header ng-class="{loading:productData.loading}">
-  <span class="error" ng-show="productData.error">Error loading product</span>
+  <span class="error" ng-show="productData.error" translate="product.error">Error loading product</span>
   {{productData.product.name[0].productName}}
-  <span ng-show="productData.product.number">(Nr. {{productData.product.number}})</span>
+  <span ng-show="productData.product.number" translate="product.nr" translate-value-number="{{productData.product.number}}"></span>
   <span class="icon expansion" ng-style="productData.product.expIcon | expansionIcon" ng-show="productData.product.expansion"></span>
   <span ng-show="productData.product.rarity" class="icon rarity rarity-{{productData.product.rarity}}"></span>
 </header>
 <mkm-product product-data="productData"></mkm-product>
 <article>
-  <span ng-show="data.error" class="error">Error loading articles</span>
-  <span ng-show="!data.loading && !data.count && !data.error">No Offers :(</span>
+  <span ng-show="data.error" class="error" translate="product.articles_error">Error loading articles</span>
+  <span ng-show="!data.loading && !data.count && !data.error" translate="product.no_articles">No Offers :(</span>
   <ul ng-class="{loading:data.loading}" data-infinite-scroll="loadArticles()">
     <li ng-repeat="article in data.articles" ng-hide="!article.count">
       <div class="seller">

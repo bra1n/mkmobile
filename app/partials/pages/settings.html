@@ -7,7 +7,7 @@
     </li>
     <li>
       <label for="languages" translate="common.language">Language</label>
-      <select id="languages" ng-options="language.value as language.label for language in languages"
+      <select id="languages" ng-options="language as 'common.languages.'+language | translate for language in languages"
               ng-model="data.account.idDisplayLanguage" ng-change="updateLanguage()"></select>
     </li>
     <li><a href="/help" translate="titles.help">Help & About</a></li>

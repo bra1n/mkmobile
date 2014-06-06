@@ -3,13 +3,21 @@
     <div class="aligner"></div>
     <img src="" ng-src="{{productData.product.image | productImage}}">
     <div class="data">
-      Available Items: {{productData.product.countArticles}}<br>
-      From (EX+): {{productData.product.priceGuide.LOW | currency:"€"}}<br>
-      Average price (EX+): {{productData.product.priceGuide.AVG | currency:"€"}}<br>
-      <span ng-show="productData.product.countFoils">Available foils: {{productData.product.countFoils}}<br></span>
-      <span ng-show="productData.product.countFoils">Foils from: {{productData.product.priceGuide.LOWFOIL | currency:"€"}}<br></span>
+      <b translate="product.available">Available Items:</b>
+      {{productData.product.countArticles | number}}<br>
+      <b translate="product.from">From (EX+):</b>
+      {{productData.product.priceGuide.LOW | currency:"€"}}<br>
+      <b translate="product.average">Average price (EX+):</b>
+      {{productData.product.priceGuide.AVG | currency:"€"}}<br>
+      <span ng-show="productData.product.countFoils">
+        <b translate="product.foils">Available foils:</b> 
+        {{productData.product.countFoils | number}}<br>
+      </span>
+      <span ng-show="productData.product.countFoils">
+        <b translate="product.foils_from">Foils from:</b> 
+        {{productData.product.priceGuide.LOWFOIL | currency:"€"}}<br></span>
       <div class="reprints" ng-show="productData.product.reprint">
-        Also available in:
+        <span translate="product.reprints">Also available in:</span>
         <a href="/product/{{reprint.idProduct}}" ng-repeat="reprint in productData.product.reprint">
           <span class="icon expansion" ng-style="reprint.expIcon | expansionIcon"></span>
         </a>

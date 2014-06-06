@@ -317,7 +317,7 @@ mkm-order i {
   background-position: 25% 25%; }
 
 #content.stock article.product {
-  margin-top: 15px; }
+  padding-top: 50px; }
 #content.stock article .product, #content.stock article .icons, #content.stock article .price {
   display: inline-block;
   width: 33%; }

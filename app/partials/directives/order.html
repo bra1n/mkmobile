@@ -1,8 +1,8 @@
-<b>Seller: {{order.seller.username}}</b>
+<b translate="order.seller">Seller:</b> {{order.seller.username}}
 <span class="seller-details" mkm-user user="order.seller"></span>
 <a class="icon comment" ng-show="order.isBuyer" href="/messages/{{order.seller.idUser}}"></a>
 <div class="seller-address" ng-show="order.seller.address">
-  Seller's address<br>
+  <b translate="order.seller_address">Seller's address</b><br>
   {{order.seller.name.firstName}} {{order.seller.name.lastName}}<br>
   <span ng-show="order.seller.address.street"> {{order.seller.address.street}}, </span>
   <span ng-show="order.seller.address.extra">  {{order.seller.address.extra}},  </span>
@@ -16,11 +16,11 @@
 </div>
 
 <div ng-show="order.buyer">
-  <b>Buyer: {{order.buyer.username}}</b>
+  <b translate="order.buyer">Buyer:</b> {{order.buyer.username}}
   <span class="buyer-details" mkm-user user="order.buyer"></span>
   <a class="icon comment" ng-hide="order.isBuyer" href="/messages/{{order.buyer.idUser}}"></a>
   <div class="buyer-address" ng-show="order.shippingAddress">
-    Shipping address<br>
+    <b translate="order.shipping_address">Shipping address</b><br>
     {{order.shippingAddress.name}}<br>
     <span ng-show="order.shippingAddress.street"> {{order.shippingAddress.street}}, </span>
     <span ng-show="order.shippingAddress.extra">  {{order.shippingAddress.extra}},  </span>
@@ -34,8 +34,10 @@
 </div>
 
 <div class="overview">
-  <ng-pluralize count="order.articleCount" when="{0:'No articles',one:'1 article',other:'{} articles'}"></ng-pluralize>
-  <span>Price</span>
+  {{order.articleCount}}
+  <span ng-show="order.articleCount == 1" translate="common.article"></span>
+  <span ng-show="order.articleCount != 1" translate="common.articles"></span>
+  <span translate="common.price">Price</span>
 </div>
 <ul class="articles">
   <li ng-repeat="article in order.article" ng-hide="!article.count">
@@ -65,9 +67,9 @@
   {{order.shippingMethod.name}} - {{order.shippingMethod.price | currency:"€"}}
 </span>
 <select ng-model="order.shippingMethod.idShippingMethod" ng-change="shippingMethod(order)" ng-show="order.shippingMethods"
-        ng-options="sm.value as sm.label group by sm.group for sm in order.shippingMethods"></select>
+        ng-options="sm.value as sm.label group by 'common.'+sm.group | translate for sm in order.shippingMethods"></select>
 <hr>
 <div class="total">
-  Total - {{order.totalValue | currency:"€"}}
-  <i>Items + Shipping Method</i>
+  <span translate="common.total"></span> - {{order.totalValue | currency:"€"}}
+  <i translate="common.items_shipping"></i>
 </div>

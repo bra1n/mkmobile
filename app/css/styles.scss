@@ -311,7 +311,7 @@ mkm-order {
 // stock page
 #content.stock {
   article {
-    &.product { margin-top: 15px; }
+    &.product { padding-top: 50px; }
     .product, .icons, .price {
       display: inline-block;
       width: 33%;

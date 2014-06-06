@@ -1,7 +1,8 @@
 <header>
-  My Articles
-  <ng-pluralize ng-hide="data.loading" count="data.count"
-                when="{0:'- No articles',one:'- 1 article',other:'- {} articles'}"></ng-pluralize>
+  <span translate="titles.stock">My Articles</span> -
+  {{data.count}}
+  <span ng-show="data.count != 1" translate="common.articles"></span>
+  <span ng-show="data.count == 1" translate="common.article"></span>
 </header>
 <article>
   <div class="header">
@@ -12,7 +13,7 @@
       <button class="plus" ng-click="increase(selected)">+</button>
     </div>
   </div>
-  <span ng-show="!data.loading && !data.count">No Articles :(</span>
+  <span ng-show="!data.loading && !data.count" translate="article.no_articles">No Articles :(</span>
   <ul ng-class="{loading:data.loading}" data-infinite-scroll="loadArticles()">
     <li ng-repeat="article in data.articles" ng-class="{loading:article.loading}" ng-hide="!article.count">
       <div class="product">

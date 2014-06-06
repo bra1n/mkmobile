@@ -85,13 +85,7 @@ mkmobileServices.factory 'MkmApiAuth', [
       return DataCache.account account
 
     # return list of available languages
-    getLanguages: -> [
-      { value: 1, label: "English" }
-      { value: 2, label: "French" }
-      { value: 3, label: "German" }
-      { value: 4, label: "Spanish" }
-      { value: 5, label: "Italian" }
-    ]
+    getLanguages: -> [1..5]
 
     # return list of language ID to ISO code
     getLanguageCodes: -> [
