@@ -1,16 +1,19 @@
 <div class="input">
-  <input ng-model="query" id="search" placeholder="{{'common.search' | translate}}">
-  <button ng-show="query != ''" ng-click="query = ''">X</button>
+  <div class="left"><input ng-model="query" id="search" placeholder="{{'common.search' | translate}}"></div>
+  <div class="right"><button ng-show="query != ''" ng-click="query = ''">{{'search.cancel' | translate}}</button></div>
 </div>
 <div class="results" ng-show="query != ''">
-  <span ng-show="!searchData.loading"
-        translate="search.results" translate-value-count="{{searchData.count | number}}">Results</span>
-  <span class="error" ng-show="searchData.error" translate="search.error">Error loading search results</span>
-  <select ng-model="sort" ng-show="searchData.count > 0">
-    <option value="name[0]['productName']" translate="search.alphabetical">Alphabetical</option>
-    <option value="expIcon" translate="search.expansion">Expansion</option>
-    <option value="rarity" translate="search.rarity">Rarity</option>
-  </select>
+  <h3>
+    <span ng-show="!searchData.loading"
+          translate="search.results" translate-value-count="{{searchData.count | number}}">Results</span>
+    <span class="error" ng-show="searchData.error" translate="search.error">Error loading search results</span>
+    <span ng-show="searchData.count > 0" translate="search.sort">Sort</span>
+    <select ng-model="sort" ng-show="searchData.count > 0">
+      <option value="name[0]['productName']" translate="search.name">Name</option>
+      <option value="expIcon" translate="search.expansion">Expansion</option>
+      <option value="rarity" translate="search.rarity">Rarity</option>
+    </select>
+  </h3>
   <ul ng-class="{loading:searchData.loading}" data-infinite-scroll="loadResults()">
     <li ng-repeat="product in searchData.products | orderBy:sort">
       <a href="/product/{{product.idProduct}}">

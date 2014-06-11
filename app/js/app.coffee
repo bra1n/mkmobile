@@ -141,14 +141,18 @@ mkmobileApp.config [
     tmhDynamicLocaleProvider.localeLocationPattern '/lib/angular-i18n/angular-locale_{{locale}}.js'
     tmhDynamicLocaleProvider.defaultLocale 'en-gb'
     # translations
+    language = switch (navigator.language or navigator.userLanguage).toLowerCase().substr(0,2)
+      when "fr" then "fr_FR"
+      when "de" then "de_DE"
+      when "es" then "es_ES"
+      when "it" then "it_IT"
+      else "en_GB"
     $translateProvider
     .useStaticFilesLoader
       prefix: '/translations/lang-',
       suffix: '.json'
     .fallbackLanguage 'en_GB'
-    .preferredLanguage 'en_GB'
-    #.determinePreferredLanguage()
-    #todo implement detection
+    .preferredLanguage language
 ]
 
 # generate a base CSS class based on the route path and check login for auth routes
@@ -160,10 +164,12 @@ mkmobileApp.run [ '$rootScope','MkmApiAuth','$translate', ($rootScope, MkmApiAut
   # update title and view class
   translateTitle = -> $translate(['titles.app','titles.'+$rootScope.viewClass]).then (texts) ->
     $rootScope.viewTitle = texts['titles.app'] + ' — ' + texts['titles.'+$rootScope.viewClass]
+    $rootScope.language = $translate.use().substr(0,2)
   # new page, update view class and title
   $rootScope.$on '$routeChangeSuccess', (event, current) ->
     if current.$$route?.originalPath? and current.$$route?.originalPath.split("/").length > 1
       $rootScope.viewClass = current.$$route?.originalPath.split("/")[1]
+      $rootScope.loggedIn = if MkmApiAuth.isLoggedIn() then "loggedin" else "loggedout"
       translateTitle()
   # update title on language change
   $rootScope.$on '$translateChangeSuccess', -> translateTitle()

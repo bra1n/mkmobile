@@ -33,7 +33,7 @@
   <script src="/js/services/order.js"></script>
   <script src="/js/services/message.js"></script>
 </head>
-<body translate-cloak>
+<body ng-class="[language, loggedIn]">
   <div id="container">
     <div ng-view id="content" ng-class="viewClass"></div>
   </div>

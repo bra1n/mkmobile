@@ -1,33 +1,53 @@
-// General styling
-body, html { height: 100%; }
-a {
-  text-decoration: none;
+@mixin gradient($color1, $color2) {
+  background: $color1;
+  background: -moz-linear-gradient(top,  $color1 0%, $color2 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$color1), color-stop(100%,$color2));
+  background: -webkit-linear-gradient(top,  $color1 0%,$color2 100%);
+  background: -o-linear-gradient(top,  $color1 0%,$color2 100%);
+  background: -ms-linear-gradient(top,  $color1 0%,$color2 100%);
+  background: linear-gradient(to bottom,  $color1 0%,$color2 100%);
 }
+
+// General styling
+body, html {
+  height: 100%;
+  font-family: Verdana, Arial, sans-serif;
+  color: #444;
+  font-size: 14px;
+  background: #fdfdfd;
+}
+a { text-decoration: none; }
+input, button, select { vertical-align: baseline; }
+select { background: #eaeaea; border: none; }
 ul,li {
   list-style-type: none;
   padding: 0;
   margin:0;
 }
+:focus { color:#012169; outline: none; }
 
 header {
   position: fixed;
   left: 0;
   right: 0;
-  width: 100%;
   top: -1px;
   padding-top: 1px;
   background: #eee;
   z-index: 1000;
   max-height: 100%;
-  height: 35px;
-  line-height: 35px;
+  height: 50px;
+  line-height: 50px;
   text-align: center;
+  border-bottom: 1px solid #011542;
+  @include gradient(#012678,#011d5d);
+  color: white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-article {
-  padding-bottom: 55px;
-  padding-top: 35px;
-}
+article { padding: 50px 10px 55px 10px; }
+body.loggedout article { padding-bottom: 0px; }
 
 footer {
   position: fixed;
@@ -67,13 +87,61 @@ footer {
   }
 }
 
+// subheadline - container
+.subheadline {
+  background: #eaeaea;
+  box-shadow: 0 -1px 2px rgba(0,0,0,0.75);
+  border-bottom: 1px solid #ccc;
+  height: 50px;
+  line-height: 50px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+}
+
+// headlines
+h3 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 5px 0 10px 0;
+  text-align: center;
+}
+
+// text fields
+input {
+  border-radius: 5px;
+  background: #fff;
+  border: 1px solid #cccccc;
+  box-shadow: inset 0 0 2px rgba(0,0,0,0.5);
+  font-weight: normal;
+  padding: 5px;
+  &::-webkit-input-placeholder,
+  &::-moz-placeholder,
+  &:-ms-input-placeholder { color: #ccc; }
+}
+
+// buttons
+.button {
+//  height: 50px;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  border-radius: 5px;
+  background: #012169;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  letter-spacing: 1px;
+  border: none;
+  &:focus { background: #0240ca; color: #fff; }
+}
+
 .loading {
   background: url("/img/loading.gif") no-repeat center center;
 }
 ul.loading {
   background-position: center bottom;
-  padding-bottom: 20px;
-  margin-bottom: 4px;
+  padding-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 .icon {
@@ -109,14 +177,14 @@ ul.loading {
 aside.slider {
   -webkit-transition: 0.5s linear all;-moz-transition: 0.5s linear all;-ms-transition: 0.5s linear all;-o-transition: 0.5s linear all;transition: 0.5s linear all;
   position: fixed;
-  bottom: 100%;
-  margin-bottom: -45px;
+  top: -100%;
+  margin-top: 50px;
   padding-bottom: 10px;
   background: white;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  &.open { bottom: 100px; }
+  &.open { top: -110px; }
   .content {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -148,6 +216,7 @@ aside.slider {
   }
   &.open .toggle { cursor: n-resize; }
 }
+body.loggedout aside.slider.open { top: -60px; }
 
 // Order directive
 mkm-order {
@@ -168,51 +237,138 @@ mkm-order {
     // login form
     position: fixed;
     width: 100%;
-    iframe {
+    height: 100%;
+    text-align: center;
+    white-space: nowrap;
+    padding-bottom: 0;
+    &:before {
+      content: " ";
+      width: 0px;
+      height: 100%;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    form {
+      display: inline-block;
       width: 100%;
+    }
+    iframe {
+      width: 80%;
       height: 360px;
       border: none;
     }
-    img.logo { width: 200px; }
-    input, button { display: block; }
+    img.logo {
+      width: 70%;
+      margin: auto;
+      display: block;
+    }
   }
   .input {
-    @extend header;
+    @extend .subheadline;
+    display: table;
+    width: 100%;
+    position: fixed;
+    z-index: 100;
+    div { display: table-cell; }
+    div.left {
+      width: 100%;
+      padding: 0 45px 0 5px;
+    }
+    input {
+      width: 100%;
+      padding-left: 35px;
+      background: url("/img/search.png") 5px 5px no-repeat #fff;
+    }
     button {
-      height: 24px;
-      line-height: 21px;
+      border: none;
+      background: transparent;
+      height: 40px;
+      line-height: 40px;
     }
   }
   .results {
     // search results
     position: absolute;
-    top: 35px;
+    top: 55px;
     background-color: rgba(255,255,255,0.75);
     width: 100%;
     z-index: 10;
-    min-height: 100px;
+    min-height: 80%;
+    li {
+      padding: 0 10px;
+      line-height: 40px;
+      border-bottom: 1px solid #ccc;
+      position: relative;
+      padding-right: 15px;
+      &:nth-child(odd) { background: rgba(250,250,250,0.25); }
+      &:after {
+        content: url("/img/link.png");
+        position: absolute;
+        right: 5px;
+        top: 50%;
+        margin-top: -11px;
+      }
+    }
+    a {
+      color: #0240ca;
+      font-weight: bold;
+      font-size: 16px;
+      display: block;
+    }
   }
-  footer .login { background-position: 75% 25%; }
 }
 
 // product page
 #content.product {
-  .icon.comment { cursor:pointer; }
+  header {
+    padding-right: 60px;
+    padding-left: 60px;
+    .box {
+      background: white;
+      border-radius: 3px;
+      line-height: 10px;
+      padding: 2px;
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      margin-top: -12px;
+    }
+  }
   article {
-    padding-top: 45px;
-    .seller, .icons, .price {
-      display: inline-block;
-      width: 33%;
+    padding-top: 60px;
+    ul {
+      display: table;
+      width: 100%;
+    }
+    li { display: table-row; }
+    li > div {
+      display: table-cell;
       height: 30px;
       vertical-align: middle;
       line-height: 30px;
+      white-space: nowrap;
+      text-align: left;
     }
-    .icons {
-      text-align: center;
-      .icon.ng-hide { display: inline-block !important; visibility: hidden; }
+    .seller {
+      cursor: pointer;
+      font-weight: bold;
+      color: #0240ca;
     }
-    .price { text-align: right; }
-    .count { display: inline-block; min-width: 30px; text-align: center; }
+    div.icons .icon.comment { cursor:pointer; }
+    div.price {
+      text-align: right;
+      width: 150px;
+    }
+    div.price .icon.is-playset { display: none; }
+    div.price.playset {
+      .price, .price-per-card {
+        font-weight: bold;
+        color: #0240ca;
+        cursor: pointer;
+      }
+      .icon.is-playset { display: inline-block; }
+    }
+    .count { display: inline-block; min-width: 20px; text-align: center; }
     button {
       border: none;
       background: gray;
@@ -226,8 +382,6 @@ mkm-order {
       border-radius: 12px;
       outline: none;
     }
-    .seller button:before { content: "+"; }
-    .seller button.open:before { content: "-"; }
     .price button { background-image:url("/img/cart.png"); background-repeat:no-repeat; background-position:4px 4px; }
     .comment { text-align: center; }
   }

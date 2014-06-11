@@ -1,16 +1,15 @@
 <mkm-search></mkm-search>
 <article>
   <form>
-    <img src="/img/logo.jpg" alt="Logo" class="logo"/><br>
+    <img src="/img/logo.jpg" alt="Logo" class="logo">
     <div ng-hide="loggedIn">
       <iframe src="" ng-src="{{iframeSrc}}" ng-show="iframeSrc" scrolling="no"></iframe>
-      <button ng-hide="iframeSrc || login.success" ng-click="handleLogin()" translate="login.login">Log In</button>
+      <button class="button" ng-hide="iframeSrc || login.success" ng-click="handleLogin()" translate="login.login">Log In</button>
       <div ng-show="login.error" translate="login.error">Error retrieving access, please retry</div>
       <div ng-show="login.success" translate="login.success">Logged in successfully!</div>
     </div>
     <div ng-show="loggedIn">
-      <button ng-click="logout()" translate="common.logout">Logout</button>
+      <button class="button" ng-click="logout()" translate="common.logout">Logout</button>
     </div>
   </form>
 </article>
-<mkm-footer></mkm-footer>

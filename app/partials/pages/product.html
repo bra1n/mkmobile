@@ -2,8 +2,10 @@
   <span class="error" ng-show="productData.error" translate="product.error">Error loading product</span>
   {{productData.product.name[0].productName}}
   <span ng-show="productData.product.number" translate="product.nr" translate-value-number="{{productData.product.number}}"></span>
-  <span class="icon expansion" ng-style="productData.product.expIcon | expansionIcon" ng-show="productData.product.expansion"></span>
-  <span ng-show="productData.product.rarity" class="icon rarity rarity-{{productData.product.rarity}}"></span>
+  <div class="box">
+    <span ng-show="productData.product.rarity" class="icon rarity rarity-{{productData.product.rarity}}"></span>
+    <span class="icon expansion" ng-style="productData.product.expIcon | expansionIcon" ng-show="productData.product.expansion"></span>
+  </div>
 </header>
 <mkm-product product-data="productData"></mkm-product>
 <article>
@@ -11,26 +13,28 @@
   <span ng-show="!data.loading && !data.count && !data.error" translate="product.no_articles">No Offers :(</span>
   <ul ng-class="{loading:data.loading}" data-infinite-scroll="loadArticles()">
     <li ng-repeat="article in data.articles" ng-hide="!article.count">
-      <div class="seller">
-        <button ng-click="article.showSeller = !article.showSeller" ng-class="!!article.showSeller && 'open'"></button>
-        <span class="icon country country-{{article.seller.country}}"></span>
-        {{article.seller.username}}
+      <div class="seller" ng-click="article.showSeller=!article.showSeller">
+        <span class="name" ng-show="!article.showSeller">{{article.seller.username}}</span>
+        <span class="details" ng-show="article.showSeller" mkm-user user="article.seller"></span>
       </div><div class="icons">
         <span class="icon language language-{{article.language.idLanguage}}" ng-show="article.language.idLanguage"></span>
         <span class="icon grading grading-{{article.condition}}" ng-show="article.condition"></span>
         <span class="icon is-foil" ng-show="article.isFoil"></span>
         <span class="icon is-signed" ng-show="article.isSigned"></span>
-        <span class="icon is-playset" ng-show="article.isPlayset"></span>
         <span class="icon is-altered" ng-show="article.isAltered"></span>
         <span class="icon comment" ng-show="article.comments" ng-click="article.showComment = !article.showComment"></span>
-      </div><div class="price">
-        {{article.price | currency:"€"}}
-        <span class="price-per-card" ng-show="article.isPlayset">({{article.price / 4 | currency:"€"}})</span>
+      </div><div class="price" ng-class="{playset: article.isPlayset}">
+        <span class="icon is-playset" ng-click="article.showPlayset=!article.showPlayset"></span>
+        <span class="price" ng-click="article.showPlayset=true" ng-hide="article.showPlayset && article.isPlayset">
+          {{article.price | currency:"€"}}
+        </span>
+        <span class="price-per-card" ng-click="article.showPlayset=false" ng-show="article.showPlayset && article.isPlayset">
+          4x{{article.price / 4 | currency:"€"}}
+        </span>
         <span class="count">{{article.count}}</span>
         <button ng-click="addToCart(article)"></button>
       </div>
       <div class="comment" ng-hide="!article.showComment">{{article.comments}}</div>
-      <div class="seller" ng-hide="!article.showSeller" mkm-user user="article.seller"></div>
     </li>
   </ul>
 </article>

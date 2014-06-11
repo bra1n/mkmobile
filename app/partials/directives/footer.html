@@ -1,15 +1,10 @@
-<footer>
-  <div ng-show="loggedIn">
-    <a href="/home" class="home">
-      <span ng-show="messages">{{messages}}</span>
-    </a>
-    <a href="/search" class="search"></a>
-    <a href="/cart" class="cart">
-      <span ng-show="cart">{{cart}}</span>
-    </a>
-    <a href="/settings" class="settings"></a>
-  </div>
-  <div ng-hide="loggedIn">
-    <a href="/login" class="login"></a>
-  </div>
+<footer ng-show="loggedIn">
+  <a href="/home" class="home">
+    <span ng-show="messages">{{messages}}</span>
+  </a>
+  <a href="/search" class="search"></a>
+  <a href="/cart" class="cart">
+    <span ng-show="cart">{{cart}}</span>
+  </a>
+  <a href="/settings" class="settings"></a>
 </footer>

@@ -275,9 +275,11 @@
   "search": {
     "results": "{{count}} Results",
     "error": "Error loading search results",
-    "alphabetical": "Alphabetical",
+    "name": "Name",
     "expansion": "Expansion",
-    "rarity": "Rarity"
+    "rarity": "Rarity",
+    "cancel": "Cancel",
+    "sort": "- Sort by"
   },
   "settings": {
     "vacation": "MKM Vacation Status"

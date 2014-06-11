@@ -1,32 +1,60 @@
 @charset "UTF-8";
 body, html {
-  height: 100%; }
+  height: 100%;
+  font-family: Verdana, Arial, sans-serif;
+  color: #444;
+  font-size: 14px;
+  background: #fdfdfd; }
 
 a {
   text-decoration: none; }
+
+input, button, select {
+  vertical-align: baseline; }
+
+select {
+  background: #eaeaea;
+  border: none; }
 
 ul, li {
   list-style-type: none;
   padding: 0;
   margin: 0; }
 
-header, #content.login .input {
+:focus {
+  color: #012169;
+  outline: none; }
+
+header {
   position: fixed;
   left: 0;
   right: 0;
-  width: 100%;
   top: -1px;
   padding-top: 1px;
   background: #eee;
   z-index: 1000;
   max-height: 100%;
-  height: 35px;
-  line-height: 35px;
-  text-align: center; }
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  border-bottom: 1px solid #011542;
+  background: #012678;
+  background: -moz-linear-gradient(top, #012678 0%, #011d5d 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #012678), color-stop(100%, #011d5d));
+  background: -webkit-linear-gradient(top, #012678 0%, #011d5d 100%);
+  background: -o-linear-gradient(top, #012678 0%, #011d5d 100%);
+  background: -ms-linear-gradient(top, #012678 0%, #011d5d 100%);
+  background: linear-gradient(to bottom, #012678 0%, #011d5d 100%);
+  color: white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; }
 
 article {
-  padding-bottom: 55px;
-  padding-top: 35px; }
+  padding: 50px 10px 55px 10px; }
+
+body.loggedout article {
+  padding-bottom: 0px; }
 
 footer {
   position: fixed;
@@ -76,13 +104,53 @@ footer {
     footer a.settings:hover {
       background-position: 50% 50%; }
 
+.subheadline, #content.login .input {
+  background: #eaeaea;
+  box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.75);
+  border-bottom: 1px solid #ccc;
+  height: 50px;
+  line-height: 50px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center; }
+
+h3 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 5px 0 10px 0;
+  text-align: center; }
+
+input {
+  border-radius: 5px;
+  background: #fff;
+  border: 1px solid #cccccc;
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
+  font-weight: normal;
+  padding: 5px; }
+  input::-webkit-input-placeholder, input::-moz-placeholder, input:-ms-input-placeholder {
+    color: #ccc; }
+
+.button {
+  padding: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  border-radius: 5px;
+  background: #012169;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  letter-spacing: 1px;
+  border: none; }
+  .button:focus {
+    background: #0240ca;
+    color: #fff; }
+
 .loading {
   background: url("/img/loading.gif") no-repeat center center; }
 
 ul.loading {
   background-position: center bottom;
-  padding-bottom: 20px;
-  margin-bottom: 4px; }
+  padding-bottom: 40px;
+  margin-bottom: 20px; }
 
 .icon {
   display: inline-block;
@@ -123,15 +191,15 @@ aside.slider {
   -o-transition: 0.5s linear all;
   transition: 0.5s linear all;
   position: fixed;
-  bottom: 100%;
-  margin-bottom: -45px;
+  top: -100%;
+  margin-top: 50px;
   padding-bottom: 10px;
   background: white;
   width: 100%;
   height: 100%;
   overflow: hidden; }
   aside.slider.open {
-    bottom: 100px; }
+    top: -110px; }
   aside.slider .content {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -162,6 +230,9 @@ aside.slider {
   aside.slider.open .toggle {
     cursor: n-resize; }
 
+body.loggedout aside.slider.open {
+  top: -60px; }
+
 mkm-order div.icons, mkm-order div.price, mkm-order div.card {
   display: inline-block;
   width: 33%; }
@@ -176,48 +247,120 @@ mkm-order i {
 /***********************/
 #content.login article {
   position: fixed;
-  width: 100%; }
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  white-space: nowrap;
+  padding-bottom: 0; }
+  #content.login article:before {
+    content: " ";
+    width: 0px;
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle; }
+  #content.login article form {
+    display: inline-block;
+    width: 100%; }
   #content.login article iframe {
-    width: 100%;
+    width: 80%;
     height: 360px;
     border: none; }
   #content.login article img.logo {
-    width: 200px; }
-  #content.login article input, #content.login article button {
+    width: 70%;
+    margin: auto;
     display: block; }
-#content.login .input button {
-  height: 24px;
-  line-height: 21px; }
+#content.login .input {
+  display: table;
+  width: 100%;
+  position: fixed;
+  z-index: 100; }
+  #content.login .input div {
+    display: table-cell; }
+  #content.login .input div.left {
+    width: 100%;
+    padding: 0 45px 0 5px; }
+  #content.login .input input {
+    width: 100%;
+    padding-left: 35px;
+    background: url("/img/search.png") 5px 5px no-repeat white; }
+  #content.login .input button {
+    border: none;
+    background: transparent;
+    height: 40px;
+    line-height: 40px; }
 #content.login .results {
   position: absolute;
-  top: 35px;
+  top: 55px;
   background-color: rgba(255, 255, 255, 0.75);
   width: 100%;
   z-index: 10;
-  min-height: 100px; }
-#content.login footer .login {
-  background-position: 75% 25%; }
+  min-height: 80%; }
+  #content.login .results li {
+    padding: 0 10px;
+    line-height: 40px;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+    padding-right: 15px; }
+    #content.login .results li:nth-child(odd) {
+      background: rgba(250, 250, 250, 0.25); }
+    #content.login .results li:after {
+      content: url("/img/link.png");
+      position: absolute;
+      right: 5px;
+      top: 50%;
+      margin-top: -11px; }
+  #content.login .results a {
+    color: #0240ca;
+    font-weight: bold;
+    font-size: 16px;
+    display: block; }
 
-#content.product .icon.comment {
-  cursor: pointer; }
+#content.product header {
+  padding-right: 60px;
+  padding-left: 60px; }
+  #content.product header .box {
+    background: white;
+    border-radius: 3px;
+    line-height: 10px;
+    padding: 2px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    margin-top: -12px; }
 #content.product article {
-  padding-top: 45px; }
-  #content.product article .seller, #content.product article .icons, #content.product article .price {
-    display: inline-block;
-    width: 33%;
+  padding-top: 60px; }
+  #content.product article ul {
+    display: table;
+    width: 100%; }
+  #content.product article li {
+    display: table-row; }
+  #content.product article li > div {
+    display: table-cell;
     height: 30px;
     vertical-align: middle;
-    line-height: 30px; }
-  #content.product article .icons {
-    text-align: center; }
-    #content.product article .icons .icon.ng-hide {
-      display: inline-block !important;
-      visibility: hidden; }
-  #content.product article .price {
-    text-align: right; }
+    line-height: 30px;
+    white-space: nowrap;
+    text-align: left; }
+  #content.product article .seller {
+    cursor: pointer;
+    font-weight: bold;
+    color: #0240ca; }
+  #content.product article div.icons .icon.comment {
+    cursor: pointer; }
+  #content.product article div.price {
+    text-align: right;
+    width: 150px; }
+  #content.product article div.price .icon.is-playset {
+    display: none; }
+  #content.product article div.price.playset .price, #content.product article div.price.playset .price-per-card {
+    font-weight: bold;
+    color: #0240ca;
+    cursor: pointer; }
+  #content.product article div.price.playset .icon.is-playset {
+    display: inline-block; }
   #content.product article .count {
     display: inline-block;
-    min-width: 30px;
+    min-width: 20px;
     text-align: center; }
   #content.product article button {
     border: none;
@@ -231,10 +374,6 @@ mkm-order i {
     line-height: 25px;
     border-radius: 12px;
     outline: none; }
-  #content.product article .seller button:before {
-    content: "+"; }
-  #content.product article .seller button.open:before {
-    content: "-"; }
   #content.product article .price button {
     background-image: url("/img/cart.png");
     background-repeat: no-repeat;
@@ -242,7 +381,7 @@ mkm-order i {
   #content.product article .comment {
     text-align: center; }
 
-#content.home header img, #content.home #content.login .input img, #content.login #content.home .input img {
+#content.home header img {
   height: 35px; }
 #content.home article {
   margin: 0;
