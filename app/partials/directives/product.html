@@ -1,26 +1,27 @@
 <aside class="slider" ng-class="!!slider && 'open'">
   <div class="content">
-    <div class="aligner"></div>
-    <img src="" ng-src="{{productData.product.image | productImage}}">
-    <div class="data">
-      <b translate="product.available">Available Items:</b>
-      {{productData.product.countArticles | number}}<br>
-      <b translate="product.from">From (EX+):</b>
-      {{productData.product.priceGuide.LOW | currency:"€"}}<br>
-      <b translate="product.average">Average price (EX+):</b>
-      {{productData.product.priceGuide.AVG | currency:"€"}}<br>
-      <span ng-show="productData.product.countFoils">
-        <b translate="product.foils">Available foils:</b> 
-        {{productData.product.countFoils | number}}<br>
-      </span>
-      <span ng-show="productData.product.countFoils">
-        <b translate="product.foils_from">Foils from:</b> 
-        {{productData.product.priceGuide.LOWFOIL | currency:"€"}}<br></span>
-      <div class="reprints" ng-show="productData.product.reprint">
-        <span translate="product.reprints">Also available in:</span>
-        <a href="/product/{{reprint.idProduct}}" ng-repeat="reprint in productData.product.reprint">
-          <span class="icon expansion" ng-style="reprint.expIcon | expansionIcon"></span>
-        </a>
+    <div class="aligner"></div><div class="data">
+      <img src="" ng-src="{{productData.product.image | productImage}}">
+      <div class="text">
+        <b translate="product.available">Available Items:</b>
+        {{productData.product.countArticles | number}}<br>
+        <b translate="product.from">From (EX+):</b>
+        {{productData.product.priceGuide.LOW | currency:"€"}}<br>
+        <b translate="product.average">Average price (EX+):</b>
+        {{productData.product.priceGuide.AVG | currency:"€"}}<br>
+        <span ng-show="productData.product.countFoils">
+          <b translate="product.foils">Available foils:</b>
+          {{productData.product.countFoils | number}}<br>
+        </span>
+        <span ng-show="productData.product.countFoils">
+          <b translate="product.foils_from">Foils from:</b>
+          {{productData.product.priceGuide.LOWFOIL | currency:"€"}}<br></span>
+        <div class="reprints" ng-show="productData.product.reprint">
+          <b translate="product.reprints">Also available in:</b><br>
+          <a href="/product/{{reprint.idProduct}}" ng-repeat="reprint in productData.product.reprint">
+            <span class="icon expansion" ng-style="reprint.expIcon | expansionIcon"></span>
+          </a>
+        </div>
       </div>
     </div>
   </div>

@@ -1,4 +1,5 @@
 <header ng-class="{loading:productData.loading}">
+  <a href="javascript:history.back()" class="back">&#10094;</a>
   <span class="error" ng-show="productData.error" translate="product.error">Error loading product</span>
   {{productData.product.name[0].productName}}
   <span ng-show="productData.product.number" translate="product.nr" translate-value-number="{{productData.product.number}}"></span>
@@ -11,19 +12,21 @@
 <article>
   <span ng-show="data.error" class="error" translate="product.articles_error">Error loading articles</span>
   <span ng-show="!data.loading && !data.count && !data.error" translate="product.no_articles">No Offers :(</span>
-  <ul ng-class="{loading:data.loading}" data-infinite-scroll="loadArticles()">
-    <li ng-repeat="article in data.articles" ng-hide="!article.count">
-      <div class="seller" ng-click="article.showSeller=!article.showSeller">
-        <span class="name" ng-show="!article.showSeller">{{article.seller.username}}</span>
-        <span class="details" ng-show="article.showSeller" mkm-user user="article.seller"></span>
-      </div><div class="icons">
-        <span class="icon language language-{{article.language.idLanguage}}" ng-show="article.language.idLanguage"></span>
-        <span class="icon grading grading-{{article.condition}}" ng-show="article.condition"></span>
+  <ul class="table" ng-class="{loading:data.loading}" data-infinite-scroll="loadArticles()">
+    <li class="row" ng-repeat="article in data.articles track by article.idArticle"
+        ng-hide="!article.count" ng-class="{comment:article.showComment, seller:article.showSeller}">
+      <div class="cell seller" ng-click="article.showSeller=!article.showSeller">
+        <span class="name">{{article.seller.username}} ({{article.seller.sellCount}})</span>
+        <span class="details" mkm-user user="article.seller"></span>
+      </div><div class="cell icons">
+        <span class="icon language language-{{article.language.idLanguage}}"></span>
+        <span class="icon grading grading-{{article.condition}}"></span>
         <span class="icon is-foil" ng-show="article.isFoil"></span>
         <span class="icon is-signed" ng-show="article.isSigned"></span>
         <span class="icon is-altered" ng-show="article.isAltered"></span>
         <span class="icon comment" ng-show="article.comments" ng-click="article.showComment = !article.showComment"></span>
-      </div><div class="price" ng-class="{playset: article.isPlayset}">
+        <div class="comment">{{article.comments}}</div>
+      </div><div class="cell price" ng-class="{playset: article.isPlayset}">
         <span class="icon is-playset" ng-click="article.showPlayset=!article.showPlayset"></span>
         <span class="price" ng-click="article.showPlayset=true" ng-hide="article.showPlayset && article.isPlayset">
           {{article.price | currency:"€"}}
@@ -34,7 +37,6 @@
         <span class="count">{{article.count}}</span>
         <button ng-click="addToCart(article)"></button>
       </div>
-      <div class="comment" ng-hide="!article.showComment">{{article.comments}}</div>
     </li>
   </ul>
 </article>

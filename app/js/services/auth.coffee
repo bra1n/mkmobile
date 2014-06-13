@@ -21,7 +21,6 @@ mkmobileServices.factory 'MkmApiAuth', [
 
     # checks whether a user is logged in and redirects if necessary
     checkLogin: ->
-      console.log "login check", @isLoggedIn()
       response = true
       unless @isLoggedIn() and $location.path() isnt "/login"
         redirectAfterLogin = $location.path()

@@ -32,11 +32,10 @@ header {
   right: 0;
   top: -1px;
   padding-top: 1px;
-  background: #eee;
   z-index: 1000;
   max-height: 100%;
   height: 50px;
-  line-height: 50px;
+  line-height: 52px;
   text-align: center;
   border-bottom: 1px solid #011542;
   @include gradient(#012678,#011d5d);
@@ -44,6 +43,15 @@ header {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 18px;
+  &.loading { background-color: #012678; }
+  .back {
+    color: #fff;
+    position: absolute;
+    left: 10px;
+  }
 }
 
 article { padding: 50px 10px 55px 10px; }
@@ -136,7 +144,9 @@ input {
 }
 
 .loading {
-  background: url("/img/loading.gif") no-repeat center center;
+  background-image: url("/img/loading.gif");
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 ul.loading {
   background-position: center bottom;
@@ -183,38 +193,54 @@ aside.slider {
   background: white;
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  &.open { top: -110px; }
+  z-index: 100;
   .content {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    padding-top: 80px;
+    padding: 60px 10px 10px;
     height: 100%;
     white-space: nowrap;
-    .aligner {
+    text-align: center;
+    overflow: auto;
+    div, b, img {
       display: inline-block;
       vertical-align: middle;
+    }
+    .aligner {
       height: 100%;
       width: 0;
     }
-    img { vertical-align: middle; }
     .data {
-      display: inline-block;
-      vertical-align: middle;
       white-space: normal;
+      img { margin: 20px; max-width: 50%; }
+      .text { text-align: left; }
+      b { min-width: 200px; }
+      .reprints {
+        max-width: 600px;
+        margin-top: 10px;
+        max-height: 228px;
+        overflow: auto;
+        span { margin: 5px 2px 0 0; }
+      }
     }
-    .reprints { margin-top: 10px; }
   }
   .toggle {
     height: 10px;
     width: 100%;
     background: grey;
     cursor: s-resize;
-    position: absolute;
-    bottom: 0;
+    position: fixed;
+    top: 60px;
+    margin-top: -10px;
+    -webkit-transition: top 0.5s linear;
+    -moz-transition: top 0.5s linear;
+    -ms-transition: top 0.5s linear;
+    -o-transition: top 0.5s linear;
+    transition: top 0.5s linear;
   }
-  &.open .toggle { cursor: n-resize; }
+  &.open { top: -110px; }
+  &.open .toggle { cursor: n-resize; top: 100%; }
 }
 body.loggedout aside.slider.open { top: -60px; }
 
@@ -259,7 +285,7 @@ mkm-order {
     }
     img.logo {
       width: 70%;
-      margin: auto;
+      margin: 20px auto;
       display: block;
     }
   }
@@ -317,12 +343,15 @@ mkm-order {
     }
   }
 }
+body.de #content.login article img.logo { }
 
 // product page
 #content.product {
   header {
     padding-right: 60px;
     padding-left: 60px;
+    font-size: 16px;
+    font-weight: normal;
     .box {
       background: white;
       border-radius: 3px;
@@ -336,28 +365,86 @@ mkm-order {
   }
   article {
     padding-top: 60px;
-    ul {
+    .table {
       display: table;
       width: 100%;
     }
-    li { display: table-row; }
-    li > div {
+    .row {
+      display: table-row;
+      -webkit-transition: height 500ms;
+      -moz-transition: height 500ms;
+      -ms-transition: height 500ms;
+      -o-transition: height 500ms;
+      transition: height 500ms;
+      height: 30px;
+    }
+    .cell {
       display: table-cell;
       height: 30px;
-      vertical-align: middle;
       line-height: 30px;
       white-space: nowrap;
       text-align: left;
+      vertical-align: top;
     }
-    .seller {
+    div.seller {
       cursor: pointer;
       font-weight: bold;
       color: #0240ca;
+      .name {
+        display: inline-block;
+        max-width: 40px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        vertical-align: top;
+        background: #fdfdfd;
+        position: relative;
+        z-index: 10;
+        -webkit-transition: max-width 500ms;
+        -moz-transition: max-width 500ms;
+        -ms-transition: max-width 500ms;
+        -o-transition: max-width 500ms;
+        transition: max-width 500ms;
+        @media screen and (min-width: 420px) { max-width: 100px; }
+        @media screen and (min-width: 530px) { max-width: 220px; }
+      }
+      .details {
+        position: absolute;
+        left: 50px;
+        z-index: 1;
+        @media screen and (min-width: 420px) { left: 110px; }
+        @media screen and (min-width: 530px) { left: 230px; }
+      }
     }
-    div.icons .icon.comment { cursor:pointer; }
+    .row.seller .seller .name { max-width: 300px; }
+    div.icons {
+      width: 50px;
+      padding: 0 5px;
+      .icon.comment { cursor:pointer; }
+    }
+    div.comment {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      left: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      height: 0;
+      -webkit-transition: height 500ms;
+      -moz-transition: height 500ms;
+      -ms-transition: height 500ms;
+      -o-transition: height 500ms;
+      transition: height 500ms;
+    }
+    .row.comment {
+      height: 60px;
+      div.comment { height: 30px; }
+    }
     div.price {
       text-align: right;
-      width: 150px;
+      font-weight: bold;
+      width: 100px;
     }
     div.price .icon.is-playset { display: none; }
     div.price.playset {
@@ -371,18 +458,13 @@ mkm-order {
     .count { display: inline-block; min-width: 20px; text-align: center; }
     button {
       border: none;
-      background: gray;
-      color: white;
-      font-weight: bold;
+      background: url("/img/cart.png") no-repeat center 3px transparent;
       height: 25px;
       width: 25px;
       padding: 0;
       vertical-align: middle;
-      line-height: 25px;
-      border-radius: 12px;
       outline: none;
     }
-    .price button { background-image:url("/img/cart.png"); background-repeat:no-repeat; background-position:4px 4px; }
     .comment { text-align: center; }
   }
 }

@@ -12,6 +12,11 @@
 .commercial-1 { background-image: url('/img/commercial.png'); }
 .commercial-2 { background-image: url('/img/powerseller.png'); }
 
+.icon.risk { width: 16px; height: 16px; }
+.icon.risk-0 { display: none; }
+.icon.risk-1 { display: none; }
+.icon.risk-2 { background-image: url('/img/danger.png'); }
+
 .icon.rarity { background-image: url('/img/rarities.png');  width: 16px; height: 16px; }
 .rarity-Common { background-position: -1px -1px; }
 .rarity-Land { background-position: -19px -1px; }
@@ -28,28 +33,28 @@
 .evaluation-3 { background-position: 0 -16px; }
 .evaluation-4 { background-position: -16px -16px; }
 
-.icon.grading { background-image: url('/img/grading.png');  width: 16px; height: 16px; }
-.grading-EX { background-position: -1px -1px; }
-.grading-GD { background-position: -19px -1px; }
-.grading-LP { background-position: -1px -19px; }
-.grading-MT { background-position: -19px -19px; }
-.grading-NM { background-position: -37px -1px; }
-.grading-PL { background-position: -37px -19px; }
-.grading-PO { background-position: -1px -37px; }
+.icon.grading { background-image: url('/img/grading.png');  width: 16px; height: 16px; display:none; }
+.icon.grading-EX { display:inline-block; background-position: -1px -1px; }
+.icon.grading-GD { display:inline-block; background-position: -19px -1px; }
+.icon.grading-LP { display:inline-block; background-position: -1px -19px; }
+.icon.grading-MT { display:inline-block; background-position: -19px -19px; }
+.icon.grading-NM { display:inline-block; background-position: -37px -1px; }
+.icon.grading-PL { display:inline-block; background-position: -37px -19px; }
+.icon.grading-PO { display:inline-block; background-position: -1px -37px; }
 
-.icon.language { background-image: url('/img/languages.png');  width: 16px; height: 11px; }
-.language-0 { background-position: 0 0; }
-.language-1 { background-position: -16px 0; }
-.language-2 { background-position: -32px 0; }
-.language-3 { background-position: -48px 0; }
-.language-4 { background-position: -64px 0; }
-.language-5 { background-position: -80px 0; }
-.language-6 { background-position: -96px 0; }
-.language-7 { background-position: -112px 0; }
-.language-8 { background-position: -128px 0; }
-.language-9 { background-position: -144px 0; }
-.language-10 { background-position: -160px 0; }
-.language-11 { background-position: -176px 0; }
+.icon.language { background-image: url('/img/languages.png');  width: 16px; height: 11px; display:none; }
+.icon.language-0 { display:inline-block; background-position: 0 0; }
+.icon.language-1 { display:inline-block; background-position: -16px 0; }
+.icon.language-2 { display:inline-block; background-position: -32px 0; }
+.icon.language-3 { display:inline-block; background-position: -48px 0; }
+.icon.language-4 { display:inline-block; background-position: -64px 0; }
+.icon.language-5 { display:inline-block; background-position: -80px 0; }
+.icon.language-6 { display:inline-block; background-position: -96px 0; }
+.icon.language-7 { display:inline-block; background-position: -112px 0; }
+.icon.language-8 { display:inline-block; background-position: -128px 0; }
+.icon.language-9 { display:inline-block; background-position: -144px 0; }
+.icon.language-10 { display:inline-block; background-position: -160px 0; }
+.icon.language-11 { display:inline-block; background-position: -176px 0; }
 
 .icon.shipspeed { background-image: url('/img/shipspeed.png'); width:16px; height: 16px; }
 .shipspeed-0 { display:none; }

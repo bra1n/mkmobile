@@ -129,8 +129,8 @@
   },
   "checkout": {
     "title": "Checkout",
-    "paypal": "The balance of your user account is not sufficient to pay for this order. You are going to reserve the cards in your shopping cart and credit your user account directy using Paypal(R). Your user account will be credited immediately and the purchase will then be paid from your user account. Additional fees apply if you credit your account with Paypal(R).",
-    "bank": "The balance of your user account is not sufficient to pay for this order. You are going to reserve the cards in your shopping cart and credit your user account later per money transfer. As soon as the money is transferred to your user account, your order will be paid from your user account.",
+    "paypal": "The balance of your user account is not sufficient to pay for this order. You can credit your user account with PayPal(R) to pay for this order. Additional fees apply if you credit your account with Paypal(R).",
+    "bank": "The balance of your user account is not sufficient to pay for this order. You can purchase the cards now and then credit your user account via bank transfer to pay for this order.",
     "instabuy": "You have sufficient balance on your account. The order will be paid with your online funds.",
     "confirm": "Confirm Order",
     "are_you_sure": "Are you sure you want to buy these articles?"
@@ -221,7 +221,7 @@
     "last_name": "Last name:",
     "shipping_address": "Shipping address",
     "seller_address": "Seller's address",
-    "outstanding": "You must still transfer {{sum}} to pay for your unpaid orders.",
+    "outstanding": "You must still pay {{sum}} for your unpaid orders.",
     "statuses": {
       "received": "Received",
       "sent": "Sent",
