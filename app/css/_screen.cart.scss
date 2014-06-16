@@ -1,0 +1,81 @@
+#content.cart {
+  article {
+    i { display: block; }
+    .loading {
+      text-align: center;
+      padding-top: 50px;
+      font-weight: bold;
+    }
+    .empty {
+      padding: 10px;
+      font-weight: bold;
+      text-align: center;
+    }
+    a.address {
+      position: relative;
+      padding: 10px;
+      color: #444;
+      display: block;
+      &:after {
+        content: url("/img/link.png");
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        margin-top: -11px;
+      }
+    }
+    .orderid { padding: 10px 10px 0 10px; }
+    li.order {
+      padding: 10px 0;
+      position: relative;
+      border-bottom: 1px solid #ccc;
+      white-space: nowrap;
+      &:after {
+        content: url("/img/link.png");
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        margin-top: -11px;
+      }
+      button {
+        background: url("/img/remove.png") center center no-repeat;
+        border: none;
+        vertical-align: middle;
+        width: 10%;
+        max-width: 40px;
+        height: 40px;
+      }
+      a {
+        font-weight: bold;
+        display: inline-block;
+        vertical-align: middle;
+        width: 90%;
+      }
+      a span { font-weight: normal; }
+    }
+    .total {
+      text-align: center;
+      padding: 10px;
+      font-size: 18px;
+      i { font-size: 14px; }
+    }
+    .payments {
+      padding: 10px;
+      text-align: center;
+    }
+    // change shipping address
+    form.address {
+      margin: 10px;
+      text-align: center;
+      label {
+        display: inline-block;
+        width: 50%;
+        height: 30px;
+        text-align: left;
+      }
+      input { width: 50%; margin-left: -12px; }
+      select { width: 50%; }
+    }
+  }
+  footer .cart { background-position: 25% 25%; }
+}

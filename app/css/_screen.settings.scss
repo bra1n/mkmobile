@@ -1,0 +1,32 @@
+// settings page
+#content.settings {
+  article {
+    li {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+      &:last-child { border:none; }
+    }
+    label {
+      display: inline-block;
+      width: 150px;
+    }
+    .right {
+      float: right;
+      width: auto;
+      margin-left: 5px;
+    }
+    a {
+      display: block;
+      position: relative;
+      line-height: 20px;
+      &:after {
+        content: url("/img/link.png");
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        margin-top: -11px;
+      }
+    }
+  }
+  footer .settings { background-position: 50% 50%; }
+}

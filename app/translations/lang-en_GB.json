@@ -282,7 +282,9 @@
     "sort": "- Sort by"
   },
   "settings": {
-    "vacation": "MKM Vacation Status"
+    "vacation": "MKM Vacation Status",
+    "on": "On",
+    "off": "Off"
   },
   "stock": {
     "no_articles": "No articles"

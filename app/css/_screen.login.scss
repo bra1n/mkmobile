@@ -1,0 +1,48 @@
+#content.login {
+  article {
+    // login form
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    white-space: nowrap;
+    padding-bottom: 0;
+//    box-shadow: inset -10px 0px 10rem 8rem #e3e7ee;
+//    background: #fdfdfd;
+    &:before {
+      content: " ";
+      width: 0px;
+      height: 100%;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    form {
+      display: inline-block;
+      width: 100%;
+    }
+    iframe {
+      width: 80%;
+      height: 360px;
+      border: none;
+    }
+    img.logo {
+      width: 70%;
+      margin: 20px auto;
+      display: block;
+    }
+  }
+  .subheadline {
+    position: fixed;
+    z-index: 100;
+  }
+  .results {
+    // search results
+    position: absolute;
+    top: 55px;
+    background-color: rgba(255,255,255,0.75);
+    width: 100%;
+    z-index: 10;
+    min-height: 80%;
+    li:nth-child(even) { background: rgba(250,250,250,0.25); }
+  }
+}

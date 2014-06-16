@@ -2,29 +2,29 @@
 <article>
   <mkm-search ng-hide="data.cart.length || data.loading">cart.empty</mkm-search>
   <div class="overview" ng-show="data.cart.length">
-    <div class="shipping">
-      <a href="/cart/address">
-        <span translate="cart.shipping_address"></span><br>
-        {{data.address.name}}<br>
+    <a href="/cart/address" class="address">
+      <span class="title" translate="cart.shipping_address"></span>
+      <i>
+        {{data.address.name}},
         <span ng-show="data.address.street"> {{data.address.street}}, </span>
         <span ng-show="data.address.extra">  {{data.address.extra}},  </span>
         <span ng-show="data.address.zip">    {{data.address.zip}}     </span>
         <span ng-show="data.address.city">   {{data.address.city}},   </span>
         <span class="icon country country-{{data.address.country}}"></span>
-      </a>
-    </div>
-    <hr>
+      </i>
+    </a>
     <div class="single" ng-show="data.cart.length == 1">
-      <span translate="cart.order"></span>
-      {{data.cart[0].idReservation}}<br>
+      <hr>
+      <div class="orderid">
+        <span translate="cart.order" class="title"></span> {{data.cart[0].idReservation}}
+      </div>
       <mkm-order order="data.cart[0]" remove-article="removeArticle" shipping-method="shippingMethod"></mkm-order>
     </div>
     <div class="multiple" ng-show="data.cart.length > 1">
-      <div class="overview" translate="cart.headline" translate-values="{orders:data.cart.length, articles:count}"></div>
+      <div class="titlebar" translate="cart.headline" translate-values="{orders:data.cart.length, articles:count}"></div>
       <ul>
         <li class="order" ng-repeat="order in data.cart">
-          <button ng-click="removeOrder(order)">-</button>
-          <a href="/cart/{{order.idReservation}}">
+          <button ng-click="removeOrder(order)"></button><a href="/cart/{{order.idReservation}}">
             <span translate="cart.order"></span>
             {{order.idReservation}}<br>
             <span translate="cart.seller"></span>
@@ -43,16 +43,16 @@
         <i translate="common.items_shipping"></i>
       </div>
     </div>
-    <div class="overview">
+    <div class="titlebar">
       <span translate="cart.balance"></span>
       {{data.balance | currency:"€"}}
     </div>
-    <div ng-show="data.balance < sum">
-      <a href="/cart/checkout/bank" translate="common.bank"></a>
-      <a href="/cart/checkout/paypal" translate="common.paypal"></a>
+    <div class="payments" ng-show="data.balance < sum">
+      <a href="/cart/checkout/bank" class="button" translate="common.bank"></a>
+      <a href="/cart/checkout/paypal" class="button" translate="common.paypal"></a>
     </div>
-    <div ng-show="data.balance >= sum">
-      <a href="/cart/checkout/instabuy" translate="common.instabuy"></a>
+    <div class="payments" ng-show="data.balance >= sum">
+      <a href="/cart/checkout/instabuy" class="button green" translate="common.instabuy"></a>
     </div>
   </div>
   <div class="loading" ng-show="data.loading" translate="cart.loading"></div>

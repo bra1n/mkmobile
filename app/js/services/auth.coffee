@@ -76,7 +76,7 @@ mkmobileServices.factory 'MkmApiAuth', [
       # locale changing
       for locale in @getLanguageCodes() when locale.value is account.idDisplayLanguage
         unless $translate.use() is locale.label
-          tmhDynamicLocale.set locale.label.replace(/_/, '-').toLowerCase()
+          tmhDynamicLocale.set locale.label.replace /_/, '-'
           $translate.use locale.label
       DataCache.cartCount account.articlesInShoppingCart
       DataCache.messageCount account.unreadMessages

@@ -1,20 +1,18 @@
-<header translate="address.title"></header>
+<header>
+  <a href="/cart" class="back"></a>
+  <span translate="address.title"></span>
+</header>
 <article>
-  <form>
-    <label for="name" translate="address.name"></label>
-    <input id="name" type="text" ng-model="data.address.name"><br>
-    <label for="street" translate="address.street"></label>
-    <input id="street" type="text" ng-model="data.address.street"><br>
-    <label for="extra" translate="address.additional"></label>
-    <input id="extra" type="text" ng-model="data.address.extra"><br>
-    <label for="city" translate="address.city"></label>
-    <input id="city" type="text" ng-model="data.address.city"><br>
-    <label for="zip" translate="address.zip"></label>
-    <input id="zip" type="text" ng-model="data.address.zip"><br>
-    <label for="country" translate="address.country"></label>
-    <select id="country" ng-options="country as 'address.countries.'+country | translate for country in countries"
+  <form class="address">
+    <label for="name" translate="address.name"></label><input id="name" type="text" ng-model="data.address.name"><br>
+    <label for="street" translate="address.street"></label><input id="street" type="text" ng-model="data.address.street"><br>
+    <label for="extra" translate="address.additional"></label><input id="extra" type="text" ng-model="data.address.extra"><br>
+    <label for="city" translate="address.city"></label><input id="city" type="text" ng-model="data.address.city"><br>
+    <label for="zip" translate="address.zip"></label><input id="zip" type="text" ng-model="data.address.zip"><br>
+    <label for="country" translate="address.country"></label><select id="country"
+            ng-options="country as 'address.countries.'+country | translate for country in countries"
             ng-model="data.address.country" required></select><br>
-    <button ng-click="shippingAddress(data.address)" translate="common.save"></button>
+    <button class="button" ng-click="shippingAddress(data.address)" translate="common.save"></button>
   </form>
 </article>
 <mkm-footer></mkm-footer>
