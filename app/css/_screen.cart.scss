@@ -77,5 +77,9 @@
       select { width: 50%; }
     }
   }
+  article.checkout {
+    text-align: center;
+    div { padding: 50px 30px 30px; }
+  }
   footer .cart { background-position: 25% 25%; }
 }

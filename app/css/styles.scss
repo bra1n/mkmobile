@@ -170,7 +170,7 @@ h3 {
 }
 
 // text fields
-input {
+input, textarea {
   border-radius: 5px;
   background: #fff;
   border: 1px solid #cccccc;
@@ -199,6 +199,16 @@ input {
   &.green { background: #15704b; }
 }
 
+// errors
+.error {
+  display: block;
+  font-weight: bold;
+  color: red;
+  padding: 10px;
+  text-align: center;
+}
+
+// loading
 .loading {
   background-image: url("/img/loading.gif");
   background-repeat: no-repeat;
@@ -292,11 +302,11 @@ aside.slider {
     position: fixed;
     top: 60px;
     margin-top: -10px;
-    -webkit-transition: top 0.5s linear;
-    -moz-transition: top 0.5s linear;
-    -ms-transition: top 0.5s linear;
-    -o-transition: top 0.5s linear;
-    transition: top 0.5s linear;
+    -webkit-transition: all 0.5s linear;
+    -moz-transition: all 0.5s linear;
+    -ms-transition: all 0.5s linear;
+    -o-transition: all 0.5s linear;
+    transition: all 0.5s linear;
     border: 1px solid #ccc;
     text-align: center;
     line-height: 3px;
@@ -407,10 +417,33 @@ mkm-search {
 @import "screen.home";
 @import "screen.cart";
 @import "screen.settings";
+@import "screen.messages";
 
 // search page
 #content.search {
   footer .search { background-position: 50% 75%; }
+}
+
+// legal
+#content.legal {
+  article {
+    p, ul { margin: 10px; }
+    b {
+      display: block;
+      margin: 10px 0;
+    }
+    ol li {
+      list-style-type: decimal;
+      padding: 5px 0;
+    }
+  }
+}
+
+// contact
+#content.contact {
+  article {
+    p { padding: 10px; }
+  }
 }
 
 // stock page
@@ -468,66 +501,6 @@ mkm-search {
       transition:all linear 0.5s;
       &.ng-hide-add, &.ng-hide-remove { display:block!important; }
       &.ng-hide { opacity:0; }
-    }
-  }
-}
-
-// messages page
-#content.messages {
-  article {
-    h3 { margin:0; }
-    div.search {
-      label {
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-        background: url("/img/menu.png") no-repeat;
-        -webkit-background-size: 500%;
-        background-size: 500%;
-        vertical-align: middle;
-        background-position: 75% 75%;
-      }
-      input {
-        vertical-align: middle;
-      }
-    }
-    li {
-      span.time, button { float:right; line-height: 24px; }
-      button {
-        margin-left: 10px;
-        border: 0;
-        background: #444;
-        color: white;
-        border-radius: 50%;
-        width: 22px;
-        height: 22px;
-        line-height: 16px;
-        font-weight: bold;
-      }
-    }
-    ul.thread {
-      li {
-        margin-bottom: 10px;
-        h3 { text-align: center; }
-        div {
-          background: #d1d7e5;
-          padding: 10px;
-        }
-        p { margin:0; white-space: pre-wrap; }
-        &.unread div { border-left: 5px solid #012269; }
-        &.sending div { background: #f5f5f5; }
-      }
-    }
-    ul.overview {
-      p {
-        margin:0;
-        clear: right;
-      }
-      li {
-        border-bottom: 1px solid black;
-        &.unread { border-left: 5px solid #012269; }
-        &.sending p:before { content:"↪ "; }
-      }
     }
   }
 }

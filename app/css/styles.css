@@ -174,14 +174,14 @@ h3 {
   margin: 5px 0 10px 0;
   text-align: center; }
 
-input {
+input, textarea {
   border-radius: 5px;
   background: #fff;
   border: 1px solid #cccccc;
   box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
   font-weight: normal;
   padding: 5px; }
-  input::-webkit-input-placeholder, input::-moz-placeholder, input:-ms-input-placeholder {
+  input::-webkit-input-placeholder, input::-moz-placeholder, input:-ms-input-placeholder, textarea::-webkit-input-placeholder, textarea::-moz-placeholder, textarea:-ms-input-placeholder {
     color: #ccc; }
 
 .button {
@@ -200,6 +200,13 @@ input {
     color: #fff; }
   .button.green {
     background: #15704b; }
+
+.error {
+  display: block;
+  font-weight: bold;
+  color: red;
+  padding: 10px;
+  text-align: center; }
 
 .loading {
   background-image: url("/img/loading.gif");
@@ -295,11 +302,11 @@ aside.slider {
     position: fixed;
     top: 60px;
     margin-top: -10px;
-    -webkit-transition: top 0.5s linear;
-    -moz-transition: top 0.5s linear;
-    -ms-transition: top 0.5s linear;
-    -o-transition: top 0.5s linear;
-    transition: top 0.5s linear;
+    -webkit-transition: all 0.5s linear;
+    -moz-transition: all 0.5s linear;
+    -ms-transition: all 0.5s linear;
+    -o-transition: all 0.5s linear;
+    transition: all 0.5s linear;
     border: 1px solid #ccc;
     text-align: center;
     line-height: 3px;
@@ -696,6 +703,10 @@ body.de #content.home header {
     margin-left: -12px; }
   #content.cart article form.address select {
     width: 50%; }
+#content.cart article.checkout {
+  text-align: center; }
+  #content.cart article.checkout div {
+    padding: 50px 30px 30px; }
 #content.cart footer .cart {
   background-position: 25% 25%; }
 
@@ -718,14 +729,140 @@ body.de #content.home header {
   #content.settings article a:after {
     content: url("/img/link.png");
     position: absolute;
-    right: 15px;
+    right: 0;
     top: 50%;
     margin-top: -11px; }
 #content.settings footer .settings {
   background-position: 50% 50%; }
 
+#content.messages header .icons {
+  background: white;
+  border-radius: 3px;
+  line-height: 10px;
+  padding: 4px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  margin-top: -12px; }
+#content.messages article div.search {
+  padding-right: 10px;
+  padding-left: 10px; }
+  #content.messages article div.search input {
+    padding-left: 35px;
+    width: 100%;
+    box-sizing: border-box;
+    background: url("/img/search.png") 5px 5px no-repeat white; }
+#content.messages article li span.time, #content.messages article li button {
+  font-weight: bold;
+  color: #012169;
+  float: right;
+  line-height: 24px;
+  font-size: 12px; }
+#content.messages article li button {
+  margin-left: 5px;
+  border: 0;
+  background: url("/img/remove.png") no-repeat center center transparent;
+  width: 16px;
+  height: 22px; }
+#content.messages article p {
+  overflow: hidden;
+  text-overflow: ellipsis; }
+#content.messages article ul.thread {
+  margin: 10px 10px 60px 10px; }
+  #content.messages article ul.thread li {
+    margin-bottom: 10px; }
+    #content.messages article ul.thread li h3 {
+      text-align: center;
+      color: #9e9e9e;
+      font-size: 12px; }
+    #content.messages article ul.thread li div {
+      background: #d1d7e4;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); }
+    #content.messages article ul.thread li .time {
+      font-weight: normal;
+      color: #9e9e9e;
+      float: right;
+      line-height: 16px;
+      font-size: 12px;
+      text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.5); }
+    #content.messages article ul.thread li button {
+      height: 16px; }
+    #content.messages article ul.thread li p {
+      margin: 0;
+      white-space: pre-wrap; }
+    #content.messages article ul.thread li.unread div {
+      border-left: 5px solid #0240ca; }
+    #content.messages article ul.thread li.sending div {
+      background: #f5f5f5; }
+#content.messages article form.subheadline {
+  position: fixed;
+  bottom: 58px;
+  width: 100%;
+  box-shadow: none;
+  border-top: 1px solid #ccc;
+  z-index: 1000;
+  display: table; }
+  #content.messages article form.subheadline div {
+    padding: 0 10px;
+    display: table-cell; }
+  #content.messages article form.subheadline div.left {
+    width: 100%; }
+  #content.messages article form.subheadline textarea {
+    height: 30px;
+    vertical-align: middle;
+    line-height: 30px;
+    margin: 0px;
+    max-height: 30px;
+    width: 100%;
+    max-width: 100%;
+    margin-top: -5px; }
+  #content.messages article form.subheadline button {
+    height: 30px;
+    line-height: 30px;
+    border: none;
+    background: none;
+    vertical-align: middle; }
+#content.messages article ul.overview p {
+  margin: 0;
+  clear: right;
+  font-style: italic;
+  color: #444; }
+#content.messages article ul.overview li {
+  border-bottom: 1px solid #ccc;
+  padding: 10px 25px 10px 10px;
+  position: relative; }
+  #content.messages article ul.overview li.unread {
+    border-left: 5px solid #0240ca; }
+  #content.messages article ul.overview li.sending p:before {
+    content: "↪ "; }
+  #content.messages article ul.overview li a {
+    display: block; }
+  #content.messages article ul.overview li:after {
+    content: url("/img/link.png");
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    margin-top: -11px; }
+#content.messages article ul.overview li.user p {
+  color: #0240ca;
+  font-style: normal; }
+
 #content.search footer .search {
   background-position: 50% 75%; }
+
+#content.legal article p, #content.legal article ul {
+  margin: 10px; }
+#content.legal article b {
+  display: block;
+  margin: 10px 0; }
+#content.legal article ol li {
+  list-style-type: decimal;
+  padding: 5px 0; }
+
+#content.contact article p {
+  padding: 10px; }
 
 #content.stock article.product {
   padding-top: 50px; }
@@ -768,53 +905,3 @@ body.de #content.home header {
     display: block !important; }
   #content.buys article.evaluation div.overlay.ng-hide, #content.sells article.evaluation div.overlay.ng-hide {
     opacity: 0; }
-
-#content.messages article h3 {
-  margin: 0; }
-#content.messages article div.search label {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  background: url("/img/menu.png") no-repeat;
-  -webkit-background-size: 500%;
-  background-size: 500%;
-  vertical-align: middle;
-  background-position: 75% 75%; }
-#content.messages article div.search input {
-  vertical-align: middle; }
-#content.messages article li span.time, #content.messages article li button {
-  float: right;
-  line-height: 24px; }
-#content.messages article li button {
-  margin-left: 10px;
-  border: 0;
-  background: #444;
-  color: white;
-  border-radius: 50%;
-  width: 22px;
-  height: 22px;
-  line-height: 16px;
-  font-weight: bold; }
-#content.messages article ul.thread li {
-  margin-bottom: 10px; }
-  #content.messages article ul.thread li h3 {
-    text-align: center; }
-  #content.messages article ul.thread li div {
-    background: #d1d7e5;
-    padding: 10px; }
-  #content.messages article ul.thread li p {
-    margin: 0;
-    white-space: pre-wrap; }
-  #content.messages article ul.thread li.unread div {
-    border-left: 5px solid #012269; }
-  #content.messages article ul.thread li.sending div {
-    background: #f5f5f5; }
-#content.messages article ul.overview p {
-  margin: 0;
-  clear: right; }
-#content.messages article ul.overview li {
-  border-bottom: 1px solid black; }
-  #content.messages article ul.overview li.unread {
-    border-left: 5px solid #012269; }
-  #content.messages article ul.overview li.sending p:before {
-    content: "↪ "; }

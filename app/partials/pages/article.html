@@ -1,5 +1,5 @@
-<header>
-  <span class="error" ng-show="data.product.error || !data.product" translate="product.error"></span>
+<header ng-class="{loading:data.product.loading}">
+  <span class="error ng-hide" ng-show="data.product.error" translate="product.error"></span>
   <span ng-show="data.product.product">{{data.article.count}}x {{data.product.product.name[0].productName}}</span>
   <span ng-show="data.product.product.number" translate translate-values="data.product.product">product.nr</span>
   <span ng-show="data.product.product.expansion" class="icon expansion" ng-style="data.product.product.expIcon | expansionIcon"></span>

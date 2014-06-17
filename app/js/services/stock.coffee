@@ -20,6 +20,9 @@ mkmobileServices.factory 'MkmApiStock', [ 'MkmApi', 'MkmApiMarket', 'DataCache',
         response.count = data._range or data.article?.length
         response.articles = response.articles.concat data.article.map((val) => DataCache.article val.idArticle, val) if response.count
         response.loading = no
+      , ->
+        response.error = yes
+        response.loading = no
     response
 
   update: (article, cb) ->

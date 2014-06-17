@@ -129,16 +129,23 @@
   },
   "checkout": {
     "title": "Checkout",
-    "paypal": "The balance of your user account is not sufficient to pay for this order. You can credit your user account with PayPal(R) to pay for this order. Additional fees apply if you credit your account with Paypal(R).",
+    "paypal": "The balance of your user account is not sufficient to pay for this order. You can credit your user account with PayPal® to pay for this order. Additional fees apply if you credit your account with Paypal®.",
     "bank": "The balance of your user account is not sufficient to pay for this order. You can purchase the cards now and then credit your user account via bank transfer to pay for this order.",
     "instabuy": "You have sufficient balance on your account. The order will be paid with your online funds.",
     "confirm": "Confirm Order",
     "are_you_sure": "Are you sure you want to buy these articles?"
   },
   "contact": {
-    "p1": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cumque, deserunt doloribus ea harum in ipsa ipsum molestias officiis omnis, pariatur possimus provident quisquam sequi similique tempora temporibus vero voluptatem?",
-    "p2": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cumque, deserunt doloribus ea harum in ipsa ipsum molestias officiis omnis, pariatur possimus provident quisquam sequi similique tempora temporibus vero voluptatem?",
-    "p3": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cumque, deserunt doloribus ea harum in ipsa ipsum molestias officiis omnis, pariatur possimus provident quisquam sequi similique tempora temporibus vero voluptatem?"
+    "title": "Imprint",
+    "telephone": "Telephone:",
+    "support": "Not for customer support",
+    "email": "Email:",
+    "office": "Registration office:",
+    "number": "Registration number:",
+    "tax": "Sales tax identification number:",
+    "legal": "The Sammelkartenmarkt Ltd. & Co. KG is represented by its personally liable partner: Sammelkartenmarkt Limited, 69 Great Hampton Street, Birmingham B18 6EW, Company Number 06245645, Companies House Cardiff, GB. This in turn is represented by its managing directors Luis Torres, Dr. Matthias Knelangen, Marko Schädlich",
+    "responsible": "Responsible according to § 55 Abs. 2 RStV (Germany):",
+    "trademark": "Magiccardmarket® is a registered trademark."
   },
   "evaluation": {
     "title": "Evaluation for Order {{id}} from {{seller}}",
@@ -176,14 +183,6 @@
     }
   },
   "help": {
-    "p1": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cumque, deserunt doloribus ea harum in ipsa ipsum molestias officiis omnis, pariatur possimus provident quisquam sequi similique tempora temporibus vero voluptatem?",
-    "p2": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cumque, deserunt doloribus ea harum in ipsa ipsum molestias officiis omnis, pariatur possimus provident quisquam sequi similique tempora temporibus vero voluptatem?",
-    "p3": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cumque, deserunt doloribus ea harum in ipsa ipsum molestias officiis omnis, pariatur possimus provident quisquam sequi similique tempora temporibus vero voluptatem?"
-  },
-  "legal": {
-    "p1": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cumque, deserunt doloribus ea harum in ipsa ipsum molestias officiis omnis, pariatur possimus provident quisquam sequi similique tempora temporibus vero voluptatem?",
-    "p2": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cumque, deserunt doloribus ea harum in ipsa ipsum molestias officiis omnis, pariatur possimus provident quisquam sequi similique tempora temporibus vero voluptatem?",
-    "p3": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cumque, deserunt doloribus ea harum in ipsa ipsum molestias officiis omnis, pariatur possimus provident quisquam sequi similique tempora temporibus vero voluptatem?"
   },
   "login": {
     "login": "Log In",
@@ -193,7 +192,8 @@
   "messages": {
     "send": "Send",
     "message": "Message",
-    "new": "Write a new message"
+    "new": "Write a new message",
+    "are_you_sure": "Are you sure?"
   },
   "order": {
     "error": "Error loading order",
@@ -287,6 +287,7 @@
     "off": "Off"
   },
   "stock": {
-    "no_articles": "No articles"
+    "no_articles": "No articles",
+    "error": "Error loading articles"
   }
 }

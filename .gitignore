@@ -2,3 +2,4 @@ app/lib
 *.js
 *.map
 .idea
+.DS_Store

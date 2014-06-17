@@ -1,29 +1,28 @@
 <header translate="titles.messages">My Messages</header>
 <article>
-  <div class="search">
-    <label for="search"></label>
+  <div class="search subheadline">
     <input id="search" type="text" placeholder="{{'common.search' | translate}}" ng-model="search">
   </div>
   <ul class="overview" ng-class="{loading:data.loading}">
     <li ng-repeat="thread in data.messages | filter:search"
         ng-class="{sending:thread.message.isSending, unread:thread.unreadMessages}">
-      <button ng-click="delete($index,thread.partner.idUser)">&ndash;</button>
+      <button ng-click="delete($index,thread.partner.idUser)"></button>
       <span class="time">{{thread.message.date | date:'short'}}</span>
       <a href="/messages/{{thread.partner.idUser}}">
-        <h3>
+        <span class="title">
           {{thread.partner.username}}
           <span mkm-user user="thread.partner"></span>
-        </h3>
+        </span>
         <p>{{thread.message.text | truncate:150}}</p>
       </a>
     </li>
-    <li ng-repeat="user in users">
+    <li class="user" ng-repeat="user in users">
       <a href="/messages/{{user.idUser}}">
-        <h3>
+        <span class="title">
           {{user.username}}
           <span mkm-user user="user"></span>
-        </h3>
-        <i translate="messages.new">Write a new message</i>
+        </span>
+        <p translate="messages.new">Write a new message</p>
       </a>
     </li>
   </ul>

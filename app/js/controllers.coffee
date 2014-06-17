@@ -18,7 +18,7 @@ mkmobileControllers.controller 'SearchCtrl', [
     # handle login
     $scope.loggedIn = MkmApiAuth.isLoggedIn()
     $scope.handleLogin = ->
-      $scope.iframeSrc = $sce.trustAsResourceUrl MkmApiAuth.getLoginURL()
+      $scope.iframeSrc = $sce.trustAsResourceUrl MkmApiAuth.getLoginURL()+"/"+$scope.language
       window.handleCallback = (token) ->
         $scope.iframeSrc = null
         $scope.login = MkmApiAuth.getAccess token
@@ -226,8 +226,8 @@ mkmobileControllers.controller 'OrderCtrl', [
 
 # /messages
 mkmobileControllers.controller 'MessageCtrl', [
-  '$scope', '$routeParams', 'MkmApiMessage'
-  ($scope, $routeParams, MkmApiMessage) ->
+  '$scope', '$routeParams', 'MkmApiMessage', '$translate'
+  ($scope, $routeParams, MkmApiMessage, $translate) ->
     $scope.unreadCount = MkmApiMessage.count()
     $scope.data = MkmApiMessage.get $routeParams.userId, -> $scope.unreadCount = MkmApiMessage.count()
     # search for user
@@ -242,8 +242,8 @@ mkmobileControllers.controller 'MessageCtrl', [
       $scope.message = ""
       false
     # delete a message
-    $scope.delete = (index, threadId, messageId) ->
-      return unless confirm "Are you sure?"
+    $scope.delete = (index, threadId, messageId) -> $translate('messages.are_you_sure').then (text) ->
+      return unless confirm text
       $scope.data.count--
       $scope.data.messages.splice index, 1
       MkmApiMessage.delete threadId, messageId

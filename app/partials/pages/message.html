@@ -1,10 +1,10 @@
 <header ng-class="{loading:data.loading}">
+  <a href="/messages" class="back"></a>
   {{data.partner.username}}
-  <span mkm-user ng-show="data.partner" user="data.partner"></span>
+  <span class="icons" mkm-user ng-show="data.partner" user="data.partner"></span>
 </header>
 <article>
-  <div class="search" ng-show="data.messages">
-    <label for="search"></label>
+  <div class="search subheadline" ng-show="data.messages && data.messages.length">
     <input id="search" type="text" ng-model="search" placeholder="{{'common.search' | translate}}">
   </div>
   <ul class="thread" ng-class="{loading:data.loading}">
@@ -14,15 +14,19 @@
         {{message.date | date:'fullDate'}}
       </h3>
       <div>
-        <button ng-click="delete($index,data.partner.idUser,message.idMessage)">&ndash;</button>
+        <button ng-click="delete($index,data.partner.idUser,message.idMessage)"></button>
         <span class="time">{{message.date | date:'shortTime'}}</span>
         <p>{{message.text}}</p>
       </div>
     </li>
   </ul>
-  <form ng-submit="send()">
-    <textarea placeholder="{{'messages.message' | translate}}" required ng-model="message"></textarea>
-    <button translate="messages.send">Send</button>
+  <form class="subheadline" ng-submit="send()">
+    <div class="left">
+      <textarea placeholder="{{'messages.message' | translate}}" required ng-model="message"></textarea>
+    </div>
+    <div class="right">
+      <button translate="messages.send">Send</button>
+    </div>
   </form>
 </article>
 <mkm-footer messages="unreadCount"></mkm-footer>
