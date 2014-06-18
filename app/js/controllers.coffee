@@ -48,8 +48,9 @@ mkmobileControllers.controller 'ProductCtrl', [
 
     $scope.addToCart = (article) ->
       if MkmApiAuth.checkLogin()
+        # reduce the amount before receiving the server response to prevent adding too many to the cart
+        article.count--
         MkmApiCart.add article.idArticle, ->
-          article.count--
           $scope.cart = MkmApiCart.count()
 ]
 

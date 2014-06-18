@@ -5,7 +5,12 @@
 </header>
 <article>
   <div class="search subheadline" ng-show="data.messages && data.messages.length">
-    <input id="search" type="text" ng-model="search" placeholder="{{'common.search' | translate}}">
+    <div class="left">
+      <input id="search" type="text" ng-model="search" placeholder="{{'common.search' | translate}}">
+    </div>
+    <div class="right">
+      <button ng-show="search" ng-click="search = ''">{{'search.cancel' | translate}}</button>
+    </div>
   </div>
   <ul class="thread" ng-class="{loading:data.loading}">
     <li ng-repeat="message in data.messages | filter:search"

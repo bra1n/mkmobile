@@ -7,23 +7,36 @@
   </span>
 </header>
 <article>
-  <div class="header">
-    <input type="text" ng-model="query" placeholder="{{'common.search' | translate}}">
-    <button ng-show="query" ng-click="query = ''">X</button>
+  <div class="search subheadline">
     <div class="tools" ng-show="selected.length">
-      <button class="minus" ng-click="decrease(selected)">-</button>
-      <button class="plus" ng-click="increase(selected)">+</button>
+      <button class="minus" ng-click="decrease(selected)"></button>
+      <button class="plus" ng-click="increase(selected)"></button>
+    </div>
+    <div class="left">
+      <input type="text" ng-model="query" placeholder="{{'common.search' | translate}}">
+    </div>
+    <div class="right">
+      <button ng-show="query" ng-click="query = ''">{{'search.cancel' | translate}}</button>
     </div>
   </div>
-  <span ng-show="data.error" class="error" translate="stock.error">No Articles</span>
-  <span ng-show="!data.loading && !data.count && !data.error" translate="stock.no_articles">No Articles</span>
-  <ul ng-class="{loading:data.loading}" data-infinite-scroll="loadArticles()">
-    <li ng-repeat="article in data.articles" ng-class="{loading:article.loading}" ng-hide="!article.count">
-      <div class="product">
+  <div ng-show="data.error" class="error" translate="stock.error">No Articles</div>
+  <div ng-show="!data.loading && !data.count && !data.error" class="empty" translate="stock.no_articles">No Articles</div>
+  <ul class="articles" ng-class="{loading:data.loading}" data-infinite-scroll="loadArticles()">
+    <li ng-repeat="article in data.articles" ng-hide="!article.count"
+        ng-class="{loading:article.loading,comment:article.showComment,image:article.showImage}">
+      <div class="controls">
         <input type="checkbox" ng-checked="selected.indexOf(article) > -1" ng-click="select(article)">
         <span class="icon card" ng-show="article.product.image" ng-click="article.showImage = !article.showImage"></span>
+      </div>
+      <div class="card">
+        {{article.count}}x
         <a href="/stock/{{article.idArticle}}">{{article.product.name}}</a>
-      </div><div class="icons">
+        <div class="card-image" ng-click="article.showImage = 0">
+          <img src="" ng-src="{{article.showImage && article.product.image | productImage}}">
+        </div>
+        <div class="comment" ng-click="article.showComment = 0">{{article.comments}}</div>
+      </div>
+      <div class="icons">
         <span class="icon rarity rarity-{{article.product.rarity}}" ng-show="article.product.rarity"></span>
         <span class="icon expansion" ng-style="article.product.expIcon | expansionIcon" ng-show="article.product.expansion"></span>
         <span class="icon language language-{{article.language.idLanguage}}" ng-show="article.language.idLanguage"></span>
@@ -33,14 +46,8 @@
         <span class="icon is-playset" ng-show="article.isPlayset"></span>
         <span class="icon is-altered" ng-show="article.isAltered"></span>
         <span class="icon comment" ng-show="article.comments" ng-click="article.showComment = !article.showComment"></span>
-      </div><div class="price">
-        {{article.price | currency:"€"}}
-        <span class="count">{{article.count}}</span>
       </div>
-      <div class="comment" ng-hide="!article.showComment">{{article.comments}}</div>
-      <div class="card-image" ng-hide="!article.showImage">
-        <img src="" ng-src="{{article.showImage && article.product.image | productImage}}">
-      </div>
+      <div class="price">{{article.price | currency:"€"}}</div>
     </li>
   </ul>
 </article>

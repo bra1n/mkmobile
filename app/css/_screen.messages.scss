@@ -13,16 +13,7 @@
     }
   }
   article {
-    div.search {
-      padding-right: 10px;
-      padding-left: 10px;
-      input {
-        padding-left: 35px;
-        width: 100%;
-        box-sizing: border-box;
-        background: url("/img/search.png") 5px 5px no-repeat white;
-      }
-    }
+    .overview { margin-top: 50px; }
     li {
       span.time, button {
         font-weight: bold;
@@ -45,7 +36,7 @@
     }
     // single user view
     ul.thread {
-      margin: 10px 10px 60px 10px;
+      margin: 60px 10px 60px 10px;
       li {
         margin-bottom: 10px;
         h3 {

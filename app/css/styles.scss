@@ -21,7 +21,6 @@ input, button, select { vertical-align: baseline; }
 select {
   background: #eaeaea;
   border: 3px solid #eaeaea;
-  margin-top: -6px;
   padding: 2px;
   border-radius: 3px;
 }
@@ -142,6 +141,30 @@ footer {
   font-size: 18px;
   font-weight: bold;
   text-align: center;
+  &.search {
+    display: table;
+    width: 100%;
+    white-space: nowrap;
+    position: fixed;
+    top: 51px;
+    z-index: 10;
+    div { display: table-cell; }
+    div.left {
+      width: 100%;
+      padding: 0 47px 0 5px;
+    }
+    input {
+      width: 100%;
+      padding-left: 35px;
+      background: url("/img/search.png") 5px 5px no-repeat #fff;
+    }
+    button {
+      border: none;
+      background: transparent;
+      height: 40px;
+      line-height: 40px;
+    }
+  }
 }
 
 // link title
@@ -363,27 +386,8 @@ mkm-order {
 
 // Search directive
 mkm-search {
-  .subheadline {
-    display: table;
-    width: 100%;
-    div { display: table-cell; }
-    div.left {
-      width: 100%;
-      padding: 0 47px 0 5px;
-    }
-    input {
-      width: 100%;
-      padding-left: 35px;
-      background: url("/img/search.png") 5px 5px no-repeat #fff;
-    }
-    button {
-      border: none;
-      background: transparent;
-      height: 40px;
-      line-height: 40px;
-    }
-  }
   .results {
+    margin-top: 60px;
     // search results
     li {
       padding: 0 10px;
@@ -418,6 +422,7 @@ mkm-search {
 @import "screen.cart";
 @import "screen.settings";
 @import "screen.messages";
+@import "screen.stock";
 
 // search page
 #content.search {
@@ -443,19 +448,6 @@ mkm-search {
 #content.contact {
   article {
     p { padding: 10px; }
-  }
-}
-
-// stock page
-#content.stock {
-  article {
-    &.product { padding-top: 50px; }
-    .product, .icons, .price {
-      display: inline-block;
-      width: 33%;
-    }
-    .price { text-align: right; }
-    .icons { text-align: center; }
   }
 }
 

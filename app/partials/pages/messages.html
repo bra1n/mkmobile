@@ -1,7 +1,12 @@
 <header translate="titles.messages">My Messages</header>
 <article>
   <div class="search subheadline">
-    <input id="search" type="text" placeholder="{{'common.search' | translate}}" ng-model="search">
+    <div class="left">
+      <input id="search" type="text" placeholder="{{'common.search' | translate}}" ng-model="search">
+    </div>
+    <div class="right">
+      <button ng-show="search" ng-click="search = ''">{{'search.cancel' | translate}}</button>
+    </div>
   </div>
   <ul class="overview" ng-class="{loading:data.loading}">
     <li ng-repeat="thread in data.messages | filter:search"

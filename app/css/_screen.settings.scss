@@ -3,6 +3,7 @@
   article {
     li {
       padding: 10px;
+      line-height: 30px;
       border-bottom: 1px solid #ccc;
       &:last-child { border:none; }
     }
@@ -10,6 +11,7 @@
       display: inline-block;
       width: 150px;
     }
+    input.right { margin-top: 8px; }
     .right {
       float: right;
       width: auto;

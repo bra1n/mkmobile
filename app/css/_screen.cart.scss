@@ -72,9 +72,19 @@
         width: 50%;
         height: 30px;
         text-align: left;
+        vertical-align: middle;
+        line-height: 30px;
       }
-      input { width: 50%; margin-left: -12px; }
-      select { width: 50%; }
+      input {
+        width: 50%;
+        margin-left: -12px;
+        vertical-align: middle;
+        margin-bottom: 5px;
+      }
+      select {
+        width: 50%;
+        margin-bottom: 5px;
+      }
     }
   }
   article.checkout {

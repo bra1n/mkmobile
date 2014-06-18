@@ -152,7 +152,7 @@ mkmobileApp.config [
     .preferredLanguage language
     # locale
     tmhDynamicLocaleProvider.localeLocationPattern '/lib/angular-i18n/angular-locale_{{locale}}.js'
-    tmhDynamicLocaleProvider.defaultLocale language.replace /_/, '-'
+    tmhDynamicLocaleProvider.defaultLocale language.replace(/_/, '-').toLowerCase()
 ]
 
 # generate a base CSS class based on the route path and check login for auth routes

@@ -1,9 +1,12 @@
-<header ng-class="{loading:data.product.loading}">
+<header class="product" ng-class="{loading:data.product.loading}">
+  <a href="/stock" class="back"></a>
   <span class="error ng-hide" ng-show="data.product.error" translate="product.error"></span>
   <span ng-show="data.product.product">{{data.article.count}}x {{data.product.product.name[0].productName}}</span>
   <span ng-show="data.product.product.number" translate translate-values="data.product.product">product.nr</span>
-  <span ng-show="data.product.product.expansion" class="icon expansion" ng-style="data.product.product.expIcon | expansionIcon"></span>
-  <span ng-show="data.product.product.rarity" class="icon rarity rarity-{{data.product.product.rarity}}"></span>
+  <div class="box">
+    <span ng-show="data.product.product.expansion" class="icon expansion" ng-style="data.product.product.expIcon | expansionIcon"></span>
+    <span ng-show="data.product.product.rarity" class="icon rarity rarity-{{data.product.product.rarity}}"></span>
+  </div>
 </header>
 <mkm-product product-data="data.product"></mkm-product>
 <article class="product">
@@ -18,28 +21,40 @@
       </select><br>
     </span>
     <label for="language" translate="common.language"></label>
+    <span class="icon language language-{{data.article.language.idLanguage}}"></span>
     <select id="language" ng-options="language as 'article.languages.'+language | translate for language in languages"
             ng-model="data.article.language.idLanguage" required></select>
-    <span class="icon language language-{{data.article.language.idLanguage}}"></span>
     <hr>
     <label for="condition" translate="article.condition"></label>
+    <span class="icon grading grading-{{data.article.condition}}"></span>
     <select id="condition" ng-options="condition as 'article.conditions.'+condition | translate for condition in conditions"
             ng-model="data.article.condition" required></select>
-    <span class="icon grading grading-{{data.article.condition}}"></span>
     <hr>
-    <input type="checkbox" ng-model="data.article.isFoil" id="isFoil">
-    <label for="isFoil" translate="article.foil"></label><br>
-    <input type="checkbox" ng-model="data.article.isSigned" id="isSigned">
-    <label for="isSigned" translate="article.signed"></label><br>
-    <input type="checkbox" ng-model="data.article.isPlayset" id="isPlayset">
-    <label for="isPlayset" translate="article.playset"></label><br>
-    <input type="checkbox" ng-model="data.article.isAltered" id="isAltered">
+    <label for="isFoil" translate="article.foil"></label>
+    <label for="isFoil">
+      <input type="checkbox" ng-model="data.article.isFoil" id="isFoil">
+    </label>
+    <br>
+    <label for="isSigned" translate="article.signed"></label>
+    <label for="isSigned">
+      <input type="checkbox" ng-model="data.article.isSigned" id="isSigned">
+    </label>
+    <br>
+    <label for="isPlayset" translate="article.playset"></label>
+    <label for="isPlayset">
+      <input type="checkbox" ng-model="data.article.isPlayset" id="isPlayset">
+    </label>
+    <br>
     <label for="isAltered" translate="article.altered"></label>
+    <label for="isAltered">
+      <input type="checkbox" ng-model="data.article.isAltered" id="isAltered">
+    </label>
     <hr>
-    <input type="text" ng-model="data.article.comments" placeholder="{{'common.comment' | translate}}"><br>
+    <label for="comment" translate="common.comment"></label>
+    <input type="text" id="comment" ng-model="data.article.comments" placeholder="{{'common.comment' | translate}}"><br>
     <label for="price" translate="common.price"></label>
     <input id="price" type="number" step="0.01" min="0.01" ng-model="data.article.price"><br>
-    <button ng-click="save()" translate="common.save"></button>
+    <button class="button" ng-click="save()" translate="common.save"></button>
   </form>
 </article>
 <mkm-footer></mkm-footer>
