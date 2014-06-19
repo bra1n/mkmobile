@@ -33,6 +33,7 @@
         display: table-row;
         font-weight: bold;
         color: #012169;
+        &:nth-child(even) { background: #fafafa; }
         .icon.card, .icon.comment { cursor: pointer; }
         & > div {
           display: table-cell;
@@ -88,11 +89,6 @@
   }
   // editing a single article
   article.product {
-    .loading {
-      text-align: center;
-      padding-top: 50px;
-      font-weight: bold;
-    }
     form {
       padding: 10px;
       white-space: nowrap;

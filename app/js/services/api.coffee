@@ -28,6 +28,9 @@ mkmobileServices.factory 'MkmApi', [ '$resource', ($resource) ->
     cartUpdate: # update shoppingcart contents
       params: type: 'shoppingcart'
       method: 'PUT'
+    cartEmpty: # empty the shoppingcart
+      params: type: 'shoppingcart'
+      method: 'DELETE'
     shippingAddress: # update shipping address for shoppingcart
       params: {type: 'shoppingcart', param1: 'shippingaddress'}
       method: 'PUT'

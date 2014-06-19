@@ -15,21 +15,21 @@
     </li>
   </ul>
   <div class="orders">
-    <span ng-show="!data.loading && data.count > 1" translate="order.shipments" translate-value-count="{{data.count | number}}"></span>
-    <span ng-show="!data.loading && data.count == 1" translate="order.shipments_1"></span>
-    <span ng-show="!data.loading && data.count == 0" translate="order.shipments_0"></span>
+    <h3 ng-show="!data.loading && data.count > 1" translate="order.shipments" translate-value-count="{{data.count | number}}"></h3>
+    <h3 ng-show="!data.loading && data.count == 1" translate="order.shipments_1"></h3>
+    <h3 ng-show="!data.loading && data.count == 0" translate="order.shipments_0"></h3>
     <ul ng-class="{loading:data.loading}" data-infinite-scroll="loadOrders()">
       <li ng-repeat="order in data.orders">
-        <a href="/{{mode}}/{{order.idOrder}}">
+        <a class="link" href="/{{mode}}/{{order.idOrder}}">
           <div ng-show="mode == 'buys'">
-            <b translate="order.seller">Seller:</b>
-            <b>{{order.seller.username}}</b><br>
+            <b class="title" translate="order.seller">Seller:</b>
+            <b class="title">{{order.seller.username}}</b><br>
             <span translate="order.last_name">Last name:</span>
             {{order.seller.name.lastName}}
           </div>
           <div ng-show="mode == 'sells'">
-            <b translate="order.buyer">Buyer:</b>
-            <b>{{order.buyer.username}}</b><br>
+            <b class="title" translate="order.buyer">Buyer:</b>
+            <b class="title">{{order.buyer.username}}</b><br>
             <span translate="order.last_name">Last name:</span>
             {{order.buyer.name.lastName}}
           </div>
@@ -51,7 +51,7 @@
             <b translate="order.cancellation">Cancellation Requested:</b>
             {{order.cancellationRequest.date | date:'short'}}<br>
           </span>
-          <span ng-show="order.state.state == 'received'" translate="order.please_evaluate">Please evaluate this order</span>
+          <b ng-show="order.state.state == 'received'" translate="order.please_evaluate">Please evaluate this order</b>
         </a>
       </li>
     </ul>

@@ -9,7 +9,7 @@
     </div>
   </div>
   <ul class="overview" ng-class="{loading:data.loading}">
-    <li ng-repeat="thread in data.messages | filter:search"
+    <li ng-repeat="thread in data.messages | filter:search" class="link"
         ng-class="{sending:thread.message.isSending, unread:thread.unreadMessages}">
       <button ng-click="delete($index,thread.partner.idUser)"></button>
       <span class="time">{{thread.message.date | date:'short'}}</span>

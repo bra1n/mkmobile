@@ -84,6 +84,14 @@ mkmobileServices.factory 'MkmApiCart', [ 'MkmApi', 'DataCache', '$filter', (MkmA
       @cache data
       cb?()
 
+  # empties the shopping cart
+  empty: ->
+    MkmApi.api.cartEmpty {}, (data) ->
+      # todo remove once implemented on API side
+      data or= {}
+      data.shoppingCart or= []
+      @cache data
+
   # cache cart data
   cache: (data) ->
     DataCache.cart data.shoppingCart

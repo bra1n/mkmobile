@@ -117,6 +117,7 @@
   "callback": "Processing login...",
   "cart": {
     "empty": "You have no items on your shopping cart, if you want to search for articles, please use the search field above.",
+    "delete": "Empty cart",
     "shipping_address": "Shipping Address:",
     "headline": "{{orders}} orders ({{articles}} articles) to buy now",
     "order": "Order Nr.:",

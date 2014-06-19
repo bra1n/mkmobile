@@ -1,0 +1,144 @@
+// order page
+#content.buys, #content.sells {
+  header {
+    padding: 0 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  article {
+    position: relative;
+    .tabs {
+      padding: 10px 10px 0;
+      background: #eaeaea;
+      border-bottom: 1px solid #ccc;
+      box-shadow: inset 0 -1px 1px rgba(0,0,0,0.2);
+      li {
+        display: inline-block;
+        width: 25%;
+        vertical-align: top;
+        text-align: center;
+        cursor: pointer;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 10px 0;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        border: 1px solid #ccc;
+        border-bottom: none;
+        box-shadow: inset 0 1px 1px #fff;
+        font-weight: bold;
+        color: #012169;
+        font-size: 16px;
+        -webkit-transition: background-color 0.5s;
+        -moz-transition: background-color 0.5s;
+        -ms-transition: background-color 0.5s;
+        -o-transition: background-color 0.5s;
+        transition: background-color 0.5s;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        &.current {
+          background: #fdfdfd;
+          position: relative;
+          margin-bottom: -1px;
+          padding-bottom: 11px;
+        }
+      }
+    }
+    div.orders {
+      padding-top: 10px;
+      h3 {
+        color: #9e9e9e;
+        font-size: 12px;
+      }
+      li {
+        border-bottom: 1px solid #ccc;
+        padding: 10px;
+        position: relative;
+        &:nth-child(even) { background: #fafafa; }
+        a {
+          display: block;
+          color: #444;
+        }
+      }
+    }
+
+    form.order {
+      text-align: center;
+      div.status { padding: 10px; }
+      div.evaluation { padding: 10px; }
+      b, span {
+        display: inline-block;
+        width: 50%;
+        vertical-align: top;
+      }
+      b { text-align: left; white-space: nowrap; }
+      span { text-align: right; }
+    }
+  }
+  // evaluation
+  article.evaluation {
+    text-align: center;
+    form {
+      padding: 10px;
+      label, select {
+        display: inline-block;
+        width: 50%;
+        text-align: left;
+        vertical-align: top;
+        line-height: 25px;
+        margin-bottom: 10px;
+      }
+      .icon {
+        position: absolute;
+        margin-left: -20px;
+        margin-top: 5px;
+      }
+      input {
+        width: 100%;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+      }
+    }
+    div.overlay {
+      position: absolute;
+      top: 50px;
+      height: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(255,255,255,0.9);
+      opacity: 1;
+      -webkit-transition: all 0.5s linear;
+      -moz-transition: all 0.5s linear;
+      -ms-transition: all 0.5s linear;
+      -o-transition: all 0.5s linear;
+      transition: all 0.5s linear;
+      &.ng-hide-add, &.ng-hide-remove { display:block!important; }
+      &.ng-hide { opacity:0; }
+      li {
+        text-align: left;
+        padding: 10px;
+      }
+      button { margin-top: 10px; }
+    }
+    div.view {
+      padding: 10px;
+      b, span {
+        display: inline-block;
+        width: 50%;
+        vertical-align: top;
+        line-height: 25px;
+        margin-bottom: 10px;
+        text-align: left;
+        padding-right: 20px;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+      .icon {
+        position: absolute;
+        margin-left: -20px;
+        margin-top: 5px;
+      }
+    }
+  }
+}

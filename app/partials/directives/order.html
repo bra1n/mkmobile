@@ -1,6 +1,7 @@
 <div class="seller">
   <b translate="order.seller" class="title">Seller:</b>
-  {{order.seller.username}} ({{order.seller.sellCount}})
+  <b class="title">{{order.seller.username}}</b>
+  ({{order.seller.sellCount}})
   <span class="seller-details" mkm-user user="order.seller"></span>
   <a class="icon comment" ng-show="order.isBuyer" href="/messages/{{order.seller.idUser}}"></a>
   <div class="seller-address" ng-show="order.seller.address">
@@ -20,7 +21,8 @@
 </div>
 <hr ng-show="order.buyer">
 <div class="buyer" ng-show="order.buyer">
-  <b translate="order.buyer" class="title">Buyer:</b> {{order.buyer.username}}
+  <b translate="order.buyer" class="title">Buyer:</b>
+  <b class="title">{{order.buyer.username}}</b> ({{order.buyer.sellCount}})
   <span class="buyer-details" mkm-user user="order.buyer"></span>
   <a class="icon comment" ng-hide="order.isBuyer" href="/messages/{{order.buyer.idUser}}"></a>
   <div class="buyer-address" ng-show="order.shippingAddress">

@@ -1,42 +1,22 @@
 #content.cart {
   article {
     i { display: block; }
-    .loading {
-      text-align: center;
-      padding-top: 50px;
-      font-weight: bold;
-    }
     .empty {
       padding: 10px;
       font-weight: bold;
       text-align: center;
     }
     a.address {
-      position: relative;
       padding: 10px;
       color: #444;
       display: block;
-      &:after {
-        content: url("/img/link.png");
-        position: absolute;
-        right: 15px;
-        top: 50%;
-        margin-top: -11px;
-      }
     }
     .orderid { padding: 10px 10px 0 10px; }
     li.order {
       padding: 10px 0;
-      position: relative;
       border-bottom: 1px solid #ccc;
       white-space: nowrap;
-      &:after {
-        content: url("/img/link.png");
-        position: absolute;
-        right: 15px;
-        top: 50%;
-        margin-top: -11px;
-      }
+      &:nth-child(even) { background: #fafafa; }
       button {
         background: url("/img/remove.png") center center no-repeat;
         border: none;

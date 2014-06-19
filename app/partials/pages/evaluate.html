@@ -1,39 +1,48 @@
-<header translate="evaluation.title" translate-values="{id:data.order.idOrder, seller:data.order.seller.username}">
-  Evaluation for Order 1 from Seller
+<header>
+  <a href="." ng-href="/{{mode}}/{{data.order.idOrder}}" class="back"></a>
+  <span translate="evaluation.title" translate-values="{id:data.order.idOrder, seller:data.order.seller.username}">
+    Evaluation for Order 1 from Seller
+  </span>
 </header>
 <article class="evaluation">
   <div class="error" ng-show="data.error" translate="order.error">Error loading order</div>
   <div class="loading" ng-show="data.loading" translate="order.loading">Loading order...</div>
+
+  <!-- Evaluation form -->
   <form ng-show="data.order && !data.order.evaluation && !data.loading && !data.error" ng-submit="evaluate()">
-    <label for="evaluationGrade" translate="evaluation.overall">Overall Evaluation</label>
-    <span class="icon evaluation" ng-class="'evaluation-'+evaluation.evaluationGrade"></span>
-    <select ng-options="evaluation as 'evaluation.evaluations.'+evaluation | translate for evaluation in evaluations"
-            id="evaluationGrade" ng-model="evaluation.evaluationGrade" required></select><br>
+    <label for="evaluationGrade" translate="evaluation.overall">Overall Evaluation</label><!--
+ --><span class="icon evaluation" ng-class="'evaluation-'+evaluation.evaluationGrade"></span><!--
+ --><select ng-options="evaluation as 'evaluation.evaluations.'+evaluation | translate for evaluation in evaluations"
+            id="evaluationGrade" ng-model="evaluation.evaluationGrade" required></select>
+
     <input type="text" ng-model="evaluation.comment" placeholder="{{'common.comment' | translate}}"
            ng-required="evaluation.evaluationGrade > 1 && !evaluation.complaint.length">
-    <label for="itemDescription" translate="evaluation.description">Description of Items</label>
-    <span class="icon evaluation" ng-class="'evaluation-'+evaluation.itemDescription"></span>
-    <select ng-options="evaluation as 'evaluation.evaluations.'+evaluation | translate for evaluation in evaluations"
+
+    <label for="itemDescription" translate="evaluation.description">Description of Items</label><!--
+ --><span class="icon evaluation" ng-class="'evaluation-'+evaluation.itemDescription"></span><!--
+ --><select ng-options="evaluation as 'evaluation.evaluations.'+evaluation | translate for evaluation in evaluations"
             id="itemDescription" ng-model="evaluation.itemDescription" required></select>
 
-    <label for="packaging" translate="evaluation.packaging">Packaging of Shipment</label>
-    <span class="icon evaluation" ng-class="'evaluation-'+evaluation.packaging"></span>
-    <select ng-options="evaluation as 'evaluation.evaluations.'+evaluation | translate for evaluation in evaluations"
+    <label for="packaging" translate="evaluation.packaging">Packaging of Shipment</label><!--
+ --><span class="icon evaluation" ng-class="'evaluation-'+evaluation.packaging"></span><!--
+ --><select ng-options="evaluation as 'evaluation.evaluations.'+evaluation | translate for evaluation in evaluations"
             id="packaging" ng-model="evaluation.packaging" required></select>
 
-    <label for="speed" translate="evaluation.speed">Processing Speed</label>
-    <span class="icon evaluation" ng-class="'evaluation-'+evaluation.speed"></span>
-    <select ng-options="evaluation as 'evaluation.evaluations.'+evaluation | translate for evaluation in evaluations"
+    <label for="speed" translate="evaluation.speed">Processing Speed</label><!--
+ --><span class="icon evaluation" ng-class="'evaluation-'+evaluation.speed"></span><!--
+ --><select ng-options="evaluation as 'evaluation.evaluations.'+evaluation | translate for evaluation in evaluations"
             id="speed" ng-model="evaluation.speed" required></select>
 
-    <label for="complaints" translate="evaluation.complaint">Complaints</label>
-    <select ng-options="complaint as 'evaluation.complaints.'+complaint | translate for complaint in complaints"
-            id="complaints" ng-model="evaluation.complaint" multiple></select><br>
+    <label for="complaints" translate="evaluation.complaint">Complaints</label><!--
+ --><select ng-options="complaint as 'evaluation.complaints.'+complaint | translate for complaint in complaints"
+         id="complaints" ng-model="evaluation.complaint" multiple></select>
 
-    <button translate="order.evaluate">Evaluate</button>
+    <button translate="order.evaluate" class="button">Evaluate</button>
   </form>
+
+  <!-- Evaluation overlay -->
   <div ng-show="!hideOverlay && data.order && !data.order.evaluation && !data.loading && !data.error" class="overlay ng-hide">
-    <h1 translate="evaluation.guidelines">Evaluation Guidelines</h1>
+    <div class="subheadline" translate="evaluation.guidelines">Evaluation Guidelines</div>
     <ul>
       <li translate="evaluation.guide1">Do not give an overall neutral or bad evaluation before trying to contact the seller first. Sellers are human and can make mistakes. Give them a chance to fix them.</li>
       <li translate="evaluation.guide2">Do not give an overall neutral or bad evaluation if you would buy from this seller again.</li>
@@ -42,33 +51,41 @@
       <li translate="evaluation.guide5">If you did not receive this shipment do not evaluate it. Contact our support so they mark it as lost.</li>
       <li translate="evaluation.guide6">Mark or explain why you give overall neutral or bad evaluations, otherwise they will be neutralized.</li>
     </ul>
-    <button ng-click="hideOverlay = true">{{'evaluation.continue' | translate}}</button>
+    <button class="button" ng-click="hideOverlay = true">{{'evaluation.continue' | translate}}</button>
   </div>
-  <div ng-show="data.order.evaluation">
-    <span translate="evaluation.overall">Overall:</span>
-    <span class="icon evaluation" ng-class="'evaluation-'+data.order.evaluation.evaluationGrade"></span>
-    {{data.order.evaluation.evaluationGrade | findInMap:evaluations}}<br>
-    <span ng-show="data.order.evaluation.comment">
-      {{'evaluation.comment' | translate}} {{data.order.evaluation.comment}}<br>
-    </span>
-    <span translate="evaluation.description">Item Description:</span>
-    <span class="icon evaluation" ng-class="'evaluation-'+data.order.evaluation.itemDescription"></span>
-    {{data.order.evaluation.itemDescription | findInMap:evaluations}}<br>
-    <span translate="evaluation.packaging">Packaging:</span>
-    <span class="icon evaluation" ng-class="'evaluation-'+data.order.evaluation.packaging"></span>
-    {{data.order.evaluation.packaging | findInMap:evaluations}}<br>
-    <span translate="evaluation.speed">Speed:</span>
-    <span class="icon evaluation" ng-class="'evaluation-'+data.order.evaluation.speed"></span>
-    {{data.order.evaluation.speed | findInMap:evaluations}}<br>
-    <div ng-show="data.order.evaluation.complaint">
-      <span translate="evaluation.complaints">Complaints:</span>
-      <ul>
-        <li ng-repeat="complaint in data.order.evaluation.complaint">
-          evaluation.complaints.{{complaint}}
-        </li>
-      </ul>
+
+  <!-- Filled in evaluation -->
+  <div class="view" ng-show="data.order.evaluation">
+    <b translate="evaluation.overall">Overall:</b><!--
+    --><i class="icon evaluation" ng-class="'evaluation-'+data.order.evaluation.evaluationGrade"></i><!--
+    --><span translate="evaluation.evaluations.{{data.order.evaluation.evaluationGrade}}"></span><br>
+
+    <div ng-show="data.order.evaluation.comment">
+      <b translate="evaluation.comment"></b><!--
+      --><span>{{data.order.evaluation.comment}}</span>
     </div>
-    <a href="/{{mode}}/{{data.order.idOrder}}" translate="evaluation.back">Back to Order</a>
+
+    <b translate="evaluation.description">Item Description:</b><!--
+    --><i class="icon evaluation" ng-class="'evaluation-'+data.order.evaluation.itemDescription"></i><!--
+    --><span translate="evaluation.evaluations.{{data.order.evaluation.itemDescription}}"></span><br>
+
+    <b translate="evaluation.packaging">Packaging:</b><!--
+    --><i class="icon evaluation" ng-class="'evaluation-'+data.order.evaluation.packaging"></i><!--
+    --><span translate="evaluation.evaluations.{{data.order.evaluation.packaging}}"></span><br>
+
+    <b translate="evaluation.speed">Speed:</b><!--
+    --><i class="icon evaluation" ng-class="'evaluation-'+data.order.evaluation.speed"></i><!--
+    --><span translate="evaluation.evaluations.{{data.order.evaluation.speed}}"></span><br>
+
+    <div ng-show="data.order.evaluation.complaint">
+      <b translate="evaluation.complaint">Complaints:</b><!--
+      --><span>
+        <i ng-repeat="complaint in data.order.evaluation.complaint">
+          {{'evaluation.complaints.'+complaint | translate}}{{$last ? '' : ', '}}
+        </i>
+      </span>
+    </div>
+    <a href="/{{mode}}/{{data.order.idOrder}}" class="button" translate="evaluation.back">Back to Order</a>
   </div>
 </article>
 <mkm-footer></mkm-footer>

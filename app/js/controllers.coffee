@@ -137,6 +137,12 @@ mkmobileControllers.controller 'CartCtrl', [
         $scope.sum = MkmApiCart.sum()
         $scope.data = MkmApiCart.get $routeParams.orderId # should be updated now, no need for callback
 
+    # empty the shopping cart
+    $scope.emptyCart = ->
+      $scope.data.cart = []
+      $scope.count =  $scope.sum = 0
+      MkmApiCart.empty()
+
     # change shipping address
     $scope.countries = MkmApiCart.getCountries()
     $scope.shippingAddress = (address) -> MkmApiCart.shippingAddress address, -> $location.path '/cart'

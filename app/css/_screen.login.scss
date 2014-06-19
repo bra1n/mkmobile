@@ -31,10 +31,7 @@
       display: block;
     }
   }
-  .subheadline {
-    position: fixed;
-    z-index: 100;
-  }
+  .subheadline { top: 0; }
   .results {
     // search results
     position: absolute;

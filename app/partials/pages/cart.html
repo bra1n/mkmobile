@@ -2,7 +2,7 @@
 <article>
   <mkm-search ng-hide="data.cart.length || data.loading">cart.empty</mkm-search>
   <div class="overview" ng-show="data.cart.length">
-    <a href="/cart/address" class="address">
+    <a href="/cart/address" class="address link">
       <span class="title" translate="cart.shipping_address"></span>
       <i>
         {{data.address.name}},
@@ -21,9 +21,12 @@
       <mkm-order order="data.cart[0]" remove-article="removeArticle" shipping-method="shippingMethod"></mkm-order>
     </div>
     <div class="multiple" ng-show="data.cart.length > 1">
-      <div class="titlebar" translate="cart.headline" translate-values="{orders:data.cart.length, articles:count}"></div>
+      <div class="titlebar">
+        <a href="javascript:void()" ng-click="emptyCart()" class="right" translate="cart.delete">Empty cart</a>
+        <span translate="cart.headline" translate-values="{orders:data.cart.length, articles:count}"></span>
+      </div>
       <ul>
-        <li class="order" ng-repeat="order in data.cart">
+        <li class="order link" ng-repeat="order in data.cart">
           <button ng-click="removeOrder(order)"></button><a href="/cart/{{order.idReservation}}">
             <span translate="cart.order"></span>
             {{order.idReservation}}<br>

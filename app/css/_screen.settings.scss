@@ -19,15 +19,7 @@
     }
     a {
       display: block;
-      position: relative;
       line-height: 20px;
-      &:after {
-        content: url("/img/link.png");
-        position: absolute;
-        right: 0;
-        top: 50%;
-        margin-top: -11px;
-      }
     }
   }
   footer .settings { background-position: 50% 50%; }

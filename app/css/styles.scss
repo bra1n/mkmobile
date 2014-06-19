@@ -172,6 +172,7 @@ footer {
   font-size: 16px;
   color: #012169;
   font-weight: bold;
+  font-style: normal;
 }
 
 // gray bar
@@ -207,7 +208,6 @@ input, textarea {
 
 // buttons
 .button {
-//  height: 50px;
   padding: 10px;
   font-size: 18px;
   font-weight: bold;
@@ -220,6 +220,19 @@ input, textarea {
   display: inline-block;
   &:focus { background: #0240ca; color: #fff; }
   &.green { background: #15704b; }
+}
+
+// link arrow
+.link {
+  position: relative;
+  &:after {
+    content: url("/img/link.png");
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    margin-top: -11px;
+    pointer-events: none;
+  }
 }
 
 // errors
@@ -241,6 +254,11 @@ ul.loading {
   background-position: center bottom;
   padding-bottom: 40px;
   margin-bottom: 20px;
+}
+div.loading {
+  text-align: center;
+  padding-top: 50px;
+  font-weight: bold;
 }
 
 .icon {
@@ -355,6 +373,7 @@ mkm-order {
       display: table-row;
       font-weight: bold;
       color: #012169;
+      &:nth-child(even) { background: #fafafa; }
     }
     li > div {
       display: table-cell;
@@ -382,6 +401,15 @@ mkm-order {
     text-align: center;
     select { max-width: 90%; }
   }
+  .total {
+    text-align: center;
+    padding: 10px;
+    font-size: 18px;
+    i {
+      font-size: 14px;
+      display: block;
+    }
+  }
 }
 
 // Search directive
@@ -393,16 +421,7 @@ mkm-search {
       padding: 0 10px;
       line-height: 40px;
       border-bottom: 1px solid #ccc;
-      position: relative;
-      padding-right: 15px;
       &:nth-child(even) { background: #fafafa; }
-      &:after {
-        content: url("/img/link.png");
-        position: absolute;
-        right: 5px;
-        top: 50%;
-        margin-top: -11px;
-      }
     }
     a {
       color: #0240ca;
@@ -423,6 +442,7 @@ mkm-search {
 @import "screen.settings";
 @import "screen.messages";
 @import "screen.stock";
+@import "screen.orders";
 
 // search page
 #content.search {
@@ -455,44 +475,5 @@ mkm-search {
 #content.article {
   article {
     margin-top: 45px;
-  }
-}
-
-// order page
-#content.buys, #content.sells {
-  article {
-    position: relative;
-    .tabs li {
-      display: inline-block;
-      width: 25%;
-      vertical-align: top;
-      text-align: center;
-      cursor: pointer;
-      &.current {
-        background: silver;
-      }
-    }
-    .evaluation {
-      b {
-        display: inline-block;
-        vertical-align: middle;
-        min-width: 200px;
-      }
-    }
-  }
-  // evaluation
-  article.evaluation {
-    label { display: block; }
-    div.overlay {
-      position: absolute;
-      top: 15px;
-      height: 100%;
-      background: rgba(255,255,255,0.9);
-      width: 100%;
-      opacity: 1;
-      transition:all linear 0.5s;
-      &.ng-hide-add, &.ng-hide-remove { display:block!important; }
-      &.ng-hide { opacity:0; }
-    }
   }
 }

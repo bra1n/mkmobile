@@ -15,7 +15,7 @@
     </select>
   </h3>
   <ul ng-class="{loading:searchData.loading}" data-infinite-scroll="loadResults()">
-    <li ng-repeat="product in searchData.products | orderBy:sort">
+    <li class="link" ng-repeat="product in searchData.products | orderBy:sort">
       <a href="/product/{{product.idProduct}}">
         <span class="icon expansion" ng-style="product.expIcon | expansionIcon" ng-show="product.expansion"></span>
         <span class="icon rarity rarity-{{product.rarity}}" ng-show="product.rarity"></span>

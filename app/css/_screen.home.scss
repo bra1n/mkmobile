@@ -23,7 +23,6 @@
       vertical-align: middle;
     }
     a {
-      color: #444;
       text-align: center;
       width: 50%;
       display: inline-block;
@@ -31,7 +30,8 @@
       padding-top: 80px;
       font-weight: bold;
       vertical-align: middle;
-      &:hover { color:#012169; }
+      color: #012169;
+      &:hover { color:#1a3778; }
       &:before {
         content: " ";
         display: inline-block;
