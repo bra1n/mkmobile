@@ -1,4 +1,4 @@
-/*! mkmobile - v0.9.0 - 2014-06-25
+/*! mkmobile - v0.9.1 - 2014-06-25
  * https://github.com/bra1n/mkmobile
  * Copyright (c) 2014 ; All rights reserved */
 /*! jQuery v2.1.1 | (c) 2005, 2014 jQuery Foundation, Inc. | jquery.org/license */
