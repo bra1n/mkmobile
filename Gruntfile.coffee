@@ -50,6 +50,7 @@ module.exports = (grunt) ->
       lib: 'src/lib'
       index: 'src/index.dist.html'
       assets: 'src/img'
+      translations: 'src/translations'
 
     # Task configuration
     bump:

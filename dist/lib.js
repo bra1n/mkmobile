@@ -1,4 +1,4 @@
-/*! mkmobile - v0.9.1 - 2014-06-25
+/*! mkmobile - v0.9.2 - 2014-06-25
  * Author: Steffen Baumgart <steffen@baumgart.biz>
  * https://github.com/bra1n/mkmobile
  * Copyright (c) 2014 ; Sammelkartenmarkt Ltd. & Co. KG */
@@ -372,6 +372,7 @@ angular.module('tmh.dynamicLocale', []).provider('tmhDynamicLocale', function() 
 
         overrideValues($locale, externalLocale);
         localeCache.put(localeId, externalLocale);
+        console.log(localeId, externalLocale);
         delete promiseCache[localeId];
 
         $rootScope.$apply(function () {
