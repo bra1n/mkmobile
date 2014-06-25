@@ -42,7 +42,6 @@ module.exports = (grunt) ->
         commitMessage: 'Release v%VERSION%'
         commitFiles: ['.']
         pushTo: 'origin'
-        push: false
 
     clean: ['<%= distdir %>/*']
 
