@@ -1,9 +1,10 @@
 src/lib
-src/**/*.js
-src/**/*.map
-src/**/*.css
+*.js
+*.map
+*.css
 .idea
 .DS_Store
 .sass-cache
 .htaccess
 node_modules
+!build/*.*
