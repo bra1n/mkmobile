@@ -1,6 +1,6 @@
 # mkmobile
 
-Magic Card Market Mobile Client
+MagicCardMarket Mobile Client
 
 ## Setup
 
@@ -28,6 +28,8 @@ there for development. The `index.dist.html` represents the version that will be
 
 If you want to generate a new build, use `grunt build` in order to generate the static files needed for a deyploment.
 The generated files will be located in `/dist`.
+
+In order to create a new release, use `grunt release`.
 
 ### Server Setup
 
