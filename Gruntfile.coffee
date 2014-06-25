@@ -14,6 +14,7 @@ module.exports = (grunt) ->
   # Default task.
   grunt.registerTask 'default', ['coffee', 'html2js', 'sass:dev']
   grunt.registerTask 'build', ['clean', 'coffee', 'html2js', 'sass:dist', 'concat', 'uglify', 'copy']
+  grunt.registerTask 'release', ['bump-only', 'build', 'bump-commit']
 
   # Project configuration
   grunt.initConfig
@@ -34,6 +35,15 @@ module.exports = (grunt) ->
       assets: 'src/img'
 
     # Task configuration
+    bump:
+      options:
+        files: ['package.json', 'bower.json']
+        updateConfigs: ['pkg']
+        commitMessage: 'Release v%VERSION%'
+        commitFiles: ['-a']
+        pushTo: 'origin'
+        push: false
+
     clean: ['<%= distdir %>/*']
 
     coffee:

@@ -10,7 +10,7 @@
   "bugs": {
     "url": "https://github.com/bra1n/mkmobile/issues"
   },
-  "licenses": [ ],
+  "licenses": [],
   "engines": {
     "node": ">= 0.10.0"
   },
@@ -23,6 +23,7 @@
     "grunt-contrib-uglify": "~0.2.7",
     "grunt-contrib-coffee": "~0.10.1",
     "grunt-contrib-sass": "~0.7.3",
-    "grunt-html2js": "~0.2.7"
+    "grunt-html2js": "~0.2.7",
+    "grunt-bump": "0.0.14"
   }
 }
