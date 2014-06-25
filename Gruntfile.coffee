@@ -40,7 +40,7 @@ module.exports = (grunt) ->
         files: ['package.json', 'bower.json']
         updateConfigs: ['pkg']
         commitMessage: 'Release v%VERSION%'
-        commitFiles: ['-a']
+        commitFiles: ['.']
         pushTo: 'origin'
         push: false
 
@@ -77,7 +77,7 @@ module.exports = (grunt) ->
         options:
           style: 'compressed'
           noCache: true
-        files: '<%= distdir %>/styles.<%= pkg.version %>.css': '<%= src.css %>/styles.scss'
+        files: '<%= distdir %>/styles.css': '<%= src.css %>/styles.scss'
 
     concat:
       lib:
@@ -96,7 +96,7 @@ module.exports = (grunt) ->
           '<%= src.lib %>/cryptojslib/rollups/hmac-sha1.js'
           '<%= src.lib %>/cryptojslib/components/enc-base64-min.js'
         ]
-        dest: '<%= distdir %>/lib.<%= pkg.version %>.js'
+        dest: '<%= distdir %>/lib.js'
       index:
         src: ['<%= src.index %>'],
         dest: '<%= distdir %>/index.html',
@@ -107,7 +107,7 @@ module.exports = (grunt) ->
         banner: '<%= banner %>'
       dist:
         src: '<%= src.js %>/**/*.js'
-        dest: '<%= distdir %>/app.<%= pkg.version %>.js'
+        dest: '<%= distdir %>/app.js'
 
     copy:
       assets:
