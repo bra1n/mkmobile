@@ -12,9 +12,26 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-html2js'
 
   # Default task.
-  grunt.registerTask 'default', ['coffee', 'html2js', 'sass:dev']
-  grunt.registerTask 'build', ['clean', 'coffee', 'html2js', 'sass:dist', 'concat', 'uglify', 'copy']
+  grunt.registerTask 'default', ['coffee', 'html2js', 'locale', 'sass:dev']
+  grunt.registerTask 'build', ['clean', 'coffee', 'html2js', 'sass:dist', 'locale', 'concat', 'uglify', 'copy']
   grunt.registerTask 'release', (type = "patch") -> grunt.task.run ['bump-only:'+type, 'build', 'bump-commit']
+
+  # locales gathering and transforming
+  # todo: support translations, too
+  grunt.registerMultiTask 'locale', 'Gather locales for dynamic loading', ->
+    unless @data.locales? and @data.src? and @data.dest?
+      grunt.log.error "missing paramaters for locale"
+      return false
+    content = "angular.module('locales', ['locales-"+@data.locales.join("','locales-")+"']);\n"
+    for locale in @data.locales
+      code = grunt.file.read @data.src + locale + '.js'
+      code = code.replace /'use strict';/, '\n'
+      code = code.replace /"ngLocale", \[\], \[/, '"locales-'+locale+'", []).run(['
+      code = code.replace /\$provide/g, 'tmhDynamicLocaleCache'
+      code = code.replace /\.value\("\$locale"/, '.put("'+locale+'"'
+      content += code
+    grunt.file.write @data.dest, content
+    grunt.log.writeln "File #{@data.dest} created from #{locale.length} locales"
 
   # Project configuration
   grunt.initConfig
@@ -59,11 +76,11 @@ module.exports = (grunt) ->
     html2js:
       options:
         module: 'templates'
-        base: 'app'
+        base: 'src'
         rename: (moduleName) -> '/' + moduleName
       main:
         src: ['<%= src.tpl %>']
-        dest: '<%= src.js %>/app/templates.js'
+        dest: '<%= src.js %>/build/templates.js'
 
     sass:
       dev:
@@ -78,6 +95,12 @@ module.exports = (grunt) ->
           banner: '<%= banner %>'
           noCache: true
         files: '<%= distdir %>/styles.css': '<%= src.css %>/styles.scss'
+
+    locale:
+      dist:
+        src: '<%= src.lib %>/angular-i18n/angular-locale_'
+        locales: ['en-gb', 'de-de', 'it-it', 'fr-fr', 'es-es']
+        dest: '<%= src.js %>/build/locales.js'
 
     concat:
       lib:
@@ -116,6 +139,13 @@ module.exports = (grunt) ->
           src: '*.*'
           expand: true
           cwd: '<%= src.assets %>'
+        }]
+      translations:
+        files: [{
+          dest: '<%= distdir %>/translations'
+          src: '*.*'
+          expand: true
+          cwd: '<%= src.translations %>'
         }]
 
     watch:

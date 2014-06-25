@@ -12,9 +12,11 @@ mkmobileApp = angular.module 'mkmobileApp', [
   'mkmobileDirectives'
   # templates
   'templates'
+  'locales'
 ]
 
 angular.module 'templates', [] # placeholder for real templates
+angular.module 'locales', [] # placeholder for real locales
 
 mkmobileApp.config ['$locationProvider','$routeProvider', ($locationProvider, $routeProvider) ->
   $locationProvider.html5Mode yes
