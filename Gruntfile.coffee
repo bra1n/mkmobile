@@ -14,7 +14,7 @@ module.exports = (grunt) ->
   # Default task.
   grunt.registerTask 'default', ['coffee', 'html2js', 'sass:dev']
   grunt.registerTask 'build', ['clean', 'coffee', 'html2js', 'sass:dist', 'concat', 'uglify', 'copy']
-  grunt.registerTask 'release', (type = "minor") -> grunt.task.run ['bump-only:'+type, 'build', 'bump-commit']
+  grunt.registerTask 'release', (type = "patch") -> grunt.task.run ['bump-only:'+type, 'build', 'bump-commit']
 
   # Project configuration
   grunt.initConfig
