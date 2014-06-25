@@ -1,5 +1,6 @@
 {
-  "author": "Steffen Baumgart",
+  "author": "Steffen Baumgart <steffen@baumgart.biz>",
+  "company": "Sammelkartenmarkt Ltd. & Co. KG",
   "name": "mkmobile",
   "homepage": "https://github.com/bra1n/mkmobile",
   "version": "0.9.1",

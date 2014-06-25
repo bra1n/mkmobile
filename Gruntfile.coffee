@@ -23,9 +23,9 @@ module.exports = (grunt) ->
     pkg: grunt.file.readJSON 'package.json'
     banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - '+
       '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
+      '<%= pkg.author ? " * Author: " + pkg.author + "\\n" : "" %>' +
       '<%= pkg.homepage ? " * " + pkg.homepage + "\\n" : "" %>' +
-      ' * Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;'+
-      ' All rights reserved */\n'
+      ' * Copyright (c) <%= grunt.template.today("yyyy") %> ; <%= pkg.company %> */\n'
     src:
       tpl: 'src/partials/**/*.html'
       css: 'src/css'
@@ -75,6 +75,7 @@ module.exports = (grunt) ->
       dist:
         options:
           style: 'compressed'
+          banner: '<%= banner %>'
           noCache: true
         files: '<%= distdir %>/styles.css': '<%= src.css %>/styles.scss'
 
