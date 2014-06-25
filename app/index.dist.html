@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="mkmobileApp">
+<head>
+  <title ng-bind="viewTitle">MCM Mobile</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <script src="/lib.<%= pkg.version %>.js"></script>
+  <script src="/app.<%= pkg.version %>.js"></script>
+  <link rel="stylesheet" href="/styles.<%= pkg.version %>.css">
+</head>
+<body ng-class="[language, loggedIn]">
+<div id="container">
+  <div ng-view id="content" ng-class="viewClass"></div>
+</div>
+</body>
+</html>

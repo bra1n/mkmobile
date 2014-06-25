@@ -1,3 +1,7 @@
+// Sprites
+@import "normalize";
+@import "sprites";
+
 // Mixins
 @mixin gradient($color1, $color2) {
   background: $color1;
@@ -479,6 +483,3 @@ mkm-search {
     margin-top: 45px;
   }
 }
-
-// Sprites
-@import "sprites";
