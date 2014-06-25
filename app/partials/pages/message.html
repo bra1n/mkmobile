@@ -19,7 +19,7 @@
         {{message.date | date:'fullDate'}}
       </h3>
       <div>
-        <button ng-click="delete($index,data.partner.idUser,message.idMessage)"></button>
+        <button class="remove" ng-click="delete($index,data.partner.idUser,message.idMessage)"></button>
         <span class="time">{{message.date | date:'shortTime'}}</span>
         <p>{{message.text}}</p>
       </div>

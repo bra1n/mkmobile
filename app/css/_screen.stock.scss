@@ -20,11 +20,7 @@
   article {
     padding-top: 101px;
     &.product { padding-top: 60px; }
-    .search {
-      button.minus, button.plus { width: 30px; vertical-align: middle; }
-      button.minus { background: url("/img/remove.png") no-repeat center center transparent; }
-      button.plus { background: url("/img/add.png") no-repeat center center transparent; }
-    }
+    .search button.remove, .search button.add { width: 30px; vertical-align: middle; }
     .empty { padding: 10px; text-align: center; font-weight: bold; }
     .articles {
       display: table;

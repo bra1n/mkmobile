@@ -9,8 +9,8 @@
 <article>
   <div class="search subheadline">
     <div class="tools" ng-show="selected.length">
-      <button class="minus" ng-click="decrease(selected)"></button>
-      <button class="plus" ng-click="increase(selected)"></button>
+      <button class="remove" ng-click="decrease(selected)"></button>
+      <button class="add" ng-click="increase(selected)"></button>
     </div>
     <div class="left">
       <input type="text" ng-model="query" placeholder="{{'common.search' | translate}}">

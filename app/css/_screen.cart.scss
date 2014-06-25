@@ -17,8 +17,7 @@
       border-bottom: 1px solid #ccc;
       white-space: nowrap;
       &:nth-child(even) { background: #fafafa; }
-      button {
-        background: url("/img/remove.png") center center no-repeat;
+      button.remove {
         border: none;
         vertical-align: middle;
         width: 10%;

@@ -50,7 +50,9 @@
 
 <ul class="articles">
   <li ng-repeat="article in order.article" ng-hide="!article.count">
-    <div class="controls" ng-show="removeArticle"><button ng-click="removeArticle(article, order)"></button></div>
+    <div class="controls" ng-show="removeArticle">
+      <button class="remove" ng-click="removeArticle(article, order)"></button>
+    </div>
     <div class="card">
       {{article.count}}x
       <a href="/product/{{article.idProduct}}">{{article.product.name}}</a>

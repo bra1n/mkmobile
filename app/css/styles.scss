@@ -1,3 +1,4 @@
+// Mixins
 @mixin gradient($color1, $color2) {
   background: $color1;
   background: -moz-linear-gradient(top,  $color1 0%, $color2 100%);
@@ -234,6 +235,8 @@ input, textarea {
     pointer-events: none;
   }
 }
+button.remove { background:url("/img/remove.png") transparent center center no-repeat; }
+button.add { background:url("/img/add.png") transparent center center no-repeat; }
 
 // errors
 .error {
@@ -388,8 +391,7 @@ mkm-order {
     div.icons { text-align: center; white-space: nowrap; }
     div.price { text-align: right; }
     i { display: block; }
-    button {
-      background: url("/img/remove.png") center center no-repeat;
+    button.remove {
       border: none;
       vertical-align: middle;
       width: 20px;
@@ -477,3 +479,6 @@ mkm-search {
     margin-top: 45px;
   }
 }
+
+// Sprites
+@import "sprites";

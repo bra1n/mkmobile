@@ -27,7 +27,7 @@
       </div>
       <ul>
         <li class="order link" ng-repeat="order in data.cart">
-          <button ng-click="removeOrder(order)"></button><a href="/cart/{{order.idReservation}}">
+          <button class="remove" ng-click="removeOrder(order)"></button><a href="/cart/{{order.idReservation}}">
             <span translate="cart.order"></span>
             {{order.idReservation}}<br>
             <span translate="cart.seller"></span>
