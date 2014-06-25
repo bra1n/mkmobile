@@ -11,26 +11,27 @@ To be able to compile everything and host a local copy of this app, you need:
 * [CoffeeScript](http://coffeescript.org/)
 * [Bower](http://bower.io/)
 * [SASS](http://sass-lang.com/)
-* [UglifyJS2](https://github.com/mishoo/UglifyJS2)
+* [Grunt](http://github.com/mishoo/UglifyJS2)
 
 ### Compiling
 
-You need to install the packages with Bower first:
+You need to install the packages with Bower and Node first:
 
 ```
 bower install
+npm install
 ```
   
-Afterwards, you can simply run the `compile.sh` shellscript located in `scripts/`:
+Afterwards, you can simply run `grunt` in order to compile the necessary development files and `grunt watch` to
+monitor them for changes. You should point your local webserver to the `/src` directory and use the `index.html` file 
+there for development. The `index.dist.html` represents the version that will be used in production.
 
-```
-cd scripts
-./compile.sh
-```
+If you want to generate a new build, use `grunt build` in order to generate the static files needed for a deyploment.
+The generated files will be located in `/dist`.
 
-### Running
+### Server Setup
 
-The web root folder should be mapped to `/app/` and you need HTTP Rewrites for the HTML5 URLs.
+The web root folder should be mapped to `/dist` and you need HTTP Rewrites for the HTML5 URLs.
 For Apache, they look like this:
 
 ```

@@ -1,6 +1,8 @@
-app/lib
-*.js
-*.map
-*.css
+src/lib
+src/**/*.js
+src/**/*.map
+src/**/*.css
 .idea
 .DS_Store
+.sass-cache
+node_modules
