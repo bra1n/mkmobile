@@ -117,7 +117,7 @@
   "callback": "Anmeldung läuft ...",
   "cart": {
     "empty": "Du hast keine Artikel in Deinem Einnkaufswagen. Wenn Du Artikel suchen möchtest, nutze bitte das obige Suchformular.",
-    "delete": null,
+    "delete": "Warenkorb leeren",
     "shipping_address": "Lieferadresse",
     "headline": "{{orders}} Bestellungen ({{articles}} Artikel) zum Einkauf bereit",
     "order": "Bestellnummer:",
@@ -131,22 +131,22 @@
   "checkout": {
     "title": "Zur Kasse",
     "paypal": "Dein Kontostand reicht nicht aus, um für diese Bestellung zu bezahlen. Du kannst Dein Konto mit PayPal(R) aufladen, um für diesen Einkauf zu bezahlen. Beim Aufladen mit PayPal(R) fallen weitere Gebühren an.",
-    "bank": "Dein Kontostand reicht nicht aus, um für diese Bestellung zu bezahlen. Du kannst den Einkauf nun abschließen und dann per Dein Konto per Überweisung aufladen, um diesen Einkauf zu bezahlen.",
+    "bank": "Dein Kontostand reicht nicht aus, um für diese Bestellung zu bezahlen. Du kannst den Einkauf nun abschließen und dann Dein Konto per Überweisung aufladen, um diesen Einkauf zu bezahlen.",
     "instabuy": "Dein Kontostand reich aus, um diese Bestellung von Deinem Guthaben zu bezahlen.",
     "confirm": "Bestellung bestätigen",
     "are_you_sure": "Bitte bestätige Deinen Einkauf."
   },
   "contact": {
-    "title": null,
-    "telephone": null,
-    "support": null,
-    "email": null,
-    "office": null,
-    "number": null,
-    "tax": null,
-    "legal": null,
-    "responsible": null,
-    "trademark": null
+    "title": "Impressum",
+    "telephone": "Telefon:",
+    "support": "Kein Support!",
+    "email": "E-Mail:",
+    "office": "Amtsgericht:",
+    "number": "Registernummer:",
+    "tax": "USt-ID (§ 27 a UStG):",
+    "legal": "Die Sammelkartenmarkt Ltd. & Co. KG wird vertreten durch die persönlich haftende Gesellschafterin: Sammelkartenmarkt Limited, 69 Great Hampton Street, Birmingham B186EW; Companies House Cardiff, Company No: 06245645. Diese wiederum wird vertreten durch ihre vertretungsberechtigten Geschäftsführer Luis Torres, Dr. Matthias Knelangen und Marko Schädlich.",
+    "responsible": "Verantwortlicher im Sinne des § 55 Abs. 2 RStV:",
+    "trademark": "Magiccardmarket® ist eine eingetragene Marke."
   },
   "evaluation": {
     "title": "Bewertung für Bestellung {{id}} von {{seller}}",
@@ -192,7 +192,7 @@
     "send": "Senden",
     "message": "Nachricht",
     "new": "Neue Nachricht schreiben",
-    "are_you_sure": null
+    "are_you_sure": "Bist du sicher?"
   },
   "order": {
     "error": "Fehler beim Laden der Bestellung",
@@ -274,7 +274,7 @@
   "search": {
     "results": "{{count}} Ergebnisse",
     "error": "Fehler beim Laden der Suchergebnisse",
-    "name": null,
+    "name": "Name",
     "expansion": "Erweiterung",
     "rarity": "Seltenheit",
     "cancel": "Abbrechen",
@@ -287,6 +287,6 @@
   },
   "stock": {
     "no_articles": "Keine Artikel",
-    "error": null
+    "error": "Fehler beim Laden der Artikel"
   }
 }

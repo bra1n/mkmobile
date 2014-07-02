@@ -7,7 +7,7 @@
     "sells": "Le mie Vendite",
     "messages": "I miei Messaggi",
     "search": "Ricerca",
-    "cart": "Il mio Carrello della Spesa",
+    "cart": "Il mio Carrello",
     "settings": "Impostazioni",
     "payment": "Pagamento",
     "help": "Aiuto & Chi siamo",
@@ -117,7 +117,7 @@
   "callback": "Elaborazione login ...",
   "cart": {
     "empty": "Non hai articoli nel tuo carrello, se vuoi cercare un articolo usa il campo di ricerca soprastante",
-    "delete": null,
+    "delete": "Carrello vuoto",
     "shipping_address": "Indirizzo di spedizione:",
     "headline": "{{orders}} ordini ({{articles}} articoli) da acquistare ora",
     "order": "Ordine nr.:",
@@ -137,22 +137,22 @@
     "are_you_sure": "Sei sicuro di voler acquistare questi articoli?"
   },
   "contact": {
-    "title": null,
-    "telephone": null,
-    "support": null,
-    "email": null,
-    "office": null,
-    "number": null,
-    "tax": null,
-    "legal": null,
-    "responsible": null,
-    "trademark": null
+    "title": "Impressum",
+    "telephone": "Telefono:",
+    "support": "Non per assistenza clienti",
+    "email": "Email:",
+    "office": "Ufficio del Registro:",
+    "number": "Numero di Registro:",
+    "tax": "Numero d'identificazione delle imposte sulla vendita:",
+    "legal": "Sammelkartenmarkt Ltd. & Co. KG è rappresentato dal socio responsabile: Sammelkartenmarkt Limited, 69 Great Hampton Street, Birmingham B18 6EW, Company Number 06245645, Companies House Cardiff, GB, il quale a sua volta é rappresentato dai direttori Luis Torres, Dr. Matthias Knelangen, Marko Schädlich",
+    "responsible": "Responsabile in base alla normativa § 55 Abs. 2 RStV (Germania):",
+    "trademark": "Magiccardmarket® é un marchio registrato."
   },
   "evaluation": {
     "title": "Valutazione dell'ordine {{id}} da {{seller}}",
     "overall": "Valutazione generale:",
     "description": "Descrizione degli articoli:",
-    "packaging": "Pacchetto della spedizione:",
+    "packaging": "Imballaggio della spedizione:",
     "speed": "Velocità processo:",
     "complaint": "Reclami:",
     "comment": "Commento:",
@@ -192,7 +192,7 @@
     "send": "Invia",
     "message": "Messaggio",
     "new": "Scrivi un nuovo messaggio",
-    "are_you_sure": null
+    "are_you_sure": "Sei sicuro?"
   },
   "order": {
     "error": "Errore durante il caricamento dell'ordine",
@@ -274,19 +274,19 @@
   "search": {
     "results": "{{count}} Risultati",
     "error": "Errore caricamento risultati della ricerca",
-    "name": null,
-    "expansion": "Espansione",
+    "name": "Nome",
+    "expansion": "Edizione",
     "rarity": "Rarità",
-    "cancel": null,
-    "sort": null
+    "cancel": "Cancella",
+    "sort": "- Ordina per"
   },
   "settings": {
     "vacation": "Status vacanza su MCM",
-    "on": null,
-    "off": null
+    "on": "Attivo",
+    "off": "Inattivo"
   },
   "stock": {
     "no_articles": "Nessun articolo",
-    "error": null
+    "error": "Errore durante il caricamento degli articoli"
   }
 }

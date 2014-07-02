@@ -117,7 +117,7 @@
   "callback": "Cargando...",
   "cart": {
     "empty": "No tienes artículos en tu carro de la compra. Si quieres buscar artículos, utiliza el campo de búsqueda que está más arriba.",
-    "delete": null,
+    "delete": "Carrito vacío",
     "shipping_address": "Dirección de envío:",
     "headline": "{{orders}} pedidos {{articles}} artículos para comprar ahora",
     "order": "Pedido nº:",
@@ -130,23 +130,23 @@
   },
   "checkout": {
     "title": "Verificación",
-    "paypal": "El saldo de tu cuenta de usuario no es suficiente para pagar este pedido. Vas a reservar cartas en tu carrito e ingresar dinero a tu cuenta de usuario usando Paypal(R). Tu cuenta de usuario recibirá el dinero inmediatamente y la compra se pagará desde tu cuenta de usuario. Ingresar dinero a tu cuenta de usuario desde PayPal(R) puede suponer gastos adicionales.",
-    "bank": "El saldo de tu cuenta de usuario no es suficiente para pagar este pedido. Vas a reservar cartas en tu carriito e ingresar dinero a tu cuenta de usuario por transferencia bancaria. En cuanto el dinero transferido llegue a tu cuenta de usuario, se pagará tu pedido desde tu cuenta de usuario.",
+    "paypal": "El saldo de tu cuenta de usuario no es suficiente para pagar este pedido. Puedes ingresar dinero a tu cuenta de usuario usando PayPal® para pagar este pedido. Ingresar dinero a tu cuenta de usuario desde PayPal® puede suponer gastos adicionales.",
+    "bank": "El saldo de tu cuenta de usuario no es suficiente para pagar este pedido. Puedes comprar las cartas ahora e ingresar dinero después a tu cuenta de usuario por transferencia bancaria para pagar este pedido.",
     "instabuy": "Tienes suficiente dinero en tu cuenta. El pedido se pagará con los fondos de tu cuenta virtual.",
     "confirm": "Confirmar pedido",
     "are_you_sure": "¿Estás seguro de que quieres comprar estos artículos?"
   },
   "contact": {
-    "title": null,
-    "telephone": null,
-    "support": null,
-    "email": null,
-    "office": null,
-    "number": null,
-    "tax": null,
-    "legal": null,
-    "responsible": null,
-    "trademark": null
+    "title": "Pie de imprenta",
+    "telephone": "Teléfono",
+    "support": "No para atención al cliente",
+    "email": "Email:",
+    "office": "Oficina de registro:",
+    "number": "Número de registro:",
+    "tax": "CIF:",
+    "legal": "La empresa Sammelkartenmarkt Ltd. & Co. KG esta representada por el socio con responsabilidad personal: Sammelkartenmarkt Limited, 69 Great Hampton Street, Birmingham B18 6EW, Company Number 06245645, Companies House Cardiff, GB. Este a su vez es representado por sus directores generales Luis Torres, Dr. Matthias Knelangen y Marko Schädlich",
+    "responsible": "Responsable en el sentido del § 55 Abs. 2 RStV (Alemania):",
+    "trademark": "Magiccardmarket® es una marca registrada."
   },
   "evaluation": {
     "title": "Evaluación del pedido {{id}} del vendedor {{seller}}",
@@ -192,7 +192,7 @@
     "send": "Enviar",
     "message": "Mensaje",
     "new": "Escribir un mensaje",
-    "are_you_sure": null
+    "are_you_sure": "¿Estás seguro?"
   },
   "order": {
     "error": "Error al cargar el pedido",
@@ -220,7 +220,7 @@
     "last_name": "Apellidos:",
     "shipping_address": "Dirección de envío",
     "seller_address": "Dirección del vendedor",
-    "outstanding": "Aún tienes que transferir {{sum}} para pagar tus pedidos pendientes de pago.",
+    "outstanding": "Aún tienes que pagar {{sum}} para pagar tus pedidos pendientes de pago.",
     "statuses": {
       "received": "Recibido",
       "sent": "Enviado",
@@ -274,19 +274,19 @@
   "search": {
     "results": "{{count}} Resultados",
     "error": "Error al cargar los resultados de la búsqueda",
-    "name": null,
+    "name": "Nombre",
     "expansion": "Edición",
     "rarity": "Rareza",
-    "cancel": null,
-    "sort": null
+    "cancel": "Cancelar",
+    "sort": "Ordenar por:"
   },
   "settings": {
     "vacation": "Estado de vacaciones de Cardmarket",
-    "on": null,
-    "off": null
+    "on": "Activado",
+    "off": "Desactivado"
   },
   "stock": {
     "no_articles": "No hay artículos",
-    "error": null
+    "error": "Error al cargar los artículos"
   }
 }
