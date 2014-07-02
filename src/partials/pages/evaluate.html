@@ -35,7 +35,7 @@
 
     <label for="complaints" translate="evaluation.complaint">Complaints</label><!--
  --><select ng-options="complaint as 'evaluation.complaints.'+complaint | translate for complaint in complaints"
-         id="complaints" ng-model="evaluation.complaint" multiple></select>
+         size="4" id="complaints" ng-model="evaluation.complaint" multiple></select>
 
     <button translate="order.evaluate" class="button">Evaluate</button>
   </form>

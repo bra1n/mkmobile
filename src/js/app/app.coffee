@@ -1,7 +1,7 @@
 mkmobileApp = angular.module 'mkmobileApp', [
   # core modules
   'ngRoute'
-  'ngAnimate'
+  #'ngAnimate' - disabled for performance reasons
   # i18n
   'tmh.dynamicLocale'
   'pascalprecht.translate'
@@ -162,23 +162,25 @@ mkmobileApp.config [
 ]
 
 # generate a base CSS class based on the route path and check login for auth routes
-mkmobileApp.run [ '$rootScope','MkmApiAuth','$translate', ($rootScope, MkmApiAuth, $translate) ->
-  # check login
-  $rootScope.$on '$routeChangeStart', (event, next) ->
-    unless next.$$route?.noLogin
-      event.preventDefault() unless MkmApiAuth.checkLogin()
-  # update title and view class
-  translateTitle = -> $translate(['titles.app','titles.'+$rootScope.viewClass]).then (texts) ->
-    $rootScope.viewTitle = texts['titles.app'] + ' — ' + texts['titles.'+$rootScope.viewClass]
-    $rootScope.language = $translate.use().substr(0,2)
-  # new page, update view class and title
-  $rootScope.$on '$routeChangeSuccess', (event, current) ->
-    if current.$$route?.originalPath? and current.$$route?.originalPath.split("/").length > 1
-      $rootScope.viewClass = current.$$route?.originalPath.split("/")[1]
-      $rootScope.loggedIn = if MkmApiAuth.isLoggedIn() then "loggedin" else "loggedout"
-      translateTitle()
-  # update title on language change
-  $rootScope.$on '$translateChangeSuccess', -> translateTitle()
+mkmobileApp.run [
+  '$rootScope','MkmApiAuth','$translate'
+  ($rootScope, MkmApiAuth, $translate) ->
+    # check login
+    $rootScope.$on '$routeChangeStart', (event, next) ->
+      unless next.$$route?.noLogin
+        event.preventDefault() unless MkmApiAuth.checkLogin()
+    # update title and view class
+    translateTitle = -> $translate(['titles.app','titles.'+$rootScope.viewClass]).then (texts) ->
+      $rootScope.viewTitle = texts['titles.app'] + ' — ' + texts['titles.'+$rootScope.viewClass]
+      $rootScope.language = $translate.use().substr(0,2)
+    # new page, update view class and title
+    $rootScope.$on '$routeChangeSuccess', (event, current) ->
+      if current.$$route?.originalPath? and current.$$route?.originalPath.split("/").length > 1
+        $rootScope.viewClass = current.$$route?.originalPath.split("/")[1]
+        $rootScope.loggedIn = if MkmApiAuth.isLoggedIn() then "loggedin" else "loggedout"
+        translateTitle()
+    # update title on language change
+    $rootScope.$on '$translateChangeSuccess', -> translateTitle()
 ]
 
 # init services and controllers

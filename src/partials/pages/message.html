@@ -4,16 +4,16 @@
   <span class="icons" mkm-user ng-show="data.partner" user="data.partner"></span>
 </header>
 <article>
-  <div class="search subheadline" ng-show="data.messages && data.messages.length">
+  <form class="search subheadline" ng-submit="blur($event)" ng-show="data.messages && data.messages.length">
     <div class="left">
-      <input id="search" type="text" ng-model="search" placeholder="{{'common.search' | translate}}">
+      <input id="search" type="text" ng-model="searchText" placeholder="{{'common.search' | translate}}">
     </div>
     <div class="right">
-      <button ng-show="search" ng-click="search = ''">{{'search.cancel' | translate}}</button>
+      <button type="button" ng-show="searchText" ng-click="searchText = ''">{{'search.cancel' | translate}}</button>
     </div>
-  </div>
+  </form>
   <ul class="thread" ng-class="{loading:data.loading}">
-    <li ng-repeat="message in data.messages | filter:search"
+    <li ng-repeat="message in data.messages | filter:searchText"
         ng-class="{sending: message.isSending, unread: message.unread}">
       <h3 ng-show="!$index || message.date.toDateString() != data.messages[$index - 1].date.toDateString()">
         {{message.date | date:'fullDate'}}
@@ -25,7 +25,7 @@
       </div>
     </li>
   </ul>
-  <form class="subheadline" ng-submit="send()">
+  <form class="write subheadline" ng-submit="send()">
     <div class="left">
       <textarea placeholder="{{'messages.message' | translate}}" required ng-model="message"></textarea>
     </div>

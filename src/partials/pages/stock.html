@@ -7,18 +7,18 @@
   </span>
 </header>
 <article>
-  <div class="search subheadline">
+  <form class="search subheadline" ng-submit="blur()">
     <div class="tools" ng-show="selected.length">
-      <button class="remove" ng-click="decrease(selected)"></button>
-      <button class="add" ng-click="increase(selected)"></button>
+      <button type="button" class="remove" ng-click="decrease(selected)"></button>
+      <button type="button" class="add" ng-click="increase(selected)"></button>
     </div>
     <div class="left">
       <input type="text" ng-model="query" placeholder="{{'common.search' | translate}}">
     </div>
     <div class="right">
-      <button ng-show="query" ng-click="query = ''">{{'search.cancel' | translate}}</button>
+      <button type="button" ng-show="query" ng-click="query = ''">{{'search.cancel' | translate}}</button>
     </div>
-  </div>
+  </form>
   <div ng-show="data.error" class="error" translate="stock.error">No Articles</div>
   <div ng-show="!data.loading && !data.count && !data.error" class="empty" translate="stock.no_articles">No Articles</div>
   <ul class="articles" ng-class="{loading:data.loading}" data-infinite-scroll="loadArticles()">
@@ -32,7 +32,7 @@
         {{article.count}}x
         <a href="/stock/{{article.idArticle}}">{{article.product.name}}</a>
         <div class="card-image" ng-click="article.showImage = 0">
-          <img src="" ng-src="{{article.showImage && article.product.image | productImage}}">
+          <img src="" ng-src="{{article.showImage && (article.product.image | productImage)}}">
         </div>
         <div class="comment" ng-click="article.showComment = 0">{{article.comments}}</div>
       </div>

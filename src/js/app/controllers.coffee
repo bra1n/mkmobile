@@ -26,6 +26,9 @@ mkmobileControllers.controller 'SearchCtrl', [
     $scope.logout = ->
       MkmApiAuth.logout()
       $scope.loggedIn = no
+
+    # blur the search input
+    $scope.blur = ($event) -> elem.blur() for elem in $event.target
 ]
 
 # /product
@@ -161,6 +164,9 @@ mkmobileControllers.controller 'CartCtrl', [
           when 'paypal' then '/payment/paypal'
           when 'bank' then '/payment/bank'
           else '/buys'
+
+    # blur the search input
+    $scope.blur = ($event) -> elem.blur() for elem in $event.target
 ]
 
 # /stock
@@ -199,14 +205,18 @@ mkmobileControllers.controller 'StockCtrl', [
     $scope.languages = MkmApiStock.getLanguages()
     $scope.conditions = MkmApiStock.getConditions()
     $scope.save = -> MkmApiStock.update $scope.data.article, -> $location.path "/stock"
+
+    # blur search input
+    $scope.blur = ($event) -> elem.blur() for elem in $event.target
 ]
 
 # /buys /sells
 mkmobileControllers.controller 'OrderCtrl', [
-  '$scope', '$location', '$routeParams', 'MkmApiOrder'
-  ($scope, $location, $routeParams, MkmApiOrder) ->
+  '$scope', '$location', '$routeParams', 'MkmApiOrder', '$window'
+  ($scope, $location, $routeParams, MkmApiOrder, $window) ->
     $scope.mode = $location.path().substr(1).replace /^(.*?)\/.*?$/, '$1'
     $scope.orderId = $routeParams.orderId
+    $window.scrollTo(0,0) if $scope.orderId?
     $scope.$watch "tab", (status) ->
       sessionStorage.setItem $scope.mode + 'Tab', $scope.tab
       $scope.data = MkmApiOrder.get {mode: $scope.mode, status, orderId: $scope.orderId}
@@ -254,4 +264,7 @@ mkmobileControllers.controller 'MessageCtrl', [
       $scope.data.count--
       $scope.data.messages.splice index, 1
       MkmApiMessage.delete threadId, messageId
+      
+    # blur the search input
+    $scope.blur = ($event) -> elem.blur() for elem in $event.target
 ]

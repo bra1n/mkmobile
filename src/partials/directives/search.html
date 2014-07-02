@@ -1,7 +1,7 @@
-<div class="search subheadline">
+<form class="search subheadline" ng-submit="blur($event)">
   <div class="left"><input ng-model="query" id="search" placeholder="{{'common.search' | translate}}"></div>
-  <div class="right"><button ng-show="query != ''" ng-click="query = ''">{{'search.cancel' | translate}}</button></div>
-</div>
+  <div class="right"><button type="button" ng-show="query != ''" ng-click="query = ''">{{'search.cancel' | translate}}</button></div>
+</form>
 <div class="results" ng-show="query != ''">
   <h3>
     <span ng-show="!searchData.loading"

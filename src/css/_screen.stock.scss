@@ -34,15 +34,16 @@
         & > div {
           display: table-cell;
           border-bottom: 1px solid #ccc;
-          padding: 10px 0;
+          padding: 8px 0;
           vertical-align: middle;
+          line-height: 18px;
         }
         div.controls {
           width: 40px;
           padding-left: 10px;
           input { vertical-align: middle; }
         }
-        div.icons { text-align: center; white-space: nowrap; }
+        div.icons { text-align: center; white-space: nowrap; padding: 0 5px; }
         div.price { text-align: right; padding-right: 10px; }
         div.card-image {
           position: absolute;
@@ -52,7 +53,7 @@
           background: rgba(255, 255, 255, 0.75);
           margin-bottom: 50px;
           border: 1px solid #ccc;
-          margin-top: 10px;
+          margin-top: 8px;
           padding: 10px;
           display: none;
           cursor: pointer;
@@ -75,7 +76,7 @@
           -o-transition: height 500ms;
           transition: height 500ms;
           background: rgba(255,255,255,0.75);
-          margin-top: 10px;
+          margin-top: 8px;
           line-height: 30px;
           cursor: pointer;
         }

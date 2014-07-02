@@ -1,13 +1,13 @@
 <header translate="titles.messages">My Messages</header>
 <article>
-  <div class="search subheadline">
+  <form class="search subheadline" ng-submit="blur($event)">
     <div class="left">
       <input id="search" type="text" placeholder="{{'common.search' | translate}}" ng-model="search">
     </div>
     <div class="right">
-      <button ng-show="search" ng-click="search = ''">{{'search.cancel' | translate}}</button>
+      <button type="button" ng-show="search" ng-click="search = ''">{{'search.cancel' | translate}}</button>
     </div>
-  </div>
+  </form>
   <ul class="overview" ng-class="{loading:data.loading}">
     <li ng-repeat="thread in data.messages | filter:search" class="link"
         ng-class="{sending:thread.message.isSending, unread:thread.unreadMessages}">

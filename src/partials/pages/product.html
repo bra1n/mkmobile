@@ -11,7 +11,7 @@
 <mkm-product product-data="productData"></mkm-product>
 <article>
   <span ng-show="data.error" class="error" translate="product.articles_error">Error loading articles</span>
-  <span ng-show="!data.loading && !data.count && !data.error" translate="product.no_articles">No Offers :(</span>
+  <span ng-show="!data.loading && !data.count && !data.error" class="error" translate="product.no_articles">No Offers :(</span>
   <ul class="table" ng-class="{loading:data.loading}" data-infinite-scroll="loadArticles()">
     <li class="row" ng-repeat="article in data.articles track by article.idArticle"
         ng-hide="!article.count" ng-class="{comment:article.showComment, seller:article.showSeller}">

@@ -117,7 +117,7 @@
   "callback": "Anmeldung läuft ...",
   "cart": {
     "empty": "Du hast keine Artikel in Deinem Einnkaufswagen. Wenn Du Artikel suchen möchtest, nutze bitte das obige Suchformular.",
-    "delete": "Leerer Warenkorb",
+    "delete": "Warenkorb leeren",
     "shipping_address": "Lieferadresse",
     "headline": "{{orders}} Bestellungen ({{articles}} Artikel) zum Einkauf bereit",
     "order": "Bestellnummer:",

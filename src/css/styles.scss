@@ -1,6 +1,5 @@
 // Sprites
 @import "normalize";
-@import "sprites";
 
 // Mixins
 @mixin gradient($color1, $color2) {
@@ -25,9 +24,10 @@ a { text-decoration: none; color: #0240ca; }
 input, button, select { vertical-align: baseline; }
 select {
   background: #eaeaea;
-  border: 3px solid #eaeaea;
-  padding: 2px;
+  border: none;
+  padding: 0 3px;
   border-radius: 3px;
+  height: 26px;
 }
 ul,li {
   list-style-type: none;
@@ -153,7 +153,10 @@ footer {
     position: fixed;
     top: 51px;
     z-index: 10;
-    div { display: table-cell; }
+    div {
+      display: table-cell;
+      vertical-align: middle;
+    }
     div.left {
       width: 100%;
       padding: 0 47px 0 5px;
@@ -165,7 +168,7 @@ footer {
     }
     button {
       border: none;
-      background: transparent;
+      background-color: transparent;
       height: 40px;
       line-height: 40px;
     }
@@ -178,6 +181,7 @@ footer {
   color: #012169;
   font-weight: bold;
   font-style: normal;
+  line-height: 20px;
 }
 
 // gray bar
@@ -275,7 +279,7 @@ div.loading {
   background-repeat: no-repeat;
 }
 
-// Transition between screens
+// Transition between screens, if ng-animate is enabled
 #container {
   position: relative;
   height: 100%;
@@ -437,6 +441,8 @@ mkm-search {
     }
   }
 }
+
+@import "sprites";
 
 /***********************/
 // Styling per Screen

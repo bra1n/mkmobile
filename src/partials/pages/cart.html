@@ -10,7 +10,7 @@
         <span ng-show="data.address.extra">  {{data.address.extra}},  </span>
         <span ng-show="data.address.zip">    {{data.address.zip}}     </span>
         <span ng-show="data.address.city">   {{data.address.city}},   </span>
-        <span class="icon country country-{{data.address.country}}"></span>
+        <span>{{'address.countries.'+data.address.country | translate}}</span>
       </i>
     </a>
     <div class="single" ng-show="data.cart.length == 1">
