@@ -117,7 +117,7 @@
   "callback": "Chargement en cours...",
   "cart": {
     "empty": "Tu n'as pas d'articles dans ton panier. Si tu veux chercher d'articles, utilise le champ de recherche au-dessus.",
-    "delete": null,
+    "delete": "Panier vide",
     "shipping_address": "Adresse d'envoi:",
     "headline": "{{orders}} commande ({{articles}} articles) pour acheter maintenant",
     "order": "Commande numéro:",
@@ -130,23 +130,23 @@
   },
   "checkout": {
     "title": "Caisse",
-    "paypal": "Le solde de ton compte utilisateur n'est pas suffisant pour payer cette commande. Tu vas réserver des cartes dans ton panier et créditer ton compte utilisateur directement en utilisant PayPal(R). Ton compte utilisateur sera crédité immédiatement et ton achat sera payé par le biais de ton compte utilisateur. Des frais additionnels peuvent êtres chargés lors de l'usage de PayPal(R) pour créditer ton compte.",
-    "bank": "Le solde de ton compte utilisateur n'est pas suffisant pour payer cette commande. Tu vas réserver des cartes dans ton panier et créditer ton compte utilisateur par virement bancaire. Ton compte utilisateur sera crédité lors de l'arrivée du virement. Ta commande sera payée par le biais de ton compte utilisateur.",
+    "paypal": "Le solde de ton compte utilisateur n'est pas suffisant pour payer cette commande. Tu peux créditer ton compte utilisateur directement en utilisant PayPal® pour payer cette commande. Des frais additionnels peuvent êtres chargés lors de l'usage de PayPal(R) pour créditer ton compte.",
+    "bank": "Le solde de ton compte utilisateur n'est pas suffisant pour payer cette commande. Tu peux acehter les cartes maintenant et puis créditer ton compte utilisateur par virement bancaire pour payer cette commande.",
     "instabuy": "Tu as assez de solde sur ton compte utilisateur. La commande sera payée avec les fonds que tu as sur le site.",
     "confirm": "Confirmer la commande",
     "are_you_sure": "Tu vas acheter ces articles, es-tu sûr?"
   },
   "contact": {
-    "title": null,
-    "telephone": null,
-    "support": null,
-    "email": null,
-    "office": null,
-    "number": null,
-    "tax": null,
-    "legal": null,
-    "responsible": null,
-    "trademark": null
+    "title": "Mentions légales",
+    "telephone": "Téléphone:",
+    "support": "Pas pour le service client",
+    "email": "E-mail :",
+    "office": "Cour de registre :",
+    "number": "Nº de registre :",
+    "tax": "Nº d'identification fiscale :",
+    "legal": "La Sammelkartenmarkt Ltd. & Co. KG est représentée par l'associé personnellement responsable: Sammelkartenmarkt Limited, 69 Great Hampton Street, Birmingham B18 6EW, Company Number 06245645, Companies House Cardiff, GB. celle-ci à son tour représenté par ses directeurs généraux Luis Torres, Dr. Matthias Knelangen et Marko Schädlich",
+    "responsible": "Responsable au sens de l'article § 55 Abs. 2 RStV (Allemagne) :",
+    "trademark": "Magiccardmarket® est une marque déposée."
   },
   "evaluation": {
     "title": "Évaluation pour la commande {{id}} de {{seller}}",
@@ -192,7 +192,7 @@
     "send": "Envoyé",
     "message": "Message",
     "new": "Écrire un message",
-    "are_you_sure": null
+    "are_you_sure": "Es-tu sûr?"
   },
   "order": {
     "error": "Erreur lors du chargement",
@@ -220,7 +220,7 @@
     "last_name": "Nom de famille:",
     "shipping_address": "Adresse d'envoi",
     "seller_address": "Adresse du vendeur",
-    "outstanding": "Tu dois encore virer {{sum}} pour payer tes commandes ouvertes",
+    "outstanding": "Tu dois encore payer {{sum}} pour tes commandes ouvertes",
     "statuses": {
       "received": "Reçue",
       "sent": "Envoyée",
@@ -274,19 +274,19 @@
   "search": {
     "results": "{{count}} Résultats",
     "error": "Erreur lors du chargement de la recherche",
-    "name": null,
+    "name": "Nom",
     "expansion": "Édition",
     "rarity": "Rareté",
-    "cancel": null,
-    "sort": null
+    "cancel": "Annuler",
+    "sort": "Triée par"
   },
   "settings": {
     "vacation": "État de vacances sur Cardmarket",
-    "on": null,
-    "off": null
+    "on": "Activé",
+    "off": "Désactivé"
   },
   "stock": {
     "no_articles": "Il n'y a pas d'articles",
-    "error": null
+    "error": "Erreur lors du chargement des articles"
   }
 }
