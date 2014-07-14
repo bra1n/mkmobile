@@ -282,6 +282,8 @@
   },
   "settings": {
     "vacation": "MKM Vacation Status",
+    "report": "Report an issue",
+    "source": "View source code",
     "on": "On",
     "off": "Off"
   },

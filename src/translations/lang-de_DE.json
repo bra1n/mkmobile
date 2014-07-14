@@ -282,6 +282,8 @@
   },
   "settings": {
     "vacation": "Urlaubstatus",
+    "report": "Einen Fehler melden",
+    "source": "Quelltext ansehen",
     "on": "An",
     "off": "Aus"
   },
