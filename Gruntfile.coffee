@@ -12,26 +12,36 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-html2js'
 
   # Default task.
-  grunt.registerTask 'default', ['coffee', 'html2js', 'locale', 'sass:dev']
-  grunt.registerTask 'build', ['clean', 'coffee', 'html2js', 'sass:dist', 'locale', 'concat', 'uglify', 'copy']
+  grunt.registerTask 'default', ['coffee', 'html2js', 'i18n', 'sass:dev']
+  grunt.registerTask 'build', ['clean', 'coffee', 'html2js', 'sass:dist', 'i18n', 'concat', 'uglify', 'copy']
   grunt.registerTask 'release', (type = "patch") -> grunt.task.run ['bump-only:'+type, 'build', 'bump-commit']
 
-  # locales gathering and transforming
-  # todo: support translations, too
-  grunt.registerMultiTask 'locale', 'Gather locales for dynamic loading', ->
-    unless @data.locales? and @data.src? and @data.dest?
-      grunt.log.error "missing paramaters for locale"
+  # locales and translations gathering and transforming
+  grunt.registerMultiTask 'i18n', 'Gather locales and translations for dynamic loading', ->
+    unless @data.languages? and @data.locales? and @data.translations? and @data.dest?
+      grunt.log.error "missing paramaters for i18n"
       return false
-    content = "angular.module('locales', ['locales-"+@data.locales.join("','locales-")+"']);\n"
-    for locale in @data.locales
-      code = grunt.file.read @data.src + locale + '.js'
+    # concatenate locale
+    locales = @data.languages.map (elem) -> elem.toLowerCase().replace /_/, '-'
+    content = "angular.module('locales', ['locales-"+locales.join("','locales-")+"']);\n"
+    for locale in locales
+      code = grunt.file.read @data.locales + locale + '.js'
       code = code.replace /'use strict';/, '\n'
       code = code.replace /"ngLocale", \[\], \[/, '"locales-'+locale+'", []).run(['
       code = code.replace /\$provide/g, 'tmhDynamicLocaleCache'
       code = code.replace /\.value\("\$locale"/, '.put("'+locale+'"'
       content += code
-    grunt.file.write @data.dest, content
-    grunt.log.writeln "File #{@data.dest} created from #{locale.length} locales"
+    grunt.file.write @data.dest + 'locales.js', content
+    grunt.log.writeln "File #{(@data.dest+'locales.js').cyan} created from #{locales.length.toString().cyan} locales"
+    # concatenate translations
+    content = 'angular.module("translations", ["pascalprecht.translate"]).config(["$translateProvider", function($translateProvider) {\n'
+    for language in @data.languages
+      content += '$translateProvider.translations("' + language + '", '
+      content += grunt.file.read @data.translations + language + '.json'
+      content += ');\n'
+    content += '}]);'
+    grunt.file.write @data.dest + 'translations.js', content
+    grunt.log.writeln "File #{(@data.dest+'translations.js').cyan} created from #{@data.languages.length.toString().cyan} translations"
 
   # Project configuration
   grunt.initConfig
@@ -97,11 +107,12 @@ module.exports = (grunt) ->
           noCache: true
         files: '<%= distdir %>/styles.css': '<%= src.css %>/styles.scss'
 
-    locale:
+    i18n:
       dist:
-        src: '<%= src.lib %>/angular-i18n/angular-locale_'
-        locales: ['en-gb', 'de-de', 'it-it', 'fr-fr', 'es-es']
-        dest: '<%= src.js %>/build/locales.js'
+        locales: '<%= src.lib %>/angular-i18n/angular-locale_'
+        translations: '<%= src.translations %>/lang-'
+        languages: ['en_GB', 'de_DE', 'it_IT', 'fr_FR', 'es_ES']
+        dest: '<%= src.js %>/build/'
 
     concat:
       lib:
@@ -140,13 +151,6 @@ module.exports = (grunt) ->
           src: '*.*'
           expand: true
           cwd: '<%= src.assets %>'
-        }]
-      translations:
-        files: [{
-          dest: '<%= distdir %>/translations'
-          src: '*.*'
-          expand: true
-          cwd: '<%= src.translations %>'
         }]
 
     watch:

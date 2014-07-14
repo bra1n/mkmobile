@@ -13,9 +13,11 @@ mkmobileApp = angular.module 'mkmobileApp', [
   # templates
   'templates'
   'locales'
+  'translations'
 ]
 
 angular.module 'templates', [] # placeholder for real templates
+angular.module 'translations', [] # placeholder for real translations
 angular.module 'locales', [] # placeholder for real locales
 
 mkmobileApp.config ['$locationProvider','$routeProvider', ($locationProvider, $routeProvider) ->
