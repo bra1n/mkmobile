@@ -8,6 +8,8 @@
     white-space: nowrap;
     padding-bottom: 0;
     overflow: auto;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 //    box-shadow: inset -10px 0px 10rem 8rem #e3e7ee;
 //    background: #fdfdfd;
     &:before {
@@ -19,7 +21,7 @@
     }
     form {
       display: inline-block;
-      width: 100%;
+      width: 99%;
       vertical-align: middle;
     }
     iframe {
