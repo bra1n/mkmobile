@@ -61,7 +61,6 @@ src/            # the web root for development, contains all the sources, librar
   .htaccess     # example .htaccess file for an Apache server
   index.dist.html # the HTML file template that will be used in dist/
   index.html    # the development HTML index file, that contains all the necessary script tags
-
 ```
 
 ### URL Rewrite
