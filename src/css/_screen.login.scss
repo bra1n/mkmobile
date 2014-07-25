@@ -7,11 +7,12 @@
     text-align: center;
     white-space: nowrap;
     padding-bottom: 0;
+    overflow: auto;
 //    box-shadow: inset -10px 0px 10rem 8rem #e3e7ee;
 //    background: #fdfdfd;
     &:before {
       content: " ";
-      width: 0px;
+      width: 0;
       height: 100%;
       display: inline-block;
       vertical-align: middle;
@@ -19,6 +20,7 @@
     form {
       display: inline-block;
       width: 100%;
+      vertical-align: middle;
     }
     iframe {
       width: 80%;
