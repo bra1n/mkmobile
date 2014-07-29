@@ -282,6 +282,8 @@
   },
   "settings": {
     "vacation": "Estado de vacaciones de Cardmarket",
+    "report": "Informar de algún problema",
+    "source": "Ver código fuente",
     "on": "Activado",
     "off": "Desactivado"
   },

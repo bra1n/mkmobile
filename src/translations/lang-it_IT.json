@@ -282,6 +282,8 @@
   },
   "settings": {
     "vacation": "Status vacanza su MCM",
+    "report": "Informare da un problema",
+    "source": "Vedere cifrario fonte",
     "on": "Attivo",
     "off": "Inattivo"
   },
