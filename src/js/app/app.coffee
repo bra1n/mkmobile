@@ -33,9 +33,6 @@ mkmobileApp.config ['$locationProvider','$routeProvider', ($locationProvider, $r
   .when '/contact',
     templateUrl:  '/partials/pages/contact.html'
     controller:   'HomeCtrl'
-  .when '/legal',
-    templateUrl:  '/partials/pages/legal.html'
-    controller:   'HomeCtrl'
 
   # payment pages
   .when '/payment/:method',
