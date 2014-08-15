@@ -10,7 +10,7 @@
     "cart": "My Shopping Cart",
     "settings": "Settings",
     "payment": "Payment",
-    "help": "Help & About",
+    "help": "Help",
     "contact": "Imprint",
     "legal": "Legal",
     "login": "Login",
@@ -112,7 +112,8 @@
       "LP": "Light Played",
       "PL": "Played",
       "PO": "Poor"
-    }
+    },
+    "firsted": "First Edition?"
   },
   "callback": "Processing login...",
   "cart": {

@@ -56,14 +56,15 @@
       <a href="/product/{{article.idProduct}}">{{article.product.name}}</a>
     </div>
     <div class="icons">
-      <span class="icon expansion" ng-style="article.product.expIcon | expansionIcon" ng-show="article.product.expansion"></span>
-      <span class="icon rarity rarity-{{article.product.rarity}}" ng-show="article.product.rarity"></span>
+      <span class="icon expansion-{{article.product.idGame}}" ng-style="article.product.expIcon | expansionIcon" ng-show="article.product.expansion"></span>
+      <span ng-class="article.product | rarityIcon" ng-show="article.product.rarity"></span>
       <span class="icon language language-{{article.language.idLanguage}}" ng-show="article.language.idLanguage"></span>
       <span class="icon grading grading-{{article.condition}}" ng-show="article.condition"></span>
       <span class="icon is-foil" ng-show="article.isFoil"></span>
       <span class="icon is-signed" ng-show="article.isSigned"></span>
       <span class="icon is-playset" ng-show="article.isPlayset"></span>
       <span class="icon is-altered" ng-show="article.isAltered"></span>
+      <span class="icon is-firsted" ng-show="article.isFirstEd"></span>
     </div>
     <div class="price">
       {{article.price | currency:"€"}}

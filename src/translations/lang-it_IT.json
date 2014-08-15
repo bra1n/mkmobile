@@ -10,7 +10,7 @@
     "cart": "Il mio Carrello",
     "settings": "Impostazioni",
     "payment": "Pagamento",
-    "help": "Aiuto & Chi siamo",
+    "help": "Aiuto",
     "contact": "Contattaci",
     "legal": "Informazioni legali",
     "login": "Login",
@@ -112,7 +112,8 @@
       "LP": "Light Played",
       "PL": "Played",
       "PO": "Poor"
-    }
+    },
+    "firsted": "First Edition?"
   },
   "callback": "Elaborazione login ...",
   "cart": {

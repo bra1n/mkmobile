@@ -4,8 +4,8 @@
   {{productData.product.name[1].productName}}
   <span ng-show="productData.product.number" translate="product.nr" translate-value-number="{{productData.product.number}}"></span>
   <div class="box">
-    <span ng-show="productData.product.rarity" class="icon rarity rarity-{{productData.product.rarity}}"></span>
-    <span class="icon expansion" ng-style="productData.product.expIcon | expansionIcon" ng-show="productData.product.expansion"></span>
+    <span ng-show="productData.product.rarity" ng-class="productData.product | rarityIcon">
+    </span><span class="icon expansion-{{productData.product.idGame}}" ng-style="productData.product.expIcon | expansionIcon" ng-show="productData.product.expansion"></span>
   </div>
 </header>
 <mkm-product product-data="productData"></mkm-product>
@@ -24,6 +24,7 @@
         <span class="icon is-foil" ng-show="article.isFoil"></span>
         <span class="icon is-signed" ng-show="article.isSigned"></span>
         <span class="icon is-altered" ng-show="article.isAltered"></span>
+        <span class="icon is-firsted" ng-show="article.isFirstEd"></span>
         <span class="icon comment" ng-show="article.comments" ng-click="article.showComment = !article.showComment"></span>
         <div class="comment">{{article.comments}}</div>
       </div><div class="cell price" ng-class="{playset: article.isPlayset}">

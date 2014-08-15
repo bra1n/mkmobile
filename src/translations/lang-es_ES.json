@@ -10,7 +10,7 @@
     "cart": "Mi carrito",
     "settings": "Configuración",
     "payment": "Pago",
-    "help": "Ayuda y pie de imprenta",
+    "help": "Ayuda",
     "contact": "Pie de imprenta",
     "legal": "Legal",
     "login": "Iniciar sesión",
@@ -112,7 +112,8 @@
       "LP": "Light Played",
       "PL": "Played",
       "PO": "Poor"
-    }
+    },
+    "firsted": "First Edition?"
   },
   "callback": "Cargando...",
   "cart": {

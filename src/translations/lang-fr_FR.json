@@ -10,7 +10,7 @@
     "cart": "Mon panier",
     "settings": "Paramètres",
     "payment": "Paiement",
-    "help": "aide et mentions légales",
+    "help": "aide",
     "contact": "Mentions légales",
     "legal": "Légal",
     "login": "Se connecter",
@@ -112,7 +112,8 @@
       "LP": "Light Played",
       "PL": "Played",
       "PO": "Poor"
-    }
+    },
+    "firsted": "First Edition?"
   },
   "callback": "Chargement en cours...",
   "cart": {

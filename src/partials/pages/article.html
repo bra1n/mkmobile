@@ -4,8 +4,8 @@
   <span ng-show="data.product.product">{{data.article.count}}x {{data.product.product.name[1].productName}}</span>
   <span ng-show="data.product.product.number" translate translate-values="data.product.product">product.nr</span>
   <div class="box">
-    <span ng-show="data.product.product.expansion" class="icon expansion" ng-style="data.product.product.expIcon | expansionIcon"></span>
-    <span ng-show="data.product.product.rarity" class="icon rarity rarity-{{data.product.product.rarity}}"></span>
+    <span ng-show="data.product.product.expansion" class="icon expansion-{{data.product.product.idGame}}" ng-style="data.product.product.expIcon | expansionIcon">
+    </span><span ng-show="data.product.product.rarity" ng-class="data.product.product | rarityIcon"></span>
   </div>
 </header>
 <mkm-product product-data="data.product"></mkm-product>
@@ -30,25 +30,36 @@
     <select id="condition" ng-options="condition as 'article.conditions.'+condition | translate for condition in conditions"
             ng-model="data.article.condition" required></select>
     <hr>
-    <label for="isFoil" translate="article.foil"></label>
-    <label for="isFoil">
-      <input type="checkbox" ng-model="data.article.isFoil" id="isFoil">
-    </label>
-    <br>
-    <label for="isSigned" translate="article.signed"></label>
-    <label for="isSigned">
-      <input type="checkbox" ng-model="data.article.isSigned" id="isSigned">
-    </label>
-    <br>
-    <label for="isPlayset" translate="article.playset"></label>
-    <label for="isPlayset">
-      <input type="checkbox" ng-model="data.article.isPlayset" id="isPlayset">
-    </label>
-    <br>
-    <label for="isAltered" translate="article.altered"></label>
-    <label for="isAltered">
-      <input type="checkbox" ng-model="data.article.isAltered" id="isAltered">
-    </label>
+    <div ng-show="data.article.isFoil != null">
+      <label for="isFoil" translate="article.foil"></label>
+      <label for="isFoil">
+        <input type="checkbox" ng-model="data.article.isFoil" id="isFoil">
+      </label>
+    </div>
+    <div ng-show="data.article.isSigned != null">
+      <label for="isSigned" translate="article.signed"></label>
+      <label for="isSigned">
+        <input type="checkbox" ng-model="data.article.isSigned" id="isSigned">
+      </label>
+    </div>
+    <div ng-show="data.article.isPlayset != null">
+      <label for="isPlayset" translate="article.playset"></label>
+      <label for="isPlayset">
+        <input type="checkbox" ng-model="data.article.isPlayset" id="isPlayset">
+      </label>
+    </div>
+    <div ng-show="data.article.isAltered != null">
+      <label for="isAltered" translate="article.altered"></label>
+      <label for="isAltered">
+        <input type="checkbox" ng-model="data.article.isAltered" id="isAltered">
+      </label>
+    </div>
+    <div ng-show="data.article.isFirstEd != null">
+      <label for="isFirstEd" translate="article.firsted"></label>
+      <label for="isFirstEd">
+        <input type="checkbox" ng-model="data.article.isFirstEd" id="isFirstEd">
+      </label>
+    </div>
     <hr>
     <label for="comment" translate="common.comment"></label>
     <input type="text" id="comment" ng-model="data.article.comments" placeholder="{{'common.comment' | translate}}"><br>

@@ -37,6 +37,7 @@ mkmobileServices.factory 'MkmApiStock', [ 'MkmApi', 'MkmApiMarket', 'DataCache',
       isSigned: article.isSigned
       isAltered: article.isAltered
       isPlayset: article.isPlayset
+      isFirstEd: article.isFirstEd
     MkmApi.api.stockUpdate request, (data) =>
       if data.updatedArticles?.length
         # updated articles receive a new ID, so delete the old cache
@@ -59,7 +60,7 @@ mkmobileServices.factory 'MkmApiStock', [ 'MkmApi', 'MkmApiMarket', 'DataCache',
   search: (query, response) ->
     response = count: 0, articles: [] unless response?
     response.loading = yes
-    MkmApi.api.stockSearch {param2: query, param3: response.articles.length + 1}, (data) =>
+    MkmApi.api.stockSearch {param2: query}, (data) =>
       response.count = data._range or data.article?.length
       response.articles = response.articles.concat data.article.map((val) => DataCache.article val.idArticle, val) if response.count
       response.loading = no

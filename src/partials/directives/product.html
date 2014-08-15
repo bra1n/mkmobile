@@ -19,7 +19,7 @@
         <div class="reprints" ng-show="productData.product.reprint">
           <b translate="product.reprints">Also available in:</b><br>
           <a href="/product/{{reprint.idProduct}}" ng-repeat="reprint in productData.product.reprint">
-            <span class="icon expansion" ng-style="reprint.expIcon | expansionIcon"></span>
+            <span class="icon expansion-{{productData.product.idGame}}" ng-style="reprint.expIcon | expansionIcon"></span>
           </a>
         </div>
       </div>

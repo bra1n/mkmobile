@@ -1,13 +1,13 @@
 mkmobileServices.factory 'MkmApi', [ '$resource', ($resource) ->
   auth =
-    consumerKey:    'alb03sLPpFNAhi6f'
-    consumerSecret: 'HTIcbso87X22JdS3Yk89c2CojfZiNDMX'
-    token:          sessionStorage.getItem('token') or ''
-    secret:         sessionStorage.getItem('secret') or ''
+    consumerKey:    window.consumerKey or 'alb03sLPpFNAhi6f'
+    consumerSecret: window.consumerSecret or 'HTIcbso87X22JdS3Yk89c2CojfZiNDMX'
+    secret:         sessionStorage.getItem('secret')
+    token:          sessionStorage.getItem('token')
   apiURL    = 'https://sandbox.mkmapi.eu/ws/v1.1'
   apiParams =
     search: # search for a product
-      params: {type:'products',param2:'1',param3:'1',param4:'false'}
+      params: {type:'products',param2:window.gameId or '1',param3:'1',param4:'false'}
       unique: 'search'
       cache:  yes
     articles: # get all articles for a product
@@ -45,7 +45,7 @@ mkmobileServices.factory 'MkmApi', [ '$resource', ($resource) ->
     stock: # get stock articles
       params: type: 'stock'
     stockSearch: # search stock
-      params: {type: 'stock', param1: 'articles', param3: '1'}
+      params: {type: 'stock', param1: 'articles', param3: window.gameId or '1'}
       unique: 'searchStock'
     stockUpdate: # update stock articles
       params: {type: 'stock', param1: '@action'}
