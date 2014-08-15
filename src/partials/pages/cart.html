@@ -1,6 +1,6 @@
 <header translate="titles.cart"></header>
 <article>
-  <mkm-search ng-hide="data.cart.length || data.loading">cart.empty</mkm-search>
+  <p ng-hide="data.cart.length || data.loading" translate>cart.empty</p>
   <div class="overview" ng-show="data.cart.length">
     <a href="/cart/address" class="address link">
       <span class="title" translate="cart.shipping_address"></span>

@@ -101,16 +101,6 @@ mkmobileControllers.controller 'CallbackCtrl', [
 mkmobileControllers.controller 'CartCtrl', [
   '$scope', '$location', '$routeParams', 'MkmApiCart', 'MkmApiMarket', '$translate'
   ($scope, $location, $routeParams, MkmApiCart, MkmApiMarket, $translate) ->
-    # search logic
-    $scope.$watch 'query', (query) ->
-      sessionStorage.setItem "search", query
-      $scope.searchData = MkmApiMarket.search(query) unless $routeParams.orderId
-    $scope.loadResults = ->
-      unless $scope.searchData.products.length >= $scope.searchData.count or $scope.searchData.loading
-        MkmApiMarket.search($scope.query, $scope.searchData)
-    $scope.query = sessionStorage.getItem("search") or ""
-    $scope.sort = "name[0]['productName']"
-
     # load cart data
     $scope.data = MkmApiCart.get $routeParams.orderId, ->
       $scope.count = MkmApiCart.count()
@@ -164,9 +154,6 @@ mkmobileControllers.controller 'CartCtrl', [
           when 'paypal' then '/payment/paypal'
           when 'bank' then '/payment/bank'
           else '/buys'
-
-    # blur the search input
-    $scope.blur = ($event) -> elem.blur() for elem in $event.target
 ]
 
 # /stock

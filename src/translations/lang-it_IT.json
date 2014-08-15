@@ -116,7 +116,7 @@
   },
   "callback": "Elaborazione login ...",
   "cart": {
-    "empty": "Non hai articoli nel tuo carrello, se vuoi cercare un articolo usa il campo di ricerca soprastante",
+    "empty": "Non hai articoli nel tuo carrello.",
     "delete": "Carrello vuoto",
     "shipping_address": "Indirizzo di spedizione:",
     "headline": "{{orders}} ordini ({{articles}} articoli) da acquistare ora",
@@ -137,7 +137,6 @@
     "are_you_sure": "Sei sicuro di voler acquistare questi articoli?"
   },
   "contact": {
-    "title": "Impressum",
     "telephone": "Telefono:",
     "support": "Non per assistenza clienti",
     "email": "Email:",
@@ -282,8 +281,8 @@
   },
   "settings": {
     "vacation": "Status vacanza su MCM",
-    "report": "Informare da un problema",
-    "source": "Vedere cifrario fonte",
+    "report": "Segnala un problema",
+    "source": "Visualizzare codice sorgente",
     "on": "Attivo",
     "off": "Inattivo"
   },

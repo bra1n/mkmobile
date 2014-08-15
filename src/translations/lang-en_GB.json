@@ -11,7 +11,7 @@
     "settings": "Settings",
     "payment": "Payment",
     "help": "Help & About",
-    "contact": "Contact Us",
+    "contact": "Imprint",
     "legal": "Legal",
     "login": "Login",
     "product": "Product Page"
@@ -116,7 +116,7 @@
   },
   "callback": "Processing login...",
   "cart": {
-    "empty": "You have no items on your shopping cart, if you want to search for articles, please use the search field above.",
+    "empty": "You have no items on your shopping cart.",
     "delete": "Empty cart",
     "shipping_address": "Shipping Address:",
     "headline": "{{orders}} orders ({{articles}} articles) to buy now",
@@ -137,7 +137,6 @@
     "are_you_sure": "Are you sure you want to buy these articles?"
   },
   "contact": {
-    "title": "Imprint",
     "telephone": "Telephone:",
     "support": "Not for customer support",
     "email": "Email:",

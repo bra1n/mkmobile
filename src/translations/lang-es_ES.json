@@ -11,7 +11,7 @@
     "settings": "Configuración",
     "payment": "Pago",
     "help": "Ayuda y pie de imprenta",
-    "contact": "Contacto",
+    "contact": "Pie de imprenta",
     "legal": "Legal",
     "login": "Iniciar sesión",
     "product": "Página de productos"
@@ -116,7 +116,7 @@
   },
   "callback": "Cargando...",
   "cart": {
-    "empty": "No tienes artículos en tu carro de la compra. Si quieres buscar artículos, utiliza el campo de búsqueda que está más arriba.",
+    "empty": "No tienes artículos en tu carro de la compra.",
     "delete": "Carrito vacío",
     "shipping_address": "Dirección de envío:",
     "headline": "{{orders}} pedidos {{articles}} artículos para comprar ahora",
@@ -137,7 +137,6 @@
     "are_you_sure": "¿Estás seguro de que quieres comprar estos artículos?"
   },
   "contact": {
-    "title": "Pie de imprenta",
     "telephone": "Teléfono",
     "support": "No para atención al cliente",
     "email": "Email:",

@@ -11,7 +11,7 @@
     "settings": "Einstellungen",
     "payment": "Bezahlung",
     "help": "Hilfe & Über uns",
-    "contact": "Kontakt",
+    "contact": "Impressum",
     "legal": "AGB",
     "login": "Login",
     "product": "Produktseite"
@@ -116,7 +116,7 @@
   },
   "callback": "Anmeldung läuft ...",
   "cart": {
-    "empty": "Du hast keine Artikel in Deinem Einnkaufswagen. Wenn Du Artikel suchen möchtest, nutze bitte das obige Suchformular.",
+    "empty": "Du hast keine Artikel in Deinem Einkaufswagen.",
     "delete": "Warenkorb leeren",
     "shipping_address": "Lieferadresse",
     "headline": "{{orders}} Bestellungen ({{articles}} Artikel) zum Einkauf bereit",
@@ -137,7 +137,6 @@
     "are_you_sure": "Bitte bestätige Deinen Einkauf."
   },
   "contact": {
-    "title": "Impressum",
     "telephone": "Telefon:",
     "support": "Kein Support!",
     "email": "E-Mail:",

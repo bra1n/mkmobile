@@ -11,7 +11,7 @@
     "settings": "Paramètres",
     "payment": "Paiement",
     "help": "aide et mentions légales",
-    "contact": "Contacte nous",
+    "contact": "Mentions légales",
     "legal": "Légal",
     "login": "Se connecter",
     "product": "Page du produit"
@@ -116,7 +116,7 @@
   },
   "callback": "Chargement en cours...",
   "cart": {
-    "empty": "Tu n'as pas d'articles dans ton panier. Si tu veux chercher d'articles, utilise le champ de recherche au-dessus.",
+    "empty": "Tu n'as pas d'articles dans ton panier.",
     "delete": "Panier vide",
     "shipping_address": "Adresse d'envoi:",
     "headline": "{{orders}} commande ({{articles}} articles) pour acheter maintenant",
@@ -137,7 +137,6 @@
     "are_you_sure": "Tu vas acheter ces articles, es-tu sûr?"
   },
   "contact": {
-    "title": "Mentions légales",
     "telephone": "Téléphone:",
     "support": "Pas pour le service client",
     "email": "E-mail :",
