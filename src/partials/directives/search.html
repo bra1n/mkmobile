@@ -9,7 +9,7 @@
     <span class="error" ng-show="searchData.error" translate="search.error">Error loading search results</span>
     <span ng-show="searchData.count > 0" translate="search.sort">Sort</span>
     <select ng-model="sort" ng-show="searchData.count > 0">
-      <option value="name[0]['productName']" translate="search.name">Name</option>
+      <option value="name[1]['productName']" translate="search.name">Name</option>
       <option value="expIcon" translate="search.expansion">Expansion</option>
       <option value="rarity" translate="search.rarity">Rarity</option>
     </select>
@@ -19,7 +19,10 @@
       <a href="/product/{{product.idProduct}}">
         <span class="icon expansion" ng-style="product.expIcon | expansionIcon" ng-show="product.expansion"></span>
         <span class="icon rarity rarity-{{product.rarity}}" ng-show="product.rarity"></span>
-        {{product.name[0].productName}}
+        <span class="name">
+          {{product.name[1].productName}}
+          <small ng-hide="languageId == 1">({{product.name[languageId].productName}})</small>
+        </span>
       </a>
     </li>
   </ul>

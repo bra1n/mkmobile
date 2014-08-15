@@ -71,6 +71,12 @@ mkmobileServices.factory 'MkmApiAuth', [
     # update interface language
     setLanguage: (languageId) -> MkmApi.api.accountLanguage {languageId}, (data) => @cache data.account
 
+    # get current language id
+    getLanguage: ->
+      id = 1
+      id = language.value for language in @getLanguageCodes() when language.label is $translate.use()
+      id
+
     # cache account data, update translations, returns account
     cache: (account) ->
       # locale changing

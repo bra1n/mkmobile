@@ -172,6 +172,7 @@ mkmobileApp.run [
     translateTitle = -> $translate(['titles.app','titles.'+$rootScope.viewClass]).then (texts) ->
       $rootScope.viewTitle = texts['titles.app'] + ' — ' + texts['titles.'+$rootScope.viewClass]
       $rootScope.language = $translate.use().substr(0,2)
+      $rootScope.languageId = MkmApiAuth.getLanguage()
     # new page, update view class and title
     $rootScope.$on '$routeChangeSuccess', (event, current) ->
       if current.$$route?.originalPath? and current.$$route?.originalPath.split("/").length > 1

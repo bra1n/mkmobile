@@ -7,7 +7,7 @@ mkmobileControllers.controller 'SearchCtrl', [
       $scope.searchData = MkmApiMarket.search query
     # init scope vars
     $scope.query = sessionStorage.getItem("search") or ""
-    $scope.sort = "name[0]['productName']"
+    $scope.sort = "name[1]['productName']"
 
     # infinite scrolling
     $scope.loadResults = ->

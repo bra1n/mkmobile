@@ -1,7 +1,7 @@
 <header ng-class="{loading:productData.loading}">
   <a href="javascript:history.back()" class="back"></a>
   <span class="error ng-hide" ng-show="productData.error" translate="product.error">Error loading product</span>
-  {{productData.product.name[0].productName}}
+  {{productData.product.name[1].productName}}
   <span ng-show="productData.product.number" translate="product.nr" translate-value-number="{{productData.product.number}}"></span>
   <div class="box">
     <span ng-show="productData.product.rarity" class="icon rarity rarity-{{productData.product.rarity}}"></span>

@@ -428,10 +428,17 @@ mkm-search {
     margin-top: 60px;
     // search results
     li {
-      padding: 0 10px;
-      line-height: 40px;
+      padding: 7px 10px;
       border-bottom: 1px solid #ccc;
       &:nth-child(even) { background: #fafafa; }
+      .name {
+        display: inline-block;
+        vertical-align: middle;
+      }
+      small {
+        display: block;
+        font-weight: normal;
+      }
     }
     a {
       color: #0240ca;
