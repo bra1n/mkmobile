@@ -24,12 +24,14 @@
     <span class="icon language language-{{data.article.language.idLanguage}}"></span>
     <select id="language" ng-options="language as 'article.languages.'+language | translate for language in languages"
             ng-model="data.article.language.idLanguage" required></select>
-    <hr>
-    <label for="condition" translate="article.condition"></label>
-    <span class="icon grading grading-{{data.article.condition}}"></span>
-    <select id="condition" ng-options="condition as 'article.conditions.'+condition | translate for condition in conditions"
-            ng-model="data.article.condition" required></select>
-    <hr>
+    <div ng-show="data.article.condition != null">
+      <hr>
+      <label for="condition" translate="article.condition"></label>
+      <span class="icon grading grading-{{data.article.condition}}"></span>
+      <select id="condition" ng-options="condition as 'article.conditions.'+condition | translate for condition in conditions"
+              ng-model="data.article.condition" required></select>
+      <hr>
+    </div>
     <div ng-show="data.article.isFoil != null">
       <label for="isFoil" translate="article.foil"></label>
       <label for="isFoil">
