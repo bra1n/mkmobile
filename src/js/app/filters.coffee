@@ -2,7 +2,7 @@ angular.module 'mkmobileFilters', []
 # calculate expansion icon position
 .filter 'expansionIcon', -> (index) -> {backgroundPosition: (index % 10)*-21+"px "+Math.floor(index/10)*-21+"px" }
 # generate rarity icon class name
-.filter 'rarityIcon', -> (product) -> 'icon rarity rarity-'+(product.idGame or '1')+'-'+product.rarity.replace(RegExp(' ','g'),'').toLowerCase()
+.filter 'rarityIcon', -> (product) -> 'icon rarity rarity-'+(product.idGame or '1')+'-'+(product.rarity or 'none').replace(RegExp(' ','g'),'').toLowerCase()
 # get product image url
 .filter 'productImage', -> (image) -> image? and '//www.mkmapi.eu/' + image.substr(2) or '/img/card.jpg'
 # return label for needle value in haystack object

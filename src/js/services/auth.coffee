@@ -5,7 +5,7 @@ mkmobileServices.factory 'MkmApiAuth', [
     promises = {}
 
     # get login status
-    isLoggedIn: -> MkmApi.auth.secret isnt ""
+    isLoggedIn: -> !!MkmApi.auth.secret
 
     # return login URL
     getLoginURL: -> MkmApi.url + MkmApi.auth.consumerKey

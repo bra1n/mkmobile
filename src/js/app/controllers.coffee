@@ -178,7 +178,7 @@ mkmobileControllers.controller 'StockCtrl', [
         $scope.data = MkmApiStock.search query
     $scope.loadArticles = ->
       unless $scope.data.articles.length >= $scope.data.count or $scope.data.loading
-        if !queryg or $routeParams.articleId
+        if !$scope.query or $routeParams.articleId
           MkmApiStock.get $routeParams.articleId, $scope.data
         else
           MkmApiStock.search $scope.query, $scope.data
