@@ -1,10 +1,10 @@
 mkmobileServices.factory 'MkmApi', [ '$resource', ($resource) ->
   auth =
-    consumerKey:    window.consumerKey or 'alb03sLPpFNAhi6f'
-    consumerSecret: window.consumerSecret or 'HTIcbso87X22JdS3Yk89c2CojfZiNDMX'
+    consumerKey:    window.consumerKey or 'QVRXlcVqJvFR7OV'
+    consumerSecret: window.consumerSecret or 'vPDvkCOmfUslqVqov0ylAflCUkxsGeBw'
     secret:         sessionStorage.getItem('secret')
     token:          sessionStorage.getItem('token')
-  apiURL    = 'https://sandbox.mkmapi.eu/ws/v1.1'
+  apiURL    = 'https://www.mkmapi.eu/ws/v1.1'
   apiParams =
     search: # search for a product
       params: {type:'products',param2:window.gameId or '1',param3:'1',param4:'false'}
