@@ -1,6 +1,6 @@
 mkmobileServices.factory 'MkmApi', [ '$resource', ($resource) ->
   auth =
-    consumerKey:    window.consumerKey or 'QVRXlcVqJvFR7OV'
+    consumerKey:    window.consumerKey or 'rQVRXlcVqJvFR7OV'
     consumerSecret: window.consumerSecret or 'vPDvkCOmfUslqVqov0ylAflCUkxsGeBw'
     secret:         sessionStorage.getItem('secret')
     token:          sessionStorage.getItem('token')
