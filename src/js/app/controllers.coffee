@@ -20,7 +20,6 @@ mkmobileControllers.controller 'SearchCtrl', [
     $scope.handleLogin = ->
       $scope.iframeSrc = $sce.trustAsResourceUrl MkmApiAuth.getLoginURL()+"/"+$scope.language
       window.handleCallback = (token) ->
-        $scope.iframeSrc = null
         $scope.login = MkmApiAuth.getAccess token
         delete window.handleCallback
     $scope.logout = ->
