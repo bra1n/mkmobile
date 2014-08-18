@@ -8,6 +8,7 @@
       <button class="button" ng-hide="iframeSrc || login.success" ng-click="handleLogin()" translate="login.login">Log In</button>
       <div ng-show="login.error" translate="login.error">Error retrieving access, please retry</div>
       <div ng-show="login.success" translate="login.success">Logged in successfully!</div>
+      <a href="http://{{language}}.magiccardmarket.eu" translate="common.desktop">To desktop version</a>
     </div>
     <div ng-show="loggedIn">
       <button class="button" ng-click="logout()" translate="common.logout">Logout</button>

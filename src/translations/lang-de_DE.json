@@ -17,6 +17,7 @@
     "product": "Produktseite"
   },
   "common": {
+    "desktop": "Zur Desktop-Version",
     "loading": "Ladevorgang...",
     "save": "Änderungen speichern",
     "price": "Preis",

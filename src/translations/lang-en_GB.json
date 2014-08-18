@@ -17,6 +17,7 @@
     "product": "Product Page"
   },
   "common": {
+    "desktop": "To desktop version",
     "loading": "Loading...",
     "save": "Save Changes",
     "price": "Price",
