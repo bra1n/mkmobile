@@ -26,10 +26,19 @@ Afterwards, you can simply run `grunt` in order to compile the necessary develop
 monitor them for changes. You should point your local webserver to the `/src` directory and use the `index.html` file 
 there for development. The `index.dist.html` represents the version that will be used in production.
 
-If you want to generate a new build, use `grunt build` in order to generate the static files needed for a deyploment.
+If you want to generate a new build, use `grunt build` in order to generate the static files needed for a deployment.
 The generated files will be located in `/dist`.
 
 In order to create a new release, use `grunt release`.
+
+### Development
+
+In order to be able to run a local development version of the app, you should point your webserver to `src/` and sign up
+for a dedicated app on your [MCM profile page](https://www.magickartenmarkt.de/?mainPage=showMyAccount). Once you have the
+API credentials, fill in your app token, app secret, access token and access secret in the appropriate vars of the 
+[index.html](src/index.html). You'll then be able to use the **live API** on your local development version of the app.
+
+**Note:** this will log you in on the app with your *real* MCM account!
 
 ### Folder structure
 
@@ -39,7 +48,6 @@ while for development, it should be `src`.
 ```
 dist/           # the web root for production, contains all the necesssary files for a deployment
   img/          # all image assets are copied over to this folder for production deployment
-  translations/ # the translations are copied over here to be available in production as well
   
   app.js        # the compiled, concatenated and minified app code
   index.html    # the main index HTML, built from the index.dist.html

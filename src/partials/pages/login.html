@@ -1,8 +1,9 @@
 <mkm-search></mkm-search>
 <article>
   <form>
-    <img src="/img/logo.jpg" alt="Logo" class="logo" ng-hide="language == 'de'">
-    <img src="/img/logo_de.jpg" alt="Logo" class="logo" ng-show="language == 'de'">
+    <img src="/img/1-logo.jpg" alt="Logo" class="logo" ng-show="gameId == 1 && language != 'de'">
+    <img src="/img/1-logo_de.jpg" alt="Logo" class="logo" ng-show="gameId == 1 && language == 'de'">
+    <img src="/img/3-logo.jpg" alt="Logo" class="logo" ng-show="gameId == 3">
     <div ng-hide="loggedIn">
       <iframe src="" ng-src="{{iframeSrc}}" ng-show="iframeSrc" scrolling="no"></iframe>
       <button class="button" ng-hide="iframeSrc || login.success" ng-click="handleLogin()" translate="login.login">Log In</button>

@@ -13,18 +13,18 @@ mkmobileDirectives.directive 'infiniteScroll', ->
 # footer logic, accepts cart and messages count variables
 mkmobileDirectives.directive 'mkmFooter', [
   'MkmApiAuth', 'MkmApiCart', 'MkmApiMessage'
-  (MkmApiAuth, MkmApiCart, MkmApiMessages) ->
+  (MkmApiAuth, MkmApiCart, MkmApiMessage) ->
     scope:
       cart: "=?"
       messages: "=?"
     link: (scope) ->
       scope.loggedIn = MkmApiAuth.isLoggedIn()
       scope.cart or= MkmApiCart.count()
-      scope.messages or= MkmApiMessages.count()
+      scope.messages or= MkmApiMessage.count()
       unless (scope.cart? and scope.messages?) or !scope.loggedIn
         MkmApiAuth.getAccount ->
           scope.cart = MkmApiCart.count() unless scope.cart?
-          scope.messages = MkmApiMessages.count() unless scope.messages?
+          scope.messages = MkmApiMessage.count() unless scope.messages?
     restrict: 'E'
     replace: yes
     templateUrl: '/partials/directives/footer.html'

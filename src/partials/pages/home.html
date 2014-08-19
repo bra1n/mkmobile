@@ -1,8 +1,11 @@
-<header></header>
+<header class="game-{{gameId}}"></header>
 <article>
   <span></span><a href="/stock" class="stock" translate="titles.stock">My Articles</a>
   <span></span><a href="/buys" class="buys" translate="titles.buys">My Buys</a><!--
   --><a href="/sells" class="sells" translate="titles.sells">My Sells</a>
-  <span></span><a href="/messages" class="messages" translate="titles.messages">My Messages</a>
+  <span></span><a href="/messages" class="messages">
+    <span class="count" ng-show="messages">{{messages}}</span>
+    <span translate="titles.messages">My Messages</span>
+  </a>
 </article>
-<mkm-footer></mkm-footer>
+<mkm-footer messages="messages"></mkm-footer>
