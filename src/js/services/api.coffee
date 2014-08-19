@@ -2,8 +2,8 @@ mkmobileServices.factory 'MkmApi', [ '$resource', ($resource) ->
   auth =
     consumerKey:    window.consumerKey or 'rQVRXlcVqJvFR7OV'
     consumerSecret: window.consumerSecret or 'vPDvkCOmfUslqVqov0ylAflCUkxsGeBw'
-    secret:         sessionStorage.getItem('secret') or ''
-    token:          sessionStorage.getItem('token') or ''
+    secret:         window.accessSecret or window.sessionStorage.getItem('secret') or ''
+    token:          window.accessToken or sessionStorage.getItem('token') or ''
   apiURL    = 'https://www.mkmapi.eu/ws/v1.1'
   apiParams =
     search: # search for a product
