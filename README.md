@@ -2,6 +2,8 @@
 
 MagicCardMarket Mobile Client
 
+[Live Demo](https://m.magiccardmarket.eu)
+
 ## Setup
 
 ### Requirements
