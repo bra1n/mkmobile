@@ -15,48 +15,48 @@
     </li>
   </ul>
   <div class="orders">
-    <h3 ng-show="!data.loading && data.count > 1" translate="order.shipments" translate-value-count="{{data.count | number}}"></h3>
-    <h3 ng-show="!data.loading && data.count == 1" translate="order.shipments_1"></h3>
-    <h3 ng-show="!data.loading && data.count == 0" translate="order.shipments_0"></h3>
+    <h3 ng-if="!data.loading && data.count > 1" translate="order.shipments" translate-value-count="{{data.count | number}}"></h3>
+    <h3 ng-if="!data.loading && data.count == 1" translate="order.shipments_1"></h3>
+    <h3 ng-if="!data.loading && data.count == 0" translate="order.shipments_0"></h3>
     <ul ng-class="{loading:data.loading}" data-infinite-scroll="loadOrders()">
       <li ng-repeat="order in data.orders">
-        <a class="link" href="/{{mode}}/{{order.idOrder}}">
-          <div ng-show="mode == 'buys'">
+        <a class="link" href="/{{::mode}}/{{::order.idOrder}}">
+          <div ng-if="mode == 'buys'">
             <b class="title" translate="order.seller">Seller:</b>
-            <b class="title">{{order.seller.username}}</b><br>
+            <b class="title">{{::order.seller.username}}</b><br>
             <span translate="order.last_name">Last name:</span>
-            {{order.seller.name.lastName}}
+            {{::order.seller.name.lastName}}
           </div>
-          <div ng-show="mode == 'sells'">
+          <div ng-if="mode == 'sells'">
             <b class="title" translate="order.buyer">Buyer:</b>
-            <b class="title">{{order.buyer.username}}</b><br>
+            <b class="title">{{::order.buyer.username}}</b><br>
             <span translate="order.last_name">Last name:</span>
-            {{order.buyer.name.lastName}}
+            {{::order.buyer.name.lastName}}
           </div>
 
-          <span ng-show="order.state.dateBought">
-            <b translate="order.purchased">Purchased:</b> {{order.state.dateBought | date:'short'}}<br>
+          <span ng-if="::order.state.dateBought">
+            <b translate="order.purchased">Purchased:</b> {{::order.state.dateBought | date:'short'}}<br>
           </span>
-          <span ng-show="order.state.datePaid">
-            <b translate="order.paid">Paid:</b> {{order.state.datePaid | date:'short'}}<br>
+          <span ng-if="::order.state.datePaid">
+            <b translate="order.paid">Paid:</b> {{::order.state.datePaid | date:'short'}}<br>
           </span>
-          <span ng-show="order.state.dateSent">
-            <b translate="order.sent">Sent:</b> {{order.state.dateSent | date:'short'}}<br>
+          <span ng-if="::order.state.dateSent">
+            <b translate="order.sent">Sent:</b> {{::order.state.dateSent | date:'short'}}<br>
           </span>
-          <span ng-show="order.state.dateReceived">
+          <span ng-if="::order.state.dateReceived">
             <b translate="order.received">Received:</b>
-            {{order.state.dateReceived | date:'short'}}<br>
+            {{::order.state.dateReceived | date:'short'}}<br>
           </span>
-          <span ng-show="order.cancellationRequest">
+          <span ng-if="::order.cancellationRequest">
             <b translate="order.cancellation">Cancellation Requested:</b>
-            {{order.cancellationRequest.date | date:'short'}}<br>
+            {{::order.cancellationRequest.date | date:'short'}}<br>
           </span>
-          <b ng-show="order.state.state == 'received'" translate="order.please_evaluate">Please evaluate this order</b>
+          <b ng-if="order.state.state == 'received'" translate="order.please_evaluate">Please evaluate this order</b>
         </a>
       </li>
     </ul>
   </div>
-  <div class="outstanding" ng-show="data.account.bankRecharge">
+  <div class="outstanding" ng-if="data.account.bankRecharge">
     <hr>
     <span translate="order.outstanding" translate-value-sum="{{data.account.bankRecharge | currency:'€'}}"></span><br>
     <a href="/payment/bank" translate="common.bank">Bank Transfer</a>

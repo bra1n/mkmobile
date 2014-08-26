@@ -1,11 +1,11 @@
 <header ng-class="{loading:productData.loading}">
   <a href="javascript:history.back()" class="back"></a>
-  <span class="error ng-hide" ng-show="productData.error" translate="product.error">Error loading product</span>
+  <span class="error ng-hide" ng-if="productData.error" translate="product.error">Error loading product</span>
   {{productData.product.name[1].productName}}
-  <span ng-show="productData.product.number" translate="product.nr" translate-value-number="{{productData.product.number}}"></span>
+  <span ng-if="productData.product.number" translate="product.nr" translate-value-number="{{productData.product.number}}"></span>
   <div class="box">
-    <span ng-show="productData.product.rarity" ng-class="productData.product | rarityIcon">
-    </span><span class="icon expansion-{{productData.product.idGame}}" ng-style="productData.product.expIcon | expansionIcon" ng-show="productData.product.expansion"></span>
+    <span ng-if="productData.product.rarity" ng-class="productData.product | rarityIcon">
+    </span><span class="icon expansion-{{productData.product.idGame}}" ng-style="productData.product.expIcon | expansionIcon" ng-if="productData.product.expansion"></span>
   </div>
 </header>
 <mkm-product product-data="productData"></mkm-product>
@@ -16,27 +16,27 @@
     <li class="row" ng-repeat="article in data.articles track by article.idArticle"
         ng-hide="!article.count" ng-class="{comment:article.showComment, seller:article.showSeller}">
       <div class="cell seller" ng-click="article.showSeller=!article.showSeller">
-        <span class="name">{{article.seller.username}} ({{article.seller.sellCount}})</span>
-        <span class="details" mkm-user user="article.seller"></span>
+        <span class="name">{{::article.seller.username}} ({{::article.seller.sellCount}})</span>
+        <span class="details" mkm-user user="::article.seller"></span>
       </div><div class="cell icons">
-        <span class="icon language language-{{article.language.idLanguage}}"></span>
-        <span class="icon grading grading-{{article.condition}}"></span>
-        <span class="icon is-foil" ng-show="article.isFoil"></span>
-        <span class="icon is-signed" ng-show="article.isSigned"></span>
-        <span class="icon is-altered" ng-show="article.isAltered"></span>
-        <span class="icon is-firsted" ng-show="article.isFirstEd"></span>
-        <span class="icon comment" ng-show="article.comments" ng-click="article.showComment = !article.showComment"></span>
-        <div class="comment">{{article.comments}}</div>
-      </div><div class="cell price" ng-class="{playset: article.isPlayset}">
+        <span class="icon language language-{{::article.language.idLanguage}}"></span>
+        <span class="icon grading grading-{{::article.condition}}"></span>
+        <span class="icon is-foil" ng-if="::article.isFoil"></span>
+        <span class="icon is-signed" ng-if="::article.isSigned"></span>
+        <span class="icon is-altered" ng-if="::article.isAltered"></span>
+        <span class="icon is-firsted" ng-if="::article.isFirstEd"></span>
+        <span class="icon comment" ng-if="::article.comments" ng-click="article.showComment = !article.showComment"></span>
+        <div class="comment">{{::article.comments}}</div>
+      </div><div class="cell price" ng-class="::{playset: article.isPlayset}">
         <span class="icon is-playset" ng-click="article.showPlayset=!article.showPlayset"></span>
         <span class="price" ng-click="article.showPlayset=true" ng-hide="article.showPlayset && article.isPlayset">
-          {{article.price | currency:"€"}}
+          {{::article.price | currency:"€"}}
         </span>
         <span class="price-per-card" ng-click="article.showPlayset=false" ng-show="article.showPlayset && article.isPlayset">
-          4x{{article.price / 4 | currency:"€"}}
+          4x{{::article.price / 4 | currency:"€"}}
         </span>
-        <span class="count">{{article.count}}</span>
-        <button ng-click="addToCart(article)"></button>
+        <span class="count">{{::article.count}}</span>
+        <button ng-click="addToCart(::article)"></button>
       </div>
     </li>
   </ul>

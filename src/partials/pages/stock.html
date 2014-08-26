@@ -26,30 +26,30 @@
         ng-class="{loading:article.loading,comment:article.showComment,image:article.showImage}">
       <div class="controls">
         <input type="checkbox" ng-checked="selected.indexOf(article) > -1" ng-click="select(article)" ng-disabled="article.inShoppingCart">
-        <span class="icon card" ng-show="article.product.image" ng-click="article.showImage = !article.showImage"></span>
+        <span class="icon card" ng-if="::article.product.image" ng-click="article.showImage = !article.showImage"></span>
       </div>
       <div class="card">
         {{article.count}}x
-        <a href="/stock/{{article.idArticle}}" ng-hide="article.inShoppingCart">{{article.product.name}}</a>
-        <span ng-show="article.inShoppingCart">{{article.product.name}}</span>
+        <a href="/stock/{{::article.idArticle}}" ng-if="!article.inShoppingCart">{{::article.product.name}}</a>
+        <span ng-if="::article.inShoppingCart">{{::article.product.name}}</span>
         <div class="card-image" ng-click="article.showImage = 0">
-          <img src="" ng-src="{{article.showImage && (article.product.image | productImage)}}">
+          <img src="" ng-src="{{::article.showImage && (article.product.image | productImage)}}">
         </div>
-        <div class="comment" ng-click="article.showComment = 0">{{article.comments}}</div>
+        <div class="comment" ng-click="article.showComment = 0">{{::article.comments}}</div>
       </div>
       <div class="icons">
-        <span ng-class="article.product | rarityIcon" ng-show="article.product.rarity"></span>
-        <span class="icon expansion-{{article.product.idGame}}" ng-style="article.product.expIcon | expansionIcon" ng-show="article.product.expansion"></span>
-        <span class="icon language language-{{article.language.idLanguage}}" ng-show="article.language.idLanguage"></span>
-        <span class="icon grading grading-{{article.condition}}" ng-show="article.condition"></span>
-        <span class="icon is-foil" ng-show="article.isFoil"></span>
-        <span class="icon is-signed" ng-show="article.isSigned"></span>
-        <span class="icon is-playset" ng-show="article.isPlayset"></span>
-        <span class="icon is-altered" ng-show="article.isAltered"></span>
-        <span class="icon is-firsted" ng-show="article.isFirstEd"></span>
-        <span class="icon comment" ng-show="article.comments" ng-click="article.showComment = !article.showComment"></span>
+        <span ng-class="::article.product | rarityIcon" ng-if="::article.product.rarity"></span>
+        <span class="icon expansion-{{::article.product.idGame}}" ng-style="::article.product.expIcon | expansionIcon" ng-if="::article.product.expansion"></span>
+        <span class="icon language language-{{::article.language.idLanguage}}" ng-if="::article.language.idLanguage"></span>
+        <span class="icon grading grading-{{::article.condition}}" ng-if="::article.condition"></span>
+        <span class="icon is-foil" ng-if="::article.isFoil"></span>
+        <span class="icon is-signed" ng-if="::article.isSigned"></span>
+        <span class="icon is-playset" ng-if="::article.isPlayset"></span>
+        <span class="icon is-altered" ng-if="::article.isAltered"></span>
+        <span class="icon is-firsted" ng-if="::article.isFirstEd"></span>
+        <span class="icon comment" ng-if="::article.comments" ng-click="article.showComment = !article.showComment"></span>
       </div>
-      <div class="price">{{article.price | currency:"€"}}</div>
+      <div class="price">{{::article.price | currency:"€"}}</div>
     </li>
   </ul>
 </article>
