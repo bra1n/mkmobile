@@ -5,6 +5,6 @@ src/lib
 .idea
 .DS_Store
 .sass-cache
-.htaccess
 node_modules
-!build/*.*
+!dist/*.*
+.htaccess

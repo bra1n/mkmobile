@@ -12,7 +12,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-html2js'
 
   # Default task.
-  grunt.registerTask 'default', ['coffee', 'html2js', 'i18n', 'sass:dev']
+  grunt.registerTask 'default', ['coffee', 'sass:dev', 'watch']
   grunt.registerTask 'build', ['clean', 'coffee', 'html2js', 'sass:dist', 'i18n', 'concat', 'uglify', 'copy']
   grunt.registerTask 'release', (type = "patch") -> grunt.task.run ['bump-only:'+type, 'build', 'bump-commit']
 
@@ -98,13 +98,12 @@ module.exports = (grunt) ->
         options:
           style: 'expanded'
           noCache: true
-          sourcemap: true
         files: '<%= src.css %>/styles.css': '<%= src.css %>/styles.scss'
       dist:
         options:
           style: 'compressed'
-          banner: '<%= banner %>'
           noCache: true
+          sourcemap: 'none'
         files: '<%= distdir %>/styles.css': '<%= src.css %>/styles.scss'
 
     i18n:
@@ -120,11 +119,10 @@ module.exports = (grunt) ->
           banner: '<%= banner %>'
           stripBanners: true
         src: [
-          '<%= src.lib %>/jquery/dist/jquery.min.js'
           '<%= src.lib %>/angular/angular.min.js'
           '<%= src.lib %>/angular-route/angular-route.min.js'
+          '<%= src.lib %>/angular-sanitize/angular-sanitize.min.js'
           '<%= src.lib %>/angular-resource/angular-resource.min.js'
-#          '<%= src.lib %>/angular-animate/angular-animate.min.js'
           '<%= src.lib %>/angular-dynamic-locale/tmhDynamicLocale.min.js'
           '<%= src.lib %>/angular-translate/angular-translate.min.js'
           '<%= src.lib %>/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js'
@@ -160,9 +158,6 @@ module.exports = (grunt) ->
       coffee:
         files: '<%= src.js %>/**/*.coffee'
         tasks: ['coffee']
-      html:
-        files: '<%= src.tpl %>'
-        tasks: ['html2js']
       css:
         files: '<%= src.css %>/*.scss'
         tasks: ['sass:dev']

@@ -1,7 +1,7 @@
 mkmobileApp = angular.module 'mkmobileApp', [
   # core modules
   'ngRoute'
-  #'ngAnimate' - disabled for performance reasons
+  'ngSanitize'
   # i18n
   'tmh.dynamicLocale'
   'pascalprecht.translate'
@@ -155,6 +155,7 @@ mkmobileApp.config [
       suffix: '.json'
     .fallbackLanguage 'en_GB'
     .preferredLanguage language
+    .useSanitizeValueStrategy 'sanitize'
     # locale
     tmhDynamicLocaleProvider.localeLocationPattern '/lib/angular-i18n/angular-locale_{{locale}}.js'
     tmhDynamicLocaleProvider.defaultLocale language.replace(/_/, '-').toLowerCase()

@@ -1,14 +1,15 @@
 mkmobileDirectives = angular.module 'mkmobileDirectives', []
 
 # infinite scrolling
-mkmobileDirectives.directive 'infiniteScroll', ->
+mkmobileDirectives.directive 'infiniteScroll', ['$window', ($window) ->
   link: (scope, elm, attr) ->
     docElem = document.documentElement
     scrollHandler = ->
       if (docElem.scrollTop or window.pageYOffset) + docElem.clientHeight - elm[0].offsetTop >= elm[0].scrollHeight - window.innerHeight
         scope.$apply attr.infiniteScroll
-    $(window).bind 'scroll', scrollHandler
-    scope.$on '$destroy', -> $(window).unbind 'scroll', scrollHandler
+    angular.element($window).bind 'scroll', scrollHandler
+    scope.$on '$destroy', -> angular.element($window).unbind 'scroll', scrollHandler
+]
 
 # footer logic, accepts cart and messages count variables
 mkmobileDirectives.directive 'mkmFooter', [
