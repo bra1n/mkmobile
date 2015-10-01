@@ -53,14 +53,14 @@ mkmobileServices.factory 'MkmApiAuth', [
       response = account: DataCache.account()
       unless response.account?
         response.loading = yes
-        promises.account = (promises.account or MkmApi.api.account().$promise).then (data) =>
-          response.account = @cache data.account
-          response.loading = no
-          cb?(response)
-          data # pass data to the next callback
-        , (error) =>
-          # if request for account returns with a 403, it means we're logged out and don't know it yet
-          @logout() if error.status is 403
+        unless promises.account
+          promises.account = MkmApi.api.account().$promise.then (data) =>
+            response.account = @cache data.account
+            response.loading = no
+          , (error) =>
+            # if request for account returns with a 403, it means we're logged out and don't know it yet
+            @logout() if error.status is 403
+        promises.account.then -> cb?(response)
       else
         cb?(response)
       response

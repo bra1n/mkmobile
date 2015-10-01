@@ -51,7 +51,7 @@
     <div ng-show="data.order.state.state == 'sent'  && data.order.isBuyer">
       <button class="button" ng-click="update('confirmReception')" translate="order.confirm">Confirm Reception</button>
     </div>
-    <div ng-show="data.order.state.state == 'paid' && !data.order.isBuyer">
+    <div ng-show="data.order.state.state == 'paid' && !data.order.isBuyer && !data.order.isPresale">
       <button class="button" ng-click="update('send')" translate="order.mark">Mark as sent</button>
     </div>
     <div ng-show="data.order.state.state == 'received' && data.order.isBuyer">

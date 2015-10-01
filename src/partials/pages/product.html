@@ -35,7 +35,7 @@
         <span class="price-per-card" ng-click="article.showPlayset=false" ng-show="article.showPlayset && article.isPlayset">
           4x{{::article.price / 4 | currency:"€"}}
         </span>
-        <span class="count">{{::article.count}}</span>
+        <span class="count">{{article.count}}</span>
         <button ng-click="addToCart(article)"></button>
       </div>
     </li>

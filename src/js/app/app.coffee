@@ -155,7 +155,7 @@ mkmobileApp.config [
       suffix: '.json'
     .fallbackLanguage 'en_GB'
     .preferredLanguage language
-    .useSanitizeValueStrategy 'sanitize'
+    .useSanitizeValueStrategy 'sanitizeParameters'
     # locale
     tmhDynamicLocaleProvider.localeLocationPattern '/lib/angular-i18n/angular-locale_{{locale}}.js'
     tmhDynamicLocaleProvider.defaultLocale language.replace(/_/, '-').toLowerCase()
