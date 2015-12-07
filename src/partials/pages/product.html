@@ -1,11 +1,12 @@
 <header ng-class="{loading:productData.loading}">
   <a href="javascript:history.back()" class="back"></a>
   <span class="error ng-hide" ng-if="productData.error" translate="product.error">Error loading product</span>
-  {{productData.product.name[1].productName}}
+  {{productData.product.enName}}
   <span ng-if="productData.product.number" translate="product.nr" translate-value-number="{{productData.product.number}}"></span>
   <div class="box">
     <span ng-if="productData.product.rarity" ng-class="productData.product | rarityIcon">
-    </span><span class="icon expansion-{{productData.product.idGame}}" ng-style="productData.product.expIcon | expansionIcon" ng-if="productData.product.expansion"></span>
+    </span><span class="icon expansion-{{productData.product.idGame}}" ng-if="productData.product.expansion"
+                 ng-style="productData.product.expansion.expansionIcon | expansionIcon" ></span>
   </div>
 </header>
 <mkm-product product-data="productData"></mkm-product>

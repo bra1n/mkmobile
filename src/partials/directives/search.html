@@ -20,8 +20,8 @@
         <span class="icon expansion-{{::product.idGame}}" ng-style="::product.expIcon | expansionIcon" ng-if="::product.expansion"></span>
         <span ng-class="::product | rarityIcon" ng-if="::product.rarity"></span>
         <span class="name">
-          {{::product.name[1].productName}}
-          <small ng-hide="::languageId == 1">{{::product.name[languageId].productName}}</small>
+          {{::product.localizedName}}
+          <small ng-hide="::languageId == 1">{{::product.enName}}</small>
         </span>
       </a>
     </li>

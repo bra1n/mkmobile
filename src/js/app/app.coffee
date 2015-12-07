@@ -201,8 +201,12 @@ generateOAuthHeader = (config) ->
     oauth_version: "1.0"
     oauth_signature: ""
   paramOrder = ["oauth_consumer_key","oauth_nonce","oauth_signature_method","oauth_timestamp","oauth_token","oauth_version"]
+  # add query parameters if present
+  for key,value of config.params
+    params[key] = encodeURIComponent value #.toString().replace /[ ]/g, '+' # wonky implementation for space encoding
+    paramOrder.push key
   signatureParams = []
-  signatureParams.push param+"="+params[param] for param in paramOrder
+  signatureParams.push param+"="+params[param] for param in paramOrder.sort()
   signature = [ config.method, encodeURIComponent(params.realm), encodeURIComponent(signatureParams.join "&")].join "&"
   salt = encodeURIComponent(auth.consumerSecret) + "&" + encodeURIComponent(auth.secret)
   signature = CryptoJS.HmacSHA1 signature, salt

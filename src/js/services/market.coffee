@@ -5,14 +5,16 @@ mkmobileServices.factory 'MkmApiMarket', [
     search: (query, response) ->
       # if response isn't passed in, create a base object that will be filled later
       response = count: 0, products: [] unless response?
-      query = query.replace(/[^a-z0-9 ]/gi,'')
       if query
         # toggle loading flag
         response.loading = yes
         # query the API
-        MkmApi.api.search {param1: query, param3: MkmApiAuth.getLanguage(), param5: response.products.length + 1}, (data) =>
-          # cache products
-          data.product?.map (val) -> DataCache.product val.idProduct, val
+#        MkmApi.api.search {search: query, idLanguage: MkmApiAuth.getLanguage(), paging: response.products.length + 1}, (data) =>
+        MkmApi.api.search {search: query, idLanguage: MkmApiAuth.getLanguage(), start: response.products.length, maxResults: 100}, (data) =>
+          # find localized name and cache products
+          data.product?.map (val) ->
+            val.localizedName = loc.name for loc in val.localization when parseInt(loc.idLanguage, 10) is MkmApiAuth.getLanguage()
+            DataCache.product val.idProduct, val
           # update count
           response.count = data._range or data.product?.length
           # merge products
@@ -43,7 +45,7 @@ mkmobileServices.factory 'MkmApiMarket', [
     articles: (id, response) ->
       response = count: 0, articles: [] unless response?
       response.loading = yes
-      MkmApi.api.articles {param1: id, param2: response.articles.length + 1}, (data) ->
+      MkmApi.api.articles {param1: id, start: response.articles.length, maxResults: 100}, (data) ->
         response.count = data._range or data.article?.length
         response.articles = response.articles.concat data.article if response.count
         response.loading = no
