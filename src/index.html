@@ -39,7 +39,7 @@
   </script>
   <link rel="stylesheet" href="/css/styles.css">
 </head>
-<body ng-class="[language, loggedIn]">
+<body ng-class="[language, loggedIn ? 'loggedin':'loggedout']">
   <div id="container">
     <mkm-header></mkm-header>
     <div ng-view id="content" ng-class="viewClass"></div>

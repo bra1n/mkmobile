@@ -179,7 +179,7 @@ mkmobileApp.run [
     $rootScope.$on '$routeChangeSuccess', (event, current) ->
       if current.$$route?.originalPath? and current.$$route?.originalPath.split("/").length > 1
         $rootScope.viewClass = current.$$route?.originalPath.split("/")[1]
-        $rootScope.loggedIn = if MkmApiAuth.isLoggedIn() then "loggedin" else "loggedout"
+        $rootScope.loggedIn = MkmApiAuth.isLoggedIn()
         translateTitle()
     # update title on language change
     $rootScope.$on '$translateChangeSuccess', -> translateTitle()

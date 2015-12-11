@@ -1,7 +1,7 @@
 <header>
   <a class="mkmicon" ng-class="{menu:!menuOpen, cross:menuOpen}" ng-click="menuOpen = !menuOpen"></a>
-  <a href="/cart" class="cart mkmicon"></a>
-  <a href="/search" class="search mkmicon"></a>
+  <a ng-show="loggedIn" href="/cart" class="cart mkmicon"></a>
+  <a ng-show="loggedIn" href="/search" class="search mkmicon"></a>
 </header>
 <div id="menu" ng-show="menuOpen">
   <header translate="common.menu">Menu</header>
