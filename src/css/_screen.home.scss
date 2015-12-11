@@ -1,61 +1,39 @@
 #content.home {
-  header {
-    border-bottom: 1px solid #cccccc;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
-    height: 60px;
-    background: url("/img/1-logo.jpg") no-repeat center center #fff;
-    background-size: auto 50px;
-    -webkit-background-size: auto 50px;
-    &.game-3 { background-image: url("/img/3-logo.jpg"); }
-  }
   article {
     margin: 0;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     height: 100%;
-    box-shadow: inset 0px 0px 20rem 10rem #e3e7ee;
+    box-shadow: inset 0 0 20rem 10rem #e3e7ee;
     background: #fdfdfd;
-    padding-top: 65px;
     overflow: auto;
-    > span {
-      display: inline-block;
-      width: 0;
-      height: 33%;
-      vertical-align: middle;
-    }
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-align-items: center;
+    align-items: center;
     a {
       text-align: center;
       width: 50%;
+      -webkit-flex: 50%;
+      flex: 50%;
       display: inline-block;
       position: relative;
-      padding-top: 80px;
       font-weight: bold;
       vertical-align: middle;
       color: #012169;
+      padding-bottom: 10px;
+      @media only screen and (orientation: landscape) {
+        -webkit-flex: 33%;
+        flex: 33%;
+        width: 33%;
+      }
       &:hover { color:#1a3778; }
       &:before {
-        content: " ";
-        display: inline-block;
-        width: 70px;
-        height: 70px;
-        background: url("/img/menu.png") no-repeat;
-        -webkit-background-size: 500%;
-        background-size: 500%;
-        vertical-align: top;
-        position: absolute;
-        top: 0;
-        left: 50%;
-        margin-left: -35px;
+        font-size: 5em;
+        display: block;
+        margin-bottom: 15px;
       }
-      &.stock,&.messages { width: 100% }
-      &.stock:before { background-position: 0 0; }
-      &.stock:hover:before,&.stock:active:before { background-position: 25% 0%; }
-      &.buys:before { background-position: 50% 0%; }
-      &.buys:hover:before,&.buys:active:before { background-position: 75% 0%; }
-      &.sells:before { background-position: 100% 25%; }
-      &.sells:hover:before,&.sells:active:before { background-position: 100% 0%; }
-      &.messages:before { background-position: 0% 75%; }
-      &.messages:hover:before,&.messages:active:before { background-position: 25% 75%; }
       // message count
       span.count {
         text-align: center;
@@ -70,6 +48,4 @@
       }
     }
   }
-  footer .home { background-position: 0% 50%; }
 }
-body.de #content.home header.game-1 { background-image: url("/img/1-logo_de.jpg"); }

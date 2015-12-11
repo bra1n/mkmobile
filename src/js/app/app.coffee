@@ -165,15 +165,16 @@ mkmobileApp.config [
 mkmobileApp.run [
   '$rootScope','MkmApiAuth','$translate'
   ($rootScope, MkmApiAuth, $translate) ->
-    # check login
-    $rootScope.$on '$routeChangeStart', (event, next) ->
-      unless next.$$route?.noLogin
-        event.preventDefault() unless MkmApiAuth.checkLogin()
     # update title and view class
     translateTitle = -> $translate(['titles.app','titles.'+$rootScope.viewClass]).then (texts) ->
       $rootScope.viewTitle = texts['titles.app'] + ' — ' + texts['titles.'+$rootScope.viewClass]
       $rootScope.language = $translate.use().substr(0,2)
       $rootScope.languageId = MkmApiAuth.getLanguage()
+
+    # check login
+    $rootScope.$on '$routeChangeStart', (event, next) ->
+      unless next.$$route?.noLogin
+        event.preventDefault() unless MkmApiAuth.checkLogin()
     # new page, update view class and title
     $rootScope.$on '$routeChangeSuccess', (event, current) ->
       if current.$$route?.originalPath? and current.$$route?.originalPath.split("/").length > 1

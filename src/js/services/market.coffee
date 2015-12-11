@@ -11,10 +11,9 @@ mkmobileServices.factory 'MkmApiMarket', [
         # query the API
 #        MkmApi.api.search {search: query, idLanguage: MkmApiAuth.getLanguage(), paging: response.products.length + 1}, (data) =>
         MkmApi.api.search {search: query, idLanguage: MkmApiAuth.getLanguage(), start: response.products.length, maxResults: 100}, (data) =>
-          # find localized name and cache products
+          # map localized name
           data.product?.map (val) ->
             val.localizedName = loc.name for loc in val.localization when parseInt(loc.idLanguage, 10) is MkmApiAuth.getLanguage()
-            DataCache.product val.idProduct, val
           # update count
           response.count = data._range or data.product?.length
           # merge products

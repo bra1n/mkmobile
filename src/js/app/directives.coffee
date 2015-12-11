@@ -11,6 +11,22 @@ mkmobileDirectives.directive 'infiniteScroll', ['$window', ($window) ->
     scope.$on '$destroy', -> angular.element($window).unbind 'scroll', scrollHandler
 ]
 
+# header with search functionality
+mkmobileDirectives.directive 'mkmHeader', [
+  'MkmApiAuth',
+  (MkmApiAuth) ->
+    restrict: 'E'
+    templateUrl: '/partials/directives/header.html'
+    link: (scope) ->
+      scope.languages = MkmApiAuth.getLanguages()
+      scope.idLanguage = MkmApiAuth.getLanguage()
+      scope.updateLanguage = -> MkmApiAuth.setLanguage scope.idLanguage
+      scope.logout = -> MkmApiAuth.logout()
+      # listen to language changes
+      scope.$root.$on '$translateChangeSuccess', ->
+        scope.idLanguage = MkmApiAuth.getLanguage()
+]
+
 # footer logic, accepts cart and messages count variables
 mkmobileDirectives.directive 'mkmFooter', [
   'MkmApiAuth', 'MkmApiCart', 'MkmApiMessage'
@@ -27,7 +43,6 @@ mkmobileDirectives.directive 'mkmFooter', [
           scope.cart = MkmApiCart.count() unless scope.cart?
           scope.messages = MkmApiMessage.count() unless scope.messages?
     restrict: 'E'
-    replace: yes
     templateUrl: '/partials/directives/footer.html'
 ]
 

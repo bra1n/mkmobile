@@ -1,0 +1,25 @@
+<header>
+  <a class="mkmicon" ng-class="{menu:!menuOpen, cross:menuOpen}" ng-click="menuOpen = !menuOpen"></a>
+  <a href="/cart" class="cart mkmicon"></a>
+  <a href="/search" class="search mkmicon"></a>
+</header>
+<div id="menu" ng-show="menuOpen">
+  <header translate="common.menu">Menu</header>
+  <ul>
+    <li class="link"><a href="/" translate="titles.home">Home</a></li>
+    <li>
+      <select class="right" id="languages"
+              ng-options="language as 'common.languages.'+language | translate for language in languages"
+              ng-model="idLanguage" ng-change="updateLanguage()"></select>
+      <label for="languages" translate="common.language">Language</label>
+    </li>
+    <li class="link"><a href="//{{language}}.magiccardmarket.eu/Help" target="_blank" translate="titles.help">Help</a></li>
+    <li class="link"><a href="//{{language}}.magiccardmarket.eu/Help/General_Terms_and_Conditions" target="_blank" translate="titles.legal">Legal</a></li>
+    <li class="link"><a href="/contact" translate="titles.contact">Contact Us</a></li>
+    <li class="link"><a href="/imprint" translate="titles.imprint">Imprint</a></li>
+    <li class="link"><a href="//github.com/bra1n/mkmobile?files=1" target="_blank" translate="settings.source">View source code</a></li>
+    <li class="center" ng-show="loggedIn">
+      <button class="button" ng-click="logout()" translate="common.logout">Logout</button>
+    </li>
+  </ul>
+</div>

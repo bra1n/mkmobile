@@ -2,21 +2,26 @@
   "titles": {
     "app": "MCM Mobile",
     "home": "Home",
-    "stock": "My Articles",
-    "buys": "My Buys",
-    "sells": "My Sells",
-    "messages": "My Messages",
+    "stock": "Offers",
+    "buys": "Purchases",
+    "sells": "Sales",
+    "messages": "Messages",
     "search": "Search",
     "cart": "My Shopping Cart",
     "settings": "Settings",
     "payment": "Payment",
     "help": "Help",
-    "contact": "Imprint",
+    "contact": "Contact Us",
+    "imprint": "Imprint",
     "legal": "Legal",
     "login": "Login",
-    "product": "Product Page"
+    "product": "Product Page",
+    "wants": "Wants",
+    "profile": "Profile",
+    "activation": "Become Seller"
   },
   "common": {
+    "menu": "Menu",
     "desktop": "To desktop version",
     "loading": "Loading...",
     "save": "Save Changes",
@@ -184,6 +189,9 @@
       "4": "Bad"
     }
   },
+  "home": {
+    "greeting": "Hello, {{name}}"
+  },
   "login": {
     "login": "Log In",
     "error": "Error retrieving access, please retry",
@@ -276,6 +284,7 @@
     "results": "{{count}} Results",
     "error": "Error loading search results",
     "name": "Name",
+    "foreign_name": "Foreign Name",
     "expansion": "Expansion",
     "rarity": "Rarity",
     "cancel": "Cancel",

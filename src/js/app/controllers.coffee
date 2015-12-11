@@ -7,7 +7,7 @@ mkmobileControllers.controller 'SearchCtrl', [
       $scope.searchData = MkmApiMarket.search query
     # init scope vars
     $scope.query = sessionStorage.getItem("search") or ""
-    $scope.sort = "name[1]['productName']"
+    $scope.sort = "enNam"
     $scope.gameId = window.gameId or 1
 
     # infinite scrolling
@@ -72,11 +72,9 @@ mkmobileControllers.controller 'SettingsCtrl', [
 mkmobileControllers.controller 'HomeCtrl', [
   '$scope', 'MkmApiMessage', 'MkmApiAuth'
   ($scope, MkmApiMessage, MkmApiAuth) ->
-    # game id for logo display and unread message count
-    $scope.gameId = window.gameId or 1
-    $scope.messages = MkmApiMessage.count()
-    unless $scope.messages
-      MkmApiAuth.getAccount -> $scope.messages = MkmApiMessage.count()
+    MkmApiAuth.getAccount (data) ->
+      $scope.account = data.account
+      $scope.messages = MkmApiMessage.count()
 ]
 
 # payment pages

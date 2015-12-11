@@ -68,8 +68,14 @@ mkmobileServices.factory 'MkmApiAuth', [
     # update vacation status
     setVacation: (vacation) -> MkmApi.api.accountVacation {vacation}, (data) => @cache data.account
 
-    # update interface language
-    setLanguage: (languageId) -> MkmApi.api.accountLanguage {languageId}, (data) => @cache data.account
+    # update interface language and save it in profile
+    setLanguage: (languageId) ->
+      for locale in @getLanguageCodes() when locale.value is languageId
+        unless $translate.use() is locale.label
+          tmhDynamicLocale.set locale.label.replace(/_/, '-').toLowerCase()
+          $translate.use locale.label
+      if @isLoggedIn
+        MkmApi.api.accountLanguage {languageId}, (data) => @cache data.account
 
     # get current language id
     getLanguage: ->

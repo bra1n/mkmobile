@@ -56,6 +56,7 @@ module.exports = (grunt) ->
     src:
       tpl: 'src/partials/**/*.html'
       css: 'src/css'
+      fonts: 'src/fonts'
       js: 'src/js'
       lib: 'src/lib'
       index: 'src/index.dist.html'
@@ -149,6 +150,13 @@ module.exports = (grunt) ->
           src: '*.*'
           expand: true
           cwd: '<%= src.assets %>'
+        }]
+      fonts:
+        files: [{
+          dest: '<%= distdir %>/fonts'
+          src: '*.*'
+          expand: true
+          cwd: '<%= src.fonts %>'
         }]
 
     watch:
