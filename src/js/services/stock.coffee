@@ -1,4 +1,5 @@
-mkmobileServices.factory 'MkmApiStock', [ 'MkmApi', 'MkmApiMarket', 'DataCache', (MkmApi, MkmApiMarket, DataCache) ->
+angular.module 'mkmobile.services.stock', []
+.factory 'MkmApiStock', [ 'MkmApi', 'MkmApiMarket', 'DataCache', (MkmApi, MkmApiMarket, DataCache) ->
   get: (id, response) ->
     if id? # single article
       response = article: DataCache.article id

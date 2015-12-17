@@ -1,4 +1,5 @@
-mkmobileServices.factory 'MkmApiMessage', [ 'MkmApi', 'DataCache', (MkmApi, DataCache) ->
+angular.module 'mkmobile.services.message', []
+.factory 'MkmApiMessage', [ 'MkmApi', 'DataCache', (MkmApi, DataCache) ->
   get: (id, cb) ->
     response = messages: [], count: 0, loading: yes
     MkmApi.api.messages {param2: id}, (data) ->

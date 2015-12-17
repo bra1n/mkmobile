@@ -1,9 +1,17 @@
+<!-- Header bar -->
 <header>
-  <a class="mkmicon" ng-class="{menu:!menuOpen, cross:menuOpen}" ng-click="menuOpen = !menuOpen"></a>
-  <a ng-show="loggedIn" href="/cart" class="cart mkmicon"></a>
-  <a ng-show="loggedIn" href="/search" class="search mkmicon"></a>
+  <a class="mkmicon" ng-class="{menu:!menuOpen, cross:menuOpen}" ng-click="toggleMenu()"></a>
+  <a ng-hide="searchOpen" href="/home" class="logo"></a>
+  <form ng-show="searchOpen">
+    <span class="mkmicon search"></span>
+    <input type="text" ng-model="query" placeholder="{{'common.search' | translate}}">
+    <button type="button" ng-click="toggleSearch()" class="mkmicon cancel-circle"></button>
+  </form>
+  <a ng-hide="searchOpen" ng-click="toggleSearch()" class="search mkmicon"></a>
+  <a ng-hide="!loggedIn || searchOpen" href="/cart" class="cart mkmicon"></a>
 </header>
-<div id="menu" ng-show="menuOpen">
+<!-- Menu -->
+<div id="menu" class="overlay" ng-show="menuOpen">
   <header translate="common.menu">Menu</header>
   <ul>
     <li class="link"><a href="/" translate="titles.home">Home</a></li>
@@ -20,6 +28,33 @@
     <li class="link"><a href="//github.com/bra1n/mkmobile?files=1" target="_blank" translate="settings.source">View source code</a></li>
     <li class="center" ng-show="loggedIn">
       <button class="button" ng-click="logout()" translate="common.logout">Logout</button>
+    </li>
+  </ul>
+</div>
+<!-- Search results -->
+<div id="search" class="overlay" ng-show="searchOpen && query">
+  <header>
+    <span ng-show="!results.loading"
+          translate="search.results" translate-value-count="{{results.count | number}}">Results</span>
+    <span class="error" ng-show="results.error" translate="search.error">Error loading search results</span>
+    <span ng-show="results.count > 0" translate="search.sort">Sort</span>
+    <select ng-model="sort" ng-show="results.count > 0">
+      <option value="enName" translate="search.name">Name</option>
+      <option value="localizedName" translate="search.foreign_name" ng-if="::languageId != 1">Foreign Name</option>
+      <option value="expansionName" translate="search.expansion">Expansion</option>
+      <option value="rarity" translate="search.rarity">Rarity</option>
+    </select>
+  </header>
+  <ul ng-class="{loading:results.loading}" data-infinite-scroll="loadResults()">
+    <li class="link" ng-repeat="product in results.products | orderBy:sort">
+      <a href="/product/{{::product.idProduct}}">
+        <span class="icon expansion-{{::product.idGame}}" ng-style="::product.expansionIcon | expansionIcon" ng-if="::product.expansionIcon"></span>
+        <span ng-class="::product | rarityIcon" ng-if="::product.rarity"></span>
+        <span class="name">
+          {{::product.enName}}
+          <small ng-hide="::languageId == 1">{{::product.localizedName}}</small>
+        </span>
+      </a>
     </li>
   </ul>
 </div>

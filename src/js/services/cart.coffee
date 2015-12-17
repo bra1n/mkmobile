@@ -1,4 +1,5 @@
-mkmobileServices.factory 'MkmApiCart', [ 'MkmApi', 'DataCache', '$filter', (MkmApi, DataCache, $filter) ->
+angular.module 'mkmobile.services.cart', []
+.factory 'MkmApiCart', [ 'MkmApi', 'DataCache', '$filter', (MkmApi, DataCache, $filter) ->
   # get the cart object (optionally filtered by ID)
   get: (id, cb) ->
     response =

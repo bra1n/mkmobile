@@ -1,0 +1,49 @@
+// Order directive
+mkm-order {
+  .seller, .buyer {
+    padding: 10px;
+  }
+  .articles {
+    display: table;
+    width: 100%;
+    li {
+      display: table-row;
+      font-weight: bold;
+      color: #012169;
+      &:nth-child(even) { background: #fafafa; }
+    }
+    li > div {
+      display: table-cell;
+      border-bottom: 1px solid #ccc;
+      padding: 10px 0;
+      vertical-align: middle;
+      &:first-child { padding-left: 10px; }
+      &:last-child { padding-right: 10px; }
+    }
+    div.controls { width: 20px; }
+    div.card { padding-left: 10px; }
+    div.icons { text-align: center; white-space: nowrap; }
+    div.price { text-align: right; }
+    i { display: block; }
+    button.remove {
+      border: none;
+      vertical-align: middle;
+      width: 20px;
+      height: 20px;
+    }
+  }
+  .shipping {
+    padding: 10px;
+    text-align: center;
+    select { max-width: 90%; }
+  }
+  .total {
+    text-align: center;
+    padding: 10px;
+    font-size: 18px;
+    i {
+      font-size: 14px;
+      display: block;
+    }
+  }
+}

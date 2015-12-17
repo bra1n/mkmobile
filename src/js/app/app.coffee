@@ -5,11 +5,11 @@ mkmobileApp = angular.module 'mkmobileApp', [
   # i18n
   'tmh.dynamicLocale'
   'pascalprecht.translate'
-  # app code
-  'mkmobileControllers'
-  'mkmobileFilters'
-  'mkmobileServices'
-  'mkmobileDirectives'
+  # app modules
+  'mkmobile.controllers'
+  'mkmobile.filters'
+  'mkmobile.services'
+  'mkmobile.directives'
   # templates
   'templates'
   'locales'
@@ -99,7 +99,7 @@ mkmobileApp.config ['$locationProvider','$routeProvider', ($locationProvider, $r
   # anonymous routes
   .when '/login',
     templateUrl:  '/partials/pages/login.html'
-    controller:   'SearchCtrl'
+    controller:   'LoginCtrl'
     noLogin:      yes
   .when '/product/:productId',
     templateUrl:  '/partials/pages/product.html'
@@ -184,10 +184,6 @@ mkmobileApp.run [
     # update title on language change
     $rootScope.$on '$translateChangeSuccess', -> translateTitle()
 ]
-
-# init services and controllers
-mkmobileServices = angular.module 'mkmobileServices', ['ngResource']
-mkmobileControllers = angular.module 'mkmobileControllers', []
 
 # helper function to generate oauth headers
 generateOAuthHeader = (config) ->

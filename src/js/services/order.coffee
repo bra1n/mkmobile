@@ -1,4 +1,5 @@
-mkmobileServices.factory 'MkmApiOrder', [ 'MkmApi', 'MkmApiAuth', 'DataCache', (MkmApi, MkmApiAuth, DataCache) ->
+angular.module 'mkmobile.services.order', []
+.factory 'MkmApiOrder', [ 'MkmApi', 'MkmApiAuth', 'DataCache', (MkmApi, MkmApiAuth, DataCache) ->
   actorMap =
     sells:      1
     buys:       2

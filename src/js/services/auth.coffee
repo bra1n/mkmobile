@@ -1,4 +1,5 @@
-mkmobileServices.factory 'MkmApiAuth', [
+angular.module 'mkmobile.services.auth', []
+.factory 'MkmApiAuth', [
   'MkmApi', '$location', 'DataCache', 'tmhDynamicLocale', '$translate'
   (MkmApi, $location, DataCache, tmhDynamicLocale, $translate) ->
     redirectAfterLogin = "/"
@@ -26,6 +27,7 @@ mkmobileServices.factory 'MkmApiAuth', [
         redirectAfterLogin = $location.path()
         sessionStorage.removeItem "search"
         $location.path '/login'
+        $location.replace()
         response = false
       response
 

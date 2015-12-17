@@ -1,4 +1,5 @@
-mkmobileServices.factory 'DataCache', ['$cacheFactory', ($cacheFactory) ->
+angular.module 'mkmobile.services.cache', []
+.factory 'DataCache', ['$cacheFactory', ($cacheFactory) ->
   # all glory to the mighty cache object
   caches =
     product: $cacheFactory 'products', capacity: 500

@@ -1,4 +1,5 @@
-mkmobileServices.factory 'MkmApiMarket', [
+angular.module 'mkmobile.services.market', []
+.factory 'MkmApiMarket', [
   'MkmApi', 'DataCache', 'MkmApiAuth'
   (MkmApi, DataCache, MkmApiAuth) ->
     # search for a product
@@ -15,7 +16,7 @@ mkmobileServices.factory 'MkmApiMarket', [
           data.product?.map (val) ->
             val.localizedName = loc.name for loc in val.localization when parseInt(loc.idLanguage, 10) is MkmApiAuth.getLanguage()
           # update count
-          response.count = data._range or data.product?.length
+          response.count = data._range or data.product?.length or 0
           # merge products
           response.products = response.products.concat data.product if response.count
           # toggle loading flag

@@ -10,10 +10,11 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-sass'
   grunt.loadNpmTasks 'grunt-bump'
   grunt.loadNpmTasks 'grunt-html2js'
+  grunt.loadNpmTasks 'grunt-postcss'
 
   # Default task.
   grunt.registerTask 'default', ['coffee', 'sass:dev', 'watch']
-  grunt.registerTask 'build', ['clean', 'coffee', 'html2js', 'sass:dist', 'i18n', 'concat', 'uglify', 'copy']
+  grunt.registerTask 'build', ['clean', 'coffee', 'html2js', 'sass:dist', 'postcss', 'i18n', 'concat', 'uglify', 'copy']
   grunt.registerTask 'release', (type = "patch") -> grunt.task.run ['bump-only:'+type, 'build', 'bump-commit']
 
   # locales and translations gathering and transforming
@@ -106,6 +107,17 @@ module.exports = (grunt) ->
           noCache: true
           sourcemap: 'none'
         files: '<%= distdir %>/styles.css': '<%= src.css %>/styles.scss'
+
+    postcss:
+      options:
+        map: false
+        processors: [
+          require('autoprefixer')(
+            browsers: ['last 2 versions']
+          )
+        ]
+      dist:
+        src: '<%= distdir %>/*.css'
 
     i18n:
       dist:

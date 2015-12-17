@@ -1,4 +1,5 @@
-mkmobileServices.factory 'MkmApi', [ '$resource', ($resource) ->
+angular.module 'mkmobile.services.api', ['ngResource']
+.factory 'MkmApi', [ '$resource', ($resource) ->
   auth =
     consumerKey:    window.consumerKey or 'alb03sLPpFNAhi6f'
     consumerSecret: window.consumerSecret or 'HTIcbso87X22JdS3Yk89c2CojfZiNDMX'

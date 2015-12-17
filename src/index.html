@@ -18,8 +18,21 @@
   <!-- App -->
   <script src="/js/app/app.js"></script>
   <script src="/js/app/controllers.js"></script>
+  <script src="/js/app/services.js"></script>
   <script src="/js/app/filters.js"></script>
   <script src="/js/app/directives.js"></script>
+  <!-- Controllers -->
+  <script src="/js/controllers/callback.js"></script>
+  <script src="/js/controllers/cart.js"></script>
+  <script src="/js/controllers/home.js"></script>
+  <script src="/js/controllers/login.js"></script>
+  <script src="/js/controllers/message.js"></script>
+  <script src="/js/controllers/order.js"></script>
+  <script src="/js/controllers/payment.js"></script>
+  <script src="/js/controllers/product.js"></script>
+  <script src="/js/controllers/search.js"></script>
+  <script src="/js/controllers/settings.js"></script>
+  <script src="/js/controllers/stock.js"></script>
   <!-- Services -->
   <script src="/js/services/api.js"></script>
   <script src="/js/services/cache.js"></script>
@@ -29,6 +42,14 @@
   <script src="/js/services/auth.js"></script>
   <script src="/js/services/order.js"></script>
   <script src="/js/services/message.js"></script>
+  <!-- Directives -->
+  <script src="/js/directives/footer.js"></script>
+  <script src="/js/directives/header.js"></script>
+  <script src="/js/directives/order.js"></script>
+  <script src="/js/directives/product.js"></script>
+  <script src="/js/directives/scroll.js"></script>
+  <script src="/js/directives/search.js"></script>
+  <script src="/js/directives/user.js"></script>
   <!-- Config -->
   <script>
     // var consumerKey = ""; // App Token
@@ -37,7 +58,7 @@
     // var accessSecret = ""; // Access Token Secret
     // var gameId = "1";
   </script>
-  <link rel="stylesheet" href="/css/styles.css">
+  <link media="screen, projection" rel="stylesheet" type="text/css" href="/css/styles.css">
 </head>
 <body ng-class="[language, loggedIn ? 'loggedin':'loggedout']">
   <div id="container">

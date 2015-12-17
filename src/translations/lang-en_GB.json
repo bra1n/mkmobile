@@ -195,7 +195,10 @@
   "login": {
     "login": "Log In",
     "error": "Error retrieving access, please retry",
-    "success": "Logged in successfully!"
+    "success": "Logged in successfully!",
+    "forgot_your": "Forgot your username or password?",
+    "not_a_member": "Not a member?",
+    "register": "Register here!"
   },
   "messages": {
     "send": "Send",
