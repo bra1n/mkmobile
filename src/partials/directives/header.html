@@ -32,9 +32,9 @@
   </ul>
 </div>
 <!-- Search results -->
-<div id="search" class="overlay" ng-show="searchOpen && query">
+<div id="search" class="overlay" ng-show="searchOpen && query" data-infinite-scroll="loadResults()" data-is-container="1">
   <header>
-    <span ng-show="!results.loading"
+    <span ng-show="!results.loading || results.count"
           translate="search.results" translate-value-count="{{results.count | number}}">Results</span>
     <span class="error" ng-show="results.error" translate="search.error">Error loading search results</span>
     <span ng-show="results.count > 0" translate="search.sort">Sort</span>
@@ -45,9 +45,9 @@
       <option value="rarity" translate="search.rarity">Rarity</option>
     </select>
   </header>
-  <ul ng-class="{loading:results.loading}" data-infinite-scroll="loadResults()">
+  <ul ng-class="{loading:results.loading}">
     <li class="link" ng-repeat="product in results.products | orderBy:sort">
-      <a href="/product/{{::product.idProduct}}">
+      <a ng-click="searchOpen = false" href="/product/{{::product.idProduct}}">
         <span class="icon expansion-{{::product.idGame}}" ng-style="::product.expansionIcon | expansionIcon" ng-if="::product.expansionIcon"></span>
         <span ng-class="::product | rarityIcon" ng-if="::product.rarity"></span>
         <span class="name">

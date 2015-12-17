@@ -6,4 +6,5 @@ angular.module 'mkmobile.services', [
   'mkmobile.services.market'
   'mkmobile.services.order'
   'mkmobile.services.stock'
+  'mkmobile.services.message'
 ]

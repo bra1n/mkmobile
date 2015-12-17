@@ -6,13 +6,18 @@ angular.module 'mkmobile.directives.header', []
     restrict: 'E'
     templateUrl: '/partials/directives/header.html'
     link: (scope) ->
+      scope.query = sessionStorage.getItem("search") or ""
+      scope.sort = "enName"
+      scope.gameId = window.gameId or 1
       scope.languages = MkmApiAuth.getLanguages()
       scope.idLanguage = MkmApiAuth.getLanguage()
+
+      # change language
       scope.updateLanguage = -> MkmApiAuth.setLanguage scope.idLanguage
-      scope.logout = -> MkmApiAuth.logout()
-      # listen to language changes
-      scope.$root.$on '$translateChangeSuccess', ->
-        scope.idLanguage = MkmApiAuth.getLanguage()
+      # log the user out
+      scope.logout = ->
+        scope.menuOpen = no
+        MkmApiAuth.logout()
       # toggle search
       scope.toggleSearch = ->
         if scope.searchOpen
@@ -35,13 +40,14 @@ angular.module 'mkmobile.directives.header', []
         return if scope.results.products.length >= scope.results.count or scope.results.loading
         MkmApiMarket.search scope.query, scope.results
 
-      # init scope vars
-      scope.query = sessionStorage.getItem("search") or ""
-      scope.sort = "enName"
-      scope.gameId = window.gameId or 1
-
       # searching
-      scope.$watch 'query', (query, oldQuery) ->
+      scope.$watch 'query', (query) ->
         sessionStorage.setItem "search", query
         scope.results = MkmApiMarket.search query
+      # listen to route changes
+      scope.$root.$on '$routeChangeStart', ->
+        scope.menuOpen = scope.searchOpen = no
+      # listen to language changes
+      scope.$root.$on '$translateChangeSuccess', ->
+        scope.idLanguage = MkmApiAuth.getLanguage()
 ]

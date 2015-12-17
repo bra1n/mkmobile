@@ -13,7 +13,7 @@ angular.module 'mkmobile.controllers.search', []
 
     # infinite scrolling
     $scope.loadResults = ->
-# don't load more if we already show all of them
+      # don't load more if we already show all of them
       return if $scope.searchData.products.length >= $scope.searchData.count or $scope.searchData.loading
       MkmApiMarket.search $scope.query, $scope.searchData
 

@@ -76,7 +76,7 @@ angular.module 'mkmobile.services.auth', []
         unless $translate.use() is locale.label
           tmhDynamicLocale.set locale.label.replace(/_/, '-').toLowerCase()
           $translate.use locale.label
-      if @isLoggedIn
+      if @isLoggedIn()
         MkmApi.api.accountLanguage {languageId}, (data) => @cache data.account
 
     # get current language id
