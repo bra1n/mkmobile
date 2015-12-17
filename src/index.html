@@ -59,10 +59,10 @@
   </script>
   <link media="screen, projection" rel="stylesheet" type="text/css" href="/css/styles.css">
 </head>
-<body ng-class="[language, loggedIn ? 'loggedin':'loggedout']">
+<body ng-class="[language, loggedIn ? 'loggedin':'loggedout', viewClass]">
   <div id="container">
     <mkm-header></mkm-header>
-    <div ng-view id="content" ng-class="viewClass"></div>
+    <div ng-view id="content"></div>
   </div>
 </body>
 </html>

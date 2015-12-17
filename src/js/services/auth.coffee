@@ -48,7 +48,7 @@ angular.module 'mkmobile.services.auth', []
           response.success = yes
           $location.path redirectAfterLogin
       , -> response.error = yes
-      response = {}
+      response
 
     # return the user object or load it if necessary
     getAccount: (cb) ->

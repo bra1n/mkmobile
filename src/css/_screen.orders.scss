@@ -1,6 +1,6 @@
 // order page
-#content.buys, #content.sells {
-  header {
+body.buys, body.sells {
+  #content header {
     padding: 0 30px;
     overflow: hidden;
     text-overflow: ellipsis;

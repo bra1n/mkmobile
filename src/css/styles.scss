@@ -231,13 +231,8 @@ div.loading {
 @import "screen.stock";
 @import "screen.orders";
 
-// search page
-#content.search {
-  footer .search { background-position: 50% 75%; }
-}
-
 // legal
-#content.legal {
+body.legal {
   article {
     p, ul { margin: 10px; }
     b {
@@ -252,21 +247,22 @@ div.loading {
 }
 
 // contact
-#content.contact {
+body.contact {
   article {
     p { padding: 10px; }
   }
 }
 
 // article page
-#content.article {
+body.article {
   article {
     margin-top: 45px;
   }
 }
 
 // callback
-#content.callback {
+body.callback {
+  header { display: none; }
   padding-top: 20px;
   text-align: center;
   font-weight: bold;

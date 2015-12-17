@@ -18,9 +18,9 @@
   <script src="/app.js"></script>
   <link rel="stylesheet" href="/styles.css">
 </head>
-<body ng-class="[language, loggedIn]">
+<body ng-class="[language, loggedIn ? 'loggedin':'loggedout', viewClass]">
 <div id="container">
-  <div ng-view id="content" ng-class="viewClass"></div>
+  <div ng-view id="content"></div>
 </div>
 </body>
 </html>
