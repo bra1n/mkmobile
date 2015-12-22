@@ -11,7 +11,7 @@
     "settings": "Einstellungen",
     "payment": "Bezahlung",
     "help": "Hilfe",
-    "contact": "Impressum",
+    "imprint": "Impressum",
     "legal": "AGB",
     "login": "Login",
     "product": "Produktseite"
@@ -138,7 +138,7 @@
     "confirm": "Bestellung bestätigen",
     "are_you_sure": "Bitte bestätige Deinen Einkauf."
   },
-  "contact": {
+  "imprint": {
     "telephone": "Telefon:",
     "support": "Kein Support!",
     "email": "E-Mail:",

@@ -1,5 +1,7 @@
 angular.module 'mkmobile.services.cart', []
 .factory 'MkmApiCart', [ 'MkmApi', 'DataCache', '$filter', (MkmApi, DataCache, $filter) ->
+  changeListeners = {}
+
   # get the cart object (optionally filtered by ID)
   get: (id, cb) ->
     response =
@@ -95,20 +97,19 @@ angular.module 'mkmobile.services.cart', []
 
   # cache cart data
   cache: (data) ->
-    DataCache.cart data.shoppingCart
+    DataCache.cart data.shoppingCart || []
     if data.account?
       DataCache.account data.account
       DataCache.balance data.account.accountBalance
     DataCache.address data.shippingAddress
+    # trigger change event
+    @triggerChange()
 
   # checkout
   checkout: (cb) ->
-    MkmApi.api.checkout {}, (data) ->
+    MkmApi.api.checkout {}, (data) =>
       DataCache.order(order.idOrder, order) for order in data.order
-      DataCache.cart []
-      if data.account?
-        DataCache.account data.account
-        DataCache.balance data.account.accountBalance
+      @cache data
       cb?()
 
   # change the shipping address
@@ -128,6 +129,15 @@ angular.module 'mkmobile.services.cart', []
       order.shippingMethod = newOrder.shippingMethod
       order.totalValue = newOrder.totalValue
 
+  # return a list of countries
   getCountries: -> ["AT","BE","BG","CH","CY","CZ","D","DK","EE","ES","FI","FR","GB","GR","HR","HU","IE","IT","LI","LT",
                     "LU","LV","MT","NL","NO","PL","PT","RO","SE","SI","SK"]
+
+  # listen to cart changes
+  onChange: (name, fn) ->
+    changeListeners[name] = fn
+
+  # trigger change events
+  triggerChange: ->
+    handler?() for name, handler of changeListeners
 ]

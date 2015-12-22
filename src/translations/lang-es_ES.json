@@ -11,7 +11,7 @@
     "settings": "Configuración",
     "payment": "Pago",
     "help": "Ayuda",
-    "contact": "Pie de imprenta",
+    "imprint": "Pie de imprenta",
     "legal": "Legal",
     "login": "Iniciar sesión",
     "product": "Página de productos"
@@ -137,7 +137,7 @@
     "confirm": "Confirmar pedido",
     "are_you_sure": "¿Estás seguro de que quieres comprar estos artículos?"
   },
-  "contact": {
+  "imprint": {
     "telephone": "Teléfono",
     "support": "No para atención al cliente",
     "email": "Email:",

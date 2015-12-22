@@ -1,8 +1,8 @@
 # header with search functionality
 angular.module 'mkmobile.directives.header', []
 .directive 'mkmHeader', [
-  'MkmApiAuth', 'MkmApiMarket'
-  (MkmApiAuth, MkmApiMarket) ->
+  'MkmApiAuth', 'MkmApiMarket', 'MkmApiCart'
+  (MkmApiAuth, MkmApiMarket, MkmApiCart) ->
     restrict: 'E'
     templateUrl: '/partials/directives/header.html'
     link: (scope) ->
@@ -10,7 +10,9 @@ angular.module 'mkmobile.directives.header', []
       scope.sort = "enName"
       scope.gameId = window.gameId or 1
       scope.languages = MkmApiAuth.getLanguages()
-      scope.idLanguage = MkmApiAuth.getLanguage()
+      MkmApiAuth.getAccount ->
+        scope.idLanguage = MkmApiAuth.getLanguage()
+        scope.cart = MkmApiCart.count()
 
       # change language
       scope.updateLanguage = -> MkmApiAuth.setLanguage scope.idLanguage
@@ -50,4 +52,7 @@ angular.module 'mkmobile.directives.header', []
       # listen to language changes
       scope.$root.$on '$translateChangeSuccess', ->
         scope.idLanguage = MkmApiAuth.getLanguage()
+      # listen to cart changes
+      MkmApiCart.onChange 'header', -> scope.cart = MkmApiCart.count()
+      scope.$on '$destroy', -> MkmApiCart.onChange 'header', null
 ]

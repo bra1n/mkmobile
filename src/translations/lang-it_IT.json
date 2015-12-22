@@ -11,7 +11,7 @@
     "settings": "Impostazioni",
     "payment": "Pagamento",
     "help": "Aiuto",
-    "contact": "Contattaci",
+    "imprint": "Contattaci",
     "legal": "Informazioni legali",
     "login": "Login",
     "product": "Pagina del prodotto"
@@ -137,7 +137,7 @@
     "confirm": "Conferma l'Ordine",
     "are_you_sure": "Sei sicuro di voler acquistare questi articoli?"
   },
-  "contact": {
+  "imprint": {
     "telephone": "Telefono:",
     "support": "Non per assistenza clienti",
     "email": "Email:",

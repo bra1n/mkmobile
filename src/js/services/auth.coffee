@@ -1,7 +1,7 @@
 angular.module 'mkmobile.services.auth', []
 .factory 'MkmApiAuth', [
-  'MkmApi', '$location', 'DataCache', 'tmhDynamicLocale', '$translate'
-  (MkmApi, $location, DataCache, tmhDynamicLocale, $translate) ->
+  'MkmApi', '$location', 'DataCache', 'tmhDynamicLocale', '$translate', 'MkmApiCart'
+  (MkmApi, $location, DataCache, tmhDynamicLocale, $translate, MkmApiCart) ->
     redirectAfterLogin = "/"
     promises = {}
 
@@ -53,7 +53,7 @@ angular.module 'mkmobile.services.auth', []
     # return the user object or load it if necessary
     getAccount: (cb) ->
       response = account: DataCache.account()
-      unless response.account?
+      if !response.account? && @isLoggedIn()
         response.loading = yes
         unless promises.account
           promises.account = MkmApi.api.account().$promise.then (data) =>
@@ -62,7 +62,10 @@ angular.module 'mkmobile.services.auth', []
           , (error) =>
             # if request for account returns with a 403, it means we're logged out and don't know it yet
             @logout() if error.status is 403
-        promises.account.then -> cb?(response)
+        promises.account.then ->
+          response.account = DataCache.account()
+          response.loading = no
+          cb?(response)
       else
         cb?(response)
       response
@@ -95,6 +98,7 @@ angular.module 'mkmobile.services.auth', []
       DataCache.cartCount account.articlesInShoppingCart
       DataCache.messageCount account.unreadMessages
       DataCache.balance account.accountBalance
+      MkmApiCart.triggerChange()
       return DataCache.account account
 
     # return list of available languages

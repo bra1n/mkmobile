@@ -30,6 +30,9 @@ mkmobileApp.config ['$locationProvider','$routeProvider', ($locationProvider, $r
   .when '/help',
     templateUrl:  '/partials/pages/help.html'
     controller:   'HomeCtrl'
+  .when '/imprint',
+    templateUrl:  '/partials/pages/imprint.html'
+    controller:   'HomeCtrl'
   .when '/contact',
     templateUrl:  '/partials/pages/contact.html'
     controller:   'HomeCtrl'
