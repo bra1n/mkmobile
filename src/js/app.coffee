@@ -1,6 +1,6 @@
 mkmobileApp = angular.module 'mkmobileApp', [
   # core modules
-  'ngRoute'
+  'ui.router'
   'ngSanitize'
   # i18n
   'tmh.dynamicLocale'
@@ -20,100 +20,116 @@ angular.module 'templates', [] # placeholder for real templates
 angular.module 'translations', [] # placeholder for real translations
 angular.module 'locales', [] # placeholder for real locales
 
-mkmobileApp.config ['$locationProvider','$routeProvider', ($locationProvider, $routeProvider) ->
-  $locationProvider.html5Mode yes
-  $routeProvider
-  # static pages
-  .when '/home',
-    templateUrl:  '/partials/pages/home.html'
-    controller:   'HomeCtrl'
-  .when '/help',
-    templateUrl:  '/partials/pages/help.html'
-    controller:   'HomeCtrl'
-  .when '/imprint',
-    templateUrl:  '/partials/pages/imprint.html'
-    controller:   'HomeCtrl'
-  .when '/contact',
-    templateUrl:  '/partials/pages/contact.html'
-    controller:   'HomeCtrl'
+mkmobileApp.config [
+  '$locationProvider', '$stateProvider', '$urlRouterProvider'
+  ($locationProvider, $stateProvider, $urlRouterProvider) ->
+    $locationProvider.html5Mode yes
+    $stateProvider
+    # static pages
+    .state 'home',
+      url: '/home'
+      templateUrl:  '/partials/pages/home.html'
+      controller:   'HomeCtrl'
+    .state 'help',
+      url: '/help'
+      templateUrl:  '/partials/pages/help.html'
+      controller:   'HomeCtrl'
+    .state 'imprint',
+      url: '/imprint'
+      templateUrl:  '/partials/pages/imprint.html'
+      controller:   'HomeCtrl'
+    .state 'contact',
+      url: '/contact'
+      templateUrl:  '/partials/pages/contact.html'
+      controller:   'HomeCtrl'
 
-  # payment pages
-  .when '/payment/:method',
-    templateUrl:  '/partials/pages/payment.html'
-    controller:   'PaymentCtrl'
+    # payment pages
+    .state 'payment',
+      url: '/payment/:method',
+      templateUrl:  '/partials/pages/payment.html'
+      controller:   'PaymentCtrl'
 
-  # search
-  .when '/search',
-    templateUrl:  '/partials/pages/search.html'
-    controller:   'SearchCtrl'
+    # search
+    .state 'search',
+      url: '/search'
+      templateUrl:  '/partials/pages/search.html'
+      controller:   'SearchCtrl'
 
-  # shopping cart
-  .when '/cart',
-    templateUrl:  '/partials/pages/cart.html'
-    controller:   'CartCtrl'
-  .when '/cart/address',
-    templateUrl:  '/partials/pages/address.html'
-    controller:   'CartCtrl'
-  .when '/cart/checkout/:method',
-    templateUrl:  '/partials/pages/checkout.html'
-    controller:   'CartCtrl'
-  .when '/cart/:orderId',
-    templateUrl:  '/partials/pages/order.html'
-    controller:   'CartCtrl'
+    # shopping cart
+    .state 'cart',
+      url: '/cart'
+      templateUrl:  '/partials/pages/cart.html'
+      controller:   'CartCtrl'
+    .state 'cart.address',
+      url: '/address'
+      templateUrl:  '/partials/pages/address.html'
+    .state 'cart.checkout',
+      url: '/checkout/:method'
+      templateUrl:  '/partials/pages/checkout.html'
+    .state 'cart.order',
+      url: '/:orderId',
+      templateUrl:  '/partials/pages/order.html'
 
-  # stock management
-  .when '/stock',
-    templateUrl:  '/partials/pages/stock.html'
-    controller:   'StockCtrl'
-  .when '/stock/:articleId',
-    templateUrl:  '/partials/pages/article.html'
-    controller:   'StockCtrl'
+    # stock management
+    .state 'stock',
+      url: '/stock'
+      templateUrl:  '/partials/pages/stock.html'
+      controller:   'StockCtrl'
+    .state 'stock.article',
+      url: '/:articleId'
+      templateUrl:  '/partials/pages/article.html'
 
-  # user settings
-  .when '/settings',
-    templateUrl:  '/partials/pages/settings.html'
-    controller:   'SettingsCtrl'
+    # user settings
+    .state 'settings',
+      url: '/settings'
+      templateUrl:  '/partials/pages/settings.html'
+      controller:   'SettingsCtrl'
 
-  # order management
-  .when '/buys',
-    templateUrl:  '/partials/pages/orders.html'
-    controller:   'OrderCtrl'
-  .when '/buys/:orderId',
-    templateUrl:  '/partials/pages/order.html'
-    controller:   'OrderCtrl'
-  .when '/buys/:orderId/evaluate',
-    templateUrl:  '/partials/pages/evaluate.html'
-    controller:   'OrderCtrl'
-  .when '/sells',
-    templateUrl:  '/partials/pages/orders.html'
-    controller:   'OrderCtrl'
-  .when '/sells/:orderId',
-    templateUrl:  '/partials/pages/order.html'
-    controller:   'OrderCtrl'
+    # order management
+    .state 'buys',
+      url: '/buys'
+      templateUrl:  '/partials/pages/orders.html'
+      controller:   'OrderCtrl'
+    .state 'buys.order',
+      url: '/:orderId'
+      templateUrl:  '/partials/pages/order.html'
+    .state 'buys.evaluate',
+      url: '/:orderId/evaluate'
+      templateUrl:  '/partials/pages/evaluate.html'
+    .state 'sells',
+      url: '/sells'
+      templateUrl:  '/partials/pages/orders.html'
+      controller:   'OrderCtrl'
+    .state 'sells.order',
+      url: '/:orderId'
+      templateUrl:  '/partials/pages/order.html'
 
-  # messages
-  .when '/messages',
-    templateUrl:  '/partials/pages/messages.html'
-    controller:   'MessageCtrl'
-  .when '/messages/:userId',
-    templateUrl:  '/partials/pages/message.html'
-    controller:   'MessageCtrl'
+    # messages
+    .state 'messages',
+      url: '/messages'
+      templateUrl:  '/partials/pages/messages.html'
+      controller:   'MessageCtrl'
+    .state 'messages.user',
+      url: '/:userId'
+      templateUrl:  '/partials/pages/message.html'
 
-  # anonymous routes
-  .when '/login',
-    templateUrl:  '/partials/pages/login.html'
-    controller:   'LoginCtrl'
-    noLogin:      yes
-  .when '/product/:productId',
-    templateUrl:  '/partials/pages/product.html'
-    controller:   'ProductCtrl'
-    noLogin:      yes
-  .when '/callback',
-    templateUrl:  '/partials/pages/callback.html'
-    controller:   'CallbackCtrl'
-    noLogin:      yes
-  .otherwise
-    redirectTo: '/home'
+    # anonymous routes
+    .state 'login',
+      url: '/login'
+      templateUrl:  '/partials/pages/login.html'
+      controller:   'LoginCtrl'
+      noLogin:      yes
+    .state 'product',
+      url: '/product/:idProduct'
+      templateUrl:  '/partials/pages/product.html'
+      controller:   'ProductCtrl'
+      noLogin:      yes
+    .state 'callback',
+      url: '/callback'
+      templateUrl:  '/partials/pages/callback.html'
+      controller:   'CallbackCtrl'
+      noLogin:      yes
+    $urlRouterProvider.otherwise '/home'
 ]
 
 # configure the $http behaviours
@@ -175,13 +191,13 @@ mkmobileApp.run [
       $rootScope.languageId = MkmApiAuth.getLanguage()
 
     # check login
-    $rootScope.$on '$routeChangeStart', (event, next) ->
-      unless next.$$route?.noLogin
+    $rootScope.$on '$stateChangeStart', (event, next) ->
+      unless next.noLogin
         event.preventDefault() unless MkmApiAuth.checkLogin()
     # new page, update view class and title
-    $rootScope.$on '$routeChangeSuccess', (event, current) ->
-      if current.$$route?.originalPath? and current.$$route?.originalPath.split("/").length > 1
-        $rootScope.viewClass = current.$$route?.originalPath.split("/")[1]
+    $rootScope.$on '$stateChangeSuccess', (event, current) ->
+      if current.name
+        $rootScope.viewClass = current.name
         $rootScope.loggedIn = MkmApiAuth.isLoggedIn()
         translateTitle()
     # update title on language change

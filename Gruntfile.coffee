@@ -133,7 +133,7 @@ module.exports = (grunt) ->
           stripBanners: true
         src: [
           '<%= src.lib %>/angular/angular.min.js'
-          '<%= src.lib %>/angular-route/angular-route.min.js'
+          '<%= src.lib %>/angular-ui-router/release/angular-ui-router.min.js'
           '<%= src.lib %>/angular-sanitize/angular-sanitize.min.js'
           '<%= src.lib %>/angular-resource/angular-resource.min.js'
           '<%= src.lib %>/angular-dynamic-locale/tmhDynamicLocale.min.js'

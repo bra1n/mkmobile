@@ -1,7 +1,7 @@
 <!-- Header bar -->
 <header>
   <a class="mkmicon" ng-class="{menu:!menuOpen, cross:menuOpen}" ng-click="toggleMenu()"></a>
-  <a ng-hide="searchOpen" href="/home" class="logo"></a>
+  <a ng-hide="searchOpen" ui-sref="home" class="logo"></a>
   <form ng-show="searchOpen">
     <span class="mkmicon search"></span>
     <input type="text" ng-model="query" placeholder="{{'common.search' | translate}}">
@@ -16,7 +16,7 @@
 <div id="menu" class="overlay" ng-show="menuOpen">
   <header translate="common.menu">Menu</header>
   <ul>
-    <li class="link"><a href="/" translate="titles.home">Home</a></li>
+    <li class="link"><a ui-sref="home" translate="titles.home">Home</a></li>
     <li>
       <select class="right" id="languages"
               ng-options="language as 'common.languages.'+language | translate for language in languages"
@@ -25,8 +25,8 @@
     </li>
     <li class="link"><a href="//{{language}}.magiccardmarket.eu/Help" target="_blank" translate="titles.help">Help</a></li>
     <li class="link"><a href="//{{language}}.magiccardmarket.eu/Help/General_Terms_and_Conditions" target="_blank" translate="titles.legal">Legal</a></li>
-    <li class="link"><a href="/contact" translate="titles.contact">Contact Us</a></li>
-    <li class="link"><a href="/imprint" translate="titles.imprint">Imprint</a></li>
+    <li class="link"><a ui-sref="contact" translate="titles.contact">Contact Us</a></li>
+    <li class="link"><a ui-sref="imprint" translate="titles.imprint">Imprint</a></li>
     <li class="link"><a href="//github.com/bra1n/mkmobile?files=1" target="_blank" translate="settings.source">View source code</a></li>
     <li class="center" ng-show="loggedIn">
       <button class="button" ng-click="logout()" translate="common.logout">Logout</button>
@@ -35,7 +35,7 @@
 </div>
 <!-- Search results -->
 <div id="search" class="overlay" ng-show="searchOpen && query" data-infinite-scroll="loadResults()" data-is-container="1">
-  <header>
+  <div class="header">
     <span ng-show="!results.loading || results.count"
           translate="search.results" translate-value-count="{{results.count | number}}">Results</span>
     <span class="error" ng-show="results.error" translate="search.error">Error loading search results</span>
@@ -46,10 +46,10 @@
       <option value="expansionName" translate="search.expansion">Expansion</option>
       <option value="rarity" translate="search.rarity">Rarity</option>
     </select>
-  </header>
+  </div>
   <ul ng-class="{loading:results.loading}">
     <li class="link" ng-repeat="product in results.products | orderBy:sort">
-      <a ng-click="searchOpen = false" href="/product/{{::product.idProduct}}">
+      <a ng-click="openProduct(product)">
         <span class="icon expansion-{{::product.idGame}}" ng-style="::product.expansionIcon | expansionIcon" ng-if="::product.expansionIcon"></span>
         <span ng-class="::product | rarityIcon" ng-if="::product.rarity"></span>
         <span class="name">

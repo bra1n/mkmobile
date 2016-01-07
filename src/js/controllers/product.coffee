@@ -1,13 +1,13 @@
 # /product
 angular.module 'mkmobile.controllers.product', []
 .controller 'ProductCtrl', [
-  '$scope', '$routeParams', 'MkmApiMarket', 'MkmApiCart', 'MkmApiAuth'
-  ($scope, $routeParams, MkmApiMarket, MkmApiCart, MkmApiAuth) ->
+  '$scope', '$stateParams', 'MkmApiMarket', 'MkmApiCart', 'MkmApiAuth'
+  ($scope, $stateParams, MkmApiMarket, MkmApiCart, MkmApiAuth) ->
     # get product data
-    $scope.productData = MkmApiMarket.product $routeParams.productId
+    $scope.productData = MkmApiMarket.product $stateParams.idProduct
 
     # load articles
-    $scope.data = MkmApiMarket.articles $routeParams.productId
+    $scope.data = MkmApiMarket.articles $stateParams.idProduct
 
     # bind cart count since it might change here
     $scope.cart = MkmApiCart.count()
@@ -15,7 +15,7 @@ angular.module 'mkmobile.controllers.product', []
     # infinite scrolling
     $scope.loadArticles = ->
       return if $scope.data.articles.length >= $scope.data.count or $scope.data.loading
-      MkmApiMarket.articles $routeParams.productId, $scope.data
+      MkmApiMarket.articles $stateParams.idProduct, $scope.data
 
     $scope.addToCart = (article) ->
       if MkmApiAuth.checkLogin()

@@ -1,9 +1,9 @@
 # payment pages
 angular.module 'mkmobile.controllers.payment', []
 .controller 'PaymentCtrl', [
-  '$scope', '$routeParams', 'MkmApiAuth', '$location'
-  ($scope, $routeParams, MkmApiAuth, $location) ->
-    $scope.method = $routeParams.method
+  '$scope', '$stateParams', 'MkmApiAuth', '$location'
+  ($scope, $stateParams, MkmApiAuth, $location) ->
+    $scope.method = $stateParams.method
     # try closing the window straight away
     window.close() if $scope.method in ['done', 'cancel']
     $scope.data = MkmApiAuth.getAccount (data) ->

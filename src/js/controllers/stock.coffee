@@ -1,8 +1,8 @@
 # /stock
 angular.module 'mkmobile.controllers.stock', []
 .controller 'StockCtrl', [
-  '$scope', '$location', '$routeParams', 'MkmApiStock'
-  ($scope, $location, $routeParams, MkmApiStock) ->
+  '$scope', '$location', '$stateParams', 'MkmApiStock'
+  ($scope, $location, $stateParams, MkmApiStock) ->
 # selecting an article in stock
     $scope.selected = []
     $scope.select = (id) ->
@@ -15,14 +15,14 @@ angular.module 'mkmobile.controllers.stock', []
     $scope.$watch 'query', (query) ->
       $scope.selected = []
       sessionStorage.setItem "searchStock", query
-      if !query or $routeParams.articleId
-        $scope.data = MkmApiStock.get $routeParams.articleId
+      if !query or $stateParams.articleId
+        $scope.data = MkmApiStock.get $stateParams.articleId
       else
         $scope.data = MkmApiStock.search query
     $scope.loadArticles = ->
       unless $scope.data.articles.length >= $scope.data.count or $scope.data.loading
-        if !$scope.query or $routeParams.articleId
-          MkmApiStock.get $routeParams.articleId, $scope.data
+        if !$scope.query or $stateParams.articleId
+          MkmApiStock.get $stateParams.articleId, $scope.data
         else
           MkmApiStock.search $scope.query, $scope.data
     $scope.query = sessionStorage.getItem("searchStock") or ""

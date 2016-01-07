@@ -1,13 +1,13 @@
 # /cart
 angular.module 'mkmobile.controllers.cart', []
 .controller 'CartCtrl', [
-  '$scope', '$location', '$routeParams', 'MkmApiCart', 'MkmApiMarket', '$translate'
-  ($scope, $location, $routeParams, MkmApiCart, MkmApiMarket, $translate) ->
+  '$scope', '$location', '$stateParams', 'MkmApiCart', 'MkmApiMarket', '$translate'
+  ($scope, $location, $stateParams, MkmApiCart, MkmApiMarket, $translate) ->
 # load cart data
-    $scope.data = MkmApiCart.get $routeParams.orderId, ->
+    $scope.data = MkmApiCart.get $stateParams.orderId, ->
       $scope.count = MkmApiCart.count()
       $scope.sum = MkmApiCart.sum()
-      if $scope.count is 0 and ($routeParams.orderId? or $routeParams.method?)
+      if $scope.count is 0 and ($stateParams.orderId? or $stateParams.method?)
         $location.path("/cart").replace()
 
     # remove a single article
@@ -17,10 +17,10 @@ angular.module 'mkmobile.controllers.cart', []
       order.articleCount-- # reduce total order count
       order.totalValue -= article.price # reduce total order count
       MkmApiCart.remove article.idArticle, ->
-        if $routeParams.orderId? and !order.articleCount
+        if $stateParams.orderId? and !order.articleCount
           $location.path("/cart").replace()
         else
-          $scope.data = MkmApiCart.get $routeParams.orderId # should be updated now, no need for callback
+          $scope.data = MkmApiCart.get $stateParams.orderId # should be updated now, no need for callback
 
     # remove a whole order
     $scope.removeOrder = (order) ->
@@ -30,7 +30,7 @@ angular.module 'mkmobile.controllers.cart', []
       MkmApiCart.remove articles, ->
         $scope.count = MkmApiCart.count()
         $scope.sum = MkmApiCart.sum()
-        $scope.data = MkmApiCart.get $routeParams.orderId # should be updated now, no need for callback
+        $scope.data = MkmApiCart.get $stateParams.orderId # should be updated now, no need for callback
 
     # empty the shopping cart
     $scope.emptyCart = ->
@@ -46,7 +46,7 @@ angular.module 'mkmobile.controllers.cart', []
     $scope.shippingMethod = (order) -> MkmApiCart.shippingMethod order
 
     # checkout
-    $scope.method = $routeParams.method
+    $scope.method = $stateParams.method
     $scope.checkout = -> $translate('checkout.are_you_sure').then (text) ->
       return unless confirm text
       $scope.clicked = yes

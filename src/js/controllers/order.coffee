@@ -1,10 +1,10 @@
 # /buys /sells
 angular.module 'mkmobile.controllers.order', []
 .controller 'OrderCtrl', [
-  '$scope', '$location', '$routeParams', 'MkmApiOrder', '$window'
-  ($scope, $location, $routeParams, MkmApiOrder, $window) ->
+  '$scope', '$location', '$stateParams', 'MkmApiOrder', '$window'
+  ($scope, $location, $stateParams, MkmApiOrder, $window) ->
     $scope.mode = $location.path().substr(1).replace /^(.*?)\/.*?$/, '$1'
-    $scope.orderId = $routeParams.orderId
+    $scope.orderId = $stateParams.orderId
     $window.scrollTo(0,0) if $scope.orderId?
     $scope.$watch "tab", (status) ->
       sessionStorage.setItem $scope.mode + 'Tab', $scope.tab

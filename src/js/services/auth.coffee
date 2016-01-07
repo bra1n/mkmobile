@@ -1,7 +1,7 @@
 angular.module 'mkmobile.services.auth', []
 .factory 'MkmApiAuth', [
-  'MkmApi', '$location', 'DataCache', 'tmhDynamicLocale', '$translate', 'MkmApiCart'
-  (MkmApi, $location, DataCache, tmhDynamicLocale, $translate, MkmApiCart) ->
+  'MkmApi', '$state', 'DataCache', 'tmhDynamicLocale', '$translate', 'MkmApiCart'
+  (MkmApi, $state, DataCache, tmhDynamicLocale, $translate, MkmApiCart) ->
     redirectAfterLogin = "/"
     promises = {}
 
@@ -18,16 +18,15 @@ angular.module 'mkmobile.services.auth', []
       sessionStorage.removeItem "token"
       sessionStorage.removeItem "search"
       DataCache.reset()
-      $location.path '/login'
+      $state.go 'login'
 
     # checks whether a user is logged in and redirects if necessary
     checkLogin: ->
       response = true
-      unless @isLoggedIn() and $location.path() isnt "/login"
-        redirectAfterLogin = $location.path()
+      unless @isLoggedIn() and not $state.is "login"
+        redirectAfterLogin = $state.current
         sessionStorage.removeItem "search"
-        $location.path '/login'
-        $location.replace()
+        $state.go 'login', {}, location: "replace"
         response = false
       response
 
@@ -46,7 +45,7 @@ angular.module 'mkmobile.services.auth', []
           sessionStorage.setItem "secret", MkmApi.auth.secret
           @cache data.account
           response.success = yes
-          $location.path redirectAfterLogin
+          $state.go redirectAfterLogin.name, redirectAfterLogin.params
       , -> response.error = yes
       response
 

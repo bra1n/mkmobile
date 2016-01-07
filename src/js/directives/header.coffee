@@ -1,8 +1,8 @@
 # header with search functionality
 angular.module 'mkmobile.directives.header', []
 .directive 'mkmHeader', [
-  'MkmApiAuth', 'MkmApiMarket', 'MkmApiCart'
-  (MkmApiAuth, MkmApiMarket, MkmApiCart) ->
+  'MkmApiAuth', 'MkmApiMarket', 'MkmApiCart', '$state'
+  (MkmApiAuth, MkmApiMarket, MkmApiCart, $state) ->
     restrict: 'E'
     templateUrl: '/partials/directives/header.html'
     link: (scope) ->
@@ -35,6 +35,10 @@ angular.module 'mkmobile.directives.header', []
         else
           scope.menuOpen = yes
           scope.searchOpen = no
+      # go to a product
+      scope.openProduct = (product) ->
+        scope.searchOpen = scope.menuOpen = no
+        $state.go "product", product
 
       # infinite scrolling
       scope.loadResults = ->

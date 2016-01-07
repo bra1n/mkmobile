@@ -1,8 +1,8 @@
 # search
 angular.module 'mkmobile.controllers.search', []
 .controller 'SearchCtrl', [
-  '$scope', '$routeParams', 'MkmApiMarket'
-  ($scope, $routeParams, MkmApiMarket) ->
+  '$scope', '$stateParams', 'MkmApiMarket'
+  ($scope, $stateParams, MkmApiMarket) ->
     $scope.$watch 'query', (query) ->
       sessionStorage.setItem "search", query
       $scope.searchData = MkmApiMarket.search query
