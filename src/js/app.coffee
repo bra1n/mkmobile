@@ -38,10 +38,6 @@ mkmobileApp.config [
       url: '/imprint'
       templateUrl:  '/partials/pages/imprint.html'
       controller:   'HomeCtrl'
-    .state 'contact',
-      url: '/contact'
-      templateUrl:  '/partials/pages/contact.html'
-      controller:   'HomeCtrl'
 
     # payment pages
     .state 'payment',
@@ -114,6 +110,11 @@ mkmobileApp.config [
       templateUrl:  '/partials/pages/message.html'
 
     # anonymous routes
+    .state 'contact',
+      url: '/contact'
+      templateUrl:  '/partials/pages/contact.html'
+      controller:   'ContactCtrl'
+      noLogin: yes
     .state 'login',
       url: '/login'
       templateUrl:  '/partials/pages/login.html'

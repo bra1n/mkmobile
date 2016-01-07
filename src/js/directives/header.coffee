@@ -35,10 +35,10 @@ angular.module 'mkmobile.directives.header', []
         else
           scope.menuOpen = yes
           scope.searchOpen = no
-      # go to a product
-      scope.openProduct = (product) ->
+
+      # close open elements when changing page
+      scope.$on '$stateChangeStart', ->
         scope.searchOpen = scope.menuOpen = no
-        $state.go "product", product
 
       # infinite scrolling
       scope.loadResults = ->

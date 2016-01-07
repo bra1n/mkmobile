@@ -1,5 +1,6 @@
 angular.module 'mkmobile.controllers', [
   'mkmobile.controllers.login'
+  'mkmobile.controllers.contact'
   'mkmobile.controllers.search'
   'mkmobile.controllers.product'
   'mkmobile.controllers.settings'

@@ -2,5 +2,26 @@
   <span translate="titles.contact"></span>
 </header>
 <article>
- asd
+  <ul>
+    <li class="link"><a href="//github.com/bra1n/mkmobile/issues" target="_blank" translate="settings.report">Report an issue</a></li>
+  </ul>
+  <p translate="contact.explanation">
+    If you have a question about an order, please send us the SHIPMENT NR. Messages without
+    this number cannot be processed.
+  </p>
+  <p translate="contact.explanation2">
+    In case of a certified order, please provide the TRACKING CODE and the shipping date, if possible.
+  </p>
+  <form>
+    <label for="subject" translate="contact.subject">Subject</label>
+    <input id="subject" type="text" ng-model="subject">
+    <label for="comment" translate="contact.comment">Comment</label>
+    <textarea id="comment" ng-model="comment"></textarea>
+    <img src="captcha" alt="">
+    <label for="captcha" translate="contact.captcha">Captcha</label>
+    <input id="captcha" type="text" ng-model="captcha">
+    <button class="button" type="submit" ng-disabled="!subject || !comment || !captcha" translate="contact.submit">
+      Submit
+    </button>
+  </form>
 </article>
