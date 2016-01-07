@@ -1,7 +1,8 @@
 <article>
+  <header translate="titles.login">Login</header>
   <form>
     <div ng-hide="loggedIn">
-      <iframe src="" ng-src="{{iframeSrc}}" scrolling="no"></iframe>
+      <iframe src="" ng-src="{{iframeSrc}}" scrolling="yes"></iframe>
       <div ng-show="login.error" translate="login.error">Error retrieving access, please retry</div>
       <div ng-show="login.success" translate="login.success">Logged in successfully!</div>
       <a href="/forgot" translate="login.forgot_your">Forgot your username or password?</a><br>

@@ -145,28 +145,39 @@ body.loggedout header .logo {
 
 // Search results
 #search {
-  header > * {
+  top: 41px;
+  padding-top: 5px;
+  .header {
     vertical-align: middle;
     margin: 0 3px;
+    text-align: center;
   }
   li {
     padding: 7px 10px;
     border-bottom: 1px solid #ccc;
     &:nth-child(even) { background: rgba(240,240,240,0.4); }
+    .icon {
+      margin-right: 5px;
+      flex-shrink: 0;
+    }
     .name {
-      display: inline-block;
-      vertical-align: middle;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
     small {
       display: block;
       font-weight: normal;
+      text-overflow: ellipsis;
+      overflow: hidden;
     }
   }
   a {
     color: #0240ca;
     font-weight: bold;
     font-size: 16px;
-    display: block;
+    display: flex;
+    align-items: center;
     small {
       color: #444;
       font-style: italic;
