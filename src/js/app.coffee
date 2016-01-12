@@ -130,7 +130,8 @@ mkmobileApp.config [
       templateUrl:  '/partials/pages/callback.html'
       controller:   'CallbackCtrl'
       noLogin:      yes
-    $urlRouterProvider.otherwise '/home'
+    $urlRouterProvider.otherwise ($injector) ->
+      if $injector.get('MkmApiAuth').isLoggedIn() then '/home' else '/login'
 ]
 
 # configure the $http behaviours
@@ -193,8 +194,7 @@ mkmobileApp.run [
 
     # check login
     $rootScope.$on '$stateChangeStart', (event, next) ->
-      unless next.noLogin
-        event.preventDefault() unless MkmApiAuth.checkLogin()
+      event.preventDefault() unless next.noLogin or MkmApiAuth.checkLogin()
     # new page, update view class and title
     $rootScope.$on '$stateChangeSuccess', (event, current) ->
       if current.name

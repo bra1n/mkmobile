@@ -7,9 +7,15 @@ angular.module 'mkmobile.services.api', ['ngResource']
     token:          window.accessToken or sessionStorage.getItem('token') or ''
   apiURL    = 'https://sandbox.mkmapi.eu/ws/v2.0'
   apiParams =
+    # Misc
     access: # exchange temporary token with access token, get user details
       params: type: 'access'
       method: 'POST'
+    contact:
+      params: type: 'support'
+      method: 'POST'
+    captcha:
+      params: type: 'captcha'
 
     # Marketplace
     search: # search for a product

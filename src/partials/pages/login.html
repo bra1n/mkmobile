@@ -1,15 +1,15 @@
 <header translate="titles.login">Login</header>
 <article>
   <form>
-    <div ng-hide="loggedIn">
+    <div ng-hide="loggedIn || login.success">
       <iframe src="" ng-src="{{iframeSrc}}" scrolling="yes"></iframe>
       <div ng-show="login.error" translate="login.error">Error retrieving access, please retry</div>
-      <div ng-show="login.success" translate="login.success">Logged in successfully!</div>
       <a href="/forgot" translate="login.forgot_your">Forgot your username or password?</a><br>
       <span translate="login.not_a_member">Not a member?</span>
       <a href="/register" translate="login.register">Register here</a><br>
       <i class="mkmicon display"></i> <a href="http://{{language}}.magiccardmarket.eu" translate="common.desktop">To desktop version</a>
     </div>
+    <div ng-show="login.success" translate="login.success">Logged in successfully!</div>
     <div ng-show="loggedIn">
       <button class="button" ng-click="logout()" translate="common.logout">Logout</button>
     </div>

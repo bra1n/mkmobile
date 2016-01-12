@@ -1,7 +1,11 @@
 # login
 angular.module 'mkmobile.controllers.contact', []
 .controller 'ContactCtrl', [
-  '$scope', 'MkmApiAuth', '$sce', '$translate'
-  ($scope, MkmApiAuth, $sce, $translate) ->
-    console.log "blah"
+  '$scope', 'MkmApi', '$translate'
+  ($scope, MkmApi, $translate) ->
+    $scope.submit = ->
+      MkmApi.api.contact $scope.form, (response) ->
+        $translate('contact.success').then (text) ->
+          $scope.form = {}
+          alert text
 ]

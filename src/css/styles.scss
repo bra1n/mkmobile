@@ -136,6 +136,7 @@ input, textarea {
   border: none;
   display: inline-block;
   &:focus { background: #0240ca; color: #fff; }
+  &:disabled { opacity: 0.5; }
   &.green { background: #15704b; }
 }
 

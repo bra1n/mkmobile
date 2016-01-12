@@ -12,16 +12,14 @@
   <p translate="contact.explanation2">
     In case of a certified order, please provide the TRACKING CODE and the shipping date, if possible.
   </p>
-  <form>
+  <form ng-submit="submit()">
+    <label ng-hide="loggedIn" for="email" translate="contact.email">Email</label>
+    <input ng-hide="loggedIn" id="email" type="email" ng-model="form.email">
     <label for="subject" translate="contact.subject">Subject</label>
-    <input id="subject" type="text" ng-model="subject">
+    <input id="subject" type="text" ng-model="form.subject">
     <label for="comment" translate="contact.comment">Comment</label>
-    <textarea id="comment" ng-model="comment"></textarea>
-    <img src="captcha" alt="">
-    <label for="captcha" translate="contact.captcha">Captcha</label>
-    <input id="captcha" type="text" ng-model="captcha">
-    <button class="button" type="submit" ng-disabled="!subject || !comment || !captcha" translate="contact.submit">
-      Submit
-    </button>
+    <textarea id="comment" ng-model="form.text"></textarea>
+    <button class="button" type="submit" ng-disabled="!form.subject || !form.text || (!form.email && !loggedIn)"
+            translate="contact.submit">Submit</button>
   </form>
 </article>

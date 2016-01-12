@@ -2,7 +2,7 @@ angular.module 'mkmobile.services.auth', []
 .factory 'MkmApiAuth', [
   'MkmApi', '$state', 'DataCache', 'tmhDynamicLocale', '$translate', 'MkmApiCart'
   (MkmApi, $state, DataCache, tmhDynamicLocale, $translate, MkmApiCart) ->
-    redirectAfterLogin = "/"
+    redirectAfterLogin = name: "home", params: {}
     promises = {}
 
     # get login status
@@ -22,12 +22,11 @@ angular.module 'mkmobile.services.auth', []
 
     # checks whether a user is logged in and redirects if necessary
     checkLogin: ->
-      response = true
-      unless @isLoggedIn() and not $state.is "login"
+      response = @isLoggedIn()
+      unless response or $state.is "login"
         redirectAfterLogin = $state.current
         sessionStorage.removeItem "search"
-        $state.go 'login', {}, location: "replace"
-        response = false
+        $state.go 'login'
       response
 
     # log the user in and store tokens in the session
@@ -45,6 +44,7 @@ angular.module 'mkmobile.services.auth', []
           sessionStorage.setItem "secret", MkmApi.auth.secret
           @cache data.account
           response.success = yes
+          console.log redirectAfterLogin
           $state.go redirectAfterLogin.name, redirectAfterLogin.params
       , -> response.error = yes
       response

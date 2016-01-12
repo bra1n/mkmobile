@@ -50,10 +50,11 @@
   "contact": {
     "explanation": "If you have a question about an order, please send us the SHIPMENT NR. Messages without this number cannot be processed.",
     "explanation2": "In case of a certified order, please provide the TRACKING CODE and the shipping date, if possible.",
+    "email": "Email Address",
     "subject": "Subject",
     "comment": "Comment",
-    "captcha": "Enter the picture's number",
-    "submit": "Submit"
+    "submit": "Submit",
+    "success": "Your message has been sent. If required, we will answer as soon as possible."
   },
   "address": {
     "title": "Change shipping address",
