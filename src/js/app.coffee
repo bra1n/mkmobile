@@ -122,6 +122,11 @@ mkmobileApp.config [
       templateUrl:  '/partials/pages/recover.html'
       controller:   'RecoverCtrl'
       noLogin:      yes
+    .state 'register',
+      url:          '/register'
+      templateUrl:  '/partials/pages/register.html'
+      controller:   'RegisterCtrl'
+      noLogin:      yes
     .state 'product',
       url:          '/product/:idProduct'
       templateUrl:  '/partials/pages/product.html'

@@ -58,8 +58,8 @@ header {
     color: #fff;
     position: absolute;
     top: 50%;
-    margin-top: -10px;
-    left: 10px;
+    margin-top: -11px;
+    left: 0;
     width: 20px;
     height: 21px;
     display: block;
@@ -96,11 +96,16 @@ body.loggedout header .logo {
   font-size: 16px;
   background: linear-gradient(to bottom, #012678 0%, #011d5d 100%);
   overflow: hidden;
-  text-overflow: ellipsis;
   white-space: nowrap;
   text-transform: uppercase;
   font-weight: bold;
+  padding: 0 30px;
   &.loading { background-color: #012678; }
+  span {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 // Overlay below header
