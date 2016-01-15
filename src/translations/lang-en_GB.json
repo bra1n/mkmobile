@@ -18,7 +18,8 @@
     "product": "Product Page",
     "wants": "Wants",
     "profile": "Profile",
-    "activation": "Become Seller"
+    "activation": "Become Seller",
+    "recover": "Recover Username / Password"
   },
   "common": {
     "menu": "Menu",
@@ -291,6 +292,15 @@
     "foils": "Available foils:",
     "foils_from": "Foils from:",
     "reprints": "Also available in:"
+  },
+  "recover": {
+    "explanation": "Please fill out the following form to recover your username or password.",
+    "email": "Email address",
+    "submit_username": "Recover Username",
+    "submit_password": "Recover Password",
+    "success_username": "Your request was executed successfully. Your username has been sent to you by email",
+    "success_password": "Your password was reset. We generated a new password for you, which has been sent to you by email.",
+    "error": "There was an error when submitting your request."
   },
   "search": {
     "results": "{{count}} Results",

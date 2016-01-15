@@ -9,88 +9,91 @@ angular.module 'mkmobile.services.api', ['ngResource']
   apiParams =
     # Misc
     access: # exchange temporary token with access token, get user details
-      params: type: 'access'
+      params: param0: 'access'
       method: 'POST'
     contact:
-      params: type: 'support'
+      params: param0: 'support'
       method: 'POST'
     captcha:
-      params: type: 'captcha'
+      params: param0: 'captcha'
 
     # Marketplace
     search: # search for a product
-      params: {type:'products', param1:'find', idGame:window.gameId or '1', idLanguage:'1'}
+      params: {param0:'products', param1:'find', idGame:window.gameId or '1', idLanguage:'1'}
       unique: 'search'
       cache:  yes
     articles: # get all articles for a product
-      params: type: 'articles'
+      params: param0: 'articles'
     product: # get a single product
-      params: type: 'products'
+      params: param0: 'products'
       cache: yes
     user: # search for a user
-      params: {type: 'users', param1: 'find'}
+      params: {param0: 'users', param1: 'find'}
       cache: yes
       unique: 'user'
 
     # Shopping Cart
     cart: # get shoppingcart contents
-      params: type: 'shoppingcart'
+      params: param0: 'shoppingcart'
     cartUpdate: # update shoppingcart contents
-      params: type: 'shoppingcart'
+      params: param0: 'shoppingcart'
       method: 'PUT'
     cartEmpty: # empty the shoppingcart
-      params: type: 'shoppingcart'
+      params: param0: 'shoppingcart'
       method: 'DELETE'
     shippingAddress: # update shipping address for shoppingcart
-      params: {type: 'shoppingcart', param1: 'shippingaddress'}
+      params: {param0: 'shoppingcart', param1: 'shippingaddress'}
       method: 'PUT'
     shippingMethod: # get shipping methods for order
-      params: {type: 'shoppingcart', param1: 'shippingmethod'}
+      params: {param0: 'shoppingcart', param1: 'shippingmethod'}
     shippingMethodUpdate: # change shipping methods for order
-      params: {type: 'shoppingcart', param1: 'shippingmethod', param2: '@orderId'}
+      params: {param0: 'shoppingcart', param1: 'shippingmethod', param2: '@orderId'}
       method: 'PUT'
     checkout: # checkout shoppingcart
-      params: {type: 'shoppingcart', param2: 'checkout'}
+      params: {param0: 'shoppingcart', param2: 'checkout'}
       method: 'PUT'
 
     stock: # get stock articles
-      params: type: 'stock'
+      params: param0: 'stock'
     stockSearch: # search stock
-      params: {type: 'stock', param1: 'articles', param3: window.gameId or '1'}
+      params: {param0: 'stock', param1: 'articles', param3: window.gameId or '1'}
       unique: 'searchStock'
     stockUpdate: # update stock articles
-      params: {type: 'stock', param1: '@action'}
+      params: {param0: 'stock', param1: '@action'}
       method: 'PUT'
 
     orders: # get buys / sells
-      params: type: 'orders'
+      params: param0: 'orders'
       unique: 'order'
     order: # get a single order
-      params: type: 'order'
+      params: param0: 'order'
     orderUpdate: # update an order (status)
-      params: type: 'order'
+      params: param0: 'order'
       method: 'PUT'
     orderEvaluate: # evaluate an order
-      params: {type: 'order', param1: '@orderId', param2: 'evaluation'}
+      params: {param0: 'order', param1: '@orderId', param2: 'evaluation'}
       method: 'POST'
 
     # Account Management
     account: # get account data
-      params: type: 'account'
+      params: param0: 'account'
     accountVacation: # change vacation flag for account
-      params: {type: 'account', param1: 'vacation', onVacation: '@vacation'}
+      params: {param0: 'account', param1: 'vacation', onVacation: '@vacation'}
       method: 'PUT'
     accountLanguage: # update account language
-      params: {type: 'account', param1: 'language', idDisplayLanguage: '@languageId'}
+      params: {param0: 'account', param1: 'language', idDisplayLanguage: '@languageId'}
       method: 'PUT'
+    accountLogindata: # recover logindata
+      params: {param0: 'account', param1: 'logindata', type: '@type'}
+      method: 'POST'
 
     messages: # get all messages
-      params: {type: 'account', param1: 'messages'}
+      params: {param0: 'account', param1: 'messages'}
     messageSend: # send a message
-      params: {type: 'account', param1: 'messages', param2: '@param2'}
+      params: {param0: 'account', param1: 'messages', param2: '@param2'}
       method: 'POST'
     messageDelete: #delete a message (thread)
-      params: {type: 'account', param1: 'messages'}
+      params: {param0: 'account', param1: 'messages'}
       method: 'DELETE'
   # augment the configs
   for param,config of apiParams
@@ -98,7 +101,7 @@ angular.module 'mkmobile.services.api', ['ngResource']
     apiParams[param].oauth = auth
     # PUT / POST should send the right content-type header
     apiParams[param].headers = {'Content-type': 'application/xml'} if config.method in ['PUT', 'POST']
-  api: $resource apiURL+'/output.json/:type/:param1/:param2/:param3/:param4/:param5', {}, apiParams
+  api: $resource apiURL+'/output.json/:param0/:param1/:param2/:param3/:param4/:param5', {}, apiParams
   auth: auth
   url: apiURL+'/authenticate/'
 ]

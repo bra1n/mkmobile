@@ -87,7 +87,7 @@ angular.module 'mkmobile.services.auth', []
       id = language.value for language in @getLanguageCodes() when language.label is $translate.use()
       id
 
-    # cache account data, update translations, returns account
+    # cache account data, update translations, return account
     cache: (account) ->
       # locale changing
       for locale in @getLanguageCodes() when locale.value is account.idDisplayLanguage

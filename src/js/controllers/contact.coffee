@@ -4,7 +4,7 @@ angular.module 'mkmobile.controllers.contact', []
   '$scope', 'MkmApi', '$translate'
   ($scope, MkmApi, $translate) ->
     $scope.submit = ->
-      MkmApi.api.contact $scope.form, (response) ->
+      MkmApi.api.accountLogindata $scope.form, ->
         $translate('contact.success').then (text) ->
           $scope.form = {}
           alert text

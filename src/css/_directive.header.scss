@@ -41,8 +41,7 @@ header {
       right: 0;
       background: none;
       border: none;
-      top: 50%;
-      margin-top: -20px;
+      top: -2px;
       height: 40px;
       line-height: 40px;
       font-size: 24px;
@@ -187,3 +186,37 @@ body.loggedout header .logo {
 
 // push content down
 article { padding-top: 70px; }
+
+/* login specific styling of search
+body.login {
+  &.loggedout header .logo { margin-left: 0; }
+  &.loggedin header .logo { margin: 0; }
+  header {
+    > .mkmicon.search { display: none; }
+    form {
+      position: fixed;
+      top: 40px;
+      left: 0;
+      right: 0;
+      height: 30px;
+      background: linear-gradient(to bottom, #012678 0%, #011d5d 100%);
+      padding: 3px 5px;
+      box-sizing: border-box;
+      .search {
+        font-size: 14px;
+        left: 12px;
+      }
+      input {
+        height: 24px;
+        line-height: 24px;
+      }
+      button {
+        font-size: 18px;
+        right: 4px;
+        margin-top: -21px;
+      }
+    }
+  }
+  #search { top: 71px; }
+}
+//*/

@@ -12,6 +12,33 @@
     <span class="counter" ng-show="cart">{{cart}}</span>
   </a>
 </header>
+<!-- Search results -->
+<div id="search" class="overlay" ng-show="searchOpen && query" data-infinite-scroll="loadResults()" data-is-container="1">
+  <div class="header">
+    <span ng-show="!results.loading || results.count"
+          translate="search.results" translate-value-count="{{results.count | number}}">Results</span>
+    <span class="error" ng-show="results.error" translate="search.error">Error loading search results</span>
+    <label for="searchSort" ng-show="results.count > 0" translate="search.sort">Sort</label>
+    <select id="searchSort" ng-model="sort" ng-show="results.count > 0">
+      <option value="enName" translate="search.name">Name</option>
+      <option value="localizedName" translate="search.foreign_name" ng-if="::languageId != 1">Foreign Name</option>
+      <option value="expansionName" translate="search.expansion">Expansion</option>
+      <option value="rarity" translate="search.rarity">Rarity</option>
+    </select>
+  </div>
+  <ul ng-class="{loading:results.loading}">
+    <li class="link" ng-repeat="product in results.products | orderBy:sort">
+      <a ui-sref="product(product)">
+        <span class="icon expansion-{{::product.idGame}}" ng-style="::product.expansionIcon | expansionIcon" ng-if="::product.expansionIcon"></span>
+        <span ng-class="::product | rarityIcon" ng-if="::product.rarity"></span>
+        <span class="name">
+          {{::product.enName}}
+          <small ng-hide="::languageId == 1">{{::product.localizedName}}</small>
+        </span>
+      </a>
+    </li>
+  </ul>
+</div>
 <!-- Menu -->
 <div id="menu" class="overlay" ng-show="menuOpen">
   <header translate="common.menu">Menu</header>
@@ -30,33 +57,6 @@
     <li class="link"><a href="//github.com/bra1n/mkmobile?files=1" target="_blank" translate="settings.source">View source code</a></li>
     <li class="center" ng-show="loggedIn">
       <button class="button" ng-click="logout()" translate="common.logout">Logout</button>
-    </li>
-  </ul>
-</div>
-<!-- Search results -->
-<div id="search" class="overlay" ng-show="searchOpen && query" data-infinite-scroll="loadResults()" data-is-container="1">
-  <div class="header">
-    <span ng-show="!results.loading || results.count"
-          translate="search.results" translate-value-count="{{results.count | number}}">Results</span>
-    <span class="error" ng-show="results.error" translate="search.error">Error loading search results</span>
-    <span ng-show="results.count > 0" translate="search.sort">Sort</span>
-    <select ng-model="sort" ng-show="results.count > 0">
-      <option value="enName" translate="search.name">Name</option>
-      <option value="localizedName" translate="search.foreign_name" ng-if="::languageId != 1">Foreign Name</option>
-      <option value="expansionName" translate="search.expansion">Expansion</option>
-      <option value="rarity" translate="search.rarity">Rarity</option>
-    </select>
-  </div>
-  <ul ng-class="{loading:results.loading}">
-    <li class="link" ng-repeat="product in results.products | orderBy:sort">
-      <a ui-sref="product(product)">
-        <span class="icon expansion-{{::product.idGame}}" ng-style="::product.expansionIcon | expansionIcon" ng-if="::product.expansionIcon"></span>
-        <span ng-class="::product | rarityIcon" ng-if="::product.rarity"></span>
-        <span class="name">
-          {{::product.enName}}
-          <small ng-hide="::languageId == 1">{{::product.localizedName}}</small>
-        </span>
-      </a>
     </li>
   </ul>
 </div>
