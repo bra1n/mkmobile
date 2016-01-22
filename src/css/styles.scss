@@ -27,6 +27,7 @@ select {
   padding: 0 3px;
   border-radius: 3px;
   height: 26px;
+  &.ng-touched.ng-invalid { border: 1px solid red; }
 }
 
 ul,li {
@@ -83,8 +84,8 @@ hr {
 }
 
 // link title
-.title {
-  font-size: 16px;
+b.title, span.title, label.title {
+  font-size: 15px;
   color: #012169;
   font-weight: bold;
   font-style: normal;
@@ -102,8 +103,24 @@ hr {
 }
 
 // headlines
+h1 {
+  font-weight: bold;
+  color: #012169;
+  text-shadow: 1px 1px 0 rgba(1,21,66,0.1);
+  text-decoration: none;
+  font-size: 1.5em;
+  margin: 10px 0;
+}
+h2 {
+  font-weight: bold;
+  color: #012169;
+  text-shadow: 1px 1px 0 rgba(1,21,66,0.1);
+  text-decoration: none;
+  font-size: 1.25em;
+  margin: 10px 0;
+}
 h3 {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: bold;
   margin: 5px 0 10px 0;
   text-align: center;
@@ -121,6 +138,7 @@ input, textarea {
   &::-webkit-input-placeholder,
   &::-moz-placeholder,
   &:-ms-input-placeholder { color: #ccc; }
+  &.ng-touched.ng-invalid { border-color: red; }
 }
 
 // buttons

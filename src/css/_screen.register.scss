@@ -1,5 +1,6 @@
 body.register {
   article {
+    /* nav circles */
     nav {
       text-align: center;
       span {
@@ -26,6 +27,27 @@ body.register {
         }
       }
     }
+
+    /* form styling */
+    form {
+      padding: 0 10px;
+    }
+    input, select {
+      width: 100%;
+      margin: 2px 0 8px;
+    }
+    div.half {
+      width: 48%;
+      margin-right: 2%;
+      display: inline-block;
+      vertical-align: top;
+    }
+    div.half + div.half {
+      margin-left: 2%;
+      margin-right: 0;
+    }
+
+    /* bottom line buttons */
     .buttons button {
       padding: 10px;
       font-size: 18px;
@@ -38,6 +60,7 @@ body.register {
       margin: 10px;
       &:first-child { left: 0; }
       &:last-child { right: 0; }
+      &:disabled { opacity: 0.5; }
     }
   }
 }

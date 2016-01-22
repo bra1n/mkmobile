@@ -3,51 +3,57 @@
   <span translate="titles.register">Registration</span>
 </header>
 <article>
-  <form name="registration">
     <nav>
-      <span ng-class="{active: step==index}" ng-click="go(index)" ng-repeat="index in steps"></span>
+      <span ng-class="{active: register.step==index}" ng-click="register.go(index)"
+            ng-repeat="(index, form) in register.steps"></span>
     </nav>
-    <div class="step" ng-show="step == 1">
-      <span class="private">Private Account</span>
-      <span class="professional">
-        Professional?
-        <a href="https://www.magiccardmarket.eu/?mainPage=register&type=pro" target="_blank">
-          Desktop Registration
-        </a>
-      </span>
-      <h1>Personal Data</h1>
-      <label for="firstName">First Name</label>
-      <input id="firstName" type="text" ng-model="firstName">
-      <label for="lastName">Last Name</label>
-      <input id="lastName" type="text" ng-model="lastName">
-      <label for="additional">+ Additional address info (optional)</label>
-      <input id="additional" type="text" ng-model="additional">
-      <label for="street">Steet and house number</label>
-      <input id="street" type="text" ng-model="street">
-      <label for="zip">Post Code</label>
-      <input id="zip" type="text" ng-model="zip">
-      <label for="city">City</label>
-      <input id="city" type="text" ng-model="text">
-      <label for="country">Country</label>
-      <select id="country" ng-model="country">
-        <option>Countries...</option>
-      </select>
-    </div>
-    <div class="step" ng-show="step == 2">
+    <form name="register.steps[0]" class="step" ng-show="register.step == 0">
+      <div class="half">
+        <b>Private Account</b>
+      </div><div class="half">
+        <span class="professional">
+          Professional?<br>
+          <a href="https://www.magiccardmarket.eu/?mainPage=register&type=pro" target="_blank">
+            Desktop Registration
+          </a>
+        </span>
+      </div>
+      <h2>Personal Data</h2>
+      <label for="firstName" translate="address.first_name">First Name</label>
+      <input id="firstName" type="text" ng-model="register.firstName" required>
+      <label for="lastName" translate="address.last_name">Last Name</label>
+      <input id="lastName" type="text" ng-model="register.lastName" required>
+      <label for="additional" translate="address.additional">+ Additional address info (optional)</label>
+      <input id="additional" type="text" ng-model="register.additional">
+      <label for="street" translate="address.street">Steet and house number</label>
+      <input id="street" type="text" ng-model="register.street" required>
+      <div class="half">
+      <label for="zip" translate="address.zip">Post Code</label>
+      <input id="zip" type="text" ng-model="register.zip" required>
+      </div><div class="half">
+      <label for="city" translate="address.city">City</label>
+      <input id="city" type="text" ng-model="register.city" required>
+      </div>
+      <label for="country" translate="address.country">Country</label>
+      <select id="country" ng-model="register.country" required
+              ng-options="country as 'address.countries.'+country | translate for country in register.countries"></select>
+    </form>
+    <form name="register.steps[1]" class="step" ng-show="register.step == 1">
       Step 2
-    </div>
-    <div class="step" ng-show="step == 3">
+    </form>
+    <form name="register.steps[2]" class="step" ng-show="register.step == 2">
       Step 3
-    </div>
-    <div class="step" ng-show="step == 4">
+    </form>
+    <form name="register.steps[3]" class="step" ng-show="register.step == 3">
       Step 4
-    </div>
-    <div class="step" ng-show="step == 5">
+    </form>
+    <form name="register.steps[4]" class="step" ng-show="register.step == 4">
       Step 5
-    </div>
+    </form>
     <div class="buttons">
-      <button type="button" ng-show="step>1" ng-click="go(step-1)">&lt; Previous</button>
-      <button type="button" ng-show="step<5" ng-click="go(step+1)">Next &gt;</button>
+      <button type="button" ng-show="register.step>0" ng-click="register.go(register.step-1)">&lt; Previous</button>
+      <button type="button" ng-show="register.step<4" ng-click="register.go(register.step+1)"
+              ng-disabled="register.steps[register.step].$invalid">Next &gt;</button>
     </div>
   </form>
 </article>

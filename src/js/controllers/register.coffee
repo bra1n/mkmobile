@@ -1,9 +1,12 @@
 # /recover
 angular.module 'mkmobile.controllers.register', []
 .controller 'RegisterCtrl', [
-  '$scope', 'MkmApi', '$translate'
-  ($scope, MkmApi, $translate) ->
-    $scope.steps = [1..5]
-    $scope.step = 1
-    $scope.go = (step) -> $scope.step = step
+  'MkmApiCart', '$translate'
+  (MkmApiCart, $translate) ->
+    @steps = []
+    @step = 0
+    @countries = MkmApiCart.getCountries()
+    @go = (step) ->
+      @step = step unless @steps[step-1]?.$invalid
+    @
 ]

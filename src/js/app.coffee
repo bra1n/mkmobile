@@ -140,12 +140,12 @@ mkmobileApp.config [
     .state 'recover',
       url:          '/recover'
       templateUrl:  '/partials/pages/recover.html'
-      controller:   'RecoverCtrl'
+      controller:   'RecoverCtrl as recover'
       noLogin:      yes
     .state 'register',
       url:          '/register'
       templateUrl:  '/partials/pages/register.html'
-      controller:   'RegisterCtrl'
+      controller:   'RegisterCtrl as register'
       noLogin:      yes
     .state 'product',
       url:          '/product/:idProduct'

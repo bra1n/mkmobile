@@ -101,7 +101,7 @@ body.loggedout header .logo {
   font-weight: bold;
   padding: 0 30px;
   &.loading { background-color: #012678; }
-  span {
+  .title {
     width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;

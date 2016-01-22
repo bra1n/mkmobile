@@ -60,11 +60,13 @@
   },
   "address": {
     "title": "Change shipping address",
+    "first_name": "First Name:",
+    "last_name": "Last Name:",
     "name": "Name:",
-    "street": "Street/Housenr.:",
-    "additional": "Additional info:",
+    "street": "Street and house number.:",
+    "additional": "Additional info (optional):",
     "city": "City:",
-    "zip": "Post code:",
+    "zip": "Post Code:",
     "country": "Country:",
     "countries": {
       "AT": "Austria",

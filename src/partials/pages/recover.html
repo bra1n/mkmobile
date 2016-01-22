@@ -6,10 +6,10 @@
   <p translate="recover.explanation">Please fill out the following form to recover your username or password.</p>
   <form>
     <label for="email" translate="recover.email">Email address</label>
-    <input type="email" ng-model="email" id="email">
-    <button type="button" class="button" ng-disabled="!email" translate="recover.submit_username"
-            ng-click="submit('username')">Recover Username</button>
-    <button type="button" class="button" ng-disabled="!email" translate="recover.submit_password"
-            ng-click="submit('password')">Recover Password</button>
+    <input type="email" ng-model="recover.email" id="email">
+    <button type="button" class="button" ng-disabled="!recover.email" translate="recover.submit_username"
+            ng-click="recover.submit('username')">Recover Username</button>
+    <button type="button" class="button" ng-disabled="!recover.email" translate="recover.submit_password"
+            ng-click="recover.submit('password')">Recover Password</button>
   </form>
 </article>
