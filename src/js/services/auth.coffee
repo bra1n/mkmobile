@@ -44,7 +44,6 @@ angular.module 'mkmobile.services.auth', []
           sessionStorage.setItem "secret", MkmApi.auth.secret
           @cache data.account
           response.success = yes
-          console.log redirectAfterLogin
           $state.go redirectAfterLogin.name, redirectAfterLogin.params
       , -> response.error = yes
       response

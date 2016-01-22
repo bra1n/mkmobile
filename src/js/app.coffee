@@ -45,27 +45,39 @@ mkmobileApp.config [
 
     # shopping cart
     .state 'cart',
+      abstract:     yes
       url:          '/cart'
+      template:     '<ui-view/>'
+    .state 'cart.list',
+      url:          ''
       templateUrl:  '/partials/pages/cart.html'
       controller:   'CartCtrl'
     .state 'cart.address',
       url:          '/address'
       templateUrl:  '/partials/pages/address.html'
+      controller:   'CartCtrl'
     .state 'cart.checkout',
       url:          '/checkout/:method'
       templateUrl:  '/partials/pages/checkout.html'
+      controller:   'CartCtrl'
     .state 'cart.order',
       url:          '/:orderId',
       templateUrl:  '/partials/pages/order.html'
+      controller:   'CartCtrl'
 
-    # stock management
+# stock management
     .state 'stock',
+      abstract:     yes
       url:          '/stock'
+      template:     '<ui-view/>'
+    .state 'stock.list',
+      url:          ''
       templateUrl:  '/partials/pages/stock.html'
       controller:   'StockCtrl'
     .state 'stock.article',
       url:          '/:articleId'
       templateUrl:  '/partials/pages/article.html'
+      controller:   'StockCtrl'
 
     # user settings
     .state 'settings',
@@ -74,34 +86,42 @@ mkmobileApp.config [
       controller:   'SettingsCtrl'
 
     # order management
-    .state 'buys',
-      url:          '/buys'
+    .state 'order',
+      abstract:     yes
+      url:          '/order'
+      template:     '<ui-view/>'
+    .state 'order.buy',
+      url:          '/buy'
       templateUrl:  '/partials/pages/orders.html'
       controller:   'OrderCtrl'
-    .state 'buys.order',
+    .state 'order.single',
       url:          '/:orderId'
       templateUrl:  '/partials/pages/order.html'
-    .state 'buys.evaluate',
+      controller:   'OrderCtrl'
+    .state 'order.evaluate',
       url:          '/:orderId/evaluate'
       templateUrl:  '/partials/pages/evaluate.html'
-    .state 'sells',
-      url:          '/sells'
+      controller:   'OrderCtrl'
+    .state 'order.sell',
+      url:          '/sell'
       templateUrl:  '/partials/pages/orders.html'
       controller:   'OrderCtrl'
-    .state 'sells.order',
-      url:          '/:orderId'
-      templateUrl:  '/partials/pages/order.html'
 
     # messages
-    .state 'messages',
-      url:          '/messages'
+    .state 'message',
+      abstract:     yes
+      url:          '/message'
+      template:     '<ui-view/>'
+    .state 'message.list',
+      url:          ''
       templateUrl:  '/partials/pages/messages.html'
       controller:   'MessageCtrl'
-    .state 'messages.user',
+    .state 'message.user',
       url:          '/:userId'
       templateUrl:  '/partials/pages/message.html'
+      controller:   'MessageCtrl'
 
-    # anonymous routes
+# anonymous routes
     .state 'imprint',
       url:          '/imprint'
       templateUrl:  '/partials/pages/imprint.html'
@@ -204,7 +224,7 @@ mkmobileApp.run [
     # new page, update view class and title
     $rootScope.$on '$stateChangeSuccess', (event, current) ->
       if current.name
-        $rootScope.viewClass = current.name
+        $rootScope.viewClass = current.name.split(".").shift()
         $rootScope.loggedIn = MkmApiAuth.isLoggedIn()
         translateTitle()
     # update title on language change

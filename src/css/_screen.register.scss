@@ -1,3 +1,43 @@
 body.register {
-
+  article {
+    nav {
+      text-align: center;
+      span {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        margin: 10px 5px;
+        border-radius: 50%;
+        border: 2px solid #012169;
+        text-align: center;
+        line-height: 18px;
+        vertical-align: middle;
+        &:before {
+          content: " ";
+          background: transparent;
+          width: 12px;
+          height: 12px;
+          display: inline-block;
+          border-radius: 50%;
+          transition: all 0.25s;
+        }
+        &.active:before {
+          background: #012169;
+        }
+      }
+    }
+    .buttons button {
+      padding: 10px;
+      font-size: 18px;
+      color: #012169;
+      background: none;
+      letter-spacing: 1px;
+      border: none;
+      display: inline-block;
+      position: absolute;
+      margin: 10px;
+      &:first-child { left: 0; }
+      &:last-child { right: 0; }
+    }
+  }
 }

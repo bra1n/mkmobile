@@ -3,7 +3,8 @@ angular.module 'mkmobile.controllers.stock', []
 .controller 'StockCtrl', [
   '$scope', '$location', '$stateParams', 'MkmApiStock'
   ($scope, $location, $stateParams, MkmApiStock) ->
-# selecting an article in stock
+    console.log "stock ctrl", $stateParams
+    # selecting an article in stock
     $scope.selected = []
     $scope.select = (id) ->
       if id in $scope.selected
@@ -19,6 +20,7 @@ angular.module 'mkmobile.controllers.stock', []
         $scope.data = MkmApiStock.get $stateParams.articleId
       else
         $scope.data = MkmApiStock.search query
+
     $scope.loadArticles = ->
       unless $scope.data.articles.length >= $scope.data.count or $scope.data.loading
         if !$scope.query or $stateParams.articleId

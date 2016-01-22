@@ -30,7 +30,7 @@
       </div>
       <div class="card">
         {{article.count}}x
-        <a href="/stock/{{::article.idArticle}}" ng-if="!article.inShoppingCart">{{::article.product.name}}</a>
+        <a ui-sref="stock.article({articleId:article.idArticle})" ng-if="!article.inShoppingCart">{{::article.product.name}}</a>
         <span ng-if="::article.inShoppingCart">{{::article.product.name}}</span>
         <div class="card-image" ng-click="article.showImage = 0">
           <img src="" ng-src="{{::article.showImage && (article.product.image | productImage)}}">

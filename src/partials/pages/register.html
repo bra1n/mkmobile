@@ -3,5 +3,51 @@
   <span translate="titles.register">Registration</span>
 </header>
 <article>
-  stuff
+  <form name="registration">
+    <nav>
+      <span ng-class="{active: step==index}" ng-click="go(index)" ng-repeat="index in steps"></span>
+    </nav>
+    <div class="step" ng-show="step == 1">
+      <span class="private">Private Account</span>
+      <span class="professional">
+        Professional?
+        <a href="https://www.magiccardmarket.eu/?mainPage=register&type=pro" target="_blank">
+          Desktop Registration
+        </a>
+      </span>
+      <h1>Personal Data</h1>
+      <label for="firstName">First Name</label>
+      <input id="firstName" type="text" ng-model="firstName">
+      <label for="lastName">Last Name</label>
+      <input id="lastName" type="text" ng-model="lastName">
+      <label for="additional">+ Additional address info (optional)</label>
+      <input id="additional" type="text" ng-model="additional">
+      <label for="street">Steet and house number</label>
+      <input id="street" type="text" ng-model="street">
+      <label for="zip">Post Code</label>
+      <input id="zip" type="text" ng-model="zip">
+      <label for="city">City</label>
+      <input id="city" type="text" ng-model="text">
+      <label for="country">Country</label>
+      <select id="country" ng-model="country">
+        <option>Countries...</option>
+      </select>
+    </div>
+    <div class="step" ng-show="step == 2">
+      Step 2
+    </div>
+    <div class="step" ng-show="step == 3">
+      Step 3
+    </div>
+    <div class="step" ng-show="step == 4">
+      Step 4
+    </div>
+    <div class="step" ng-show="step == 5">
+      Step 5
+    </div>
+    <div class="buttons">
+      <button type="button" ng-show="step>1" ng-click="go(step-1)">&lt; Previous</button>
+      <button type="button" ng-show="step<5" ng-click="go(step+1)">Next &gt;</button>
+    </div>
+  </form>
 </article>
