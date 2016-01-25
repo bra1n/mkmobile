@@ -36,6 +36,17 @@ body.register {
       width: 100%;
       margin: 2px 0 8px;
     }
+    input[type=checkbox] {
+      width: auto;
+      flex-shrink: 0;
+      flex-grow: 0;
+      margin: 0 10px 0 0;
+    }
+    div.row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
     div.half {
       width: 48%;
       margin-right: 2%;
@@ -45,6 +56,17 @@ body.register {
     div.half + div.half {
       margin-left: 2%;
       margin-right: 0;
+    }
+    img.captcha {
+      width: 100%;
+    }
+    button[type=submit] {
+      display: block;
+      width: 200px;
+      margin: 10px auto 20px;
+    }
+    .center {
+      text-align: center;
     }
 
     /* bottom line buttons */
@@ -57,7 +79,7 @@ body.register {
       border: none;
       display: inline-block;
       position: absolute;
-      margin: 10px;
+      margin: 0 10px;
       &:first-child { left: 0; }
       &:last-child { right: 0; }
       &:disabled { opacity: 0.5; }

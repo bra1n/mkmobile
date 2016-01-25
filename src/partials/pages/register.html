@@ -3,57 +3,96 @@
   <span translate="titles.register">Registration</span>
 </header>
 <article>
-    <nav>
-      <span ng-class="{active: register.step==index}" ng-click="register.go(index)"
-            ng-repeat="(index, form) in register.steps"></span>
-    </nav>
-    <form name="register.steps[0]" class="step" ng-show="register.step == 0">
-      <div class="half">
-        <b>Private Account</b>
-      </div><div class="half">
-        <span class="professional">
-          Professional?<br>
-          <a href="https://www.magiccardmarket.eu/?mainPage=register&type=pro" target="_blank">
-            Desktop Registration
-          </a>
-        </span>
-      </div>
-      <h2>Personal Data</h2>
-      <label for="firstName" translate="address.first_name">First Name</label>
-      <input id="firstName" type="text" ng-model="register.firstName" required>
-      <label for="lastName" translate="address.last_name">Last Name</label>
-      <input id="lastName" type="text" ng-model="register.lastName" required>
-      <label for="additional" translate="address.additional">+ Additional address info (optional)</label>
-      <input id="additional" type="text" ng-model="register.additional">
-      <label for="street" translate="address.street">Steet and house number</label>
-      <input id="street" type="text" ng-model="register.street" required>
-      <div class="half">
-      <label for="zip" translate="address.zip">Post Code</label>
-      <input id="zip" type="text" ng-model="register.zip" required>
-      </div><div class="half">
-      <label for="city" translate="address.city">City</label>
-      <input id="city" type="text" ng-model="register.city" required>
-      </div>
-      <label for="country" translate="address.country">Country</label>
-      <select id="country" ng-model="register.country" required
-              ng-options="country as 'address.countries.'+country | translate for country in register.countries"></select>
-    </form>
-    <form name="register.steps[1]" class="step" ng-show="register.step == 1">
-      Step 2
-    </form>
-    <form name="register.steps[2]" class="step" ng-show="register.step == 2">
-      Step 3
-    </form>
-    <form name="register.steps[3]" class="step" ng-show="register.step == 3">
-      Step 4
-    </form>
-    <form name="register.steps[4]" class="step" ng-show="register.step == 4">
-      Step 5
-    </form>
-    <div class="buttons">
-      <button type="button" ng-show="register.step>0" ng-click="register.go(register.step-1)">&lt; Previous</button>
-      <button type="button" ng-show="register.step<4" ng-click="register.go(register.step+1)"
-              ng-disabled="register.steps[register.step].$invalid">Next &gt;</button>
+  <nav>
+    <span ng-class="{active: register.step==index}" ng-click="register.go(index)"
+          ng-repeat="(index, form) in register.steps"></span>
+  </nav>
+  <!-- Step 1 -->
+  <form name="register.steps[0]" class="step" ng-show="register.step == 0">
+    <div class="half">
+      <b translate="register.private">Private Account</b>
+    </div><div class="half">
+      <span translate="register.professional">Professional?</span><br>
+      <a href="https://www.magiccardmarket.eu/?mainPage=register&type=pro" target="_blank" translate="register.desktop">
+        Desktop Registration
+      </a>
+    </div>
+    <h2 translate="register.personal">Personal Data</h2>
+    <label for="firstName" translate="address.first_name">First Name:</label>
+    <input id="firstName" type="text" ng-model="register.firstName" required>
+    <label for="lastName" translate="address.last_name">Last Name:</label>
+    <input id="lastName" type="text" ng-model="register.lastName" required>
+    <label for="extra" translate="address.additional">+ Additional address info (optional):</label>
+    <input id="extra" type="text" ng-model="register.extra">
+    <label for="street" translate="address.street">Steet and house number:</label>
+    <input id="street" type="text" ng-model="register.street" required>
+    <div class="half">
+    <label for="zip" translate="address.zip">Post Code:</label>
+    <input id="zip" type="text" ng-model="register.zip" required>
+    </div><div class="half">
+    <label for="city" translate="address.city">City:</label>
+    <input id="city" type="text" ng-model="register.city" required>
+    </div>
+    <label for="country" translate="address.country">Country:</label>
+    <select id="country" ng-model="register.country" required
+            ng-options="country as 'address.countries.'+country | translate for country in register.countries"></select>
+  </form>
+  <!-- Step 2-->
+  <form name="register.steps[1]" class="step" ng-show="register.step == 1">
+    <h2 translate="register.username_password">Username and Password</h2>
+    <label for="username" translate="register.username">Username:</label>
+    <input id="username" type="text" ng-model="register.username" required>
+    <label for="password" translate="register.password">Password:</label>
+    <input id="password" type="password" ng-model="register.password" minlength="8" maxlength="20" required>
+    <label for="passwordRepeated" translate="register.repeat">Repeat Password:</label>
+    <input id="passwordRepeated" type="password" ng-model="register.passwordRepeated" minlength="8" maxlength="20" required
+        ng-pattern="register.password | escapeRegex">
+  </form>
+  <!-- Step 3 -->
+  <form name="register.steps[2]" class="step" ng-show="register.step == 2">
+    <h2 translate="register.referral">Referral Program</h2>
+    <label for="referrer" translate="register.referral_description">Description</label>
+    <input type="text" id="referrer" ng-model="register.referrer">
+    <h2 translate="register.coupon">Coupon</h2>
+    <label for="newUserCoupon" translate="register.coupon_description">Description</label>
+    <input type="text" id="newUserCoupon" ng-model="register.newUserCoupon">
+  </form>
+  <!-- Step 4 -->
+  <form name="register.steps[3]" class="step" ng-show="register.step == 3">
+    <h2>Legal</h2>
+    <div class="row">
+      <input type="checkbox" ng-model="register.generalTermsAndConditions" id="terms" required>
+      <label for="terms" translate="register.terms"></label>
+    </div>
+    <div class="row">
+      <input type="checkbox" ng-model="register.cancellationPolicy" id="cancellation" required>
+      <label for="cancellation" translate="register.cancellation"></label>
+    </div>
+    <div class="row">
+      <input type="checkbox" ng-model="register.provisionOfServices" id="provision" required>
+      <label for="provision" translate="register.provision"></label>
+    </div>
+    <div class="row">
+      <input type="checkbox" ng-model="register.fullAged" id="age" required>
+      <label for="age" translate="register.age"></label>
     </div>
   </form>
+  <!-- Step 5 -->
+  <form name="register.steps[4]" class="step" ng-show="register.step == 4">
+    <img class="captcha" ng-src="register.captcha">
+    <label for="captcha">Enter the picture's number:</label>
+    <input type="text" id="captcha" ng-model="register.captcha" required>
+    <button type="submit" class="button" translate="register.register"
+            ng-disabled="register.steps[4].$invalid">Register!</button>
+    <div class="center">
+      <span translate="register.help">Help?</span>
+      <a ui-sref="contact" translate="register.contact">Contact Us</a>
+    </div>
+  </form>
+  <div class="buttons">
+    <button type="button" ng-show="register.step>0" ng-click="register.go(register.step-1)"
+            translate="register.previous">&lt; Previous</button>
+    <button type="button" ng-show="register.step<4" ng-click="register.go(register.step+1)"
+            translate="register.next" ng-disabled="register.steps[register.step].$invalid">Next &gt;</button>
+  </div>
 </article>

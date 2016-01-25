@@ -14,6 +14,11 @@ angular.module 'mkmobile.filters', []
 
 # return array with range of 1 to input elements
 .filter 'range', -> (input) -> [1..input]
+
+# escape regex chars
+.filter 'escapeRegex', -> (str) -> (str or "").replace /[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&"
+
+# truncate text
 .filter 'truncate', -> (text, length, end) ->
   length or= 100
   end or= "..."

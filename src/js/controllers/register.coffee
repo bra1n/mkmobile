@@ -4,7 +4,7 @@ angular.module 'mkmobile.controllers.register', []
   'MkmApiCart', '$translate'
   (MkmApiCart, $translate) ->
     @steps = []
-    @step = 0
+    @step = 4
     @countries = MkmApiCart.getCountries()
     @go = (step) ->
       @step = step unless @steps[step-1]?.$invalid
