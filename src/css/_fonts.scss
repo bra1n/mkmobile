@@ -10,7 +10,7 @@
 }
 
 .mkmicon:before {
-  font-family: 'mkmfont', sans-serif;
+  font-family: 'mkmfont', sans-serif !important;
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -24,67 +24,73 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.mkmicon.messages:before {
-  content: "\e90c";
-}
-.mkmicon.offers:before {
-  content: "\e906";
-}
-.mkmicon.logout:before {
-  content: "\e908";
-}
-.mkmicon.wants:before {
+.mkmicon.ctrl:before {
   content: "\e900";
 }
-.mkmicon.becomeseller:before {
+.mkmicon.ctrl2:before {
   content: "\e901";
 }
-.mkmicon.sellcards:before {
+.mkmicon.wants:before {
   content: "\e902";
 }
-.mkmicon.profile:before {
+.mkmicon.becomeseller:before {
   content: "\e903";
 }
-.mkmicon.purchases:before {
+.mkmicon.sellcards:before {
   content: "\e904";
 }
-.mkmicon.sales:before {
+.mkmicon.profile:before {
   content: "\e905";
 }
-.mkmicon.cart:before {
+.mkmicon.purchases:before {
+  content: "\e906";
+}
+.mkmicon.sales:before {
   content: "\e907";
 }
-.mkmicon.home:before {
+.mkmicon.offers:before {
+  content: "\e908";
+}
+.mkmicon.cart:before {
   content: "\e909";
 }
-.mkmicon.display:before {
+.mkmicon.logout:before {
   content: "\e90a";
 }
-.mkmicon.mobile2:before {
+.mkmicon.home:before {
   content: "\e90b";
 }
-.mkmicon.search:before {
+.mkmicon.display:before {
+  content: "\e90c";
+}
+.mkmicon.mobile2:before {
   content: "\e90d";
 }
-.mkmicon.menu:before {
+.mkmicon.messages:before {
   content: "\e90e";
 }
-.mkmicon.info:before {
+.mkmicon.search:before {
   content: "\e90f";
 }
-.mkmicon.cancel-circle:before {
+.mkmicon.menu:before {
   content: "\e910";
 }
-.mkmicon.cross:before {
+.mkmicon.info:before {
   content: "\e911";
 }
-.mkmicon.radio-checked:before {
+.mkmicon.cancel-circle:before {
   content: "\e912";
 }
-.mkmicon.radio-unchecked:before {
+.mkmicon.cross:before {
   content: "\e913";
 }
-.mkmicon.filter:before {
+.mkmicon.radio-checked:before {
   content: "\e914";
+}
+.mkmicon.radio-unchecked:before {
+  content: "\e915";
+}
+.mkmicon.filter:before {
+  content: "\e916";
 }
 

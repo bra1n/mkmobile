@@ -86,6 +86,9 @@ angular.module 'mkmobile.services.api', ['ngResource']
     accountLogindata: # recover logindata
       params: {param0: 'account', param1: 'logindata', type: '@type'}
       method: 'POST'
+    accountRegister: # register new account
+      params: {param0: 'account', param1: 'register'}
+      method: 'POST'
 
     messages: # get all messages
       params: {param0: 'account', param1: 'messages'}

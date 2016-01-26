@@ -19,69 +19,73 @@
     </div>
     <h2 translate="register.personal">Personal Data</h2>
     <label for="firstName" translate="address.first_name">First Name:</label>
-    <input id="firstName" type="text" ng-model="register.firstName" required>
+    <input id="firstName" type="text" ng-model="register.form.firstName" required>
     <label for="lastName" translate="address.last_name">Last Name:</label>
-    <input id="lastName" type="text" ng-model="register.lastName" required>
+    <input id="lastName" type="text" ng-model="register.form.lastName" required>
     <label for="extra" translate="address.additional">+ Additional address info (optional):</label>
-    <input id="extra" type="text" ng-model="register.extra">
+    <input id="extra" type="text" ng-model="register.form.extra">
     <label for="street" translate="address.street">Steet and house number:</label>
-    <input id="street" type="text" ng-model="register.street" required>
+    <input id="street" type="text" ng-model="register.form.street" required>
     <div class="half">
     <label for="zip" translate="address.zip">Post Code:</label>
-    <input id="zip" type="text" ng-model="register.zip" required>
+    <input id="zip" type="text" ng-model="register.form.zip" required>
     </div><div class="half">
     <label for="city" translate="address.city">City:</label>
-    <input id="city" type="text" ng-model="register.city" required>
+    <input id="city" type="text" ng-model="register.form.city" required>
     </div>
     <label for="country" translate="address.country">Country:</label>
-    <select id="country" ng-model="register.country" required
+    <select id="country" ng-model="register.form.country" required
             ng-options="country as 'address.countries.'+country | translate for country in register.countries"></select>
   </form>
   <!-- Step 2-->
   <form name="register.steps[1]" class="step" ng-show="register.step == 1">
     <h2 translate="register.username_password">Username and Password</h2>
     <label for="username" translate="register.username">Username:</label>
-    <input id="username" type="text" ng-model="register.username" required>
+    <input id="username" type="text" ng-model="register.form.username" required>
     <label for="password" translate="register.password">Password:</label>
-    <input id="password" type="password" ng-model="register.password" minlength="8" maxlength="20" required>
+    <input id="password" type="password" ng-model="register.form.password" minlength="8" maxlength="20" required>
     <label for="passwordRepeated" translate="register.repeat">Repeat Password:</label>
-    <input id="passwordRepeated" type="password" ng-model="register.passwordRepeated" minlength="8" maxlength="20" required
+    <input id="passwordRepeated" type="password" ng-model="register.form.passwordRepeated" minlength="8" maxlength="20" required
         ng-pattern="register.password | escapeRegex">
   </form>
   <!-- Step 3 -->
   <form name="register.steps[2]" class="step" ng-show="register.step == 2">
     <h2 translate="register.referral">Referral Program</h2>
     <label for="referrer" translate="register.referral_description">Description</label>
-    <input type="text" id="referrer" ng-model="register.referrer">
+    <input type="text" id="referrer" ng-model="register.form.referrer">
     <h2 translate="register.coupon">Coupon</h2>
     <label for="newUserCoupon" translate="register.coupon_description">Description</label>
-    <input type="text" id="newUserCoupon" ng-model="register.newUserCoupon">
+    <input type="text" id="newUserCoupon" ng-model="register.form.newUserCoupon">
   </form>
   <!-- Step 4 -->
   <form name="register.steps[3]" class="step" ng-show="register.step == 3">
     <h2>Legal</h2>
-    <div class="row">
-      <input type="checkbox" ng-model="register.generalTermsAndConditions" id="terms" required>
-      <label for="terms" translate="register.terms"></label>
-    </div>
-    <div class="row">
-      <input type="checkbox" ng-model="register.cancellationPolicy" id="cancellation" required>
-      <label for="cancellation" translate="register.cancellation"></label>
-    </div>
-    <div class="row">
-      <input type="checkbox" ng-model="register.provisionOfServices" id="provision" required>
-      <label for="provision" translate="register.provision"></label>
-    </div>
-    <div class="row">
-      <input type="checkbox" ng-model="register.fullAged" id="age" required>
-      <label for="age" translate="register.age"></label>
-    </div>
+    <label class="row">
+      <input type="checkbox" ng-model="register.form.generalTermsAndConditions" required>
+      <span class="mkmicon" ng-class="register.form.generalTermsAndConditions ? 'radio-checked':'radio-unchecked'"></span>
+      <span translate="register.terms"></span>
+    </label>
+    <label class="row">
+      <input type="checkbox" ng-model="register.form.cancellationPolicy" required>
+      <span class="mkmicon" ng-class="register.form.cancellationPolicy ? 'radio-checked':'radio-unchecked'"></span>
+      <span translate="register.cancellation"></span>
+    </label>
+    <label class="row">
+      <input type="checkbox" ng-model="register.form.provisionOfServices" required>
+      <span class="mkmicon" ng-class="register.form.provisionOfServices ? 'radio-checked':'radio-unchecked'"></span>
+      <span  translate="register.provision"></span>
+    </label>
+    <label class="row">
+      <input type="checkbox" ng-model="register.form.fullAged" required>
+      <span class="mkmicon" ng-class="register.form.fullAged ? 'radio-checked':'radio-unchecked'"></span>
+      <span translate="register.age"></span>
+    </label>
   </form>
   <!-- Step 5 -->
-  <form name="register.steps[4]" class="step" ng-show="register.step == 4">
-    <img class="captcha" ng-src="register.captcha">
+  <form name="register.steps[4]" class="step" ng-show="register.step == 4" ng-submit="register.register()">
+    <img class="captcha" ng-src="{{register.captcha}}" ng-show="register.captcha">
     <label for="captcha">Enter the picture's number:</label>
-    <input type="text" id="captcha" ng-model="register.captcha" required>
+    <input type="text" id="captcha" ng-model="register.form.captchaValue" required>
     <button type="submit" class="button" translate="register.register"
             ng-disabled="register.steps[4].$invalid">Register!</button>
     <div class="center">
@@ -91,8 +95,8 @@
   </form>
   <div class="buttons">
     <button type="button" ng-show="register.step>0" ng-click="register.go(register.step-1)"
-            translate="register.previous">&lt; Previous</button>
-    <button type="button" ng-show="register.step<4" ng-click="register.go(register.step+1)"
+            translate="register.previous" class="mkmicon ctrl">&lt; Previous</button>
+    <button type="button" ng-show="register.step<4" ng-click="register.go(register.step+1)" class="mkmicon ctrl2"
             translate="register.next" ng-disabled="register.steps[register.step].$invalid">Next &gt;</button>
   </div>
 </article>
