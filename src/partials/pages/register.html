@@ -3,13 +3,16 @@
   <span translate="titles.register">Registration</span>
 </header>
 <article>
+  <!-- Navigation bubbles -->
   <nav>
     <span ng-class="{active: register.step==index}" ng-click="register.go(index)"
           ng-repeat="(index, form) in register.steps"></span>
   </nav>
+
   <!-- Step 1 -->
   <form name="register.steps[0]" class="step" ng-show="register.step == 0">
     <div class="half">
+      <span class="icon commercial commercial-0"></span>
       <b translate="register.private">Private Account</b>
     </div><div class="half">
       <span translate="register.professional">Professional?</span><br>
@@ -34,9 +37,11 @@
     <input id="city" type="text" ng-model="register.form.city" required>
     </div>
     <label for="country" translate="address.country">Country:</label>
+    <span class="icon country" ng-class="'country-'+register.form.country"></span>
     <select id="country" ng-model="register.form.country" required
             ng-options="country as 'address.countries.'+country | translate for country in register.countries"></select>
   </form>
+
   <!-- Step 2-->
   <form name="register.steps[1]" class="step" ng-show="register.step == 1">
     <h2 translate="register.username_password">Username and Password</h2>
@@ -48,6 +53,7 @@
     <input id="passwordRepeated" type="password" ng-model="register.form.passwordRepeated" minlength="8" maxlength="20" required
         ng-pattern="register.password | escapeRegex">
   </form>
+
   <!-- Step 3 -->
   <form name="register.steps[2]" class="step" ng-show="register.step == 2">
     <h2 translate="register.referral">Referral Program</h2>
@@ -57,9 +63,10 @@
     <label for="newUserCoupon" translate="register.coupon_description">Description</label>
     <input type="text" id="newUserCoupon" ng-model="register.form.newUserCoupon">
   </form>
+
   <!-- Step 4 -->
   <form name="register.steps[3]" class="step" ng-show="register.step == 3">
-    <h2>Legal</h2>
+    <h2 translate="register.legal">Legal</h2>
     <label class="row">
       <input type="checkbox" ng-model="register.form.generalTermsAndConditions" required>
       <span class="mkmicon" ng-class="register.form.generalTermsAndConditions ? 'radio-checked':'radio-unchecked'"></span>
@@ -81,10 +88,11 @@
       <span translate="register.age"></span>
     </label>
   </form>
+
   <!-- Step 5 -->
   <form name="register.steps[4]" class="step" ng-show="register.step == 4" ng-submit="register.register()">
     <img class="captcha" ng-src="{{register.captcha}}" ng-show="register.captcha">
-    <label for="captcha">Enter the picture's number:</label>
+    <label for="captcha" translate="register.captcha">Enter the picture's number:</label>
     <input type="text" id="captcha" ng-model="register.form.captchaValue" required>
     <button type="submit" class="button" translate="register.register"
             ng-disabled="register.steps[4].$invalid">Register!</button>
@@ -95,8 +103,8 @@
   </form>
   <div class="buttons">
     <button type="button" ng-show="register.step>0" ng-click="register.go(register.step-1)"
-            translate="register.previous" class="mkmicon ctrl">&lt; Previous</button>
+            translate="register.previous" class="mkmicon ctrl">Previous</button>
     <button type="button" ng-show="register.step<4" ng-click="register.go(register.step+1)" class="mkmicon ctrl2"
-            translate="register.next" ng-disabled="register.steps[register.step].$invalid">Next &gt;</button>
+            translate="register.next" ng-disabled="register.steps[register.step].$invalid">Next</button>
   </div>
 </article>

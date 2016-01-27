@@ -8,8 +8,9 @@ angular.module 'mkmobile.controllers.register', []
     @step = 0
     @countries = MkmApiCart.getCountries()
 
-    @go = (step) =>
-      @step = step unless @steps[step-1]?.$invalid
+    @go = (to) => # don't go to a step if a previous one still has errors
+      return for step, index in @steps when step.$invalid and index < to
+      @step = to
     @register = =>
       console.log @form
       MkmApi.api.accountRegister @form, =>

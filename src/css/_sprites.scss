@@ -14,7 +14,7 @@
 .icon.vacation-true { background-image: url('/img/icons.png'); width: 16px; height: 16px; background-position: -48px -32px; }
 
 .icon.commercial { background-image: url('/img/icons.png'); width: 16px; height: 16px; }
-.commercial-0 { background-position: -52px 0; display:none; }
+.commercial-0 { background-position: -52px 0; }
 .commercial-1 { background-position: 0 -20px; }
 .commercial-2 { background-position: -32px -36px; }
 
@@ -96,6 +96,7 @@
 
 // countries
 .icon.country { background-image: url('/img/countries.png');  width: 16px; height: 11px; }
+.icon.country- { visibility: hidden; }
 .icon.country-AD { background-position: -1px -1px; }
 .icon.country-AE { background-position: -19px -1px;}
 .icon.country-AF { background-position: -37px -1px;}

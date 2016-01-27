@@ -44,6 +44,7 @@ body.product {
       cursor: pointer;
       font-weight: bold;
       color: #0240ca;
+      .icon.commercial-0 { display: none; }
       .name {
         display: inline-block;
         max-width: 40px;

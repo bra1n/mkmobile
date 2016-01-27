@@ -1,5 +1,10 @@
 body.register {
   article {
+    padding-bottom: 45px;
+    position: relative;
+    box-sizing: border-box;
+    min-height: 100%;
+
     /* nav circles */
     nav {
       text-align: center;
@@ -31,6 +36,12 @@ body.register {
     /* form styling */
     form {
       padding: 0 10px;
+      position: relative;
+    }
+    .icon.country {
+      position: absolute;
+      bottom: 16px;
+      right: 30px;
     }
     input, select {
       width: 100%;
@@ -49,7 +60,7 @@ body.register {
       width: 48%;
       margin-right: 2%;
       display: inline-block;
-      vertical-align: top;
+      vertical-align: middle;
     }
     div.half + div.half {
       margin-left: 2%;
@@ -68,28 +79,35 @@ body.register {
     }
 
     /* bottom line buttons */
-    .buttons button {
-      padding: 10px 30px;
-      font-size: 18px;
-      color: #012169;
-      background: none;
-      letter-spacing: 1px;
-      border: none;
-      display: inline-block;
+    .buttons {
+      bottom: 0;
+      left: 0;
+      height: 45px;
+      width: 100%;
       position: absolute;
-      margin: 0 10px;
-      &:first-child { left: 0; }
-      &:last-child { right: 0; }
-      &:disabled { opacity: 0.5; }
-      &:before {
-        font-size: 200%;
+      button {
+        padding: 10px 30px;
+        font-size: 18px;
+        color: #012169;
+        background: none;
+        letter-spacing: 1px;
+        border: none;
+        display: inline-block;
         position: absolute;
-        left: 0;
-        top: 3px;
-      }
-      &.ctrl2:before {
-        right: 0;
-        left: auto;
+        margin: 0 10px;
+        &:first-child { left: 0; }
+        &:last-child { right: 0; }
+        &:disabled { opacity: 0.5; }
+        &:before {
+          font-size: 200%;
+          position: absolute;
+          left: 0;
+          top: 3px;
+        }
+        &.ctrl2:before {
+          right: 0;
+          left: auto;
+        }
       }
     }
   }
