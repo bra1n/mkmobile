@@ -11,6 +11,7 @@ angular.module 'mkmobile.controllers', [
   'mkmobile.controllers.recover'
   'mkmobile.controllers.register'
   'mkmobile.controllers.search'
+  'mkmobile.controllers.seller'
   'mkmobile.controllers.settings'
   'mkmobile.controllers.stock'
 ]

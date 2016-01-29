@@ -150,7 +150,12 @@ mkmobileApp.config [
     .state 'product',
       url:          '/product/:idProduct'
       templateUrl:  '/partials/pages/product.html'
-      controller:   'ProductCtrl'
+      controller:   'ProductCtrl as product'
+      noLogin:      yes
+    .state 'seller',
+      url:          '/seller/:idUser'
+      templateUrl:  '/partials/pages/seller.html'
+      controller:   'SellerCtrl as seller'
       noLogin:      yes
     .state 'callback',
       url:          '/callback'

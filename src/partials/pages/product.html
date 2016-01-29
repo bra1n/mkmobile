@@ -1,45 +1,47 @@
-<header ng-class="{loading:productData.loading}">
+<header ng-class="{loading:product.productData.loading}">
   <a href="javascript:history.back()" class="back"></a>
   <div class="title">
-    <span class="error ng-hide" ng-if="productData.error" translate="product.error">Error loading product</span>
-    {{productData.product.enName}}
-    <span ng-if="productData.product.number" translate="product.nr" translate-value-number="{{productData.product.number}}"></span>
+    <span class="error ng-hide" ng-if="product.productData.error" translate="product.error">Error loading product</span>
+    {{product.productData.product.enName}}
   </div>
-  <div class="box">
-    <span ng-if="productData.product.rarity" ng-class="productData.product | rarityIcon">
-    </span><span class="icon expansion-{{productData.product.idGame}}" ng-if="productData.product.expansion"
-                 ng-style="productData.product.expansion.expansionIcon | expansionIcon" ></span>
+  <div class="right">
+    <a class="mkmicon info"></a>
+    <a class="mkmicon filter"></a>
   </div>
 </header>
-<mkm-product product-data="productData"></mkm-product>
 <article>
-  <span ng-show="data.error" class="error" translate="product.articles_error">Error loading articles</span>
-  <span ng-show="!data.loading && !data.count && !data.error" class="error" translate="product.no_articles">No Offers :(</span>
-  <ul class="table" ng-class="{loading:data.loading}" data-infinite-scroll="loadArticles()">
-    <li class="row" ng-repeat="article in data.articles track by article.idArticle"
-        ng-hide="!article.count" ng-class="{comment:article.showComment, seller:article.showSeller}">
-      <div class="cell seller" ng-click="article.showSeller=!article.showSeller">
-        <span class="name">{{::article.seller.username}} ({{::article.seller.sellCount}})</span>
-        <span class="details" mkm-user user="::article.seller"></span>
-      </div><div class="cell icons">
+  <span ng-show="product.data.error" class="error" translate="product.articles_error">Error loading articles</span>
+  <span ng-show="!product.data.loading && !product.data.count && !product.data.error" class="error"
+        translate="product.no_articles">No Offers :(</span>
+  <!-- Articles -->
+  <ul ng-class="{loading:product.data.loading}" data-infinite-scroll="product.loadArticles()">
+    <li ng-repeat="article in product.data.articles track by article.idArticle" ng-class="{open:article.open}"
+        ng-click="article.open = !article.open">
+      <a ui-sref="seller({idUser:article.seller.idUser})" ng-click="$event.stopPropagation()">
+        {{::article.seller.username}}
+        <span ng-if="::article.seller.address.country" class="icon country country-{{::article.seller.address.country}}"></span>
+      </a>
+      <div class="extra" ng-if="article.open">
+        <span translate="product.sales" translate-values="::{count:article.seller.sellCount}">123 Sales</span>
+        <span class="icon reputation reputation-{{::article.seller.reputation}}" ng-if="::article.seller.reputation"></span>
+        <span class="icon commercial commercial-{{::article.seller.isCommercial}}" ng-if="::article.seller.isCommercial"></span>
+        <span class="icon risk risk-{{::article.seller.riskGroup}}" ng-if="::article.seller.riskGroup"></span>
+        <span class="icon shipspeed shipspeed-{{::article.seller.shipsFast}}" ng-if="::article.seller.shipsFast"></span>
+        <span class="icon vacation-{{::article.seller.onVacation}}" ng-if="::article.seller.onVacation"></span>
+        <div class="comment">{{::article.comments}}</div>
+      </div>
+      <div class="article">
         <span class="icon language language-{{::article.language.idLanguage}}"></span>
         <span class="icon grading grading-{{::article.condition}}"></span>
         <span class="icon is-foil" ng-if="::article.isFoil"></span>
         <span class="icon is-signed" ng-if="::article.isSigned"></span>
         <span class="icon is-altered" ng-if="::article.isAltered"></span>
         <span class="icon is-firsted" ng-if="::article.isFirstEd"></span>
-        <span class="icon comment" ng-if="::article.comments" ng-click="article.showComment = !article.showComment"></span>
-        <div class="comment">{{::article.comments}}</div>
-      </div><div class="cell price" ng-class="::{playset: article.isPlayset}">
-        <span class="icon is-playset" ng-click="article.showPlayset=!article.showPlayset"></span>
-        <span class="price" ng-click="article.showPlayset=true" ng-hide="article.showPlayset && article.isPlayset">
-          {{::article.price | currency:"€"}}
-        </span>
-        <span class="price-per-card" ng-click="article.showPlayset=false" ng-show="article.showPlayset && article.isPlayset">
-          4x{{::article.price / 4 | currency:"€"}}
-        </span>
-        <span class="count">{{article.count}}</span>
-        <button ng-click="addToCart(article)"></button>
+        <span class="icon is-playset" ng-if="::article.isPlayset"></span>
+        <span class="icon comment" ng-if="::article.comments"></span>
+        <span class="price">{{::article.price | currency:"€"}}</span>
+        <span class="count">{{::article.count}}</span>
+        <button ng-click="product.addToCart(article, $event)"></button>
       </div>
     </li>
   </ul>

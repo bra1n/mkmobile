@@ -294,7 +294,8 @@
     "average": "Average price (EX+):",
     "foils": "Available foils:",
     "foils_from": "Foils from:",
-    "reprints": "Also available in:"
+    "reprints": "Also available in:",
+    "sales": "{{count}} Sales"
   },
   "recover": {
     "explanation": "Please fill out the following form to recover your username or password.",
