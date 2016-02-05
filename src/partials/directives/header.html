@@ -29,7 +29,7 @@
   <ul ng-class="{loading:results.loading}">
     <li class="link" ng-repeat="product in results.products | orderBy:sort">
       <a ui-sref="product(product)">
-        <span class="icon expansion-{{::product.idGame}}" ng-style="::product.expansionIcon | expansionIcon" ng-if="::product.expansionIcon"></span>
+        <span class="icon expansion-{{::product.idGame}}" ng-style="::product.expansionIcon | expansionIcon" ng-if="::product.expansionIcon >= 0"></span>
         <span ng-class="::product | rarityIcon" ng-if="::product.rarity"></span>
         <span class="name">
           {{::product.enName}}

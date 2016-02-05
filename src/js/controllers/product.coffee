@@ -1,8 +1,13 @@
 # /product
 angular.module 'mkmobile.controllers.product', []
 .controller 'ProductCtrl', [
-  '$stateParams', 'MkmApiMarket', 'MkmApiAuth', 'MkmApiCart'
-  ($stateParams, MkmApiMarket, MkmApiAuth, MkmApiCart) ->
+  '$stateParams', '$state', 'MkmApiMarket', 'MkmApiAuth', 'MkmApiCart', 'MkmApiStock'
+  ($stateParams, $state, MkmApiMarket, MkmApiAuth, MkmApiCart, MkmApiStock) ->
+    # init vars
+    @screen = $stateParams.screen
+    @languages = MkmApiStock.getLanguages()
+    @conditions = MkmApiStock.getConditions()
+
     # get product data
     @productData = MkmApiMarket.product $stateParams.idProduct
 
@@ -14,6 +19,14 @@ angular.module 'mkmobile.controllers.product', []
       return if @data.articles.length >= @data.count or @data.loading
       MkmApiMarket.articles $stateParams.idProduct, @data
 
+    # show overlay
+    @show = (screen, event) =>
+      event.preventDefault() if @screen and event
+      @screen = if @screen is screen then "" else screen
+      $stateParams.screen = @screen
+      $state.transitionTo $state.current.name, $stateParams, {notify: no, location: 'replace'}
+
+    # add article to cart
     @addToCart = (article, event) =>
       event.stopPropagation()
       if MkmApiAuth.checkLogin()

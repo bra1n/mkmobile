@@ -1,6 +1,10 @@
 // Normalising
 @import "normalize";
 
+// Variables
+$mkmBlue: #012169;
+$mkmGold: #E1C564;
+
 // General styling
 body, html {
   height: 100%;
@@ -36,7 +40,7 @@ ul,li {
   margin:0;
 }
 
-:focus { color:#012169; outline: none; }
+:focus { color:$mkmBlue; outline: none; }
 
 hr {
   margin: 0;
@@ -86,7 +90,7 @@ hr {
 // link title
 b.title, span.title, label.title {
   font-size: 15px;
-  color: #012169;
+  color: $mkmBlue;
   font-weight: bold;
   font-style: normal;
   line-height: 20px;
@@ -105,7 +109,7 @@ b.title, span.title, label.title {
 // headlines
 h1 {
   font-weight: bold;
-  color: #012169;
+  color: $mkmBlue;
   text-shadow: 1px 1px 0 rgba(1,21,66,0.1);
   text-decoration: none;
   font-size: 1.5em;
@@ -113,7 +117,7 @@ h1 {
 }
 h2 {
   font-weight: bold;
-  color: #012169;
+  color: $mkmBlue;
   text-shadow: 1px 1px 0 rgba(1,21,66,0.1);
   text-decoration: none;
   font-size: 1.25em;
@@ -148,7 +152,7 @@ input, textarea {
   font-weight: bold;
   color: #fff;
   border-radius: 5px;
-  background: #012169;
+  background: $mkmBlue;
   box-shadow: 0 1px 2px rgba(0,0,0,0.3);
   letter-spacing: 1px;
   border: none;
@@ -156,6 +160,7 @@ input, textarea {
   &:focus { background: #0240ca; color: #fff; }
   &:disabled { opacity: 0.5; }
   &.green { background: #15704b; }
+  &.gray { background: gray; }
 }
 
 // link arrow

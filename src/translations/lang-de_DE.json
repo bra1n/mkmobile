@@ -265,9 +265,9 @@
     "nr": "(Nr. {{number}})",
     "articles_error": "Fehler beim Laden der Artikel",
     "no_articles": "Keine Artikel gefunden",
-    "available": "Verfügbare Artikel",
-    "from": "EX oder besser",
-    "average": "Durchschnittspreis (EX+)",
+    "available": "Verfügbare Artikel:",
+    "from": "EX oder besser:",
+    "average": "Durchschnittspreis (EX+):",
     "foils": "Verfügbare Foils:",
     "foils_from": "Foils ab:",
     "reprints": "Auch erhältlich aus:"

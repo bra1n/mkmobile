@@ -14,7 +14,7 @@ body.register {
         height: 16px;
         margin: 10px 5px;
         border-radius: 50%;
-        border: 2px solid #012169;
+        border: 2px solid $mkmBlue;
         text-align: center;
         line-height: 18px;
         vertical-align: middle;
@@ -28,7 +28,7 @@ body.register {
           transition: all 0.25s;
         }
         &.active:before {
-          background: #012169;
+          background: $mkmBlue;
         }
       }
     }
@@ -88,7 +88,7 @@ body.register {
       button {
         padding: 10px 30px;
         font-size: 18px;
-        color: #012169;
+        color: $mkmBlue;
         background: none;
         letter-spacing: 1px;
         border: none;

@@ -9,7 +9,7 @@ mkm-order {
     li {
       display: table-row;
       font-weight: bold;
-      color: #012169;
+      color: $mkmBlue;
       &:nth-child(even) { background: #fafafa; }
     }
     li > div {

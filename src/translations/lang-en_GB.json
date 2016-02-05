@@ -110,6 +110,16 @@
     "signed": "Signed?",
     "playset": "Playset?",
     "altered": "Altered?",
+    "account": {
+      "0": "Private",
+      "1": "Professional",
+      "2": "Powerseller"
+    },
+    "seller": {
+      "1": "Very Good",
+      "2": "Good",
+      "3": "Average"
+    },
     "languages": {
       "1": "English",
       "2": "French",
@@ -292,10 +302,23 @@
     "available": "Available Items:",
     "from": "From (EX+):",
     "average": "Average price (EX+):",
+    "trend": "Price Trend:",
     "foils": "Available foils:",
     "foils_from": "Foils from:",
     "reprints": "Also available in:",
-    "sales": "{{count}} Sales"
+    "sales": "{{count}} Sales",
+    "title_details": "Product Information",
+    "title_filter": "Product Filter",
+    "filter": {
+      "account": "Account Type",
+      "seller": "Minimum Seller Evaluation",
+      "language": "Language",
+      "condition": "Minimum Condition",
+      "amount": "Amount",
+      "filter": "Filter",
+      "clear": "Clear",
+      "no_preference": "No preference"
+    }
   },
   "recover": {
     "explanation": "Please fill out the following form to recover your username or password.",

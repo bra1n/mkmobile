@@ -148,7 +148,7 @@ mkmobileApp.config [
       controller:   'RegisterCtrl as register'
       noLogin:      yes
     .state 'product',
-      url:          '/product/:idProduct'
+      url:          '/product/:idProduct?screen'
       templateUrl:  '/partials/pages/product.html'
       controller:   'ProductCtrl as product'
       noLogin:      yes

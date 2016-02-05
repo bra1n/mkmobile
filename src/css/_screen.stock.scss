@@ -28,7 +28,7 @@ body.stock {
       li {
         display: table-row;
         font-weight: bold;
-        color: #012169;
+        color: $mkmBlue;
         &:nth-child(even) { background: #fafafa; }
         .icon.card, .icon.comment { cursor: pointer; }
         & > div {
