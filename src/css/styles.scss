@@ -139,6 +139,7 @@ input, textarea {
   font-weight: normal;
   padding: 5px;
   box-sizing: border-box;
+  vertical-align: middle;
   &::-webkit-input-placeholder,
   &::-moz-placeholder,
   &:-ms-input-placeholder { color: #ccc; }

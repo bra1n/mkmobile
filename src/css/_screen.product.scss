@@ -12,12 +12,14 @@ body.product {
         font-size: 18px;
         color: white;
         margin: 0 2px;
+        &.used { color: red; }
         &.active { color: $mkmGold; }
       }
     }
   }
+  &.loggedin #content header { padding-right: 80px; }
 
-  #details, #filter {
+  #details, #filter, #sell {
     position: fixed;
     top: 70px;
     bottom: 0;
@@ -25,12 +27,12 @@ body.product {
     right: 0;
     overflow: auto;
     background-color: #fff;
-    padding: 10px;
   }
 
   /* Product Details */
   #details {
     text-align: center;
+    padding: 10px;
     img {
       margin-bottom: 10px;
     }
@@ -57,33 +59,36 @@ body.product {
     }
   }
 
-  /* Product Filter */
-  #filter {
-    padding-top: 0;
+  /* Product Filter / Selling */
+  form {
     label {
       display: flex;
-      padding: 10px 0;
+      padding: 10px;
       border-bottom: 1px solid #ccc;
       align-items: center;
-      span {
-        flex-grow: 1;
-      }
+      span { flex-grow: 1; }
+      b { color: $mkmBlue; }
       i {
         margin: 0 5px;
         flex-shrink: 0;
       }
-      input, select {
+      > input, select, b {
         flex-shrink: 0;
         width: 40%;
       }
     }
     .buttons {
       display: flex;
-      padding-top: 10px;
+      padding: 10px;
       button[type=submit] {
-        margin-left: 5px;
         flex-grow: 1;
       }
+      button.gray {
+        margin-right: 5px;
+      }
+    }
+    div.error {
+      border-bottom: 1px solid #ccc;
     }
   }
 
@@ -117,16 +122,24 @@ body.product {
         overflow: hidden;
         text-overflow: ellipsis;
       }
+      button {
+        border: none;
+        background: url("/img/cart.png") no-repeat center center transparent;
+        height: 20px;
+        width: 35px;
+        padding: 0;
+        vertical-align: middle;
+        outline: none;
+        &.add { background: url("/img/add.png") transparent center center no-repeat; }
+        &.remove { background: url("/img/remove.png") transparent center center no-repeat; }
+        &.edit { background: url("/img/edit.png") transparent center center no-repeat; }
+      }
+      .sell {
+        line-height: 19px;
+        float: right;
+      }
+      &.open .sell { width: 35px; }
     }
 
-    button {
-      border: none;
-      background: url("/img/cart.png") no-repeat center center transparent;
-      height: 20px;
-      width: 35px;
-      padding: 0;
-      vertical-align: middle;
-      outline: none;
-    }
   }
 }

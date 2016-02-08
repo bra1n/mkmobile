@@ -1,10 +1,12 @@
 angular.module 'mkmobile.services.api', ['ngResource']
 .factory 'MkmApi', [ '$resource', ($resource) ->
+  sessionAuth = JSON.parse(sessionStorage.getItem('auth')) or {}
   auth =
     consumerKey:    window.consumerKey or 'alb03sLPpFNAhi6f'
     consumerSecret: window.consumerSecret or 'HTIcbso87X22JdS3Yk89c2CojfZiNDMX'
-    secret:         window.accessSecret or window.sessionStorage.getItem('secret') or ''
-    token:          window.accessToken or sessionStorage.getItem('token') or ''
+    secret:         window.accessSecret or sessionAuth.secret or ''
+    token:          window.accessToken or sessionAuth.token or ''
+    username:       window.username or sessionAuth.username or ''
   apiURL    = 'https://sandbox.mkmapi.eu/ws/v2.0'
   apiParams =
     # Misc
@@ -61,6 +63,9 @@ angular.module 'mkmobile.services.api', ['ngResource']
     stockUpdate: # update stock articles
       params: {param0: 'stock', param1: '@action'}
       method: 'PUT'
+    stockCreate: # create a stock article
+      params: {param0: 'stock'}
+      method: 'POST'
 
     orders: # get buys / sells
       params: param0: 'orders'

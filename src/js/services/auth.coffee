@@ -11,12 +11,15 @@ angular.module 'mkmobile.services.auth', []
     # return login URL
     getLoginURL: -> MkmApi.url + MkmApi.auth.consumerKey
 
+    # return username, if any
+    getUsername: -> MkmApi.auth.username
+
     # logout: remove session data, trash the cache, redirect to /login
     logout: ->
-      MkmApi.auth.secret = MkmApi.auth.token = ""
-      sessionStorage.removeItem "secret"
-      sessionStorage.removeItem "token"
+      MkmApi.auth.secret = MkmApi.auth.token = MkmApi.auth.username = ""
+      sessionStorage.removeItem "auth"
       sessionStorage.removeItem "search"
+      sessionStorage.removeItem "filter"
       DataCache.reset()
       $state.go 'login'
 
@@ -25,11 +28,11 @@ angular.module 'mkmobile.services.auth', []
       response = @isLoggedIn()
       unless response or $state.is "login"
         redirectAfterLogin = $state.current
-        sessionStorage.removeItem "search"
+        redirectAfterLogin.params or= $state.params # for some reason, those are not in state.current?
         $state.go 'login'
       response
 
-    # log the user in and store tokens in the session
+    # log the user in and store auth in the session
     getAccess: (requestToken) ->
       response = {}
       MkmApi.auth.token = requestToken if requestToken?
@@ -40,8 +43,13 @@ angular.module 'mkmobile.services.auth', []
         if data.oauth_token and data.oauth_token_secret
           MkmApi.auth.token = data.oauth_token
           MkmApi.auth.secret = data.oauth_token_secret
-          sessionStorage.setItem "token", MkmApi.auth.token
-          sessionStorage.setItem "secret", MkmApi.auth.secret
+          MkmApi.auth.username = data.account.username
+          # store auth data in the session
+          sessionStorage.setItem "auth", JSON.stringify {
+            token: MkmApi.auth.token
+            secret: MkmApi.auth.secret
+            username: MkmApi.auth.username
+          }
           @cache data.account
           response.success = yes
           $state.go redirectAfterLogin.name, redirectAfterLogin.params

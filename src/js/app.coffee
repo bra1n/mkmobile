@@ -231,6 +231,7 @@ mkmobileApp.run [
       if current.name
         $rootScope.viewClass = current.name.split(".").shift()
         $rootScope.loggedIn = MkmApiAuth.isLoggedIn()
+        $rootScope.username = MkmApiAuth.getUsername()
         translateTitle()
     # update title on language change
     $rootScope.$on '$translateChangeSuccess', -> translateTitle()

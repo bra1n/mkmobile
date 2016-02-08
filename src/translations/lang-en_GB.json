@@ -116,9 +116,10 @@
       "2": "Powerseller"
     },
     "seller": {
-      "1": "Very Good",
-      "2": "Good",
-      "3": "Average"
+      "1": "Outstanding",
+      "2": "Very Good",
+      "3": "Good",
+      "4": "Average"
     },
     "languages": {
       "1": "English",
@@ -309,6 +310,7 @@
     "sales": "{{count}} Sales",
     "title_details": "Product Information",
     "title_filter": "Product Filter",
+    "title_sell": "Sell this Article",
     "filter": {
       "account": "Account Type",
       "seller": "Minimum Seller Evaluation",
@@ -317,7 +319,13 @@
       "amount": "Amount",
       "filter": "Filter",
       "clear": "Clear",
-      "no_preference": "No preference"
+      "no_preference": "No preference",
+      "yes": "Yes",
+      "no": "No"
+    },
+    "sell": {
+      "errorTooManyArticles": "Error: You can't list that many articles.",
+      "wrongProductAttributes": "Error: Wrong product attributes selected."
     }
   },
   "recover": {

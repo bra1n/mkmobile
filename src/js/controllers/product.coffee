@@ -7,6 +7,7 @@ angular.module 'mkmobile.controllers.product', []
     @screen = $stateParams.screen
     @languages = MkmApiStock.getLanguages()
     @conditions = MkmApiStock.getConditions()
+    @filter = JSON.parse(sessionStorage.getItem("filter")) or {}
 
     # get product data
     @productData = MkmApiMarket.product $stateParams.idProduct
@@ -17,7 +18,7 @@ angular.module 'mkmobile.controllers.product', []
     # infinite scrolling
     @loadArticles = =>
       return if @data.articles.length >= @data.count or @data.loading
-      MkmApiMarket.articles $stateParams.idProduct, @data
+      MkmApiMarket.articles $stateParams.idProduct, @filter, @data
 
     # show overlay
     @show = (screen, event) =>
@@ -25,6 +26,48 @@ angular.module 'mkmobile.controllers.product', []
       @screen = if @screen is screen then "" else screen
       $stateParams.screen = @screen
       $state.transitionTo $state.current.name, $stateParams, {notify: no, location: 'replace'}
+
+    # reset filter form
+    @clearFilter = =>
+      @filter = {}
+      sessionStorage.removeItem "filter"
+
+    # use filter
+    @applyFilter = =>
+      sessionStorage.setItem "filter", JSON.stringify @filter
+      @data = MkmApiMarket.articles $stateParams.idProduct, @filter
+      @show ''
+
+    # sell a product
+    @sell = =>
+      @error = ""
+      MkmApiStock.create @article, (@error) =>
+        unless @error
+          @data = MkmApiMarket.articles $stateParams.idProduct, @filter
+          @show ''
+
+    # increase article count
+    @add = (article, event) =>
+      event.stopPropagation()
+      article.count++
+
+    # decrease article count
+    @remove = (article, event) =>
+      event.stopPropagation()
+      article.count--
+
+    # edit article
+    @edit = (@article, event) =>
+      event.stopPropagation()
+      @screen = 'sell'
+
+    # reset article
+    do @clearArticle = => @article = {idLanguage: "1", condition: "NM", idProduct: $stateParams.idProduct}
+
+    # check if filter has content
+    @hasFilter = =>
+      return yes for key, value of @filter when value
+      no
 
     # add article to cart
     @addToCart = (article, event) =>

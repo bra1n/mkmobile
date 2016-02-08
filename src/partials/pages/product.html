@@ -8,7 +8,9 @@
   </div>
   <div class="right">
     <a class="mkmicon info" ng-click="product.show('details')" ng-class="{active:product.screen == 'details'}"></a>
-    <a class="mkmicon filter" ng-click="product.show('filter')" ng-class="{active:product.screen == 'filter'}"></a>
+    <a class="mkmicon filter" ng-click="product.show('filter')"
+       ng-class="{active:product.screen == 'filter', used:product.hasFilter()}"></a>
+    <a class="mkmicon sellcards" ng-click="product.show('sell')" ng-show="loggedIn" ng-class="{active:product.screen == 'sell'}"></a>
   </div>
 </header>
 
@@ -60,79 +62,146 @@
 <form id="filter" ng-show="product.screen == 'filter'" ng-submit="product.applyFilter()">
   <label>
     <span translate="product.filter.account">Account Type</span>
-    <i class="icon commercial commercial-{{product.filter.commercial}}"></i>
-    <select ng-model="product.filter.commercial">
+    <i class="icon commercial commercial-{{product.filter.userType}}"></i>
+    <select ng-model="product.filter.userType">
       <option value="" translate="product.filter.no_preference">No preference</option>
-      <option value="0" translate="article.account.0">Private</option>
-      <option value="1" translate="article.account.1">Professional</option>
-      <option value="2" translate="article.account.2">Powerseller</option>
+      <option value="private" translate="article.account.0">Private</option>
+      <option value="commercial" translate="article.account.1">Professional</option>
+      <option value="powerseller" translate="article.account.2">Powerseller</option>
     </select>
   </label>
   <label>
     <span translate="product.filter.seller">Seller Evaluation</span>
-    <i class="icon reputation reputation-{{product.filter.seller}}"></i>
-    <select ng-model="product.filter.seller">
+    <i class="icon reputation reputation-{{product.filter.minUserScore}}"></i>
+    <select ng-model="product.filter.minUserScore">
       <option value="" translate="product.filter.no_preference">No preference</option>
-      <option value="1" translate="article.seller.1">Very good</option>
-      <option value="2" translate="article.seller.2">Good</option>
-      <option value="3" translate="article.seller.3">Average</option>
+      <option value="1" translate="article.seller.1">Outstanding</option>
+      <option value="2" translate="article.seller.2">Very good</option>
+      <option value="3" translate="article.seller.3">Good</option>
+      <option value="4" translate="article.seller.4">Average</option>
     </select>
   </label>
   <label>
     <span translate="product.filter.language">Language</span>
-    <i class="icon language language-{{product.filter.language}}"></i>
-    <select ng-model="product.filter.language">
+    <i class="icon language language-{{product.filter.idLanguage}}"></i>
+    <select ng-model="product.filter.idLanguage">
       <option value="" translate="product.filter.no_preference">No preference</option>
-      <option ng-repeat="language in product.languages" ng-value="language"
+      <option ng-repeat="language in product.languages" value="{{language}}"
               translate="article.languages.{{language}}"></option>
     </select>
   </label>
   <label>
     <span translate="product.filter.condition">Minimum Condition</span>
-    <i class="icon grading grading-{{product.filter.condition}}"></i>
-    <select ng-model="product.filter.condition">
+    <i class="icon grading grading-{{product.filter.minCondition}}"></i>
+    <select ng-model="product.filter.minCondition">
       <option value="" translate="product.filter.no_preference">No preference</option>
-      <option ng-repeat="condition in product.conditions" ng-value="condition"
+      <option ng-repeat="condition in product.conditions" value="{{condition}}"
               translate="article.conditions.{{condition}}"></option>
     </select>
   </label>
   <label>
     <span translate="article.foil">Foil</span>
-    <i class="icon is-foil" ng-show="product.filter.foil == '1'"></i>
-    <i class="icon no" ng-show="product.filter.foil == '0'"></i>
-    <select ng-model="product.filter.foil">
+    <i class="icon is-foil" ng-show="product.filter.isFoil == 'true'"></i>
+    <i class="icon no" ng-show="product.filter.isFoil == 'false'"></i>
+    <select ng-model="product.filter.isFoil">
       <option value="" translate="product.filter.no_preference">No preference</option>
-      <option value="1">Yes</option>
-      <option value="0">No</option>
+      <option value="true" translate="product.filter.yes">Yes</option>
+      <option value="false" translate="product.filter.no">No</option>
     </select>
   </label>
   <label>
     <span translate="article.signed">Signed</span>
-    <i class="icon is-signed" ng-show="product.filter.signed == '1'"></i>
-    <i class="icon no" ng-show="product.filter.signed == '0'"></i>
-    <select ng-model="product.filter.signed">
+    <i class="icon is-signed" ng-show="product.filter.isSigned == 'true'"></i>
+    <i class="icon no" ng-show="product.filter.isSigned == 'false'"></i>
+    <select ng-model="product.filter.isSigned">
       <option value="" translate="product.filter.no_preference">No preference</option>
-      <option value="1">Yes</option>
-      <option value="0">No</option>
+      <option value="true" translate="product.filter.yes">Yes</option>
+      <option value="false" translate="product.filter.no">No</option>
     </select>
   </label>
   <label>
     <span translate="article.altered">Altered</span>
-    <i class="icon is-altered" ng-show="product.filter.altered == '1'"></i>
-    <i class="icon no" ng-show="product.filter.altered == '0'"></i>
-    <select ng-model="product.filter.altered">
+    <i class="icon is-altered" ng-show="product.filter.isAltered == 'true'"></i>
+    <i class="icon no" ng-show="product.filter.isAltered == 'false'"></i>
+    <select ng-model="product.filter.isAltered">
       <option value="" translate="product.filter.no_preference">No preference</option>
-      <option value="1">Yes</option>
-      <option value="0">No</option>
+      <option value="true" translate="product.filter.yes">Yes</option>
+      <option value="false" translate="product.filter.no">No</option>
     </select>
   </label>
   <label>
     <span translate="product.filter.amount">Amount</span>
-    <input type="number" ng-model="product.filter.amount" min="0">
+    <input type="number" ng-model="product.filter.minAvailable" min="0">
   </label>
   <div class="buttons">
-    <button class="button gray" type="reset" translate="product.filter.clear">Clear</button>
+    <button class="button gray" type="button" ng-click="product.clearFilter()" translate="product.filter.clear">Clear</button>
     <button class="button" type="submit" translate="product.filter.filter">Filter</button>
+  </div>
+</form>
+
+<!-- Sell Article -->
+<form id="sell" ng-show="product.screen == 'sell'" ng-submit="product.sell()">
+  <label>
+    <span>Article</span>
+    <i ng-if="product.productData.product.rarity" ng-class="product.productData.product | rarityIcon"></i>
+    <i ng-style="product.productData.product.expansion.expansionIcon | expansionIcon"
+          class="icon expansion-{{product.productData.product.idGame}}"
+          ng-if="product.productData.product.expansion"></i>
+    <b>{{product.productData.product.enName}}</b>
+  </label>
+  <label>
+    <span>Amount</span>
+    <input type="number" min="1" max="32" required ng-model="product.article.count">
+  </label>
+  <label>
+    <span>Language</span>
+    <i class="icon language language-{{product.article.idLanguage}}"></i>
+    <select ng-model="product.article.idLanguage" required>
+      <option ng-repeat="language in product.languages" value="{{language}}"
+              translate="article.languages.{{language}}"></option>
+    </select>
+  </label>
+  <label>
+    <span>Condition</span>
+    <i class="icon grading grading-{{product.article.condition}}"></i>
+    <select ng-model="product.article.condition" required>
+      <option ng-repeat="condition in product.conditions" value="{{condition}}"
+              translate="article.conditions.{{condition}}"></option>
+    </select>
+  </label>
+  <label>
+    <span>Foil?</span>
+    <i class="icon is-foil" ng-show="product.article.isFoil"></i>
+    <b><input type="checkbox" ng-model="product.article.isFoil"></b>
+  </label>
+  <label>
+    <span>Signed?</span>
+    <i class="icon is-signed" ng-show="product.article.isSigned"></i>
+    <b><input type="checkbox" ng-model="product.article.isSigned"></b>
+  </label>
+  <label>
+    <span>Playset?</span>
+    <i class="icon is-playset" ng-show="product.article.isPlayset"></i>
+    <b><input type="checkbox" ng-model="product.article.isPlayset"></b>
+  </label>
+  <label>
+    <span>Altered?</span>
+    <i class="icon is-altered" ng-show="product.article.isAltered"></i>
+    <b><input type="checkbox" ng-model="product.article.isAltered"></b>
+  </label>
+  <label>
+    <span>Comments</span>
+    <input type="text" ng-model="product.article.comments">
+  </label>
+  <label class="price">
+    <span ng-hide="product.article.isPlayset">Price</span>
+    <span ng-show="product.article.isPlayset">Price for Playset</span>
+    <input type="number" min="0.01" step="0.01" required ng-model="product.article.price">
+  </label>
+  <div class="error" ng-show="product.error">{{'product.sell.'+product.error | translate}}</div>
+  <div class="buttons">
+    <button class="button gray" type="button" ng-click="product.clearArticle()" translate="product.filter.clear">Clear</button>
+    <button type="submit" class="button">List this Article</button>
   </div>
 </form>
 
@@ -145,6 +214,11 @@
   <ul ng-class="{loading:product.data.loading}" data-infinite-scroll="product.loadArticles()">
     <li ng-repeat="article in product.data.articles track by article.idArticle" ng-class="{open:article.open}"
         ng-click="article.open = !article.open">
+      <div class="sell" ng-if="::article.seller.username == username">
+        <button class="edit" ng-click="product.edit(article, $event)"></button>
+        <button class="add" ng-click="product.add(article, $event)"></button>
+
+      </div>
       <a ui-sref="seller({idUser:article.seller.idUser})" ng-click="$event.stopPropagation()">
         {{::article.seller.username}}
         <span ng-if="::article.seller.address.country" class="icon country country-{{::article.seller.address.country}}"></span>
@@ -168,8 +242,9 @@
         <span class="icon is-playset" ng-if="::article.isPlayset"></span>
         <span class="icon comment" ng-if="::article.comments"></span>
         <span class="price">{{::article.price | currency:"€"}}</span>
-        <span class="count">{{::article.count}}</span>
-        <button ng-click="product.addToCart(article, $event)"></button>
+        <span class="count">{{article.count}}</span>
+        <button ng-if="::article.seller.username != username" class="cart" ng-click="product.addToCart(article, $event)"></button>
+        <button ng-if="::article.seller.username == username" class="remove" ng-click="product.remove(article, $event)"></button>
       </div>
     </li>
   </ul>

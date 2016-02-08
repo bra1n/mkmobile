@@ -42,10 +42,12 @@ angular.module 'mkmobile.services.market', []
       response
 
     # get articles for a product
-    articles: (id, response) ->
+    articles: (id, filter = {}, response) ->
       response = count: 0, articles: [] unless response?
       response.loading = yes
-      MkmApi.api.articles {param1: id, start: response.articles.length, maxResults: 100}, (data) ->
+      query = param1: id, start: response.articles.length, maxResults: 100
+      query[key] = value for key, value of filter when value
+      MkmApi.api.articles query, (data) ->
         response.count = data._range or data.article?.length
         response.articles = response.articles.concat data.article if response.count
         response.loading = no

@@ -15,9 +15,9 @@
 .icon.vacation-true { background-image: url('/img/icons.png'); width: 16px; height: 16px; background-position: -16px -48px; }
 
 .icon.commercial { background-image: url('/img/icons.png'); width: 16px; height: 16px; display: none; }
-.icon.commercial-0 { display: inline-block; background-position: -36px 0; }
-.icon.commercial-1 { display: inline-block; background-position: 0 -16px; }
-.icon.commercial-2 { display: inline-block; background-position: -36px -16px; }
+.icon.commercial-0,.icon.commercial-private { display: inline-block; background-position: -36px 0; }
+.icon.commercial-1,.icon.commercial-commercial { display: inline-block; background-position: 0 -16px; }
+.icon.commercial-2,.icon.commercial-powerseller { display: inline-block; background-position: -36px -16px; }
 
 .icon.risk { background-image: url('/img/icons.png'); width: 16px; height: 16px; background-position: 0 -48px; }
 .icon.risk-0 { display: none; }

@@ -1,5 +1,6 @@
 angular.module 'mkmobile.services.stock', []
 .factory 'MkmApiStock', [ 'MkmApi', 'MkmApiMarket', 'DataCache', (MkmApi, MkmApiMarket, DataCache) ->
+  # retrieve one or more articles
   get: (id, response) ->
     if id? # single article
       response = article: DataCache.article id
@@ -45,6 +46,16 @@ angular.module 'mkmobile.services.stock', []
         DataCache.article article.idArticle, false
         DataCache.article data.updatedArticles[0].idArticle, data.updatedArticles[0]
         cb?()
+    false
+
+  # add a new article to the stock, will pass any error messages to the callback
+  create: (article, cb) ->
+    MkmApi.api.stockCreate {article}, (data) =>
+      if data.inserted?.length and data.inserted[0].success
+        DataCache.article data.inserted[0].idArticle, data.inserted[0]
+        cb?()
+      else
+        cb? data.inserted[0].error
     false
 
   # increase/decrease article count
