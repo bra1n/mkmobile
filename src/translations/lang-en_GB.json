@@ -110,6 +110,9 @@
     "signed": "Signed?",
     "playset": "Playset?",
     "altered": "Altered?",
+    "amount": "Amount",
+    "comments": "Comments",
+    "playset_price": "Price for Playset",
     "account": {
       "0": "Private",
       "1": "Professional",
@@ -296,27 +299,27 @@
     "bank_p15": "Banks charge <b>extra fees</b> on any transactions done <b>without the correct form</b>."
   },
   "product": {
-    "error": "Error loading product data",
-    "nr": "(Nr. {{number}})",
+    "active_filter": "Filter options {{icon}} are active",
     "articles_error": "Error loading articles",
-    "no_articles": "No articles found.",
     "available": "Available Items:",
-    "from": "From (EX+):",
     "average": "Average price (EX+):",
-    "trend": "Price Trend:",
+    "error": "Error loading product data",
     "foils": "Available foils:",
     "foils_from": "Foils from:",
+    "from": "From (EX+):",
+    "no_articles": "No articles found.",
+    "nr": "(Nr. {{number}})",
     "reprints": "Also available in:",
     "sales": "{{count}} Sales",
     "title_details": "Product Information",
+    "title_edit": "Edit this Article",
     "title_filter": "Product Filter",
     "title_sell": "Sell this Article",
+    "trend": "Price Trend:",
     "filter": {
       "account": "Account Type",
       "seller": "Minimum Seller Evaluation",
-      "language": "Language",
       "condition": "Minimum Condition",
-      "amount": "Amount",
       "filter": "Filter",
       "clear": "Clear",
       "no_preference": "No preference",
@@ -324,8 +327,11 @@
       "no": "No"
     },
     "sell": {
+      "article": "Article",
       "errorTooManyArticles": "Error: You can't list that many articles.",
-      "wrongProductAttributes": "Error: Wrong product attributes selected."
+      "wrongProductAttributes": "Error: Wrong product attributes selected.",
+      "button_sell": "List this article",
+      "button_edit": "Save Changes"
     }
   },
   "recover": {

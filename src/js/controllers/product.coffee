@@ -38,10 +38,11 @@ angular.module 'mkmobile.controllers.product', []
       @data = MkmApiMarket.articles $stateParams.idProduct, @filter
       @show ''
 
-    # sell a product
+    # sell / save a product
     @sell = =>
+      method = if @screen is 'sell' then 'create' else 'update'
       @error = ""
-      MkmApiStock.create @article, (@error) =>
+      MkmApiStock[method] @article, (@error) =>
         unless @error
           @data = MkmApiMarket.articles $stateParams.idProduct, @filter
           @show ''
@@ -49,17 +50,18 @@ angular.module 'mkmobile.controllers.product', []
     # increase article count
     @add = (article, event) =>
       event.stopPropagation()
-      article.count++
+      MkmApiStock.updateBatch [article], 1
 
     # decrease article count
     @remove = (article, event) =>
       event.stopPropagation()
-      article.count--
+      MkmApiStock.updateBatch [article], -1
 
     # edit article
     @edit = (@article, event) =>
+      @article.idLanguage = @article.language.idLanguage.toString()
       event.stopPropagation()
-      @screen = 'sell'
+      @screen = 'edit'
 
     # reset article
     do @clearArticle = => @article = {idLanguage: "1", condition: "NM", idProduct: $stateParams.idProduct}

@@ -95,6 +95,11 @@ body.product {
   /* Articles */
   article {
     .icon.commercial-0 { display: none; }
+    .notification {
+      text-align: center;
+      color: $mkmBlue;
+      margin: 10px 0;
+    }
     li {
       padding: 4px 10px;
       border-bottom: 1px solid #ccc;

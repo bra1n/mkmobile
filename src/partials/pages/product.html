@@ -82,7 +82,7 @@
     </select>
   </label>
   <label>
-    <span translate="product.filter.language">Language</span>
+    <span translate="common.language">Language</span>
     <i class="icon language language-{{product.filter.idLanguage}}"></i>
     <select ng-model="product.filter.idLanguage">
       <option value="" translate="product.filter.no_preference">No preference</option>
@@ -91,7 +91,7 @@
     </select>
   </label>
   <label>
-    <span translate="product.filter.condition">Minimum Condition</span>
+    <span translate="article.condition">Minimum Condition</span>
     <i class="icon grading grading-{{product.filter.minCondition}}"></i>
     <select ng-model="product.filter.minCondition">
       <option value="" translate="product.filter.no_preference">No preference</option>
@@ -130,7 +130,7 @@
     </select>
   </label>
   <label>
-    <span translate="product.filter.amount">Amount</span>
+    <span translate="article.amount">Amount</span>
     <input type="number" ng-model="product.filter.minAvailable" min="0">
   </label>
   <div class="buttons">
@@ -140,21 +140,21 @@
 </form>
 
 <!-- Sell Article -->
-<form id="sell" ng-show="product.screen == 'sell'" ng-submit="product.sell()">
+<form id="sell" ng-show="product.screen == 'sell' || product.screen == 'edit'" ng-submit="product.sell()">
   <label>
-    <span>Article</span>
+    <span translate="product.sell.article">Article</span>
     <i ng-if="product.productData.product.rarity" ng-class="product.productData.product | rarityIcon"></i>
     <i ng-style="product.productData.product.expansion.expansionIcon | expansionIcon"
           class="icon expansion-{{product.productData.product.idGame}}"
           ng-if="product.productData.product.expansion"></i>
     <b>{{product.productData.product.enName}}</b>
   </label>
-  <label>
-    <span>Amount</span>
+  <label ng-if="product.screen == 'sell'">
+    <span translate="article.amount">Amount</span>
     <input type="number" min="1" max="32" required ng-model="product.article.count">
   </label>
   <label>
-    <span>Language</span>
+    <span translate="common.language">Language</span>
     <i class="icon language language-{{product.article.idLanguage}}"></i>
     <select ng-model="product.article.idLanguage" required>
       <option ng-repeat="language in product.languages" value="{{language}}"
@@ -162,7 +162,7 @@
     </select>
   </label>
   <label>
-    <span>Condition</span>
+    <span translate="article.condition">Condition</span>
     <i class="icon grading grading-{{product.article.condition}}"></i>
     <select ng-model="product.article.condition" required>
       <option ng-repeat="condition in product.conditions" value="{{condition}}"
@@ -170,38 +170,39 @@
     </select>
   </label>
   <label>
-    <span>Foil?</span>
+    <span translate="article.foil">Foil?</span>
     <i class="icon is-foil" ng-show="product.article.isFoil"></i>
     <b><input type="checkbox" ng-model="product.article.isFoil"></b>
   </label>
   <label>
-    <span>Signed?</span>
+    <span translate="article.signed">Signed?</span>
     <i class="icon is-signed" ng-show="product.article.isSigned"></i>
     <b><input type="checkbox" ng-model="product.article.isSigned"></b>
   </label>
   <label>
-    <span>Playset?</span>
+    <span translate="article.playset">Playset?</span>
     <i class="icon is-playset" ng-show="product.article.isPlayset"></i>
     <b><input type="checkbox" ng-model="product.article.isPlayset"></b>
   </label>
   <label>
-    <span>Altered?</span>
+    <span translate="article.altered">Altered?</span>
     <i class="icon is-altered" ng-show="product.article.isAltered"></i>
     <b><input type="checkbox" ng-model="product.article.isAltered"></b>
   </label>
   <label>
-    <span>Comments</span>
+    <span translate="article.comments">Comments</span>
     <input type="text" ng-model="product.article.comments">
   </label>
   <label class="price">
-    <span ng-hide="product.article.isPlayset">Price</span>
-    <span ng-show="product.article.isPlayset">Price for Playset</span>
+    <span ng-hide="product.article.isPlayset" translate="common.price">Price</span>
+    <span ng-show="product.article.isPlayset" translate="article.playset_price">Price for Playset</span>
     <input type="number" min="0.01" step="0.01" required ng-model="product.article.price">
   </label>
   <div class="error" ng-show="product.error">{{'product.sell.'+product.error | translate}}</div>
   <div class="buttons">
-    <button class="button gray" type="button" ng-click="product.clearArticle()" translate="product.filter.clear">Clear</button>
-    <button type="submit" class="button">List this Article</button>
+    <button class="button gray" type="button" ng-click="product.clearArticle()"
+            ng-hide="product.screen == 'edit'" translate="product.filter.clear">Clear</button>
+    <button type="submit" class="button" translate="product.sell.button_{{product.screen}}">List this Article</button>
   </div>
 </form>
 
@@ -210,10 +211,13 @@
   <span ng-show="product.data.error" class="error" translate="product.articles_error">Error loading articles</span>
   <span ng-show="!product.data.loading && !product.data.count && !product.data.error" class="error"
         translate="product.no_articles">No Offers :(</span>
+  <div ng-show="product.hasFilter()" class="notification" translate="product.active_filter"
+        translate-values="{icon: '<i class=\'mkmicon filter\'></i>'}">Filter options are active</div>
+
   <!-- Articles -->
   <ul ng-class="{loading:product.data.loading}" data-infinite-scroll="product.loadArticles()">
     <li ng-repeat="article in product.data.articles track by article.idArticle" ng-class="{open:article.open}"
-        ng-click="article.open = !article.open">
+        ng-click="article.open = !article.open" ng-if="article.count">
       <div class="sell" ng-if="::article.seller.username == username">
         <button class="edit" ng-click="product.edit(article, $event)"></button>
         <button class="add" ng-click="product.add(article, $event)"></button>

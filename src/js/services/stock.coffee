@@ -30,7 +30,7 @@ angular.module 'mkmobile.services.stock', []
   update: (article, cb) ->
     request = article:
       idArticle: article.idArticle
-      idLanguage: article.language.idLanguage
+      idLanguage: article.idLanguage or article.language.idLanguage
       comments: article.comments
       count: article.amount or article.count
       price: article.price
