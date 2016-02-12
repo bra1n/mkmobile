@@ -18,7 +18,6 @@
     "register": "Registration",
     "search": "Search",
     "sells": "Sales",
-    "settings": "Settings",
     "stock": "Offers",
     "wants": "Wants"
   },
@@ -379,7 +378,7 @@
     "cancel": "Cancel",
     "sort": "- Sort by"
   },
-  "settings": {
+  "profile": {
     "vacation": "MKM Vacation Status",
     "report": "Report an issue",
     "source": "View source code",

@@ -1,6 +1,6 @@
-# /settings
-angular.module 'mkmobile.controllers.settings', []
-.controller 'SettingsCtrl', [
+# /profile
+angular.module 'mkmobile.controllers.profile', []
+.controller 'ProfileCtrl', [
   '$scope', 'MkmApiAuth'
   ($scope, MkmApiAuth) ->
     $scope.data = MkmApiAuth.getAccount()

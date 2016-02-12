@@ -79,11 +79,11 @@ mkmobileApp.config [
       templateUrl:  '/partials/pages/article.html'
       controller:   'StockCtrl'
 
-    # user settings
-    .state 'settings',
-      url:          '/settings'
-      templateUrl:  '/partials/pages/settings.html'
-      controller:   'SettingsCtrl'
+    # user profile
+    .state 'profile',
+      url:          '/profile'
+      templateUrl:  '/partials/pages/profile.html'
+      controller:   'ProfileCtrl'
 
     # order management
     .state 'order',

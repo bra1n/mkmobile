@@ -8,10 +8,10 @@ angular.module 'mkmobile.controllers', [
   'mkmobile.controllers.order'
   'mkmobile.controllers.payment'
   'mkmobile.controllers.product'
+  'mkmobile.controllers.profile'
   'mkmobile.controllers.recover'
   'mkmobile.controllers.register'
   'mkmobile.controllers.seller'
-  'mkmobile.controllers.settings'
   'mkmobile.controllers.stock'
 ]
 
