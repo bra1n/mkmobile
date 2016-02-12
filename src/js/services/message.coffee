@@ -46,9 +46,9 @@ angular.module 'mkmobile.services.message', []
   delete: (threadId, messageId) -> MkmApi.api.messageDelete {param2: threadId, param3: messageId}
 
   findUser: (search, cb) ->
-    if search
-      MkmApi.api.user {param2: search}, (data) ->
-        cb data.user
+    if search and search.length > 2
+      MkmApi.api.user {search}, (data) ->
+        cb data.users
       , (err) -> cb []
     else
       cb []

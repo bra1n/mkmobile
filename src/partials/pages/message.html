@@ -1,5 +1,5 @@
 <header ng-class="{loading:data.loading}">
-  <a href="/messages" class="back"></a>
+  <a ui-sref="message.list" class="back"></a>
   {{data.partner.username}}
   <span class="icons" mkm-user ng-show="data.partner" user="data.partner"></span>
 </header>
@@ -34,4 +34,3 @@
     </div>
   </form>
 </article>
-<mkm-footer messages="unreadCount"></mkm-footer>

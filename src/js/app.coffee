@@ -117,7 +117,7 @@ mkmobileApp.config [
       templateUrl:  '/partials/pages/messages.html'
       controller:   'MessageCtrl'
     .state 'message.user',
-      url:          '/:userId'
+      url:          '/:idUser'
       templateUrl:  '/partials/pages/message.html'
       controller:   'MessageCtrl'
 

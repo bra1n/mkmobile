@@ -4,7 +4,7 @@ angular.module 'mkmobile.controllers.message', []
   '$scope', '$stateParams', 'MkmApiMessage', '$translate'
   ($scope, $stateParams, MkmApiMessage, $translate) ->
     $scope.unreadCount = MkmApiMessage.count()
-    $scope.data = MkmApiMessage.get $stateParams.userId, -> $scope.unreadCount = MkmApiMessage.count()
+    $scope.data = MkmApiMessage.get $stateParams.idUser, -> $scope.unreadCount = MkmApiMessage.count()
     # search for user
     $scope.$watch "search", (search) -> MkmApiMessage.findUser search, (users) ->
       filtered = []
@@ -13,7 +13,7 @@ angular.module 'mkmobile.controllers.message', []
       $scope.users.push user for user in users when user.idUser not in filtered
     # send a new message
     $scope.send = ->
-      MkmApiMessage.send $stateParams.userId, $scope.message, $scope.data
+      MkmApiMessage.send $stateParams.idUser, $scope.message, $scope.data
       $scope.message = ""
       false
     # delete a message

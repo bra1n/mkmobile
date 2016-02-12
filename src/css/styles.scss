@@ -53,36 +53,31 @@ hr {
   background: #eaeaea;
   box-shadow: 0 -1px 2px rgba(0,0,0,0.75);
   border-bottom: 1px solid #ccc;
-  height: 50px;
-  line-height: 50px;
+  height: 40px;
+  line-height: 28px;
+  box-sizing: border-box;
   font-size: 18px;
   font-weight: bold;
   text-align: center;
   &.search {
-    display: table;
+    display: flex;
     width: 100%;
-    white-space: nowrap;
     position: fixed;
     top: 71px;
     z-index: 11;
-    div {
-      display: table-cell;
-      vertical-align: middle;
-    }
-    div.left {
-      width: 100%;
-      padding: 0 47px 0 5px;
+    padding: 5px;
+    white-space: nowrap;
+    &:before {
+      position: absolute;
+      left: 12px;
     }
     input {
       width: 100%;
-      padding-left: 35px;
-      background: url("/img/search.png") 5px 5px no-repeat #fff;
+      padding-left: 30px;
     }
     button {
       border: none;
       background-color: transparent;
-      height: 40px;
-      line-height: 40px;
     }
   }
 }
@@ -240,7 +235,6 @@ div.loading {
 
 // directives
 @import "directive.header";
-@import "directive.footer";
 @import "directive.order";
 @import "directive.product";
 

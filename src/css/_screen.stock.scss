@@ -18,9 +18,18 @@ body.stock {
     }
   }
   article {
-    padding-top: 101px;
+    padding-top: 111px;
     &.product { padding-top: 60px; }
-    .search button.remove, .search button.add { width: 30px; vertical-align: middle; }
+    .search {
+      &.open:before {
+        left: 77px;
+      }
+      button.remove, button.add {
+        width: 30px;
+        height: 30px;
+        vertical-align: middle;
+      }
+    }
     .empty { padding: 10px; text-align: center; font-weight: bold; }
     .articles {
       display: table;

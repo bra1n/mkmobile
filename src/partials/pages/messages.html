@@ -1,19 +1,15 @@
 <header translate="titles.messages">My Messages</header>
 <article>
-  <form class="search subheadline" ng-submit="blur($event)">
-    <div class="left">
-      <input id="search" type="text" placeholder="{{'common.search' | translate}}" ng-model="search">
-    </div>
-    <div class="right">
-      <button type="button" ng-show="search" ng-click="search = ''">{{'search.cancel' | translate}}</button>
-    </div>
+  <form class="search subheadline mkmicon" ng-submit="blur($event)">
+    <input id="search" type="text" placeholder="{{'common.search' | translate}}" ng-model="search">
+    <button type="button" ng-show="search" ng-click="search = ''">{{'search.cancel' | translate}}</button>
   </form>
   <ul class="overview" ng-class="{loading:data.loading}">
     <li ng-repeat="thread in data.messages | filter:search" class="link"
         ng-class="{sending:thread.message.isSending, unread:thread.unreadMessages}">
       <button class="remove" ng-click="delete($index,thread.partner.idUser)"></button>
       <span class="time">{{thread.message.date | date:'short'}}</span>
-      <a href="/messages/{{thread.partner.idUser}}">
+      <a ui-sref="message.user({idUser:thread.partner.idUser})">
         <span class="title">
           {{thread.partner.username}}
           <span mkm-user user="thread.partner"></span>
@@ -22,7 +18,7 @@
       </a>
     </li>
     <li class="user" ng-repeat="user in users">
-      <a href="/messages/{{user.idUser}}">
+      <a ui-sref="message.user({idUser:user.idUser})">
         <span class="title">
           {{user.username}}
           <span mkm-user user="user"></span>
@@ -32,4 +28,3 @@
     </li>
   </ul>
 </article>
-<mkm-footer messages="unreadCount"></mkm-footer>

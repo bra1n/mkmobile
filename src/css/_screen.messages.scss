@@ -1,5 +1,5 @@
 // messages page
-body.messages {
+body.message {
   #content header {
     .icons {
       background: white;
@@ -13,7 +13,7 @@ body.messages {
     }
   }
   article {
-    .overview { margin-top: 50px; }
+    .overview { margin-top: 40px; }
     li {
       span.time, button {
         font-weight: bold;
