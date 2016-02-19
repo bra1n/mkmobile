@@ -94,17 +94,17 @@ mkmobileApp.config [
       url:          '/buy'
       templateUrl:  '/partials/pages/orders.html'
       controller:   'OrderCtrl'
-    .state 'order.single',
-      url:          '/:orderId'
-      templateUrl:  '/partials/pages/order.html'
-      controller:   'OrderCtrl'
-    .state 'order.evaluate',
-      url:          '/:orderId/evaluate'
-      templateUrl:  '/partials/pages/evaluate.html'
-      controller:   'OrderCtrl'
     .state 'order.sell',
       url:          '/sell'
       templateUrl:  '/partials/pages/orders.html'
+      controller:   'OrderCtrl'
+    .state 'order.single',
+      url:          '/:idOrder'
+      templateUrl:  '/partials/pages/order.html'
+      controller:   'OrderCtrl'
+    .state 'order.evaluate',
+      url:          '/:idOrder/evaluate'
+      templateUrl:  '/partials/pages/evaluate.html'
       controller:   'OrderCtrl'
 
     # messages

@@ -4,7 +4,7 @@
   ({{order.seller.sellCount}})
   <span class="seller-details" mkm-user user="order.seller"></span>
   <a class="icon comment" ng-show="order.isBuyer" href="/messages/{{order.seller.idUser}}"></a>
-  <div class="seller-address" ng-show="order.seller.address">
+  <div class="seller-address" ng-show="order.seller.address.city">
     <b translate="order.seller_address">Seller's address</b><br>
     <i>
       {{order.seller.name.firstName}} {{order.seller.name.lastName}},
@@ -51,9 +51,14 @@
     <div class="controls" ng-show="removeArticle">
       <button class="remove" ng-click="removeArticle(article, order)"></button>
     </div>
-    <div class="card">
+    <div class="count">
       {{article.count}}x
-      <a href="/product/{{article.idProduct}}">{{article.product.name}}</a>
+    </div>
+    <div class="card">
+      <a ui-sref="product(article)">
+        {{::article.product.enName}}
+        <small ng-hide="::article.language.idLanguage == 1">{{::article.product.locName}}</small>
+      </a>
     </div>
     <div class="icons">
       <span class="icon expansion-{{article.product.idGame}}" ng-style="article.product.expIcon | expansionIcon" ng-show="article.product.expansion"></span>

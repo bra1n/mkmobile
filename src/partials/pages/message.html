@@ -4,13 +4,9 @@
   <span class="icons" mkm-user ng-show="data.partner" user="data.partner"></span>
 </header>
 <article>
-  <form class="search subheadline" ng-submit="blur($event)" ng-show="data.messages && data.messages.length">
-    <div class="left">
-      <input id="search" type="text" ng-model="searchText" placeholder="{{'common.search' | translate}}">
-    </div>
-    <div class="right">
-      <button type="button" ng-show="searchText" ng-click="searchText = ''">{{'search.cancel' | translate}}</button>
-    </div>
+  <form class="search subheadline mkmicon" ng-submit="blur($event)" ng-show="data.messages && data.messages.length">
+    <input id="search" type="text" ng-model="searchText" placeholder="{{'common.search' | translate}}">
+    <button type="button" ng-show="searchText" ng-click="searchText = ''">{{'search.cancel' | translate}}</button>
   </form>
   <ul class="thread" ng-class="{loading:data.loading}">
     <li ng-repeat="message in data.messages | filter:searchText"
@@ -26,11 +22,7 @@
     </li>
   </ul>
   <form class="write subheadline" ng-submit="send()">
-    <div class="left">
-      <textarea placeholder="{{'messages.message' | translate}}" required ng-model="message"></textarea>
-    </div>
-    <div class="right">
-      <button translate="messages.send">Send</button>
-    </div>
+    <textarea placeholder="{{'messages.message' | translate}}" required ng-model="message"></textarea>
+    <button translate="messages.send">Send</button>
   </form>
 </article>

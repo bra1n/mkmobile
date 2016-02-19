@@ -49,7 +49,7 @@ angular.module 'mkmobile.services.api', ['ngResource']
     shippingMethod: # get shipping methods for order
       params: {param0: 'shoppingcart', param1: 'shippingmethod'}
     shippingMethodUpdate: # change shipping methods for order
-      params: {param0: 'shoppingcart', param1: 'shippingmethod', param2: '@orderId'}
+      params: {param0: 'shoppingcart', param1: 'shippingmethod', param2: '@idOrder'}
       method: 'PUT'
     checkout: # checkout shoppingcart
       params: {param0: 'shoppingcart', param2: 'checkout'}
@@ -76,7 +76,7 @@ angular.module 'mkmobile.services.api', ['ngResource']
       params: param0: 'order'
       method: 'PUT'
     orderEvaluate: # evaluate an order
-      params: {param0: 'order', param1: '@orderId', param2: 'evaluation'}
+      params: {param0: 'order', param1: '@idOrder', param2: 'evaluation'}
       method: 'POST'
 
     # Account Management
@@ -92,7 +92,7 @@ angular.module 'mkmobile.services.api', ['ngResource']
       params: {param0: 'account', param1: 'logindata', type: '@type'}
       method: 'POST'
     accountRegister: # register new account
-      params: {param0: 'account', param1: 'register'}
+      params: {param0: 'account', param1: 'registration'}
       method: 'POST'
 
     messages: # get all messages

@@ -4,24 +4,26 @@ mkm-order {
     padding: 10px;
   }
   .articles {
-    display: table;
     width: 100%;
     li {
-      display: table-row;
+      display: flex;
+      align-items: center;
       font-weight: bold;
       color: $mkmBlue;
+      border-bottom: 1px solid #ccc;
       &:nth-child(even) { background: #fafafa; }
     }
     li > div {
-      display: table-cell;
-      border-bottom: 1px solid #ccc;
-      padding: 10px 0;
-      vertical-align: middle;
-      &:first-child { padding-left: 10px; }
-      &:last-child { padding-right: 10px; }
+      padding: 10px 5px;
+    }
+    div.card {
+      flex-grow: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      small { display: block; }
     }
     div.controls { width: 20px; }
-    div.card { padding-left: 10px; }
     div.icons { text-align: center; white-space: nowrap; }
     div.price { text-align: right; }
     i { display: block; }

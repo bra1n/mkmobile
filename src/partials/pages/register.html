@@ -45,6 +45,8 @@
   <!-- Step 2-->
   <form name="register.steps[1]" class="step" ng-show="register.step == 1">
     <h2 translate="register.username_password">Username and Password</h2>
+    <label for="email" translate="register.email">Email:</label>
+    <input id="email" type="text" ng-model="register.form.email" required>
     <label for="username" translate="register.username">Username:</label>
     <input id="username" type="text" ng-model="register.form.username" required>
     <label for="password" translate="register.password">Password:</label>

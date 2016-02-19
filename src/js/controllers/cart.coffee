@@ -3,7 +3,7 @@ angular.module 'mkmobile.controllers.cart', []
 .controller 'CartCtrl', [
   '$scope', '$location', '$stateParams', 'MkmApiCart', 'MkmApiMarket', '$translate'
   ($scope, $location, $stateParams, MkmApiCart, MkmApiMarket, $translate) ->
-# load cart data
+    # load cart data
     $scope.data = MkmApiCart.get $stateParams.orderId, ->
       $scope.count = MkmApiCart.count()
       $scope.sum = MkmApiCart.sum()

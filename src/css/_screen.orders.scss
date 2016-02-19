@@ -29,10 +29,6 @@ body.order {
         font-weight: bold;
         color: $mkmBlue;
         font-size: 16px;
-        -webkit-transition: background-color 0.5s;
-        -moz-transition: background-color 0.5s;
-        -ms-transition: background-color 0.5s;
-        -o-transition: background-color 0.5s;
         transition: background-color 0.5s;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -113,10 +109,6 @@ body.order {
       right: 0;
       background: rgba(255,255,255,0.9);
       opacity: 1;
-      -webkit-transition: all 0.5s linear;
-      -moz-transition: all 0.5s linear;
-      -ms-transition: all 0.5s linear;
-      -o-transition: all 0.5s linear;
       transition: all 0.5s linear;
       overflow: auto;
       margin-bottom: 70px;

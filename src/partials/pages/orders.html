@@ -20,7 +20,7 @@
     <h3 ng-if="!data.loading && data.count == 0" translate="order.shipments_0"></h3>
     <ul ng-class="{loading:data.loading}" data-infinite-scroll="loadOrders()">
       <li ng-repeat="order in data.orders">
-        <a class="link" href="/{{::mode}}/{{::order.idOrder}}">
+        <a class="link" ui-sref="order.single(::order)">
           <div ng-if="mode == 'buys'">
             <b class="title" translate="order.seller">Seller:</b>
             <b class="title">{{::order.seller.username}}</b><br>

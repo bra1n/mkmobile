@@ -121,7 +121,7 @@ angular.module 'mkmobile.services.cart', []
   # change the shipping method
   shippingMethod: (order)  ->
     request =
-      orderId: order.idReservation
+      idOrder: order.idReservation
       idShippingMethod: order.shippingMethod.idShippingMethod
     MkmApi.api.shippingMethodUpdate request, (data) =>
       @cache data

@@ -4,7 +4,7 @@ angular.module 'mkmobile.controllers.login', []
   '$scope', 'MkmApiAuth', '$sce', '$translate'
   ($scope, MkmApiAuth, $sce, $translate) ->
     $scope.loggedIn = MkmApiAuth.isLoggedIn()
-    $scope.iframeSrc = $sce.trustAsResourceUrl MkmApiAuth.getLoginURL()+"/"+$scope.language
+    $scope.iframeSrc = $sce.trustAsResourceUrl MkmApiAuth.getLoginURL()+"/"+$translate.use().substr(0,2)
 
     # listen to language changes and reload iframe
     $scope.$root.$on '$translateChangeSuccess', ->
