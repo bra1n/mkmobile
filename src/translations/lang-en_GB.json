@@ -23,24 +23,26 @@
     "wants": "Wants"
   },
   "common": {
-    "menu": "Menu",
-    "desktop": "To desktop version",
-    "loading": "Loading...",
-    "save": "Save Changes",
-    "price": "Price",
-    "bank": "Bank transfer",
-    "paypal": "PayPal",
-    "instabuy": "Instabuy",
-    "logout": "Logout",
-    "search": "Search",
-    "comment": "Comment",
     "article": "article",
     "articles": "articles",
-    "total": "Total",
-    "items_shipping": "Items + Shipping Methods",
+    "bank": "Bank transfer",
+    "comment": "Comment",
+    "desktop": "To desktop version",
+    "email": "Email Address",
+    "instabuy": "Instabuy",
     "insured": "Insured",
-    "uninsured": "Uninsured",
+    "items_shipping": "Items + Shipping Methods",
     "language": "Language",
+    "loading": "Loading...",
+    "logout": "Logout",
+    "menu": "Menu",
+    "paypal": "PayPal",
+    "price": "Price",
+    "save": "Save Changes",
+    "search": "Search",
+    "source": "View source code",
+    "total": "Total",
+    "uninsured": "Uninsured",
     "languages": {
       "1": "English",
       "2": "French",
@@ -52,11 +54,11 @@
   "contact": {
     "explanation": "If you have a question about an order, please send us the SHIPMENT NR. Messages without this number cannot be processed.",
     "explanation2": "In case of a certified order, please provide the TRACKING CODE and the shipping date, if possible.",
-    "email": "Email Address",
     "subject": "Subject",
     "comment": "Comment",
     "submit": "Submit",
-    "success": "Your message has been sent. If required, we will answer as soon as possible."
+    "success": "Your message has been sent. If required, we will answer as soon as possible.",
+    "report": "Report an issue"
   },
   "address": {
     "title": "Change shipping address",
@@ -114,8 +116,8 @@
     "comments": "Comments",
     "playset_price": "Price for Playset",
     "account": {
-      "0": "Private",
-      "1": "Professional",
+      "0": "Private seller",
+      "1": "Professional seller",
       "2": "Powerseller"
     },
     "seller": {
@@ -173,7 +175,6 @@
   "imprint": {
     "telephone": "Telephone:",
     "support": "Not for customer support",
-    "email": "Email:",
     "office": "Registration office:",
     "number": "Registration number:",
     "tax": "Sales tax identification number:",
@@ -336,7 +337,6 @@
   },
   "recover": {
     "explanation": "Please fill out the following form to recover your username or password.",
-    "email": "Email address",
     "submit_username": "Recover Username",
     "submit_password": "Recover Password",
     "success_username": "Your request was executed successfully. Your username has been sent to you by email",
@@ -382,10 +382,24 @@
   },
   "profile": {
     "vacation": "MKM Vacation Status",
-    "report": "Report an issue",
-    "source": "View source code",
     "on": "On",
-    "off": "Off"
+    "off": "Off",
+    "username": "Username",
+    "name": "Name",
+    "address": "Address",
+    "phone": "Phone Nr.",
+    "credit": "Total Credit",
+    "credit_account": "Credit User Account",
+    "cash_coupon": "Cash-In Coupon",
+    "evaluation": "Evaluation as Seller",
+    "registered": "Registered as",
+    "country": "Country",
+    "sales": "Sales",
+    "sold": "Sold Items",
+    "shipping": "Average shipping time",
+    "days": "{{x}} Days",
+    "contact": "Contact this user",
+    "vat": "VAT Registration Nr."
   },
   "stock": {
     "no_articles": "No articles",

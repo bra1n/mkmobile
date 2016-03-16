@@ -29,10 +29,13 @@ angular.module 'mkmobile.services.api', ['ngResource']
     product: # get a single product
       params: param0: 'products'
       cache: yes
-    user: # search for a user
+    users: # search for a user
       params: {param0: 'users', param1: 'find'}
       cache: yes
       unique: 'user'
+    user: # get a single user
+      params: {param0: 'users'}
+      cache: yes
 
     # Shopping Cart
     cart: # get shoppingcart contents

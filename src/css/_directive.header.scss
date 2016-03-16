@@ -72,6 +72,7 @@ header {
     position: relative;
     color: $mkmBlue;
   }
+  // counter overlay for shopping cart
   span.counter {
     background: red;
     position: absolute;
@@ -108,6 +109,17 @@ body.loggedout header .logo {
     text-overflow: ellipsis;
     font-weight: bold;
   }
+  .right {
+    position: absolute;
+    right: 6px;
+    a {
+      font-size: 18px;
+      margin: 0 2px;
+      &.used { color: $mkmRed; }
+      &.active { color: $mkmGold; }
+    }
+  }
+  a { color: white; }
 }
 
 // Overlay below header

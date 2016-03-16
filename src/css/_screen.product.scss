@@ -5,17 +5,6 @@ body.product {
     padding-left: 30px;
     font-size: 16px;
     font-weight: normal;
-    .right {
-      position: absolute;
-      right: 6px;
-      a {
-        font-size: 18px;
-        color: white;
-        margin: 0 2px;
-        &.used { color: red; }
-        &.active { color: $mkmGold; }
-      }
-    }
   }
   &.loggedin #content header { padding-right: 80px; }
 

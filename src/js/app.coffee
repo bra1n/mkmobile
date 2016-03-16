@@ -81,9 +81,17 @@ mkmobileApp.config [
 
     # user profile
     .state 'profile',
+      abstract:     yes
       url:          '/profile'
+      template:     '<ui-view/>'
+    .state 'profile.account',
+      url:          ''
       templateUrl:  '/partials/pages/profile.html'
       controller:   'ProfileCtrl'
+    .state 'profile.user',
+      url:          '/:idUser'
+      templateUrl:  '/partials/pages/user.html'
+      controller:   'UserCtrl'
 
     # order management
     .state 'order',

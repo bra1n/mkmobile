@@ -13,6 +13,7 @@ angular.module 'mkmobile.controllers', [
   'mkmobile.controllers.register'
   'mkmobile.controllers.seller'
   'mkmobile.controllers.stock'
+  'mkmobile.controllers.user'
 ]
 
 

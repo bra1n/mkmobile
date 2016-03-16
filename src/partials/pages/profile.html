@@ -1,23 +1,57 @@
-<header translate="titles.settings">Settings</header>
+<header>
+  <a ui-sref="home" class="back"></a>
+  <div class="title" translate="titles.profile">Profile</div>
+  <div class="right">
+    <a ui-sref="profile.user(data.account)" class="mkmicon info"></a>
+  </div>
+</header>
+
 <article>
   <ul>
-    <li ng-show="data.account.maySell">
-      <input type="checkbox" class="right" id="vacation" ng-change="updateVacation()" ng-model="data.account.onVacation">
-      <label for="vacation" class="right" ng-show="data.account.onVacation" translate="settings.on">On</label>
-      <label for="vacation" class="right" ng-hide="data.account.onVacation" translate="settings.off">Off</label>
-      <label for="vacation" translate="settings.vacation">MKM Vacation Status</label>
+    <li>
+      <div class="label" translate="profile.username">Username</div>
+      <i class="icon commercial commercial-{{data.account.isCommercial}}"></i>
+      <b class="username" ng-class="{vacation: data.account.onVacation}">{{data.account.username}}</b>
     </li>
     <li>
-      <select class="right" id="languages"
-              ng-options="language as 'common.languages.'+language | translate for language in languages"
-              ng-model="data.account.idDisplayLanguage" ng-change="updateLanguage()"></select>
-      <label for="languages" translate="common.language">Language</label>
+      <div class="label" translate="profile.name">Name</div>
+      <b>{{data.account.name.firstName}} {{data.account.name.lastName}}</b>
     </li>
-    <li class="link"><a href="//{{language}}.magiccardmarket.eu/Help" target="_blank" translate="titles.help">Help</a></li>
-    <li class="link"><a href="//{{language}}.magiccardmarket.eu/Help/General_Terms_and_Conditions" target="_blank" translate="titles.legal">Legal</a></li>
-    <li class="link"><a href="/contact" translate="titles.contact">Imprint</a></li>
-    <li class="link"><a href="//github.com/bra1n/mkmobile/issues" target="_blank" translate="settings.report">Report an issue</a></li>
-    <li class="link"><a href="//github.com/bra1n/mkmobile?files=1" target="_blank" translate="settings.source">View source code</a></li>
-    <li class="center"><button class="button" ng-click="logout()" translate="common.logout">Logout</button></li>
+    <li>
+      <div class="label" translate="profile.address">Address</div>
+      <b>
+        <span>{{data.account.homeAddress.street}}</span>
+        <span>{{data.account.homeAddress.extra}}</span>
+        <span>{{data.account.homeAddress.zip}} {{data.account.homeAddress.city}}</span>
+        <span>
+          <i class="icon country country-{{data.account.homeAddress.country}}"></i>
+          {{'address.countries.'+data.account.homeAddress.country | translate}}
+        </span>
+      </b>
+    </li>
+    <li>
+      <div class="label" translate="common.email">Email</div>
+      <b>{{data.account.email}}</b>
+    </li>
+    <li ng-if="data.account.phoneNumber">
+      <div class="label" translate="profile.phone">Phone</div>
+      <b>{{data.account.phoneNumber}}</b>
+    </li>
+    <li ng-if="data.account.maySell">
+      <label class="label" for="vacation" translate="profile.vacation">MKM Vacation Status</label>
+      <input type="checkbox" id="vacation" ng-change="updateVacation()" ng-model="data.account.onVacation">
+      <label for="vacation" ng-show="data.account.onVacation" translate="profile.on">On</label>
+      <label for="vacation" ng-hide="data.account.onVacation" translate="profile.off">Off</label>
+    </li>
+    <li>
+      <div class="label" translate="profile.credit">Total Credit</div>
+      <b>{{data.account.moneyDetails.totalBalance | currency}}</b>
+    </li>
+    <li class="link">
+      <a translate="profile.credit_account">Credit User Account</a>
+    </li>
+    <li class="link">
+      <a translate="profile.cash_coupon">Cash-In Coupon</a>
+    </li>
   </ul>
 </article>

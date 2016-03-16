@@ -5,14 +5,13 @@ angular.module 'mkmobile.controllers.register', []
   (MkmApiCart, $translate, MkmApi, $state) ->
     @form = {}
     @steps = []
-    @step = 0
+    @step = 4
     @countries = MkmApiCart.getCountries()
 
     @go = (to) => # don't go to a step if a previous one still has errors
       return for step, index in @steps when step.$invalid and index < to
       @step = to
     @register = =>
-      console.log @form
       MkmApi.api.accountRegister @form, =>
         # registration successful
         $translate('register.success').then (text) =>
@@ -20,6 +19,7 @@ angular.module 'mkmobile.controllers.register', []
           $state.go 'login'
       , (error) =>
         # registration error
+        alert error.data.mkm_error_description
         initCaptcha()
 
     # load the captcha

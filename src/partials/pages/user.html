@@ -1,0 +1,70 @@
+<header>
+  <a href="javascript:history.back()" class="back"></a>
+  <div class="title">{{data.user.username}}</div>
+  <div class="right" ng-show="data.user.username == username">
+    <a ui-sref="profile.account" class="active mkmicon info"></a>
+  </div>
+</header>
+
+<article ng-class="{loading: data.loading}">
+  <ul ng-show="data.user">
+    <li>
+      <div class="label" translate="profile.evaluation">Evaluation as Seller</div>
+      <i class="icon reputation reputation-{{data.user.reputation}}"></i>
+      <b>{{'article.seller.'+data.user.reputation | translate}}</b>
+    </li>
+    <li>
+      <div class="label" translate="profile.registered">Registered as</div>
+      <i class="icon commercial commercial-{{data.user.isCommercial}}"></i>
+      <b>{{'article.account.'+data.user.isCommercial | translate}}</b>
+    </li>
+    <li ng-if="data.user.name.company">
+      <div class="label" translate="profile.company">Company</div>
+      <b>{{data.user.name.company}}</b>
+    </li>
+    <li>
+      <div class="label" translate="profile.name">Name</div>
+      <b>{{data.user.name.firstName}} {{data.user.name.lastName}}</b>
+    </li>
+    <li ng-if="data.user.isCommercial">
+      <div class="label" translate="profile.address">Address</div>
+      <b>
+        <span>{{data.user.address.street}}</span>
+        <span>{{data.user.address.extra}}</span>
+        <span>{{data.user.address.zip}} {{data.user.address.city}}</span>
+      </b>
+    </li>
+    <li>
+      <div class="label" translate="profile.country">Country</div>
+      <i class="icon country country-{{data.user.address.country}}"></i>
+      <b>{{'address.countries.'+data.user.address.country | translate}}</b>
+    </li>
+    <li ng-if="data.user.phoneNumber">
+      <div class="label" translate="profile.phone">Phone</div>
+      <b>{{data.user.phoneNumber}}</b>
+    </li>
+    <li ng-if="data.user.email">
+      <div class="label" translate="common.email">Email</div>
+      <b>{{data.user.email}}</b>
+    </li>
+    <li ng-if="data.user.vat">
+      <div class="label" translate="common.vat">VAT</div>
+      <b>{{data.user.vat}}</b>
+    </li>
+    <li>
+      <div class="label" translate="profile.sales">Sales</div>
+      <b>{{data.user.sellCount}}</b>
+    </li>
+    <li>
+      <div class="label" translate="profile.sold">Sold Items</div>
+      <b>{{data.user.soldItems}}</b>
+    </li>
+    <li>
+      <div class="label" translate="profile.shipping">Avg Shipping</div>
+      <b translate="profile.days" translate-values="{x: data.user.avgShippingTime}"></b>
+    </li>
+    <li class="link" ng-show="data.user.username != username">
+      <a ui-sref="message.user(data.user)" translate="profile.contact">Contact this user</a>
+    </li>
+  </ul>
+</article>

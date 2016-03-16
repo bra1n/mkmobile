@@ -55,4 +55,26 @@ angular.module 'mkmobile.services.market', []
         response.error = error
         response.loading = no
       response
+
+    # search for a user
+    findUser: (search, cb) ->
+      if search and search.length > 2
+        MkmApi.api.users {search}, (data) ->
+          cb data.users
+        , () -> cb []
+      else
+        cb []
+
+    getUser: (idUser) ->
+      response = user: DataCache.user idUser
+      if !response.user?
+        response.loading = yes
+        MkmApi.api.user {param1: idUser}, (data) ->
+          response.user = DataCache.user idUser, data.user
+          response.loading = no
+          console.log data.user
+        , (error) ->
+          response.error = error
+          response.loading = no
+      response
 ]

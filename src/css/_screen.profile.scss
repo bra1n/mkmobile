@@ -3,21 +3,33 @@ body.profile {
   article {
     li {
       padding: 10px;
-      line-height: 30px;
-      border-bottom: 1px solid #ccc;
-      &:last-child { border:none; }
+      display: flex;
+      align-items: center;
+      .label {
+        width: 50%;
+        flex-shrink: 0;
+      }
+      b {
+        color: $mkmBlue;
+        span {
+          display: block;
+        }
+      }
+      .icon {
+        vertical-align: baseline;
+        margin-right: 5px;
+      }
+      .username { color: $mkmGreen; }
+      .username.vacation { color: $mkmRed; }
+      input { margin-right: 5px; }
+      &:nth-child(even) {
+        background: #f0f0f0;
+      }
+      &.link {
+        border-top: 1px solid #ccc;
+        background: #fff;
+      }
     }
-    label {
-      display: inline-block;
-      white-space: nowrap;
-    }
-    input.right { margin-top: 8px; }
-    .right {
-      float: right;
-      width: auto;
-      margin-left: 5px;
-    }
-    .center { text-align: center; }
     a {
       display: block;
       line-height: 20px;

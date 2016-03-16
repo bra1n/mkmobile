@@ -3,7 +3,7 @@
 </header>
 <article>
   <ul>
-    <li class="link"><a href="//github.com/bra1n/mkmobile/issues" target="_blank" translate="settings.report">Report an issue</a></li>
+    <li class="link"><a href="//github.com/bra1n/mkmobile/issues" target="_blank" translate="contact.report">Report an issue</a></li>
   </ul>
   <p translate="contact.explanation">
     If you have a question about an order, please send us the SHIPMENT NR. Messages without
@@ -13,7 +13,7 @@
     In case of a certified order, please provide the TRACKING CODE and the shipping date, if possible.
   </p>
   <form ng-submit="submit()">
-    <label ng-hide="loggedIn" for="email" translate="contact.email">Email</label>
+    <label ng-hide="loggedIn" for="email" translate="common.email">Email</label>
     <input ng-hide="loggedIn" id="email" type="email" ng-model="form.email">
     <label for="subject" translate="contact.subject">Subject</label>
     <input id="subject" type="text" ng-model="form.subject">

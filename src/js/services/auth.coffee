@@ -27,8 +27,9 @@ angular.module 'mkmobile.services.auth', []
     checkLogin: ->
       response = @isLoggedIn()
       unless response or $state.is "login"
-        redirectAfterLogin = $state.current
-        redirectAfterLogin.params or= $state.params # for some reason, those are not in state.current?
+        unless $state.current.name in ["register", "recover"]
+          redirectAfterLogin = $state.current
+          redirectAfterLogin.params or= $state.params # for some reason, those are not in state.current?
         $state.go 'login'
       response
 

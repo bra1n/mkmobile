@@ -1,12 +1,12 @@
 # /messages
 angular.module 'mkmobile.controllers.message', []
 .controller 'MessageCtrl', [
-  '$scope', '$stateParams', 'MkmApiMessage', '$translate'
-  ($scope, $stateParams, MkmApiMessage, $translate) ->
+  '$scope', '$stateParams', 'MkmApiMessage', 'MkmApiMarket', '$translate'
+  ($scope, $stateParams, MkmApiMessage, MkmApiMarket, $translate) ->
     $scope.unreadCount = MkmApiMessage.count()
     $scope.data = MkmApiMessage.get $stateParams.idUser, -> $scope.unreadCount = MkmApiMessage.count()
     # search for user
-    $scope.$watch "search", (search) -> MkmApiMessage.findUser search, (users) ->
+    $scope.$watch "search", (search) -> MkmApiMarket.findUser search, (users) ->
       filtered = []
       $scope.users = []
       filtered.push thread.partner.idUser for thread in $scope.data.messages

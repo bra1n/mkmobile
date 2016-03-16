@@ -1,5 +1,5 @@
 <header ng-class="{loading:data.loading}">
-  <a ui-sref="message.list" class="back"></a>
+  <a href="javascript:history.back()" class="back"></a>
   {{data.partner.username}}
   <span class="icons" mkm-user ng-show="data.partner" user="data.partner"></span>
 </header>

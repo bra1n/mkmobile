@@ -7,6 +7,7 @@ angular.module 'mkmobile.services.cache', []
     cart: $cacheFactory 'cart', capacity: 1
     account: $cacheFactory 'account', capacity: 10
     order: $cacheFactory 'order', capacity: 1000
+    user: $cacheFactory 'user', capacity: 100
   reset: ->
     cache.removeAll() for index, cache of caches
   product: (id, data) ->
@@ -37,4 +38,7 @@ angular.module 'mkmobile.services.cache', []
   order: (id, data) ->
     caches.order.put(id, data) if data?
     caches.order.get(id) if id?
+  user: (id, data) ->
+    caches.user.put(id, data) if data?
+    caches.user.get(id) if id?
 ]
