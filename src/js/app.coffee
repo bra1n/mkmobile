@@ -86,12 +86,21 @@ mkmobileApp.config [
       template:     '<ui-view/>'
     .state 'profile.account',
       url:          ''
-      templateUrl:  '/partials/pages/profile.html'
+      templateUrl:  '/partials/pages/profile.account.html'
+      controller:   'ProfileCtrl'
+    .state 'profile.credit',
+      url:          '/credit'
+      templateUrl:  '/partials/pages/profile.credit.html'
+      controller:   'ProfileCtrl'
+    .state 'profile.coupon',
+      url:          '/credit'
+      templateUrl:  '/partials/pages/profile.coupon.html'
       controller:   'ProfileCtrl'
     .state 'profile.user',
       url:          '/:idUser'
-      templateUrl:  '/partials/pages/user.html'
+      templateUrl:  '/partials/pages/profile.user.html'
       controller:   'UserCtrl'
+      noLogin:      yes
 
     # order management
     .state 'order',
@@ -100,19 +109,19 @@ mkmobileApp.config [
       template:     '<ui-view/>'
     .state 'order.buy',
       url:          '/buy'
-      templateUrl:  '/partials/pages/orders.html'
+      templateUrl:  '/partials/pages/order.list.html'
       controller:   'OrderCtrl'
     .state 'order.sell',
       url:          '/sell'
-      templateUrl:  '/partials/pages/orders.html'
+      templateUrl:  '/partials/pages/order.list.html'
       controller:   'OrderCtrl'
     .state 'order.single',
       url:          '/:idOrder'
-      templateUrl:  '/partials/pages/order.html'
+      templateUrl:  '/partials/pages/order.single.html'
       controller:   'OrderCtrl'
     .state 'order.evaluate',
       url:          '/:idOrder/evaluate'
-      templateUrl:  '/partials/pages/evaluate.html'
+      templateUrl:  '/partials/pages/order.evaluate.html'
       controller:   'OrderCtrl'
 
     # messages
@@ -122,14 +131,14 @@ mkmobileApp.config [
       template:     '<ui-view/>'
     .state 'message.list',
       url:          ''
-      templateUrl:  '/partials/pages/messages.html'
+      templateUrl:  '/partials/pages/message.list.html'
       controller:   'MessageCtrl'
     .state 'message.user',
       url:          '/:idUser'
-      templateUrl:  '/partials/pages/message.html'
+      templateUrl:  '/partials/pages/message.user.html'
       controller:   'MessageCtrl'
 
-# anonymous routes
+    # anonymous routes
     .state 'imprint',
       url:          '/imprint'
       templateUrl:  '/partials/pages/imprint.html'

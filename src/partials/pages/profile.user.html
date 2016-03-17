@@ -63,7 +63,7 @@
       <div class="label" translate="profile.shipping">Avg Shipping</div>
       <b translate="profile.days" translate-values="{x: data.user.avgShippingTime}"></b>
     </li>
-    <li class="link" ng-show="data.user.username != username">
+    <li class="link" ng-show="data.user.username != username && loggedIn">
       <a ui-sref="message.user(data.user)" translate="profile.contact">Contact this user</a>
     </li>
   </ul>

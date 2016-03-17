@@ -1,0 +1,49 @@
+<header>
+  <a ui-sref="profile.account" class="back"></a>
+  <div class="title" translate="profile.credit_account">Credit</div>
+</header>
+
+<article>
+  <ul>
+    <li class="balance">
+      <div class="label" translate="profile.credit">Total Credit</div>
+      <b>{{data.account.moneyDetails.totalBalance | currency}}</b>
+    </li>
+  </ul>
+  <p class="center" translate="payment.bank_p1"></p>
+  <ul>
+    <li>
+      <b class="label" translate="payment.bank_p2">Bank Account</b>
+    </li>
+    <li>
+      <div class="label" translate="payment.bank_p4">Recipient:</div>
+      <b>Sammelkartenmarkt</b>
+    </li>
+    <li>
+      <div class="label" translate="payment.bank_p8">IBAN:</div>
+      <b>DE80100400000107541500</b>
+    </li>
+    <li>
+      <div class="label" translate="payment.bank_p9">BIC:</div>
+      <b>COBADEFFXXX</b>
+    </li>
+    <li>
+      <div class="label" translate="payment.bank_p6">Bank:</div>
+      <b>Commerzbank AG</b>
+    </li>
+    <li>
+      <div class="label" translate="payment.bank_p10">Transfer Reason:</div>
+      <b>{{data.account.username}}-{{data.account.idUser}}</b>
+    </li>
+  </ul>
+  <p class="warning">
+    <b translate="payment.bank_p11">Attention:</b>
+    <span translate="payment.bank_p12" translate-value-user="{{data.account.username+'-'+data.account.idUser}}"></span><br>
+    <span translate="payment.bank_p13"></span><br>
+  </p>
+  <p class="warning">
+    <b translate="payment.bank_p11">Atention:</b>
+    <span translate="payment.bank_p14"></span><br>
+    <span translate="payment.bank_p15"></span><br>
+  </p>
+</article>

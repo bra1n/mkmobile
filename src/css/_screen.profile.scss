@@ -11,6 +11,7 @@ body.profile {
       }
       b {
         color: $mkmBlue;
+        word-break: break-all;
         span {
           display: block;
         }
@@ -29,10 +30,16 @@ body.profile {
         border-top: 1px solid #ccc;
         background: #fff;
       }
+      &.balance { border-bottom: 1px solid #ccc; }
     }
     a {
       display: block;
       line-height: 20px;
+    }
+    p {
+      padding: 10px;
+      &.warning { background: #FFE599; }
+      &.center { text-align: center; }
     }
   }
 }
