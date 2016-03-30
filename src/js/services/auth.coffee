@@ -80,6 +80,13 @@ angular.module 'mkmobile.services.auth', []
     # update vacation status
     setVacation: (vacation) -> MkmApi.api.accountVacation {vacation}, (data) => @cache data.account
 
+    # redeem coupon
+    redeemCoupon: (couponCode, cb) ->
+      MkmApi.api.accountCoupon {couponCode}, (data) =>
+        @cache data.account
+        cb? data
+      , cb
+
     # update interface language and save it in profile
     setLanguage: (languageId) ->
       for locale in @getLanguageCodes() when locale.value is languageId

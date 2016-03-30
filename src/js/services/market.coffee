@@ -72,7 +72,6 @@ angular.module 'mkmobile.services.market', []
         MkmApi.api.user {param1: idUser}, (data) ->
           response.user = DataCache.user idUser, data.user
           response.loading = no
-          console.log data.user
         , (error) ->
           response.error = error
           response.loading = no

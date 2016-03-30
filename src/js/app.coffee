@@ -87,19 +87,19 @@ mkmobileApp.config [
     .state 'profile.account',
       url:          ''
       templateUrl:  '/partials/pages/profile.account.html'
-      controller:   'ProfileCtrl'
+      controller:   'ProfileCtrl as profile'
     .state 'profile.credit',
       url:          '/credit'
       templateUrl:  '/partials/pages/profile.credit.html'
-      controller:   'ProfileCtrl'
+      controller:   'ProfileCtrl as profile'
     .state 'profile.coupon',
-      url:          '/credit'
+      url:          '/coupon'
       templateUrl:  '/partials/pages/profile.coupon.html'
-      controller:   'ProfileCtrl'
+      controller:   'ProfileCtrl as profile'
     .state 'profile.user',
       url:          '/:idUser'
       templateUrl:  '/partials/pages/profile.user.html'
-      controller:   'UserCtrl'
+      controller:   'UserCtrl as user'
       noLogin:      yes
 
     # order management

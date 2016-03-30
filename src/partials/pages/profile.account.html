@@ -2,50 +2,53 @@
   <a ui-sref="home" class="back"></a>
   <div class="title" translate="titles.profile">Profile</div>
   <div class="right">
-    <a ui-sref="profile.user(data.account)" class="mkmicon info"></a>
+    <a ui-sref="profile.user(profile.account)" class="mkmicon info"></a>
   </div>
 </header>
 
 <article>
-  <ul>
+  <p ng-show="profile.loading" class="loading"></p>
+  <ul ng-hide="profile.loading">
     <li>
       <div class="label" translate="profile.username">Username</div>
-      <i class="icon commercial commercial-{{data.account.isCommercial}}"></i>
-      <b class="username" ng-class="{vacation: data.account.onVacation}">{{data.account.username}}</b>
+      <i class="icon commercial commercial-{{profile.account.isCommercial}}"></i>
+      <b class="username" ng-class="{vacation: profile.account.onVacation}">
+        {{profile.account.username}}
+      </b>
     </li>
     <li>
       <div class="label" translate="profile.name">Name</div>
-      <b>{{data.account.name.firstName}} {{data.account.name.lastName}}</b>
+      <b>{{profile.account.name.firstName}} {{profile.account.name.lastName}}</b>
     </li>
     <li>
       <div class="label" translate="profile.address">Address</div>
       <b>
-        <span>{{data.account.homeAddress.street}}</span>
-        <span>{{data.account.homeAddress.extra}}</span>
-        <span>{{data.account.homeAddress.zip}} {{data.account.homeAddress.city}}</span>
+        <span>{{profile.account.homeAddress.street}}</span>
+        <span>{{profile.account.homeAddress.extra}}</span>
+        <span>{{profile.account.homeAddress.zip}} {{profile.account.homeAddress.city}}</span>
         <span>
-          <i class="icon country country-{{data.account.homeAddress.country}}"></i>
-          {{'address.countries.'+data.account.homeAddress.country | translate}}
+          <i class="icon country country-{{profile.account.homeAddress.country}}"></i>
+          {{'address.countries.'+profile.account.homeAddress.country | translate}}
         </span>
       </b>
     </li>
     <li>
       <div class="label" translate="common.email">Email</div>
-      <b>{{data.account.email}}</b>
+      <b>{{profile.account.email}}</b>
     </li>
-    <li ng-if="data.account.phoneNumber">
+    <li ng-if="profile.account.phoneNumber">
       <div class="label" translate="profile.phone">Phone</div>
-      <b>{{data.account.phoneNumber}}</b>
+      <b>{{profile.account.phoneNumber}}</b>
     </li>
-    <li ng-if="data.account.maySell">
+    <li ng-if="profile.account.maySell">
       <label class="label" for="vacation" translate="profile.vacation">MKM Vacation Status</label>
-      <input type="checkbox" id="vacation" ng-change="updateVacation()" ng-model="data.account.onVacation">
-      <label for="vacation" ng-show="data.account.onVacation" translate="profile.on">On</label>
-      <label for="vacation" ng-hide="data.account.onVacation" translate="profile.off">Off</label>
+      <input type="checkbox" id="vacation" ng-change="updateVacation()" ng-model="profile.account.onVacation">
+      <label for="vacation" ng-show="profile.account.onVacation" translate="profile.on">On</label>
+      <label for="vacation" ng-hide="profile.account.onVacation" translate="profile.off">Off</label>
     </li>
     <li>
       <div class="label" translate="profile.credit">Total Credit</div>
-      <b>{{data.account.moneyDetails.totalBalance | currency}}</b>
+      <b>{{profile.account.moneyDetails.totalBalance | currency}}</b>
     </li>
     <li class="link">
       <a ui-sref="profile.credit" translate="profile.credit_account">Credit User Account</a>

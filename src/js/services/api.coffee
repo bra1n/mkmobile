@@ -97,6 +97,9 @@ angular.module 'mkmobile.services.api', ['ngResource']
     accountRegister: # register new account
       params: {param0: 'account', param1: 'registration'}
       method: 'POST'
+    accountCoupon: # redeem coupon
+      params: {param0: 'account', param1: 'coupon'}
+      method: 'POST'
 
     messages: # get all messages
       params: {param0: 'account', param1: 'messages'}

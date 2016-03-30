@@ -7,7 +7,7 @@
   <ul>
     <li class="balance">
       <div class="label" translate="profile.credit">Total Credit</div>
-      <b>{{data.account.moneyDetails.totalBalance | currency}}</b>
+      <b>{{profile.account.moneyDetails.totalBalance | currency}}</b>
     </li>
   </ul>
   <p class="center" translate="payment.bank_p1"></p>
@@ -33,12 +33,13 @@
     </li>
     <li>
       <div class="label" translate="payment.bank_p10">Transfer Reason:</div>
-      <b>{{data.account.username}}-{{data.account.idUser}}</b>
+      <b>{{profile.account.username}}-{{profile.account.idUser}}</b>
     </li>
   </ul>
   <p class="warning">
     <b translate="payment.bank_p11">Attention:</b>
-    <span translate="payment.bank_p12" translate-value-user="{{data.account.username+'-'+data.account.idUser}}"></span><br>
+    <span translate="payment.bank_p12"
+          translate-value-user="{{profile.account.username+'-'+profile.account.idUser}}"></span><br>
     <span translate="payment.bank_p13"></span><br>
   </p>
   <p class="warning">
