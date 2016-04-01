@@ -1,6 +1,6 @@
 <header>
-  <span ng-show="mode == 'buys'" translate="titles.buys">My Buys</span>
-  <span ng-show="mode == 'sells'" translate="titles.sells">My Sells</span>
+  <span ng-show="mode == 'buy'" translate="titles.buys">My Buys</span>
+  <span ng-show="mode == 'sell'" translate="titles.sells">My Sells</span>
 </header>
 <article>
   <ul class="tabs">
@@ -56,10 +56,9 @@
       </li>
     </ul>
   </div>
-  <div class="outstanding" ng-if="data.account.bankRecharge">
-    <hr>
-    <span translate="order.outstanding" translate-value-sum="{{data.account.bankRecharge | currency:'€'}}"></span><br>
-    <a href="/payment/bank" translate="common.bank">Bank Transfer</a>
-    <a href="/payment/paypal" translate="common.paypal">Paypal</a>
+  <div class="outstanding" ng-if="data.account.moneyDetails.providerRechargeAmount">
+    <span translate="order.outstanding" translate-value-sum="{{data.account.moneyDetails.providerRechargeAmount | currency:'€'}}"></span><br>
+    <a class="button" ui-sref="payment({method:'bank'})" translate="common.bank">Bank Transfer</a>
+    <a class="button" ui-sref="payment({method:'paypal'})" translate="common.paypal">Paypal</a>
   </div>
 </article>

@@ -14,7 +14,7 @@
     <span translate="payment.paypal_p1"></span><br>
     <span translate="payment.paypal_p2"></span><br>
     <span translate="payment.alternate">Alternate Method:</span>
-    <a href="/payment/bank" translate="payment.bank">Credit your account via bank transfer</a><br>
+    <a ui-sref="payment({method:'bank'})" translate="payment.bank">Credit your account via bank transfer</a><br>
     <span translate="payment.paypal_p3">Total amount for PayPal:</span>
     <b>{{data.account.paypalRecharge | currency:"€"}}</b>
     <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
@@ -54,6 +54,6 @@
     <span translate="payment.bank_p14"></span><br>
     <span translate="payment.bank_p15"></span><br>
     <span translate="payment.alternate">Alternate Method:</span>
-    <a href="/payment/paypal" translate="payment.paypal">Credit your account via PayPal</a><br>
+    <a ui-sref="payment({method:'paypal'})" translate="payment.paypal">Credit your account via PayPal</a><br>
   </div>
 </article>

@@ -2,11 +2,12 @@
 body.order {
   #content header {
     padding: 0 30px;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
   article {
-    position: relative;
     .tabs {
       padding: 10px 10px 0;
       background: #eaeaea;
@@ -72,6 +73,13 @@ body.order {
       b { text-align: left; white-space: nowrap; }
       span { text-align: right; }
     }
+
+    div.outstanding {
+      border-top: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+      .button { margin-top: 10px; }
+    }
   }
   // evaluation
   article.evaluation {
@@ -103,22 +111,20 @@ body.order {
     }
     div.overlay {
       position: absolute;
-      top: 50px;
-      min-height: 100%;
       left: 0;
       right: 0;
+      bottom: 0;
       background: rgba(255,255,255,0.9);
       opacity: 1;
       transition: all 0.5s linear;
       overflow: auto;
-      margin-bottom: 70px;
       &.ng-hide-add, &.ng-hide-remove { display:block!important; }
       &.ng-hide { opacity:0; }
       li {
         text-align: left;
         padding: 10px;
       }
-      button { margin-top: 10px; }
+      button { margin: 10px 0; }
     }
     div.view {
       padding: 10px;

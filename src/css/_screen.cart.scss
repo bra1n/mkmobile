@@ -54,15 +54,10 @@ body.cart {
         vertical-align: middle;
         line-height: 30px;
       }
-      input {
+      input, select {
         width: 50%;
-        margin-left: -12px;
         vertical-align: middle;
-        margin-bottom: 5px;
-      }
-      select {
-        width: 50%;
-        margin-bottom: 5px;
+        margin-bottom: 10px;
       }
     }
   }

@@ -44,12 +44,6 @@
       </div>
     </div>
 
-    <div ng-show="data.order.state.state == 'bought' && !data.order.cancellationRequest">
-      <button class="button" ng-click="update('requestCancellation')" translate="order.cancel">Request Cancellation</button>
-    </div>
-    <div ng-show="data.order.state.state == 'paid' && !data.order.cancellationRequest">
-      <button class="button" ng-click="update('requestCancellation')" translate="order.cancel">Request Cancellation</button>
-    </div>
     <div ng-show="data.order.state.state == 'sent'  && data.order.isBuyer">
       <button class="button" ng-click="update('confirmReception')" translate="order.confirm">Confirm Reception</button>
     </div>
@@ -57,7 +51,13 @@
       <button class="button" ng-click="update('send')" translate="order.mark">Mark as sent</button>
     </div>
     <div ng-show="data.order.state.state == 'received' && data.order.isBuyer">
-      <a class="button" href="/buys/{{data.order.idOrder}}/evaluate" translate="order.evaluate">Evaluate order</a>
+      <a class="button" ui-sref="order.evaluate(data.order)" translate="order.evaluate">Evaluate order</a>
+    </div>
+    <div ng-show="data.order.state.state == 'bought' && !data.order.cancellationRequest">
+      <button class="button" ng-click="update('requestCancellation')" translate="order.cancel">Request Cancellation</button>
+    </div>
+    <div ng-show="data.order.state.state == 'paid' && !data.order.cancellationRequest">
+      <button class="button" ng-click="update('requestCancellation')" translate="order.cancel">Request Cancellation</button>
     </div>
 
     <div class="titlebar" ng-show="data.order.evaluation" translate="order.evaluation">Evaluation:</div>

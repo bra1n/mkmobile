@@ -6,20 +6,10 @@ body.stock {
     text-overflow: ellipsis;
     font-weight: normal;
     font-size: 16px;
-    .box {
-      background: white;
-      border-radius: 3px;
-      line-height: 10px;
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      margin-top: -12px;
-      .icon { margin: 2px; }
-    }
+    span { margin: 0 2px; }
   }
+
   article {
-    padding-top: 111px;
-    &.product { padding-top: 60px; }
     .search {
       &.open:before {
         left: 77px;
@@ -34,6 +24,7 @@ body.stock {
     .articles {
       display: table;
       width: 100%;
+      margin-top: 40px;
       li {
         display: table-row;
         font-weight: bold;
@@ -52,6 +43,7 @@ body.stock {
           padding-left: 10px;
           input { vertical-align: middle; }
         }
+        div.card small { display: block; }
         div.icons { text-align: center; white-space: nowrap; padding: 0 5px; }
         div.price { text-align: right; padding-right: 10px; }
         div.card-image {
@@ -78,11 +70,7 @@ body.stock {
           white-space: nowrap;
           text-overflow: ellipsis;
           height: 0;
-          border: 0px solid #ccc;
-          -webkit-transition: height 500ms;
-          -moz-transition: height 500ms;
-          -ms-transition: height 500ms;
-          -o-transition: height 500ms;
+          border: 0 solid #ccc;
           transition: height 500ms;
           background: rgba(255,255,255,0.75);
           margin-top: 8px;

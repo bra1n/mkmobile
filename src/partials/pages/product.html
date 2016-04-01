@@ -15,48 +15,7 @@
 </header>
 
 <!-- Product Details-->
-<div id="details" ng-show="product.screen == 'details'" ng-class="{loading:product.productData.loading}">
-  <h2>
-    <span ng-if="product.productData.product.rarity" ng-class="product.productData.product | rarityIcon"></span>
-    <span ng-style="product.productData.product.expansion.expansionIcon | expansionIcon"
-          class="icon expansion-{{product.productData.product.idGame}}"
-          ng-if="product.productData.product.expansion"></span>
-    {{product.productData.product.enName}}
-    <span ng-show="product.productData.product.number" translate="product.nr"
-          translate-values="{number:product.productData.product.number}"></span>
-  </h2>
-  <img src="" ng-src="{{product.productData.product.image | productImage}}">
-  <table ng-show="product.productData.product">
-    <tr>
-      <td translate="product.available">Available Items:</td>
-      <td>{{product.productData.product.countArticles | number}}</td>
-    </tr>
-    <tr>
-      <td translate="product.from">From (EX+):</td>
-      <td>{{product.productData.product.priceGuide.LOW | currency:"€"}}</td>
-    </tr>
-    <tr>
-      <td translate="product.trend">Price Trend:</td>
-      <td>{{product.productData.product.priceGuide.TREND | currency:"€"}}</td>
-    </tr>
-    <tr ng-show="product.productData.product.countFoils">
-      <td translate="product.foils">Available foils:</td>
-      <td>{{product.productData.product.countFoils | number}}</td>
-    </tr>
-    <tr ng-show="product.productData.product.countFoils">
-      <td translate="product.foils_from">Foils from:</td>
-      <td>{{product.productData.product.priceGuide.LOWFOIL | currency:"€"}}</td>
-    </tr>
-    <tr ng-show="product.productData.product.reprint">
-      <td translate="product.reprints">Also available in:</td>
-      <td>
-        <a ui-sref="product({idProduct:reprint.idProduct,screen:product.screen})" ng-repeat="reprint in product.productData.product.reprint">
-          <span class="icon expansion-{{product.productData.product.idGame}}" ng-style="reprint.expIcon | expansionIcon"></span>
-        </a>
-      </td>
-    </tr>
-  </table>
-</div>
+<mkm-product product-data="product.productData" ng-show="product.screen == 'details'"></mkm-product>
 
 <!-- Product Filter -->
 <form id="filter" ng-show="product.screen == 'filter'" ng-submit="product.applyFilter()">

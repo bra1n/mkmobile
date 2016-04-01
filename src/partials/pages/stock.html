@@ -1,7 +1,7 @@
 <header>
   <span translate="titles.stock">My Articles</span>
   <span ng-hide="data.loading">
-    - {{data.count}}
+    &nbsp;- {{data.count}}
     <span ng-show="data.count != 1" translate="common.articles"></span>
     <span ng-show="data.count == 1" translate="common.article"></span>
   </span>
@@ -26,7 +26,10 @@
       </div>
       <div class="card">
         {{article.count}}x
-        <a ui-sref="stock.article({articleId:article.idArticle})" ng-if="!article.inShoppingCart">{{::article.product.name}}</a>
+        <a ui-sref="stock.article({articleId:article.idArticle})" ng-if="!article.inShoppingCart">
+          {{::article.product.enName}}
+          <small ng-hide="::article.language.idLanguage == 1">{{::article.product.locName}}</small>
+        </a>
         <span ng-if="::article.inShoppingCart">{{::article.product.name}}</span>
         <div class="card-image" ng-click="article.showImage = 0">
           <img src="" ng-src="{{::article.showImage && (article.product.image | productImage)}}">

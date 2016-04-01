@@ -8,7 +8,7 @@ body.product {
   }
   &.loggedin #content header { padding-right: 80px; }
 
-  #details, #filter, #sell {
+  #filter, #sell {
     position: fixed;
     top: 70px;
     bottom: 0;
@@ -16,36 +16,6 @@ body.product {
     right: 0;
     overflow: auto;
     background-color: #fff;
-  }
-
-  /* Product Details */
-  #details {
-    text-align: center;
-    padding: 10px;
-    img {
-      margin-bottom: 10px;
-    }
-    h2 {
-      margin: 0 0 10px;
-      .icon { margin-top: -2px; }
-    }
-    table {
-      text-align: left;
-      width: 100%;
-      td:first-child {
-        white-space: nowrap;
-        vertical-align: top;
-      }
-      a {
-        display: inline-block;
-        padding: 3px;
-      }
-      td:last-child {
-        text-align: right;
-        font-weight: bold;
-        color: $mkmBlue;
-      }
-    }
   }
 
   /* Product Filter / Selling */

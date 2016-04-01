@@ -3,7 +3,6 @@ angular.module 'mkmobile.controllers.stock', []
 .controller 'StockCtrl', [
   '$scope', '$location', '$stateParams', 'MkmApiStock'
   ($scope, $location, $stateParams, MkmApiStock) ->
-    console.log "stock ctrl", $stateParams
     # selecting an article in stock
     $scope.selected = []
     $scope.select = (id) ->

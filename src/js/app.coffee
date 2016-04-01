@@ -54,15 +54,15 @@ mkmobileApp.config [
       controller:   'CartCtrl'
     .state 'cart.address',
       url:          '/address'
-      templateUrl:  '/partials/pages/address.html'
+      templateUrl:  '/partials/pages/cart.address.html'
       controller:   'CartCtrl'
     .state 'cart.checkout',
       url:          '/checkout/:method'
-      templateUrl:  '/partials/pages/checkout.html'
+      templateUrl:  '/partials/pages/cart.checkout.html'
       controller:   'CartCtrl'
     .state 'cart.order',
       url:          '/:orderId',
-      templateUrl:  '/partials/pages/order.html'
+      templateUrl:  '/partials/pages/order.single.html'
       controller:   'CartCtrl'
 
 # stock management

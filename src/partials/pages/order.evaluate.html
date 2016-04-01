@@ -1,5 +1,5 @@
 <header>
-  <a href="." ng-href="/{{mode}}/{{data.order.idOrder}}" class="back"></a>
+  <a ui-sref="order.single(data.order)" class="back"></a>
   <span translate="evaluation.title" translate-values="{id:data.order.idOrder, seller:data.order.seller.username}">
     Evaluation for Order 1 from Seller
   </span>
@@ -42,7 +42,7 @@
 
   <!-- Evaluation overlay -->
   <div ng-show="!hideOverlay && data.order && !data.order.evaluation && !data.loading && !data.error" class="overlay ng-hide">
-    <div class="subheadline" translate="evaluation.guidelines">Evaluation Guidelines</div>
+    <header translate="evaluation.guidelines">Evaluation Guidelines</header>
     <ul>
       <li translate="evaluation.guide1">Do not give an overall neutral or bad evaluation before trying to contact the seller first. Sellers are human and can make mistakes. Give them a chance to fix them.</li>
       <li translate="evaluation.guide2">Do not give an overall neutral or bad evaluation if you would buy from this seller again.</li>
@@ -85,6 +85,6 @@
         </i>
       </span>
     </div>
-    <a href="/{{mode}}/{{data.order.idOrder}}" class="button" translate="evaluation.back">Back to Order</a>
+    <a ui-sref="order.single(data.order)" class="button" translate="evaluation.back">Back to Order</a>
   </div>
 </article>

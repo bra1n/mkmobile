@@ -59,6 +59,9 @@ body.profile {
       }
       .error { margin-bottom: 10px; }
     }
-    &.loading { height: 64px; }
+    &.loading {
+      height: 64px;
+      background-position: center bottom;
+    }
   }
 }
