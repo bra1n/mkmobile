@@ -24,8 +24,10 @@
         <input type="checkbox" ng-checked="selected.indexOf(article) > -1" ng-click="select(article)" ng-disabled="article.inShoppingCart">
         <span class="icon card" ng-if="::article.product.image" ng-click="article.showImage = !article.showImage"></span>
       </div>
-      <div class="card">
+      <div class="count">
         {{article.count}}x
+      </div>
+      <div class="card">
         <a ui-sref="stock.article({articleId:article.idArticle})" ng-if="!article.inShoppingCart">
           {{::article.product.enName}}
           <small ng-hide="::article.language.idLanguage == 1">{{::article.product.locName}}</small>
@@ -38,7 +40,8 @@
       </div>
       <div class="icons">
         <span ng-class="::article.product | rarityIcon" ng-if="::article.product.rarity"></span>
-        <span class="icon expansion-{{::article.product.idGame}}" ng-style="::article.product.expIcon | expansionIcon" ng-if="::article.product.expansion"></span>
+        <span ng-style="::article.product.expIcon | expansionIcon" ng-if="::article.product.expIcon"
+              class="icon expansion-{{::idGame}}"></span>
         <span class="icon language language-{{::article.language.idLanguage}}" ng-if="::article.language.idLanguage"></span>
         <span class="icon grading grading-{{::article.condition}}" ng-if="::article.condition"></span>
         <span class="icon is-foil" ng-if="::article.isFoil"></span>

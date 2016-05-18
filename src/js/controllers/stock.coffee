@@ -5,6 +5,8 @@ angular.module 'mkmobile.controllers.stock', []
   ($scope, $location, $stateParams, MkmApiStock) ->
     # selecting an article in stock
     $scope.selected = []
+    # @todo use article[].product.idGame when available
+    $scope.idGame = window.gameId or 1
     $scope.select = (id) ->
       if id in $scope.selected
         $scope.selected.splice $scope.selected.indexOf(id), 1
