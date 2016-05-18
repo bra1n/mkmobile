@@ -11,21 +11,24 @@ mkm-order {
       font-weight: bold;
       color: $mkmBlue;
       border-bottom: 1px solid #ccc;
+      padding: 10px;
       &:nth-child(even) { background: #fafafa; }
     }
     li > div {
-      padding: 10px 5px;
+      padding-right: 5px;
     }
     div.card {
       flex-grow: 1;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      small { display: block; }
+      small {
+        display: block;
+        font-weight: normal;
+        font-style: italic;
+        color: #444;
+      }
     }
     div.controls { width: 20px; }
     div.icons { text-align: center; white-space: nowrap; }
-    div.price { text-align: right; }
+    div.price { text-align: right; padding-right: 0; }
     i { display: block; }
     button.remove {
       border: none;
