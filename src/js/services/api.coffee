@@ -109,6 +109,20 @@ angular.module 'mkmobile.services.api', ['ngResource']
     messageDelete: #delete a message (thread)
       params: {param0: 'account', param1: 'messages'}
       method: 'DELETE'
+
+    # Wants lists
+    wantslist: # get wantslists
+      params: {param0: 'wantslist'}
+    wantslistCreate: # add a wantslist
+      params: {param0: 'wantslist'}
+      method: 'POST'
+    wantslistUpdate: # change a wantslist
+      params: {param0: 'wantslist'}
+      method: 'PUT'
+    wantslistDelete: # delete a wantslist
+      params: {param0: 'wantslist'}
+      method: 'DELETE'
+
   # augment the configs
   for param,config of apiParams
     # oauth for all the requests

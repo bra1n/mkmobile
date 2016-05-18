@@ -243,17 +243,18 @@ div.loading {
 /***********************/
 // Styling per Screen
 /***********************/
-@import "screen.login";
-@import "screen.product";
-@import "screen.home";
 @import "screen.cart";
 @import "screen.contact";
+@import "screen.home";
+@import "screen.login";
+@import "screen.messages";
+@import "screen.orders";
+@import "screen.product";
+@import "screen.profile";
 @import "screen.recover";
 @import "screen.register";
-@import "screen.profile";
-@import "screen.messages";
 @import "screen.stock";
-@import "screen.orders";
+@import "screen.wantslist";
 
 // legal
 body.legal {

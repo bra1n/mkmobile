@@ -20,7 +20,7 @@
     "search": "Search",
     "sells": "Sales",
     "stock": "Offers",
-    "wants": "Wants"
+    "wantslist": "Wants"
   },
   "common": {
     "article": "article",
@@ -412,5 +412,15 @@
   "stock": {
     "no_articles": "No articles",
     "error": "Error loading articles"
+  },
+  "wantslist": {
+    "addlabel": "Add new Wants List",
+    "name": "List Name",
+    "addbutton": "Add List",
+    "list": "List(s)",
+    "empty": "You haven't added lists to your wants lists yet.",
+    "save": "Save",
+    "confirm": "Are you sure you want to delete '{{name}}'?",
+    "items": "{{itemCount}} items"
   }
 }

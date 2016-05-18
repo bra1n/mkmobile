@@ -138,6 +138,20 @@ mkmobileApp.config [
       templateUrl:  '/partials/pages/message.user.html'
       controller:   'MessageCtrl'
 
+    # wantslists
+    .state 'wantslist',
+      abstract:     yes
+      url:          '/wantslist'
+      template:     '<ui-view/>'
+    .state 'wantslist.list',
+      url:          ''
+      templateUrl:  '/partials/pages/wantslist.list.html'
+      controller:   'WantslistCtrl as wantslist'
+    .state 'wantslist.single',
+      url:          '/:idWantsList'
+      templateUrl:  '/partials/pages/wantslist.single.html'
+      controller:   'WantslistCtrl as wantslist'
+
     # anonymous routes
     .state 'imprint',
       url:          '/imprint'

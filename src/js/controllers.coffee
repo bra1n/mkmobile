@@ -14,6 +14,7 @@ angular.module 'mkmobile.controllers', [
   'mkmobile.controllers.seller'
   'mkmobile.controllers.stock'
   'mkmobile.controllers.user'
+  'mkmobile.controllers.wantslist'
 ]
 
 
