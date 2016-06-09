@@ -4,6 +4,7 @@ angular.module 'mkmobile.controllers.register', []
   'MkmApiCart', '$translate', 'MkmApi', '$state'
   (MkmApiCart, $translate, MkmApi, $state) ->
     @form = {}
+    @formError = ""
     @steps = []
     @step = 0
     @countries = MkmApiCart.getCountries()
@@ -19,13 +20,14 @@ angular.module 'mkmobile.controllers.register', []
           $state.go 'login'
       , (error) =>
         # registration error
-        alert error.data.mkm_error_description
+        @formError = error.data.post_data_field
+        $translate('register.error').then (text) =>
+          alert text
         initCaptcha()
 
     # load the captcha
     do initCaptcha = =>
       @form.captchaValue = ''
-      MkmApi.api.captcha ({captcha: {@captcha, requestKey: @form.captchaRequestKey}}) =>
-        @captcha = 'data:image/png;base64,'+atob(@captcha) # todo: remove atob
+      MkmApi.api.captcha ({captcha: {@imgUri, requestKey: @form.captchaRequestKey}}) =>
     @
 ]

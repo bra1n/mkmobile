@@ -30,6 +30,9 @@ body.register {
         &.active:before {
           background: $mkmBlue;
         }
+        &.invalid {
+          border-color: $mkmRed;
+        }
       }
     }
 
@@ -46,6 +49,7 @@ body.register {
     input, select {
       width: 100%;
       margin: 2px 0 8px;
+      &.invalid { border-color: $mkmRed; }
     }
     input[type=checkbox] {
       display: none;
