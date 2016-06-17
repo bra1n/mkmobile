@@ -20,6 +20,7 @@
     "search": "Search",
     "sells": "Sales",
     "stock": "Offers",
+    "user": "User",
     "wantslist": "Wants"
   },
   "common": {
@@ -408,7 +409,8 @@
     "unsent_shipments": "Unsent Shipments",
     "username": "Username",
     "vacation": "MKM Vacation Status",
-    "vat": "VAT Registration Nr."
+    "vat": "VAT Registration Nr.",
+    "show_articles": "Show articles from this user"
   },
   "stock": {
     "no_articles": "No articles",

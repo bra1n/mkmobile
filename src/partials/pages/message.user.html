@@ -1,7 +1,10 @@
 <header ng-class="{loading:data.loading}">
   <a href="javascript:history.back()" class="back"></a>
   {{data.partner.username}}
-  <span class="icons" mkm-user ng-show="data.partner" user="data.partner"></span>
+  <div class="right">
+    <a ui-sref="profile.user(data.partner)" class="mkmicon info"></a>
+  </div>
+  <!--<span class="icons" mkm-user ng-show="data.partner" user="data.partner"></span>-->
 </header>
 <article>
   <form class="search subheadline mkmicon" ng-submit="blur($event)" ng-show="data.messages && data.messages.length">

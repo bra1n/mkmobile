@@ -18,7 +18,7 @@ angular.module 'mkmobile.services.message', []
         response.count = data._range or data.thread?.length
         response.messages = response.messages.concat data.thread if response.count
         # recalculate unread message count
-        # fixme: this will not consider the (unlikely) situation where you have 100+ unread threads
+        # todo: consider the (unlikely) situation where you have 100+ unread threads
         unreadCount = 0
         unreadCount += thread.unreadMessages for thread in response.messages
         DataCache.messageCount unreadCount

@@ -1,0 +1,54 @@
+body.user {
+  article {
+    p {
+      text-align: center;
+    }
+    li {
+      padding: 4px 10px;
+      border-bottom: 1px solid #ccc;
+      &:nth-child(even) { background: rgb(240, 240, 240); }
+      .icon { margin: -2px 5px 0 0; }
+
+      div.card {
+        display: flex;
+        align-items: center;
+        margin-bottom: 4px;
+      }
+
+      .article {
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+      }
+      .price {
+        flex-grow: 1;
+        text-align: right;
+      }
+      .count {
+        margin: 0 5px;
+        min-width: 30px;
+        text-align: center;
+      }
+      .comment {
+        font-style: italic;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .card-image {
+        text-align: center;
+        padding: 10px;
+        img { max-width: 100%; }
+      }
+      button {
+        border: none;
+        height: 20px;
+        width: 35px;
+        padding: 0;
+        vertical-align: middle;
+        outline: none;
+      }
+    }
+  }
+}

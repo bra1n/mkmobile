@@ -6,7 +6,7 @@ angular.module 'mkmobile.controllers.wantslist', []
     @languages = MkmApiStock.getLanguages()
     @conditions = MkmApiStock.getConditions()
     @data = MkmApiWantslist.get $stateParams.idWantsList
-    @name = $stateParams.idWantsList # fixme: should be wantslist name
+    @name = $stateParams.idWantsList # todo: should be wantslist name
     @cardname = "" # suggestions search field
     @current = {} # currentl card in add screen
     @selected = [] # array of selected cards on a wants list

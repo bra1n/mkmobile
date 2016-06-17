@@ -77,6 +77,9 @@
         {{profile.data.user.legalInformation}}
       </textarea>
     </li>
+    <li class="link" ng-show="profile.data.user.username != username">
+      <a ui-sref="user(profile.data.user)" translate="profile.show_articles">Show articles from this user</a>
+    </li>
     <li class="link" ng-show="profile.data.user.username != username && loggedIn">
       <a ui-sref="message.user(profile.data.user)" translate="profile.contact">Contact this user</a>
     </li>

@@ -1,9 +1,44 @@
 <header>
-  <div class="title">SELLER</div>
+  <div class="title">{{user.seller.user.username}}</div>
   <div class="right">
-    <a ui-sref="profile.user(user.seller)" class="mkmicon info"></a>
+    <a ui-sref="profile.user(user.seller.user)" class="mkmicon info"></a>
   </div>
 </header>
 <article>
-SELLER STUFF
+
+  <p ng-show="user.data && !user.data.loading">
+    {{user.data.count}}
+    <span translate="common.articles"></span>
+  </p>
+
+  <!-- Articles -->
+  <ul ng-class="{loading:user.data.loading}" data-infinite-scroll="user.loadArticles()">
+    <li ng-repeat="article in user.data.articles track by article.idArticle" ng-class="{open:article.open}"
+        ng-click="article.open = !article.open" ng-if="article.count">
+      <div class="card">
+        <span class="icon card" ng-if="::article.product.image" ng-click="article.showImage = !article.showImage"></span>
+        <a ui-sref="product(article)" class="cardname">
+          {{::article.product.enName}}
+          <small ng-hide="::article.language.idLanguage == 1">{{::article.product.locName}}</small>
+        </a>
+      </div>
+      <div class="card-image" ng-show="article.showImage" ng-click="article.showImage = 0">
+        <img src="" ng-src="{{::article.showImage && (article.product.image | productImage)}}">
+      </div>
+      <div class="comment" ng-show="article.showComment">{{::article.comments}}</div>
+      <div class="article">
+        <span class="icon language language-{{::article.language.idLanguage}}"></span>
+        <span class="icon grading grading-{{::article.condition}}"></span>
+        <span class="icon is-foil" ng-if="::article.isFoil"></span>
+        <span class="icon is-signed" ng-if="::article.isSigned"></span>
+        <span class="icon is-altered" ng-if="::article.isAltered"></span>
+        <span class="icon is-firsted" ng-if="::article.isFirstEd"></span>
+        <span class="icon is-playset" ng-if="::article.isPlayset"></span>
+        <span class="icon comment" ng-if="::article.comments" ng-click="article.showComment = !article.showComment"></span>
+        <span class="price">{{::article.price | currency:"€"}}</span>
+        <span class="count">{{article.count}}</span>
+        <button ng-if="::article.seller.username != user.username" class="cart" ng-click="user.addToCart(article, $event)"></button>
+      </div>
+    </li>
+  </ul>
 </article>

@@ -40,6 +40,8 @@ angular.module 'mkmobile.services.api', ['ngResource']
     user: # get a single user
       params: {param0: 'users'}
       cache: yes
+    userArticles: # get all articles for a single user
+      params: {param0: 'users', param2: 'articles'}
 
     # Shopping Cart
     cart: # get shoppingcart contents

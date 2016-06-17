@@ -65,6 +65,7 @@ angular.module 'mkmobile.services.market', []
       else
         cb []
 
+    # get profile data for a user
     getUser: (idUser) ->
       response = user: DataCache.user idUser
       if !response.user?
@@ -75,5 +76,18 @@ angular.module 'mkmobile.services.market', []
         , (error) ->
           response.error = error
           response.loading = no
+      response
+
+    # get articles for a user
+    getUserArticles: (idUser, response) ->
+      response = count: 0, articles: [] unless response?
+      response.loading = yes
+      MkmApi.api.userArticles {param1: idUser, start: response.articles.length, maxResults: 100}, (data) ->
+        response.count = data._range or data.article?.length
+        response.articles = response.articles.concat data.article if response.count
+        response.loading = no
+      , (error) ->
+        response.error = error
+        response.loading = no
       response
 ]

@@ -3,6 +3,7 @@
   <a ui-sref="order.buy" ng-show="data.order.idOrder && data.order.isBuyer" class="back"></a>
   <a ui-sref="order.sell" ng-show="data.order.idOrder && !data.order.isBuyer" class="back"></a>
   <span translate="order.title">Order Nr.:</span>
+
   {{data.order.idOrder || data.order.idReservation}}
 </header>
 <article>
