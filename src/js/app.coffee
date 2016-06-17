@@ -99,7 +99,7 @@ mkmobileApp.config [
     .state 'profile.user',
       url:          '/:idUser'
       templateUrl:  '/partials/pages/profile.user.html'
-      controller:   'UserCtrl as user'
+      controller:   'ProfileCtrl as profile'
       noLogin:      yes
 
     # order management
@@ -183,10 +183,10 @@ mkmobileApp.config [
       templateUrl:  '/partials/pages/product.html'
       controller:   'ProductCtrl as product'
       noLogin:      yes
-    .state 'seller',
-      url:          '/seller/:idUser'
-      templateUrl:  '/partials/pages/seller.html'
-      controller:   'SellerCtrl as seller'
+    .state 'user',
+      url:          '/user/:idUser'
+      templateUrl:  '/partials/pages/user.html'
+      controller:   'UserCtrl as user'
       noLogin:      yes
     .state 'callback',
       url:          '/callback'

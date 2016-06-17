@@ -12,8 +12,8 @@ angular.module 'mkmobile.filters', []
 # return label for needle value in haystack object
 .filter 'findInMap', -> (needle, haystack) -> return obj.label for obj in haystack when obj.value is needle
 
-# return array with range of 1 to input elements
-.filter 'range', -> (input) -> [1..input]
+# return array with range of 1 to n elements
+.filter 'range', -> (n) -> [1..n]
 
 # escape regex chars
 .filter 'escapeRegex', -> (str) -> (str or "").replace /[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&"

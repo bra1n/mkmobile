@@ -1,84 +1,84 @@
 <header>
   <a href="javascript:history.back()" class="back"></a>
-  <div class="title">{{user.data.user.username}}</div>
-  <div class="right" ng-show="user.data.user.username == user.username">
+  <div class="title">{{profile.data.user.username}}</div>
+  <div class="right" ng-show="profile.data.user.username == profile.username">
     <a ui-sref="profile.account" class="active mkmicon info"></a>
   </div>
 </header>
 
-<article ng-class="{loading: user.data.loading}">
-  <ul ng-show="user.data.user">
+<article ng-class="{loading: profile.data.loading}">
+  <ul ng-show="profile.data.user">
     <li>
       <div class="label" translate="profile.evaluation">Evaluation as Seller</div>
-      <i class="icon reputation reputation-{{user.data.user.reputation}}"></i>
-      <b>{{'article.seller.'+user.data.user.reputation | translate}}</b>
+      <i class="icon reputation reputation-{{profile.data.user.reputation}}"></i>
+      <b>{{'article.seller.'+profile.data.user.reputation | translate}}</b>
     </li>
     <li>
       <div class="label" translate="profile.registered">Registered as</div>
-      <i class="icon commercial commercial-{{user.data.user.isCommercial}}"></i>
-      <b>{{'article.account.'+user.data.user.isCommercial | translate}}</b>
+      <i class="icon commercial commercial-{{profile.data.user.isCommercial}}"></i>
+      <b>{{'article.account.'+profile.data.user.isCommercial | translate}}</b>
     </li>
-    <li ng-if="user.data.user.name.company">
+    <li ng-if="profile.data.user.name.company">
       <div class="label" translate="profile.company">Company</div>
-      <b>{{user.data.user.name.company}}</b>
+      <b>{{profile.data.user.name.company}}</b>
     </li>
     <li>
       <div class="label" translate="profile.name">Name</div>
-      <b>{{user.data.user.name.firstName}} {{user.data.user.name.lastName}}</b>
+      <b>{{profile.data.user.name.firstName}} {{profile.data.user.name.lastName}}</b>
     </li>
-    <li ng-if="user.data.user.isCommercial">
+    <li ng-if="profile.data.user.isCommercial">
       <div class="label" translate="profile.address">Address</div>
       <b>
-        <span>{{user.data.user.address.street}}</span>
-        <span>{{user.data.user.address.extra}}</span>
-        <span>{{user.data.user.address.zip}} {{user.data.user.address.city}}</span>
+        <span>{{profile.data.user.address.street}}</span>
+        <span>{{profile.data.user.address.extra}}</span>
+        <span>{{profile.data.user.address.zip}} {{profile.data.user.address.city}}</span>
       </b>
     </li>
     <li>
       <div class="label" translate="profile.country">Country</div>
-      <i class="icon country country-{{user.data.user.address.country}}"></i>
-      <b>{{'address.countries.'+user.data.user.address.country | translate}}</b>
+      <i class="icon country country-{{profile.data.user.address.country}}"></i>
+      <b>{{'address.countries.'+profile.data.user.address.country | translate}}</b>
     </li>
-    <li ng-if="user.data.user.phoneNumber">
+    <li ng-if="profile.data.user.phoneNumber">
       <div class="label" translate="profile.phone">Phone</div>
-      <b>{{user.data.user.phoneNumber}}</b>
+      <b>{{profile.data.user.phoneNumber}}</b>
     </li>
-    <li ng-if="user.data.user.email">
+    <li ng-if="profile.data.user.email">
       <div class="label" translate="common.email">Email</div>
-      <b>{{user.data.user.email}}</b>
+      <b>{{profile.data.user.email}}</b>
     </li>
-    <li ng-if="user.data.user.vat">
+    <li ng-if="profile.data.user.vat">
       <div class="label" translate="common.vat">VAT</div>
-      <b>{{user.data.user.vat}}</b>
+      <b>{{profile.data.user.vat}}</b>
     </li>
     <li>
       <div class="label" translate="profile.sales">Sales</div>
-      <b>{{user.data.user.sellCount}}</b>
+      <b>{{profile.data.user.sellCount}}</b>
     </li>
     <li>
       <div class="label" translate="profile.sold">Sold Items</div>
-      <b>{{user.data.user.soldItems}}</b>
+      <b>{{profile.data.user.soldItems}}</b>
     </li>
     <li>
       <div class="label" translate="profile.shipping">Avg Shipping</div>
-      <b translate="profile.days" translate-values="{x: user.data.user.avgShippingTime}"></b>
+      <b translate="profile.days" translate-values="{x: profile.data.user.avgShippingTime}"></b>
     </li>
     <li>
       <div class="label" translate="profile.loss_percentage">Loss Percentage</div>
-      <b>{{user.data.user.lossPercentage}}</b>
+      <b>{{profile.data.user.lossPercentage}}</b>
     </li>
     <li>
       <div class="label" translate="profile.unsent_shipments">Unsent Shipments</div>
-      <b>{{user.data.user.unsentShipments}}</b>
+      <b>{{profile.data.user.unsentShipments}}</b>
     </li>
-    <li ng-if="user.data.user.legalInformation" class="link">
+    <li ng-if="profile.data.user.legalInformation" class="link">
       <a ng-click="user.showLegal = !user.showLegal" translate="profile.legal_information">Legal Information</a>
       <textarea disabled ng-show="user.showLegal">
-        {{user.data.user.legalInformation}}
+        {{profile.data.user.legalInformation}}
       </textarea>
     </li>
-    <li class="link" ng-show="user.data.user.username != username && loggedIn">
-      <a ui-sref="message.user(user.data.user)" translate="profile.contact">Contact this user</a>
+    <li class="link" ng-show="profile.data.user.username != username && loggedIn">
+      <a ui-sref="message.user(profile.data.user)" translate="profile.contact">Contact this user</a>
     </li>
   </ul>
 </article>

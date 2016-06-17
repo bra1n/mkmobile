@@ -1,9 +1,8 @@
-# /profile
+# /seller
 angular.module 'mkmobile.controllers.user', []
 .controller 'UserCtrl', [
-  'MkmApiAuth', 'MkmApiMarket', '$stateParams'
-  (MkmApiAuth, MkmApiMarket, $stateParams) ->
-    @username = MkmApiAuth.getUsername()
-    @data = MkmApiMarket.getUser $stateParams.idUser
+  '$stateParams', 'MkmApiMarket', 'MkmApiAuth', 'MkmApiCart'
+  ($stateParams, MkmApiMarket, MkmApiAuth, MkmApiCart) ->
+    @seller = idUser: $stateParams.idUser
     @
 ]

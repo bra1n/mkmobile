@@ -11,7 +11,6 @@ angular.module 'mkmobile.controllers', [
   'mkmobile.controllers.profile'
   'mkmobile.controllers.recover'
   'mkmobile.controllers.register'
-  'mkmobile.controllers.seller'
   'mkmobile.controllers.stock'
   'mkmobile.controllers.user'
   'mkmobile.controllers.wantslist'
