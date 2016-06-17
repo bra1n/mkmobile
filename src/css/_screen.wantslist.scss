@@ -3,29 +3,32 @@ body.wantslist {
     p.loading { height: 30px; }
     form.create {
       padding: 30px 10px;
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+      input {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-right: none;
+        flex-grow: 1;
+      }
+      .button {
+        height: 29px;
+        line-height: 9px;
+        box-sizing: border-box;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        font-size: 14px;
+      }
     }
-    label {
-      display: block;
-      margin-bottom: 5px;
-    }
-    input {
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
-      border-right: none;
-      flex-grow: 1;
-    }
-    .button {
-      height: 29px;
-      line-height: 9px;
-      box-sizing: border-box;
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-      font-size: 14px;
-    }
+
     .row {
       display: flex;
       width: 100%;
     }
+
+    // list of wants lists
     ul.lists li {
       border-bottom: 1px solid #ccc;
       box-sizing: border-box;
@@ -56,6 +59,43 @@ body.wantslist {
         line-height: 100%;
         padding: 20px 0;
       }
+    }
+
+    // single wants list
+    div.add {
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    // list of wants list items
+    ul.list {
+      li.empty {
+        text-align: center;
+        padding: 30px 10px;
+      }
+    }
+  }
+
+  // add / edit card forms
+  form.overlay {
+    .search input {
+      width: 100%;
+    }
+    ul.suggestions {
+      border-bottom: 1px solid #ccc;
+      li {
+        padding: 5px 10px;
+        &:nth-child(odd) {
+          background: rgb(240, 240, 240);
+        }
+      }
+    }
+    .language {
+      .icons {
+        max-width: 78px;
+        text-align: right;
+      }
+      select { height: auto; }
     }
   }
 }

@@ -3,6 +3,7 @@
 
 // Variables
 $mkmBlue: #012169;
+$mkmLink: #0240ca;
 $mkmGold: #E1C564;
 $mkmGreen: #1A8444;
 $mkmRed: #E9282E;
@@ -18,7 +19,7 @@ body, html {
 
 a {
   text-decoration: none;
-  color: #0240ca;
+  color: $mkmLink;
 }
 
 input, button, select {
@@ -161,6 +162,12 @@ input, textarea {
   &.gray { background: gray; }
 }
 
+// common button icons
+button.remove { background:url("/img/remove.png") transparent center center no-repeat; }
+button.add { background:url("/img/add.png") transparent center center no-repeat; }
+button.edit { background: url("/img/edit.png") transparent center center no-repeat; }
+button.cart { background: url("/img/cart.png") no-repeat center center transparent; }
+
 // link arrow
 .link {
   position: relative;
@@ -173,8 +180,6 @@ input, textarea {
     pointer-events: none;
   }
 }
-button.remove { background:url("/img/remove.png") transparent center center no-repeat; }
-button.add { background:url("/img/add.png") transparent center center no-repeat; }
 
 // errors
 .error {
@@ -208,28 +213,75 @@ div.loading {
   background-repeat: no-repeat;
 }
 
-// Transition between screens, if ng-animate is enabled
+// card name in dual language
+.cardname {
+  color: $mkmLink;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  small {
+    display: block;
+    font-weight: normal;
+    font-style: italic;
+    color: #444;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+// overlay screen
+.overlay {
+  position: fixed;
+  top: 70px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+  background-color: #fff;
+}
+
+// overlay form
+form.overlay {
+  label {
+    display: flex;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    align-items: center;
+    span { flex-grow: 1; }
+    b { color: $mkmBlue; }
+    i {
+      margin: 0 5px;
+      flex-shrink: 0;
+    }
+    > input, select, b {
+      flex-shrink: 0;
+      width: 40%;
+    }
+  }
+  .buttons {
+    display: flex;
+    padding: 10px;
+    button[type=submit] {
+      flex-grow: 1;
+    }
+    button.gray {
+      margin-right: 5px;
+    }
+  }
+  div.error {
+    border-bottom: 1px solid #ccc;
+  }
+}
+
+// Container styling
 #container {
   position: relative;
   height: 100%;
   #content {
     height: 100%;
-    &.ng-enter, &.ng-leave {
-      transition: 0.3s linear all;
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      width: 100%;
-      background: white;
-    }
-    &.ng-enter { opacity:0; }
-    &.ng-enter.ng-enter-active { opacity:1; }
-    &.ng-leave { opacity:1; }
-    &.ng-leave.ng-leave-active { opacity:0; }
   }
 }
-
 
 // Sprites and Fonts
 @import "sprites";

@@ -18,12 +18,12 @@
 <mkm-product product-data="product.productData" ng-show="product.screen == 'details'"></mkm-product>
 
 <!-- Product Filter -->
-<form id="filter" ng-show="product.screen == 'filter'" ng-submit="product.applyFilter()">
+<form id="filter" class="overlay" ng-show="product.screen == 'filter'" ng-submit="product.applyFilter()">
   <label>
     <span translate="product.filter.account">Account Type</span>
     <i class="icon commercial commercial-{{product.filter.userType}}"></i>
     <select ng-model="product.filter.userType">
-      <option value="" translate="product.filter.no_preference">No preference</option>
+      <option value="" translate="common.no_preference">No preference</option>
       <option value="private" translate="article.account.0">Private</option>
       <option value="commercial" translate="article.account.1">Professional</option>
       <option value="powerseller" translate="article.account.2">Powerseller</option>
@@ -33,7 +33,7 @@
     <span translate="product.filter.seller">Seller Evaluation</span>
     <i class="icon reputation reputation-{{product.filter.minUserScore}}"></i>
     <select ng-model="product.filter.minUserScore">
-      <option value="" translate="product.filter.no_preference">No preference</option>
+      <option value="" translate="common.no_preference">No preference</option>
       <option value="1" translate="article.seller.1">Outstanding</option>
       <option value="2" translate="article.seller.2">Very good</option>
       <option value="3" translate="article.seller.3">Good</option>
@@ -44,7 +44,7 @@
     <span translate="common.language">Language</span>
     <i class="icon language language-{{product.filter.idLanguage}}"></i>
     <select ng-model="product.filter.idLanguage">
-      <option value="" translate="product.filter.no_preference">No preference</option>
+      <option value="" translate="common.no_preference">No preference</option>
       <option ng-repeat="language in product.languages" value="{{language}}"
               translate="article.languages.{{language}}"></option>
     </select>
@@ -53,7 +53,7 @@
     <span translate="article.condition">Minimum Condition</span>
     <i class="icon grading grading-{{product.filter.minCondition}}"></i>
     <select ng-model="product.filter.minCondition">
-      <option value="" translate="product.filter.no_preference">No preference</option>
+      <option value="" translate="common.no_preference">No preference</option>
       <option ng-repeat="condition in product.conditions" value="{{condition}}"
               translate="article.conditions.{{condition}}"></option>
     </select>
@@ -63,9 +63,9 @@
     <i class="icon is-foil" ng-show="product.filter.isFoil == 'true'"></i>
     <i class="icon no" ng-show="product.filter.isFoil == 'false'"></i>
     <select ng-model="product.filter.isFoil">
-      <option value="" translate="product.filter.no_preference">No preference</option>
-      <option value="true" translate="product.filter.yes">Yes</option>
-      <option value="false" translate="product.filter.no">No</option>
+      <option value="" translate="common.no_preference">No preference</option>
+      <option value="true" translate="common.yes">Yes</option>
+      <option value="false" translate="common.no">No</option>
     </select>
   </label>
   <label>
@@ -73,9 +73,9 @@
     <i class="icon is-signed" ng-show="product.filter.isSigned == 'true'"></i>
     <i class="icon no" ng-show="product.filter.isSigned == 'false'"></i>
     <select ng-model="product.filter.isSigned">
-      <option value="" translate="product.filter.no_preference">No preference</option>
-      <option value="true" translate="product.filter.yes">Yes</option>
-      <option value="false" translate="product.filter.no">No</option>
+      <option value="" translate="common.no_preference">No preference</option>
+      <option value="true" translate="common.yes">Yes</option>
+      <option value="false" translate="common.no">No</option>
     </select>
   </label>
   <label>
@@ -83,9 +83,9 @@
     <i class="icon is-altered" ng-show="product.filter.isAltered == 'true'"></i>
     <i class="icon no" ng-show="product.filter.isAltered == 'false'"></i>
     <select ng-model="product.filter.isAltered">
-      <option value="" translate="product.filter.no_preference">No preference</option>
-      <option value="true" translate="product.filter.yes">Yes</option>
-      <option value="false" translate="product.filter.no">No</option>
+      <option value="" translate="common.no_preference">No preference</option>
+      <option value="true" translate="common.yes">Yes</option>
+      <option value="false" translate="common.no">No</option>
     </select>
   </label>
   <label>
@@ -99,7 +99,7 @@
 </form>
 
 <!-- Sell Article -->
-<form id="sell" ng-show="product.screen == 'sell' || product.screen == 'edit'" ng-submit="product.sell()">
+<form id="sell" class="overlay" ng-show="product.screen == 'sell' || product.screen == 'edit'" ng-submit="product.sell()">
   <label>
     <span translate="product.sell.article">Article</span>
     <i ng-if="product.productData.product.rarity" ng-class="product.productData.product | rarityIcon"></i>
@@ -182,7 +182,7 @@
         <button class="add" ng-click="product.add(article, $event)"></button>
 
       </div>
-      <a ui-sref="seller({idUser:article.seller.idUser})" ng-click="$event.stopPropagation()">
+      <a ui-sref="user(article.seller)" ng-click="$event.stopPropagation()">
         {{::article.seller.username}}
         <span ng-if="::article.seller.address.country" class="icon country country-{{::article.seller.address.country}}"></span>
       </a>

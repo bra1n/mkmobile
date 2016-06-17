@@ -29,6 +29,7 @@
     "comment": "Comment",
     "desktop": "To desktop version",
     "email": "Email Address",
+    "expansion": "Expansion",
     "instabuy": "Instabuy",
     "insured": "Insured",
     "items_shipping": "Items + Shipping Methods",
@@ -36,6 +37,7 @@
     "loading": "Loading...",
     "logout": "Logout",
     "menu": "Menu",
+    "no_preference": "No preference",
     "paypal": "PayPal",
     "price": "Price",
     "save": "Save Changes",
@@ -43,6 +45,8 @@
     "source": "View source code",
     "total": "Total",
     "uninsured": "Uninsured",
+    "yes": "Yes",
+    "no": "No",
     "languages": {
       "1": "English",
       "2": "French",
@@ -323,10 +327,7 @@
       "seller": "Minimum Seller Evaluation",
       "condition": "Minimum Condition",
       "filter": "Filter",
-      "clear": "Clear",
-      "no_preference": "No preference",
-      "yes": "Yes",
-      "no": "No"
+      "clear": "Clear"
     },
     "sell": {
       "article": "Article",
@@ -377,7 +378,6 @@
     "error": "Error loading search results",
     "name": "Name",
     "foreign_name": "Foreign Name",
-    "expansion": "Expansion",
     "rarity": "Rarity",
     "cancel": "Cancel",
     "sort": "- Sort by"
@@ -417,11 +417,22 @@
   "wantslist": {
     "addlabel": "Add new Wants List",
     "name": "List Name",
+    "mywants": "My Wants",
     "addbutton": "Add List",
     "list": "List(s)",
     "empty": "You haven't added lists to your wants lists yet.",
+    "emptylist": "You haven't added cards to your wants list yet.",
     "save": "Save",
     "confirm": "Are you sure you want to delete '{{name}}'?",
-    "items": "{{itemCount}} items"
+    "items": "{{itemCount}} items",
+    "search": "Search this wants list",
+    "card": "Card",
+    "addcard": "Add Wanted Card",
+    "editcard": "Edit Card",
+    "cardname": "Enter Card Name",
+    "email_alarm": "Email Alarm?",
+    "buy_price": "Buy Price",
+    "button_add": "Add Card",
+    "button_edit": "Save Changes"
   }
 }

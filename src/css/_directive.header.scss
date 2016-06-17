@@ -123,16 +123,9 @@ body.loggedout header .logo {
 }
 
 // Overlay below header
-.overlay {
+#search.overlay, #menu.overlay {
   z-index: 1010;
-  position: fixed;
-  top: 40px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding-top: 30px;
   background: rgba(255, 255, 255, 0.9);
-  overflow: auto;
 }
 
 // Menu Styling

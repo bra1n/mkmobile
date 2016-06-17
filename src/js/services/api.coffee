@@ -29,10 +29,14 @@ angular.module 'mkmobile.services.api', ['ngResource']
     product: # get a single product
       params: param0: 'products'
       cache: yes
+    metaproducts: # search for metaproducts
+      params: {param0: 'metaproducts', param1: 'find', idGame:window.gameId or '1', idLanguage:'1', exact: no}
+      unique: 'metaproduct'
+      cache: yes
     users: # search for a user
       params: {param0: 'users', param1: 'find'}
-      cache: yes
       unique: 'user'
+      cache: yes
     user: # get a single user
       params: {param0: 'users'}
       cache: yes

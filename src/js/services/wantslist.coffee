@@ -1,10 +1,11 @@
 angular.module 'mkmobile.services.wantslist', []
-.factory 'MkmApiWantslist', [ 'MkmApi', (MkmApi) ->
+.factory 'MkmApiWantslist', [ 'MkmApi', 'MkmApiAuth', (MkmApi, MkmApiAuth) ->
   # retrieve wantslists
-  get: (idWantslist) ->
-    if idWantslist? # single list items
+  get: (idWantsList) ->
+    if idWantsList? # single list items
       response = items: [], loading: yes
-      MkmApi.api.wantslist {param1: idWantslist}, (data) =>
+      MkmApi.api.wantslist {param1: idWantsList}, (data) =>
+        response.count = data._range or data.want?.length
         response.items = data.want
         response.loading = no
       , ->
@@ -23,37 +24,54 @@ angular.module 'mkmobile.services.wantslist', []
     response
 
   # change a wantslist
-  update: (wantslist, cb) ->
-#    request = article:
-#      idArticle: article.idArticle
-#      idLanguage: article.idLanguage or article.language.idLanguage
-#      comments: article.comments
-#      count: article.amount or article.count
-#      price: article.price
-#      condition: article.condition
-#      isFoil: article.isFoil
-#      isSigned: article.isSigned
-#      isAltered: article.isAltered
-#      isPlayset: article.isPlayset
-#      isFirstEd: article.isFirstEd
-#    MkmApi.api.stockUpdate request, (data) =>
-#      if data.updatedArticles?.length
-#        # updated articles receive a new ID, so delete the old cache
-#        DataCache.article article.idArticle, false
-#        DataCache.article data.updatedArticles[0].idArticle, data.updatedArticles[0]
-#        cb?()
-    false
+  update: (idWantslist, card, cb) ->
+    request = action: if card.idWant then "editItem" else "addItem"
+    type = if card.selected then "product" else "metaproduct"
+    type = "want" if card.idWant
+    request[type] =
+      count: card.count
+      wishPrice: card.wishPrice
+      idLanguage: card.idLanguage or ""
+      minCondition: card.minCondition or ""
+      isSigned: card.isSigned or ""
+      isFoil: card.isFoil or ""
+      isAltered: card.isAltered or ""
+      idProduct: card.selected.idProduct or ""
+      idMetaproduct: card.metaproduct.idMetaproduct or ""
+    MkmApi.api.wantslistUpdate {param1: idWantslist}, request, (data) ->
+      cb?(data)
 
   # add a new article to the stock, will pass any error messages to the callback
-  create: (name, cb) ->
-#    MkmApi.api.stockCreate {article}, (data) =>
-#      if data.inserted?.length and data.inserted[0].success
-#        DataCache.article data.inserted[0].idArticle, data.inserted[0]
-#        cb?()
-#      else
-#        cb? data.inserted[0].error
-    false
+  create: (wantslist, cb) ->
+    MkmApi.api.wantslistCreate {wantslist}, (data) =>
+      cb?(data)
 
-  delete: (list, cb) ->
-    false
+  # rename a wantslist
+  rename: (idWantsList, name, cb) ->
+    request =
+      action: "editWantslist"
+      name: name
+    MkmApi.api.wantslistUpdate {param1: idWantsList}, {request}, (data) ->
+      cb?(data)
+
+  # delete a wants list
+  delete: (idWantsList, cb) ->
+    MkmApi.api.wantslistDelete {param1: idWantsList}, (data) ->
+      cb?(data)
+
+  # search for a metaproduct
+  search: (search = "") ->
+    response = count: 0, products: [], loading: no
+    if search.length > 1
+      response.loading = yes
+      MkmApi.api.metaproducts {search, idLanguage: MkmApiAuth.getLanguage()}, (data) =>
+        # todo: remove this once metaproducts contain these fields by default
+        response.products = data.metaproduct?.splice(0,20).map (val) ->
+          for loc in val.metaproduct.localization
+            val.metaproduct.localizedName = loc.name if parseInt(loc.idLanguage, 10) is MkmApiAuth.getLanguage()
+            val.metaproduct.enName = loc.name if parseInt(loc.idLanguage, 10) is 1
+          val
+        response.count = response.products?.length
+        response.loading = no
+    response
 ]

@@ -8,49 +8,6 @@ body.product {
   }
   &.loggedin #content header { padding-right: 80px; }
 
-  #filter, #sell {
-    position: fixed;
-    top: 70px;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    overflow: auto;
-    background-color: #fff;
-  }
-
-  /* Product Filter / Selling */
-  form {
-    label {
-      display: flex;
-      padding: 10px;
-      border-bottom: 1px solid #ccc;
-      align-items: center;
-      span { flex-grow: 1; }
-      b { color: $mkmBlue; }
-      i {
-        margin: 0 5px;
-        flex-shrink: 0;
-      }
-      > input, select, b {
-        flex-shrink: 0;
-        width: 40%;
-      }
-    }
-    .buttons {
-      display: flex;
-      padding: 10px;
-      button[type=submit] {
-        flex-grow: 1;
-      }
-      button.gray {
-        margin-right: 5px;
-      }
-    }
-    div.error {
-      border-bottom: 1px solid #ccc;
-    }
-  }
-
   /* Articles */
   article {
     .icon.commercial-0 { display: none; }
@@ -88,15 +45,11 @@ body.product {
       }
       button {
         border: none;
-        background: url("/img/cart.png") no-repeat center center transparent;
         height: 20px;
         width: 35px;
         padding: 0;
         vertical-align: middle;
         outline: none;
-        &.add { background: url("/img/add.png") transparent center center no-repeat; }
-        &.remove { background: url("/img/remove.png") transparent center center no-repeat; }
-        &.edit { background: url("/img/edit.png") transparent center center no-repeat; }
       }
       .sell {
         line-height: 18px;
