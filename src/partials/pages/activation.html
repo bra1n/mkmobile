@@ -1,0 +1,13 @@
+<header translate="titles.activation">Activate Account</header>
+<article>
+  <p translate="activation.description"></p>
+  <form ng-submit="activation.submit()">
+    <label for="code" translate="activation.activation_code">Activation Code</label>
+    <input type="text" ng-model="activation.code" id="code" minlength="6">
+    <div class="error" ng-show="activation.error" translate="activation.error">Error retrieving access, please retry</div>
+    <button type="submit" class="button" ng-disabled="!activation.code"
+            translate="activation.submit">Recover Username</button>
+  </form>
+  <a ng-hide="activation.resendRequested" ng-click="activation.resend()"
+     translate="activation.resend">Resend activation code</a>
+</article>

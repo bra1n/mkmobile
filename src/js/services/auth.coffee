@@ -21,16 +21,20 @@ angular.module 'mkmobile.services.auth', []
       sessionStorage.removeItem "search"
       sessionStorage.removeItem "filter"
       DataCache.reset()
-      $state.go 'login'
+      $state.go "login"
 
     # checks whether a user is logged in and redirects if necessary
-    checkLogin: ->
+    checkLogin: (next) ->
       response = @isLoggedIn()
       unless response or $state.is "login"
         unless $state.current.name in ["register", "recover"]
           redirectAfterLogin = $state.current
           redirectAfterLogin.params or= $state.params # for some reason, those are not in state.current?
-        $state.go 'login'
+        $state.go "login"
+        response = false
+      if DataCache.account()?.isActivated is false and (!next or next.name isnt "activation")
+        $state.go "activation"
+        response = false
       response
 
     # log the user in and store auth in the session
@@ -53,7 +57,10 @@ angular.module 'mkmobile.services.auth', []
           }
           @cache data.account
           response.success = yes
-          $state.go redirectAfterLogin.name, redirectAfterLogin.params
+          if data.account.isActivated
+            $state.go redirectAfterLogin.name, redirectAfterLogin.params
+          else
+            $state.go "activation"
       , -> response.error = yes
       response
 
@@ -126,4 +133,14 @@ angular.module 'mkmobile.services.auth', []
       { value: 4, label: "es_ES" }
       { value: 5, label: "it_IT" }
     ]
+
+    # activate account / resend activation
+    activateAccount: (activationCode, cb) ->
+      if activationCode
+        MkmApi.api.accountActivation {activationCode}, (data) =>
+          cb? @cache data.account
+        , cb
+      else
+        MkmApi.api.accountActivationResend {}, (data) =>
+          cb?(data)
 ]

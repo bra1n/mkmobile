@@ -9,7 +9,7 @@
     <button type="button" ng-click="toggleSearch()" class="mkmicon cancel-circle"></button>
   </form>
   <a ng-hide="searchOpen" ng-click="toggleSearch()" class="search mkmicon"></a>
-  <a ng-hide="!loggedIn || searchOpen" href="/cart" class="cart mkmicon">
+  <a ng-hide="!loggedIn || searchOpen || !isActivated" href="/cart" class="cart mkmicon">
     <span class="counter" ng-show="cart">{{cart}}</span>
   </a>
 </header>

@@ -106,6 +106,11 @@ angular.module 'mkmobile.services.api', ['ngResource']
     accountCoupon: # redeem coupon
       params: {param0: 'account', param1: 'coupon'}
       method: 'POST'
+    accountActivation: # activate account
+      params: {param0: 'account', param1: 'activation'}
+      method: 'POST'
+    accountActivationResend: # resend activation code
+      params: {param0: 'account', param1: 'activation'}
 
     messages: # get all messages
       params: {param0: 'account', param1: 'messages'}

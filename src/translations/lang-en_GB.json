@@ -1,6 +1,7 @@
 {
   "titles": {
-    "activation": "Become Seller",
+    "activation": "Account Activation",
+    "activation_seller": "Become Seller",
     "app": "MCM Mobile",
     "buys": "Purchases",
     "cart": "My Shopping Cart",
@@ -55,6 +56,15 @@
       "4": "Spanish",
       "5": "Italian"
     }
+  },
+  "activation": {
+    "activation_code": "Activation Code",
+    "description": "Your account hasn't been activated. Please enter the activation code you received by email.",
+    "error": "The activation code was not correct",
+    "resend": "Resend activation code",
+    "submit": "Submit Code",
+    "success": "Your account has been activated.",
+    "success_resend": "The activation code has been sent to your email address again."
   },
   "contact": {
     "explanation": "If you have a question about an order, please send us the SHIPMENT NR. Messages without this number cannot be processed.",

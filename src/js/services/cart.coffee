@@ -90,9 +90,6 @@ angular.module 'mkmobile.services.cart', []
   # empties the shopping cart
   empty: ->
     MkmApi.api.cartEmpty {}, (data) =>
-      # todo remove once implemented on API side
-      data or= {}
-      data.shoppingCart or= []
       @cache data
 
   # cache cart data

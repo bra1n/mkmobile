@@ -22,7 +22,7 @@
     </div>
     <div class="multiple" ng-show="data.cart.length > 1">
       <div class="titlebar">
-        <a href="javascript:void()" ng-click="emptyCart()" class="right" translate="cart.delete">Empty cart</a>
+        <a ng-click="emptyCart()" class="right" translate="cart.delete">Empty cart</a>
         <span translate="cart.headline" translate-values="{orders:data.cart.length, articles:count}"></span>
       </div>
       <ul>

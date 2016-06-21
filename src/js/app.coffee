@@ -43,6 +43,16 @@ mkmobileApp.config [
       templateUrl:  '/partials/pages/search.html'
       controller:   'SearchCtrl'
 
+    # activation
+    .state 'activation',
+      url:          '/activation',
+      templateUrl:  '/partials/pages/activation.html'
+      controller:   'ActivationCtrl as activation'
+    .state 'activation.seller',
+      url:          '/seller',
+      templateUrl:  '/partials/pages/activation.seller.html'
+      controller:   'ActivationCtrl as activation'
+
     # shopping cart
     .state 'cart',
       abstract:     yes
@@ -256,7 +266,7 @@ mkmobileApp.run [
       $rootScope.languageId = MkmApiAuth.getLanguage()
     # check login
     $rootScope.$on '$stateChangeStart', (event, next) ->
-      event.preventDefault() unless next.noLogin or MkmApiAuth.checkLogin()
+      event.preventDefault() unless next.noLogin or MkmApiAuth.checkLogin(next)
     # new page, update view class and title
     $rootScope.$on '$stateChangeSuccess', (event, current) ->
       if current.name

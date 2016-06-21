@@ -1,4 +1,5 @@
 angular.module 'mkmobile.controllers', [
+  'mkmobile.controllers.activation'
   'mkmobile.controllers.callback'
   'mkmobile.controllers.cart'
   'mkmobile.controllers.contact'

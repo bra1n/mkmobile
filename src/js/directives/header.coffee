@@ -10,9 +10,10 @@ angular.module 'mkmobile.directives.header', []
       scope.sort = "enName"
       scope.gameId = window.gameId or 1
       scope.languages = MkmApiAuth.getLanguages()
-      MkmApiAuth.getAccount ->
+      MkmApiAuth.getAccount (data) ->
         scope.idLanguage = MkmApiAuth.getLanguage()
         scope.cart = MkmApiCart.count()
+        scope.isActivated = data.account?.isActivated
 
       # change language
       scope.updateLanguage = -> MkmApiAuth.setLanguage scope.idLanguage

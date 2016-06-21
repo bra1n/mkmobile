@@ -1,0 +1,20 @@
+// activate account
+body.activation {
+  article {
+    text-align: center;
+    p, form {
+      padding: 10px;
+    }
+    button, input {
+      width: 100%;
+      margin: 2px 0 8px;
+    }
+    label {
+      display: block;
+      text-align: left;
+    }
+    a {
+      font-weight: bold;
+    }
+  }
+}
