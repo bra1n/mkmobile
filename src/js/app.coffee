@@ -158,7 +158,7 @@ mkmobileApp.config [
       templateUrl:  '/partials/pages/wantslist.list.html'
       controller:   'WantslistCtrl as wantslist'
     .state 'wantslist.single',
-      url:          '/:idWantsList'
+      url:          '/:idWantslist'
       templateUrl:  '/partials/pages/wantslist.single.html'
       controller:   'WantslistCtrl as wantslist'
 

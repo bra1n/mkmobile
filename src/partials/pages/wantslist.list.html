@@ -4,13 +4,15 @@
 </header>
 
 <article>
-  <form class="create" ng-submit="wantslist.create()">
-    <label for="name" translate="wantslist.addlabel">Add new Wants List</label>
-    <div class="row">
-      <input required type="text" id="name" ng-model="wantslist.name" placeholder="{{'wantslist.name' | translate}}">
-      <button type="submit" class="button" translate="wantslist.addbutton">Add List</button>
-    </div>
-  </form>
+  <div class="create">
+    <form name="wantslist.createForm" ng-submit="wantslist.create()">
+      <label for="name" translate="wantslist.addlabel">Add new Wants List</label>
+      <div class="row">
+        <input type="text" id="name" ng-model="wantslist.name" placeholder="{{'wantslist.name' | translate}}">
+        <button type="submit" class="button" ng-disabled="!wantslist.name" translate="wantslist.addbutton">Add List</button>
+      </div>
+    </form>
+  </div>
 
   <p ng-show="wantslist.data.loading" class="loading"></p>
   <ul class="lists" ng-hide="wantslist.data.loading">
@@ -21,10 +23,10 @@
           {{list.name}}
           (<span translate="wantslist.items" translate-values="list">(123 Items)</span>)
         </a>
-        <button type="button" class="edit" ng-click="list.edit = 1"></button>
-        <button type="button" class="remove" ng-click="wantslist.delete(list)"></button>
+        <button type="button" class="icon edit" ng-click="list.edit = 1"></button>
+        <button type="button" class="icon remove" ng-click="wantslist.delete(list)"></button>
       </div>
-      <form ng-show="list.edit" ng-submit="wantslist.update(list)">
+      <form ng-show="list.edit" ng-submit="wantslist.rename(list)">
         <input type="text" required ng-model="list.name" placeholder="List Name">
         <button type="submit" class="button" translate="wantslist.save">Save</button>
       </form>

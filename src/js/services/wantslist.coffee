@@ -1,12 +1,16 @@
 angular.module 'mkmobile.services.wantslist', []
 .factory 'MkmApiWantslist', [ 'MkmApi', 'MkmApiAuth', (MkmApi, MkmApiAuth) ->
   # retrieve wantslists
-  get: (idWantsList) ->
-    if idWantsList? # single list items
-      response = items: [], loading: yes
-      MkmApi.api.wantslist {param1: idWantsList}, (data) =>
-        response.count = data._range or data.want?.length
-        response.items = data.want
+  get: (idWantslist) ->
+    if idWantslist? # single list items
+      response = list: {}, loading: yes
+      MkmApi.api.wantslist {param1: idWantslist}, (data) =>
+        response.list = data.wantslist
+        # todo: remove this once metaproducts contain this fields by default
+        response.list.item = response.list.item.map (item) ->
+          for loc in item[item.type].localization
+            item[item.type].locName = loc.name if parseInt(loc.idLanguage, 10) is MkmApiAuth.getLanguage()
+          item
         response.loading = no
       , ->
         response.error = yes
@@ -35,6 +39,7 @@ angular.module 'mkmobile.services.wantslist', []
       minCondition: card.minCondition or ""
       isSigned: card.isSigned or ""
       isFoil: card.isFoil or ""
+#      mailAlert: card.mailAlert or true
       isAltered: card.isAltered or ""
       idProduct: card.selected.idProduct or ""
       idMetaproduct: card.metaproduct.idMetaproduct or ""
@@ -47,17 +52,15 @@ angular.module 'mkmobile.services.wantslist', []
       cb?(data)
 
   # rename a wantslist
-  rename: (idWantsList, name, cb) ->
+  rename: (idWantslist, name, cb) ->
     request =
       action: "editWantslist"
       name: name
-    MkmApi.api.wantslistUpdate {param1: idWantsList}, {request}, (data) ->
-      cb?(data)
+    MkmApi.api.wantslistUpdate {param1: idWantslist}, request, cb, cb
 
   # delete a wants list
-  delete: (idWantsList, cb) ->
-    MkmApi.api.wantslistDelete {param1: idWantsList}, (data) ->
-      cb?(data)
+  delete: (idWantslist, cb) ->
+    MkmApi.api.wantslistDelete {param1: idWantslist}, cb
 
   # search for a metaproduct
   search: (search = "") ->
@@ -65,11 +68,10 @@ angular.module 'mkmobile.services.wantslist', []
     if search.length > 1
       response.loading = yes
       MkmApi.api.metaproducts {search, idLanguage: MkmApiAuth.getLanguage()}, (data) =>
-        # todo: remove this once metaproducts contain these fields by default
+        # todo: remove this once metaproducts contain this fields by default
         response.products = data.metaproduct?.splice(0,20).map (val) ->
           for loc in val.metaproduct.localization
-            val.metaproduct.localizedName = loc.name if parseInt(loc.idLanguage, 10) is MkmApiAuth.getLanguage()
-            val.metaproduct.enName = loc.name if parseInt(loc.idLanguage, 10) is 1
+            val.metaproduct.locName = loc.name if parseInt(loc.idLanguage, 10) is MkmApiAuth.getLanguage()
           val
         response.count = response.products?.length
         response.loading = no

@@ -1,8 +1,11 @@
 body.wantslist {
   article {
     p.loading { height: 30px; }
-    form.create {
+    .create {
       padding: 30px 10px;
+    }
+
+    form {
       label {
         display: block;
         margin-bottom: 5px;
@@ -12,6 +15,7 @@ body.wantslist {
         border-bottom-right-radius: 0;
         border-right: none;
         flex-grow: 1;
+        height: 29px;
       }
       .button {
         height: 29px;
@@ -25,7 +29,22 @@ body.wantslist {
 
     .row {
       display: flex;
-      width: 100%;
+      padding: 0 10px;
+      .search {
+        flex-grow: 1;
+      }
+      .remove {
+        margin-left: -10px;
+      }
+    }
+
+    button.icon {
+      border: none;
+      height: 25px;
+      width: 35px;
+      vertical-align: middle;
+      outline: none;
+      &.edit { background: url("/img/edit.png") no-repeat center center; }
     }
 
     // list of wants lists
@@ -44,15 +63,6 @@ body.wantslist {
         height: 40px;
       }
       a { flex-grow: 1; }
-      div button {
-        border: none;
-        height: 20px;
-        width: 35px;
-        padding: 0;
-        vertical-align: middle;
-        outline: none;
-        &.edit { background: url("/img/edit.png") no-repeat center center; }
-      }
       &.empty {
         font-weight: normal;
         text-align: center;
@@ -69,9 +79,48 @@ body.wantslist {
 
     // list of wants list items
     ul.list {
-      li.empty {
+      li {
+        display: flex;
+        align-items: center;
+        padding: 4px 10px;
+        border-bottom: 1px solid #ccc;
+        flex-wrap: wrap;
+        &:nth-child(even) {
+          background: rgb(240, 240, 240);
+        }
+        &.empty {
+          text-align: center;
+          padding: 30px 10px;
+        }
+      }
+      .controls {
+        padding-right: 5px;
+      }
+      .count {
+        font-weight: bold;
+        padding: 0 5px;
+        min-width: 25px;
         text-align: center;
-        padding: 30px 10px;
+      }
+      b {
+        color: $mkmBlue;
+        display: block;
+      }
+      div.card {
+        flex-grow: 1;
+      }
+      .icons {
+        display: flex;
+        align-items: center;
+        .icon {
+          margin-right: 5px;
+        }
+      }
+      .card-image {
+        flex-grow: 1;
+        width: 100%;
+        text-align: center;
+        margin-top: 5px;
       }
     }
   }
@@ -90,6 +139,18 @@ body.wantslist {
         }
       }
     }
+    label.price {
+      position: relative;
+      input {
+        padding-right: 17px;
+      }
+      .currency {
+        position: absolute;
+        right: 17px;
+        top: 16px;
+      }
+    }
+
     .language {
       .icons {
         max-width: 78px;

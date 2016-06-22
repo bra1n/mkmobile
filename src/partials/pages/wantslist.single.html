@@ -2,7 +2,7 @@
   <a ng-hide="wantslist.screen" ui-sref="wantslist.list" class="back"></a>
   <a ng-show="wantslist.screen" ng-click="wantslist.screen = ''" class="back"></a>
   <div class="title">
-    {{wantslist.name}} -
+    {{wantslist.data.list.name}} -
     <span ng-hide="wantslist.screen" translate="wantslist.mywants">My Wants</span>
     <span ng-show="wantslist.screen == 'add'" translate="wantslist.addcard"Add Card</span>
     <span ng-show="wantslist.screen == 'edit'" translate="wantslist.editcard">Edit Card</span>
@@ -19,7 +19,7 @@
   <ul ng-show="wantslist.suggestions.products.length" class="suggestions">
     <li ng-repeat="product in wantslist.suggestions.products" class="cardname" ng-click="wantslist.select(product)">
       {{::product.metaproduct.enName}}
-      <small ng-hide="::wantslist.languageId == 1">{{::product.metaproduct.localizedName}}</small>
+      <small ng-hide="::wantslist.languageId == 1">{{::product.metaproduct.locName}}</small>
     </li>
   </ul>
 
@@ -65,40 +65,45 @@
   </label>
   <label>
     <span translate="article.foil">Foil?</span>
-    <i class="icon is-foil" ng-show="wantslist.current.isFoil == 'true'"></i>
+    <i class="icon is-foil" ng-show="wantslist.current.isFoil.toString() == 'true'"></i>
+    <i class="icon no" ng-show="wantslist.current.isFoil.toString() == 'false'"></i>
     <select ng-model="wantslist.current.isFoil">
       <option value="" translate="common.no_preference">No Preference</option>
-      <option value="true" translate="common.yes">Yes</option>
-      <option value="false" translate="common.no">No</option>
+      <option value="true" ng-selected="wantslist.current.isFoil.toString() === 'true'" translate="common.yes">Yes</option>
+      <option value="false" ng-selected="wantslist.current.isFoil.toString() === 'false'" translate="common.no">No</option>
     </select>
   </label>
   <label>
     <span translate="article.signed">Signed?</span>
-    <i class="icon is-signed" ng-show="wantslist.current.isSigned == 'true'"></i>
+    <i class="icon is-signed" ng-show="wantslist.current.isSigned.toString() == 'true'"></i>
+    <i class="icon no" ng-show="wantslist.current.isSigned.toString() == 'false'"></i>
     <select ng-model="wantslist.current.isSigned">
       <option value="" translate="common.no_preference">No Preference</option>
-      <option value="true" translate="common.yes">Yes</option>
-      <option value="false" translate="common.no">No</option>
+      <option value="true" ng-selected="wantslist.current.isSigned.toString() === 'true'" translate="common.yes">Yes</option>
+      <option value="false" ng-selected="wantslist.current.isSigned.toString() === 'false'" translate="common.no">No</option>
     </select>
   </label>
   <label>
     <span translate="article.altered">Altered?</span>
-    <i class="icon is-altered" ng-show="wantslist.current.isAltered == 'true'"></i>
+    <i class="icon is-altered" ng-show="wantslist.current.isAltered.toString() == 'true'"></i>
+    <i class="icon no" ng-show="wantslist.current.isAltered.toString() == 'false'"></i>
     <select ng-model="wantslist.current.isAltered">
       <option value="" translate="common.no_preference">No Preference</option>
-      <option value="true" translate="common.yes">Yes</option>
-      <option value="false" translate="common.no">No</option>
+      <option value="true" ng-selected="wantslist.current.isAltered.toString() === 'true'" translate="common.yes">Yes</option>
+      <option value="false" ng-selected="wantslist.current.isAltered.toString() === 'false'" translate="common.no">No</option>
     </select>
   </label>
   <label class="price">
     <span translate="wantslist.buy_price">Price</span>
-    <input type="number" min="0.01" step="0.01" required ng-model="wantslist.current.wishPrice">
+    <input type="number" min="0.01" step="0.01" ng-model="wantslist.current.wishPrice">
+    <span class="currency">&euro;</span>
   </label>
   <label>
     <span translate="wantslist.email_alarm">Email alert?</span>
-    <select ng-model="wantslist.current.emailAlert">
-      <option value="" translate="common.yes">Yes</option>
-      <option value="false" translate="common.no">No</option>
+    <i class="icon no" ng-show="wantslist.current.mailAlert.toString() == 'false'"></i>
+    <select ng-model="wantslist.current.mailAlert">
+      <option value="" ng-selected="wantslist.current.mailAlert.toString() === ''" translate="common.yes">Yes</option>
+      <option value="false" ng-selected="wantslist.current.mailAlert.toString() === 'false'" translate="common.no">No</option>
     </select>
   </label>
   <div class="error" ng-show="wantslist.error">{{'wantslist.sell.'+wantslist.error | translate}}</div>
@@ -113,52 +118,43 @@
     <button class="button" ng-click="wantslist.screen = 'add'" translate="wantslist.addcard">Add wanted card</button>
   </div>
 
-  <div class="row" ng-show="wantslist.data.count">
-    <button class="remove"></button>
-    <button class="edit"></button>
-    <label class="search">
-      <input type="text" ng-model="wantslist.filter" placeholder="{{'wantslist.search' | translate}}">
-    </label>
+  <div class="row" ng-show="wantslist.data.list.itemCount">
+    <button class="icon remove" ng-show="wantslist.selected.length" ng-click="wantslist.remove()"></button>
+    <button class="icon edit" ng-show="wantslist.selected.length == 1" ng-click="wantslist.edit()"></button>
+    <input type="text" ng-model="wantslist.filter" class="search" placeholder="{{'wantslist.search' | translate}}">
   </div>
   <p ng-show="wantslist.data.loading" class="loading"></p>
   <ul class="list" ng-hide="wantslist.data.loading">
-    <li ng-repeat="item in wantslist.data.items | filter:wantslist.filter" ng-if="!item.deleted">
-      <!--
+    <li ng-repeat="item in wantslist.data.list.item | filter:wantslist.filter" ng-if="!item.deleted">
       <div class="controls">
-        <input type="checkbox" ng-checked="wantslist.selected.indexOf(item) > -1" ng-click="check(article)">
+        <input type="checkbox" ng-checked="wantslist.selected.indexOf(item) > -1" ng-click="wantslist.check(item)">
       </div>
+      <span class="icon card" ng-click="item.showImage = !item.showImage"></span>
       <div class="count">
-        {{article.count}}x
+        {{item.count}}x
       </div>
       <div class="card">
-        <a ui-sref="stock.article({articleId:article.idArticle})" ng-if="!article.inShoppingCart">
-          {{::article.product.enName}}
-          <small ng-hide="::article.language.idLanguage == 1">{{::article.product.locName}}</small>
-        </a>
-        <span ng-if="::article.inShoppingCart">{{::article.product.name}}</span>
-        <div class="card-image" ng-click="article.showImage = 0">
-          <img src="" ng-src="{{::article.showImage && (article.product.image | productImage)}}">
+        <b>{{::item[item.type].enName}}</b>
+        <div class="icons">
+          <span ng-style="::item.product.expansionIcon | expansionIcon" ng-if="::item.product.expansionIcon"
+                class="icon expansion-{{::wantslist.data.list.game.idGame}}"></span>
+          <span ng-repeat="language in ::item.language" class="icon language language-{{::language.idLanguage}}"></span>
+          <span ng-if="::item.minCondition">&ge;<i class="icon grading grading-{{::item.minCondition}}"></i></span>
+          <span class="icon is-foil" ng-if="::item.isFoil"></span>
+          <span class="icon is-signed" ng-if="::item.isSigned"></span>
+          <span class="icon is-altered" ng-if="::item.isAltered"></span>
+          <span class="icon is-firsted" ng-if="::item.isFirstEd"></span>
         </div>
-        <div class="comment" ng-click="article.showComment = 0">{{::article.comments}}</div>
       </div>
-      <div class="icons">
-        <span ng-class="::article.product | rarityIcon" ng-if="::article.product.rarity"></span>
-        <span ng-style="::article.product.expIcon | expansionIcon" ng-if="::article.product.expIcon"
-              class="icon expansion-{{::idGame}}"></span>
-        <span class="icon language language-{{::article.language.idLanguage}}" ng-if="::article.language.idLanguage"></span>
-        <span class="icon grading grading-{{::article.condition}}" ng-if="::article.condition"></span>
-        <span class="icon is-foil" ng-if="::article.isFoil"></span>
-        <span class="icon is-signed" ng-if="::article.isSigned"></span>
-        <span class="icon is-playset" ng-if="::article.isPlayset"></span>
-        <span class="icon is-altered" ng-if="::article.isAltered"></span>
-        <span class="icon is-firsted" ng-if="::article.isFirstEd"></span>
-        <span class="icon comment" ng-if="::article.comments" ng-click="article.showComment = !article.showComment"></span>
+      <div class="price">
+        <span ng-if="::item.wishPrice">{{::item.wishPrice | currency:"€"}}</span>
+        <span ng-if="::!item.wishPrice" translate="wantslist.not_available">N/A</span>
       </div>
-      <div class="price">{{::article.price | currency:"€"}}</div>
-      -->
-      wants item
+      <div class="card-image" ng-show="item.showImage" ng-click="item.showImage = 0">
+        <img src="" ng-src="{{::item.showImage && (item.product.image | productImage)}}">
+      </div>
     </li>
-    <li class="empty" ng-show="!wantslist.data.count" translate="wantslist.emptylist">
+    <li class="empty" ng-show="!wantslist.data.list.itemCount" translate="wantslist.emptylist">
       You haven't added lists to your wants lists yet.
     </li>
   </ul>
