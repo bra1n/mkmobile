@@ -14,7 +14,7 @@ angular.module 'mkmobile.services.market', []
         MkmApi.api.search {search: query, idLanguage: MkmApiAuth.getLanguage(), start: response.products.length, maxResults: 100}, (data) =>
           # map localized name
           data.product?.map (val) ->
-            val.localizedName = loc.name for loc in val.localization when parseInt(loc.idLanguage, 10) is MkmApiAuth.getLanguage()
+            val.locName = loc.name for loc in val.localization when parseInt(loc.idLanguage, 10) is MkmApiAuth.getLanguage()
           # update count
           response.count = data._range or data.product?.length or 0
           # merge products
@@ -28,13 +28,13 @@ angular.module 'mkmobile.services.market', []
       response
 
     # get product data
-    product: (id) ->
-      response = product: DataCache.product id
+    product: (idProduct) ->
+      response = product: DataCache.product idProduct
       # if there is no (deep) product data in cache, retrieve it!
       if !response.product? or (!response.product.reprint? and response.product.countReprints > 1)
         response.loading = yes
-        MkmApi.api.product param1: id, (data) ->
-          response.product = DataCache.product id, data.product
+        MkmApi.api.product param1: idProduct, (data) ->
+          response.product = DataCache.product idProduct, data.product
           response.loading = no
         , (error) ->
           response.error = error
@@ -89,5 +89,41 @@ angular.module 'mkmobile.services.market', []
       , (error) ->
         response.error = error
         response.loading = no
+      response
+
+    # search for a metaproduct
+    searchMetaproduct: (search = "") ->
+      response = count: 0, products: [], loading: no
+      if search.length > 1
+        response.loading = yes
+        MkmApi.api.metaproducts {search, idLanguage: MkmApiAuth.getLanguage()}, (data) =>
+          # cache metaproducts
+          data.metaproduct?.map (val) =>
+            DataCache.metaproduct val.metaproduct.idMetaproduct, val
+          # todo: remove this once metaproducts contain this fields by default
+          response.products = data.metaproduct?.splice(0,20).map (val) ->
+            for loc in val.metaproduct.localization when parseInt(loc.idLanguage, 10) is MkmApiAuth.getLanguage()
+              val.metaproduct.locName = loc.name
+            val
+          response.count = response.products?.length
+          response.loading = no
+      response
+
+    # get a metaproduct
+    metaproduct: (idMetaproduct, cb) ->
+      response = metaproduct: DataCache.metaproduct idMetaproduct
+      # if there is no (deep) product data in cache, retrieve it!
+      if !response.metaproduct?
+        response.loading = yes
+        MkmApi.api.metaproduct param1: idMetaproduct, (data) ->
+          response.metaproduct = DataCache.metaproduct idMetaproduct, data
+          response.loading = no
+          cb? response
+        , (error) ->
+          response.error = error
+          response.loading = no
+          cb? response
+      else
+        cb? response
       response
 ]

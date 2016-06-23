@@ -4,13 +4,13 @@
   <div class="title">
     {{wantslist.data.list.name}} -
     <span ng-hide="wantslist.screen" translate="wantslist.mywants">My Wants</span>
-    <span ng-show="wantslist.screen == 'add'" translate="wantslist.addcard"Add Card</span>
+    <span ng-show="wantslist.screen == 'add'" translate="wantslist.addcard">Add Card</span>
     <span ng-show="wantslist.screen == 'edit'" translate="wantslist.editcard">Edit Card</span>
   </div>
 </header>
 
 <form id="add" name="card" class="overlay" ng-show="wantslist.screen == 'add' || wantslist.screen == 'edit'"
-      ng-submit="wantslist.item()">
+      ng-submit="wantslist.update()">
   <!-- Search and suggestions -->
   <label class="search" ng-show="wantslist.screen == 'add'">
     <input type="text" ng-model="wantslist.cardname" placeholder="{{'wantslist.cardname' | translate}}"
@@ -19,26 +19,29 @@
   <ul ng-show="wantslist.suggestions.products.length" class="suggestions">
     <li ng-repeat="product in wantslist.suggestions.products" class="cardname" ng-click="wantslist.select(product)">
       {{::product.metaproduct.enName}}
-      <small ng-hide="::wantslist.languageId == 1">{{::product.metaproduct.locName}}</small>
+      <small ng-hide="wantslist.languageId == 1">{{::product.metaproduct.locName}}</small>
     </li>
   </ul>
 
   <label ng-show="wantslist.current.metaproduct">
     <span translate="wantslist.card">Card</span>
-    <b>{{wantslist.current.metaproduct.enName}}</b>
+    <b class="cardname">
+      {{wantslist.current.metaproduct.enName}}
+      <small ng-hide="wantslist.languageId == 1">{{wantslist.current.metaproduct.locName}}</small>
+    </b>
     <input type="hidden" ng-model="wantslist.current.metaproduct" required>
   </label>
   <label>
     <span translate="article.amount">Amount</span>
     <input type="number" min="1" required ng-model="wantslist.current.count">
   </label>
-  <label ng-show="wantslist.current.product.length">
+  <label ng-show="wantslist.current.metaprintings.length">
     <span translate="common.expansion">Expansion</span>
-    <i class="icon expansion-{{wantslist.current.product[0].idGame}}" ng-show="wantslist.current.selected"
-       ng-style="wantslist.current.selected.expansionIcon | expansionIcon"></i>
-    <i ng-if="wantslist.current.selected.rarity" ng-class="wantslist.current.selected | rarityIcon"></i>
-    <select ng-model="wantslist.current.selected"
-            ng-options="product as product.expansionName for product in wantslist.current.product track by product.idProduct">
+    <i class="icon expansion-{{wantslist.current.metaprintings[0].idGame}}" ng-show="wantslist.current.product"
+       ng-style="wantslist.current.product.expansionIcon | expansionIcon"></i>
+    <i ng-if="wantslist.current.product.rarity" ng-class="wantslist.current.product | rarityIcon"></i>
+    <select ng-model="wantslist.current.product"
+            ng-options="product as product.expansionName for product in wantslist.current.metaprintings track by product.idProduct">
       <option value="" translate="common.no_preference">No Preference</option>
     </select>
   </label>
@@ -49,16 +52,17 @@
          class="icon language language-{{language}}"></i>
     </span>
     <select ng-model="wantslist.current.idLanguage" multiple>
-      <option selected value="" translate="common.no_preference">No Preference</option>
+      <option ng-selected="wantslist.current.idLanguage.length == 0" value=""
+              translate="common.no_preference">No Preference</option>
       <option ng-repeat="language in wantslist.languages" value="{{language}}"
+              ng-selected="wantslist.current.idLanguage.indexOf(language) > -1"
               translate="article.languages.{{language}}"></option>
     </select>
   </label>
   <label>
-    <span translate="article.condition">Condition</span>
+    <span translate="product.filter.condition">Condition</span>
     <i class="icon grading grading-{{wantslist.current.minCondition}}"></i>
-    <select ng-model="wantslist.current.minCondition">
-      <option value="" translate="common.no_preference">No Preference</option>
+    <select ng-model="wantslist.current.minCondition" required>
       <option ng-repeat="condition in wantslist.conditions" value="{{condition}}"
               translate="article.conditions.{{condition}}"></option>
     </select>
@@ -69,8 +73,8 @@
     <i class="icon no" ng-show="wantslist.current.isFoil.toString() == 'false'"></i>
     <select ng-model="wantslist.current.isFoil">
       <option value="" translate="common.no_preference">No Preference</option>
-      <option value="true" ng-selected="wantslist.current.isFoil.toString() === 'true'" translate="common.yes">Yes</option>
-      <option value="false" ng-selected="wantslist.current.isFoil.toString() === 'false'" translate="common.no">No</option>
+      <option value="true" ng-selected="wantslist.current.isFoil.toString() == 'true'" translate="common.yes">Yes</option>
+      <option value="false" ng-selected="wantslist.current.isFoil.toString() == 'false'" translate="common.no">No</option>
     </select>
   </label>
   <label>
@@ -79,8 +83,8 @@
     <i class="icon no" ng-show="wantslist.current.isSigned.toString() == 'false'"></i>
     <select ng-model="wantslist.current.isSigned">
       <option value="" translate="common.no_preference">No Preference</option>
-      <option value="true" ng-selected="wantslist.current.isSigned.toString() === 'true'" translate="common.yes">Yes</option>
-      <option value="false" ng-selected="wantslist.current.isSigned.toString() === 'false'" translate="common.no">No</option>
+      <option value="true" ng-selected="wantslist.current.isSigned.toString() == 'true'" translate="common.yes">Yes</option>
+      <option value="false" ng-selected="wantslist.current.isSigned.toString() == 'false'" translate="common.no">No</option>
     </select>
   </label>
   <label>
@@ -102,11 +106,11 @@
     <span translate="wantslist.email_alarm">Email alert?</span>
     <i class="icon no" ng-show="wantslist.current.mailAlert.toString() == 'false'"></i>
     <select ng-model="wantslist.current.mailAlert">
-      <option value="" ng-selected="wantslist.current.mailAlert.toString() === ''" translate="common.yes">Yes</option>
-      <option value="false" ng-selected="wantslist.current.mailAlert.toString() === 'false'" translate="common.no">No</option>
+      <option value="true" ng-selected="wantslist.current.mailAlert.toString() == 'true'" translate="common.yes">Yes</option>
+      <option value="false" ng-selected="wantslist.current.mailAlert.toString() == 'false'" translate="common.no">No</option>
     </select>
   </label>
-  <div class="error" ng-show="wantslist.error">{{'wantslist.sell.'+wantslist.error | translate}}</div>
+  <div class="error" ng-show="wantslist.error">{{'wantslist.error' | translate}}</div>
   <div class="buttons">
     <button type="submit" class="button" translate="wantslist.button_{{wantslist.screen}}"
             ng-disabled="card.$invalid">List this Article</button>
@@ -115,7 +119,7 @@
 
 <article>
   <div class="add">
-    <button class="button" ng-click="wantslist.screen = 'add'" translate="wantslist.addcard">Add wanted card</button>
+    <button class="button" ng-click="wantslist.add()" translate="wantslist.addcard">Add wanted card</button>
   </div>
 
   <div class="row" ng-show="wantslist.data.list.itemCount">
@@ -134,7 +138,10 @@
         {{item.count}}x
       </div>
       <div class="card">
-        <b>{{::item[item.type].enName}}</b>
+        <b class="cardname">
+          {{::item[item.type].enName}}
+          <small ng-hide="::wantslist.languageId">{{::item[item.type].locName}}</small>
+        </b>
         <div class="icons">
           <span ng-style="::item.product.expansionIcon | expansionIcon" ng-if="::item.product.expansionIcon"
                 class="icon expansion-{{::wantslist.data.list.game.idGame}}"></span>

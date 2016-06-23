@@ -440,6 +440,7 @@
     "email_alarm": "Email Alarm?",
     "empty": "You haven't added lists to your wants lists yet.",
     "emptylist": "You haven't added cards to your wants list yet.",
+    "error": "There was an error saving your wantslist item.",
     "items": "{{itemCount}} items",
     "list": "List(s)",
     "mywants": "My Wants",

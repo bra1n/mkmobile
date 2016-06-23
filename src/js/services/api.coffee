@@ -29,6 +29,9 @@ angular.module 'mkmobile.services.api', ['ngResource']
     product: # get a single product
       params: param0: 'products'
       cache: yes
+    metaproduct: # get a single metaproduct
+      params: param0: 'metaproducts'
+      cache: yes
     metaproducts: # search for metaproducts
       params: {param0: 'metaproducts', param1: 'find', idGame:window.gameId or '1', idLanguage:'1', exact: no}
       unique: 'metaproduct'

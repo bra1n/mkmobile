@@ -22,7 +22,7 @@
     <label for="searchSort" ng-show="results.count > 0" translate="search.sort">Sort</label>
     <select id="searchSort" ng-model="sort" ng-show="results.count > 0">
       <option value="enName" translate="search.name">Name</option>
-      <option value="localizedName" translate="search.foreign_name" ng-if="::languageId != 1">Foreign Name</option>
+      <option value="locName" translate="search.foreign_name" ng-if="::languageId != 1">Foreign Name</option>
       <option value="expansionName" translate="common.expansion">Expansion</option>
       <option value="rarity" translate="search.rarity">Rarity</option>
     </select>
@@ -34,7 +34,7 @@
         <span ng-class="::product | rarityIcon" ng-if="::product.rarity"></span>
         <span class="name">
           {{::product.enName}}
-          <small ng-hide="::languageId == 1">{{::product.localizedName}}</small>
+          <small ng-hide="::languageId == 1">{{::product.locName}}</small>
         </span>
       </a>
     </li>

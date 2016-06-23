@@ -25,6 +25,7 @@ body.wantslist {
         border-bottom-left-radius: 0;
         font-size: 14px;
       }
+      .row { padding: 0; }
     }
 
     .row {
@@ -80,6 +81,8 @@ body.wantslist {
     // list of wants list items
     ul.list {
       li {
+        color: #012169;
+        font-weight: bold;
         display: flex;
         align-items: center;
         padding: 4px 10px;
@@ -91,6 +94,8 @@ body.wantslist {
         &.empty {
           text-align: center;
           padding: 30px 10px;
+          display: block;
+          border: none;
         }
       }
       .controls {

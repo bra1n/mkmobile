@@ -3,6 +3,7 @@ angular.module 'mkmobile.services.cache', []
   # all glory to the mighty cache object
   caches =
     product: $cacheFactory 'products', capacity: 500
+    metaproduct: $cacheFactory 'metaproducts', capacity: 500
     article: $cacheFactory 'article', capacity: 1000
     cart: $cacheFactory 'cart', capacity: 1
     account: $cacheFactory 'account', capacity: 10
@@ -41,4 +42,7 @@ angular.module 'mkmobile.services.cache', []
   user: (id, data) ->
     caches.user.put(id, data) if data?
     caches.user.get(id) if id?
+  metaproduct: (id, data) ->
+    caches.metaproduct.put(id, data) if data?
+    caches.metaproduct.get(id) if id?
 ]
