@@ -1,7 +1,13 @@
 // activate account
 body.activation {
   article {
-    text-align: center;
+    &.account {
+      text-align: center;
+    }
+
+    h2 {
+      padding: 0 10px;
+    }
     p, form {
       padding: 10px;
       button, input {
@@ -19,10 +25,6 @@ body.activation {
     }
 
     // seller activation
-    form.step {
-      text-align: left;
-    }
-
     b.right {
       float: right;
     }

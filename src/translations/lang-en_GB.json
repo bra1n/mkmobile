@@ -1,7 +1,7 @@
 {
   "titles": {
     "activation": "Account Activation",
-    "activation_seller": "Become Seller",
+    "activation_seller": "Seller Activation",
     "app": "MCM Mobile",
     "buys": "Purchases",
     "cart": "My Shopping Cart",
@@ -70,6 +70,8 @@
       "success_resend": "The activation code has been sent to your email address again."
     },
     "seller": {
+      "activate": "Activate your Seller Account",
+      "amount": "Amount {{nr}}:",
       "bank_account": "My Bank Account",
       "bank_name": "Name of the Bank:",
       "bic": "BIC/SWIFT:",
@@ -84,7 +86,10 @@
       "step2b": "For security reasons you have to have an account which is in your name.",
       "step3a": "3) Press the button below to request the transfers. Once you have done this, we will send you two bank transfers.",
       "step3b": "After you receive them, you have to press the \"Become Seller\" icon (home page) and the transfered amounts to activate your seller account.",
-      "success": "You have been successfully verified as a seller!",
+      "step4": "Enter the amounts of the transfers here to activate your seller account.",
+      "submit": "Activate Seller",
+      "success": "Your activation request has been successfully submitted!",
+      "success2": "You have been successfully verified as a seller!",
       "telephone": "Telephone:"
     }
   },

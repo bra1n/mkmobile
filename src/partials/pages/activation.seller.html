@@ -4,8 +4,9 @@
 </header>
 <article>
   <p ng-show="activation.loading" class="loading"></p>
+
+  <!-- request seller activation forms -->
   <div ng-show="activation.account.bankAccount.iban === ''">
-    <!-- Navigation bubbles -->
     <nav>
       <span ng-class="{active: activation.step==index}" ng-click="activation.go(index)"
             ng-repeat="(index, form) in activation.steps"></span>
@@ -86,7 +87,19 @@
     </div>
   </div>
 
+  <!-- enter transfer amounts to activate seller account -->
   <div ng-show="activation.account.bankAccount.iban">
-    Activate bla
+    <p translate="activation.seller.step4">
+      Enter the amounts of the transfers here to activate your seller account.
+    </p>
+    <h2 translate="activation.seller.activate"></h2>
+    <form ng-submit="activation.seller()">
+      <label for="amount1" translate="activation.seller.amount" translate-values="{nr: 1}">Amount:</label>
+      <input name="amount1" id="amount1" type="number" min="0.01" step="0.01" ng-model="activation.form.amount1" required>
+      <label for="amount2" translate="activation.seller.amount" translate-values="{nr: 2}">Amount:</label>
+      <input name="amount2" id="amount2" type="number" min="0.01" step="0.01" ng-model="activation.form.amount2" required>
+      <button type="submit" class="button" translate="activation.seller.submit"
+              ng-disabled="!activation.form.amount1 || !activation.form.amount2">Activate Seller</button>
+    </form>
   </div>
 </article>

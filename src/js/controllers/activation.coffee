@@ -1,7 +1,7 @@
 # /activation
-angular.module 'mkmobile.controllers.activation', []
-.controller 'ActivationCtrl', [
-  'MkmApiAuth', '$translate', '$state'
+angular.module "mkmobile.controllers.activation", []
+.controller "ActivationCtrl", [
+  "MkmApiAuth", "$translate", "$state"
   (MkmApiAuth, $translate, $state) ->
     # account activation
     @account = =>
@@ -9,7 +9,7 @@ angular.module 'mkmobile.controllers.activation', []
       MkmApiAuth.activateAccount @code, (account) =>
         if account.isActivated
           $translate("activation.account.success").then (text) -> alert text
-          $state.go 'home'
+          $state.go "home"
         else
           @error = yes
 
@@ -30,17 +30,19 @@ angular.module 'mkmobile.controllers.activation', []
       return for step, index in @steps when step.$invalid and index < to
       @step = to
 
-    # activate seller account
+    # activate seller account / request verification transfers
     @seller = =>
-      MkmApiAuth.activateSeller @form, ({@account, data}) =>
-        if @account
+      MkmApiAuth.activateSeller @form, ({account, data}) =>
+        if account
+          @account = account
           # activation successful
-          $translate('activation.seller.success').then (text) =>
+          message = if @account.maySell then "success2" else "success"
+          $translate("activation.seller." + message).then (text) =>
             alert text
             $state.go 'home'
         else
           # activation error (error in data)
-          $translate('activation.seller.error').then (text) =>
+          $translate("activation.seller.error").then (text) =>
             alert text
     @
 ]
