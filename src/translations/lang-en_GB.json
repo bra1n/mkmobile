@@ -39,8 +39,10 @@
     "loading": "Loading...",
     "logout": "Logout",
     "menu": "Menu",
+    "next": "Next",
     "no_preference": "No preference",
     "paypal": "PayPal",
+    "previous": "Previous",
     "price": "Price",
     "save": "Save Changes",
     "search": "Search",
@@ -58,13 +60,33 @@
     }
   },
   "activation": {
-    "activation_code": "Activation Code",
-    "description": "Your account hasn't been activated. Please enter the activation code you received by email.",
-    "error": "The activation code was not correct",
-    "resend": "Resend activation code",
-    "submit": "Submit Code",
-    "success": "Your account has been activated.",
-    "success_resend": "The activation code has been sent to your email address again."
+    "account": {
+      "activation_code": "Activation Code",
+      "description": "Your account hasn't been activated. Please enter the activation code you received by email.",
+      "error": "The activation code was not correct",
+      "resend": "Resend activation code",
+      "submit": "Submit Code",
+      "success": "Your account has been activated.",
+      "success_resend": "The activation code has been sent to your email address again."
+    },
+    "seller": {
+      "bank_account": "My Bank Account",
+      "bank_name": "Name of the Bank:",
+      "bic": "BIC/SWIFT:",
+      "error": "There was an error when activating your seller account.",
+      "iban": "IBAN:",
+      "recipient": "Recipient:",
+      "request": "Request Bank Transfer",
+      "step1a": "You are not a verified seller.",
+      "step1b": "In order to become a verified seller, you will have to complete the following steps:",
+      "step1c": "1) Enter your phone number. This data will not be given to other users unless to solve a problem.",
+      "step2a": "2) Enter your bank account data.",
+      "step2b": "For security reasons you have to have an account which is in your name.",
+      "step3a": "3) Press the button below to request the transfers. Once you have done this, we will send you two bank transfers.",
+      "step3b": "After you receive them, you have to press the \"Become Seller\" icon (home page) and the transfered amounts to activate your seller account.",
+      "success": "You have been successfully verified as a seller!",
+      "telephone": "Telephone:"
+    }
   },
   "contact": {
     "explanation": "If you have a question about an order, please send us the SHIPMENT NR. Messages without this number cannot be processed.",
@@ -368,10 +390,8 @@
     "error": "There has been an error with your registration, please correct the highlighted fields.",
     "help": "Not able to Register?",
     "legal": "Legal",
-    "next": "Next",
     "password": "Password:",
     "personal": "Personal Data",
-    "previous": "Previous",
     "private": "Private Account",
     "professional": "Professional?",
     "provision": "I agree to and expressly request that the provision of services ordered by me begin before expiry of the revocation period. I am aware that I shall lose my right of revocation in case of the complete fulfillment of the contract by you.",

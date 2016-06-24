@@ -32,8 +32,8 @@ angular.module 'mkmobile.services.auth', []
           redirectAfterLogin.params or= $state.params # for some reason, those are not in state.current?
         $state.go "login"
         response = false
-      if DataCache.account()?.isActivated is false and (!next or next.name isnt "activation")
-        $state.go "activation"
+      if DataCache.account()?.isActivated is false and (!next or next.name isnt "activation.account")
+        $state.go "activation.account"
         response = false
       response
 
@@ -60,7 +60,7 @@ angular.module 'mkmobile.services.auth', []
           if data.account.isActivated
             $state.go redirectAfterLogin.name, redirectAfterLogin.params
           else
-            $state.go "activation"
+            $state.go "activation.account"
       , -> response.error = yes
       response
 
@@ -141,6 +141,16 @@ angular.module 'mkmobile.services.auth', []
           cb? @cache data.account
         , cb
       else
-        MkmApi.api.accountActivationResend {}, (data) =>
-          cb?(data)
+        MkmApi.api.accountActivationResend {}, cb
+
+    # activate seller / request activation transfers
+    activateSeller: (request, cb) ->
+      if request.iban
+        MkmApi.api.sellerActivationRequest request, (data) =>
+          cb? @cache data.account
+        , cb
+      else
+        MkmApi.api.sellerActivation request, (data) =>
+          cb? @cache data.account
+        , cb
 ]

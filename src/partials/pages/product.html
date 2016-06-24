@@ -10,7 +10,8 @@
     <a class="mkmicon info" ng-click="product.show('details')" ng-class="{active:product.screen == 'details'}"></a>
     <a class="mkmicon filter" ng-click="product.show('filter')"
        ng-class="{active:product.screen == 'filter', used:product.hasFilter()}"></a>
-    <a class="mkmicon sellcards" ng-click="product.show('sell')" ng-show="loggedIn" ng-class="{active:product.screen == 'sell'}"></a>
+    <a class="mkmicon sellcards" ng-click="product.show('sell')" ng-show="loggedIn && product.account.maySell"
+       ng-class="{active:product.screen == 'sell'}"></a>
   </div>
 </header>
 

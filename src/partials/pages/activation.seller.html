@@ -1,0 +1,92 @@
+<header>
+  <a ui-sref="home" class="back"></a>
+  <span translate="titles.activation_seller">Seller Activation</span>
+</header>
+<article>
+  <p ng-show="activation.loading" class="loading"></p>
+  <div ng-show="activation.account.bankAccount.iban === ''">
+    <!-- Navigation bubbles -->
+    <nav>
+      <span ng-class="{active: activation.step==index}" ng-click="activation.go(index)"
+            ng-repeat="(index, form) in activation.steps"></span>
+    </nav>
+
+    <!-- Step 1 -->
+    <form name="activation.steps[0]" class="step" ng-show="activation.step == 0">
+      <h2 translate="activation.seller.step1a">
+          You are not a verified seller.
+      </h2>
+      <p>
+        <span translate="activation.seller.step1b">
+          In order to become a verified seller, you will have to complete the following steps:
+        </span><br><br>
+        <span translate="activation.seller.step1c">
+          1) Enter your phone number. This data will not be given to other users unless to solve a problem.
+        </span>
+      </p>
+
+      <label for="telephone" translate="activation.seller.telephone">Telephone:</label>
+      <input name="telephone" id="telephone" type="text" ng-model="activation.form.phoneNumber" required minlength="5">
+    </form>
+
+    <!-- Step 2-->
+    <form name="activation.steps[1]" class="step" ng-show="activation.step == 1">
+      <p>
+        <span translate="activation.seller.step2a">
+          2) Enter your bank account data.
+        </span><br><br>
+        <span translate="activation.seller.step2b">
+          For security reasons you have to have an account which is in your name.
+        </span>
+      </p>
+
+      <label for="bankAccountOwner" translate="activation.seller.recipient">Recipient:</label>
+      <input name="bankAccountOwner" id="bankAccountOwner" type="text" ng-model="activation.form.bankAccountOwner" required>
+
+      <label for="iban" translate="activation.seller.iban">IBAN:</label>
+      <input name="iban" id="iban" type="text" ng-model="activation.form.iban" required minlength="16" maxlength="32">
+
+      <label for="bic" translate="activation.seller.bic">BIC/SWIFT:</label>
+      <input name="bic" id="bic" type="text" ng-model="activation.form.bic" required minlength="8" maxlength="11">
+
+      <label for="bankName" translate="activation.seller.bank_name">Name of the Bank:</label>
+      <input name="bankName" id="bankName" type="text" ng-model="activation.form.bankName" required>
+    </form>
+
+    <!-- Step 3 -->
+    <form name="activation.steps[2]" class="step" ng-show="activation.step == 2" ng-submit="activation.seller()">
+      <h2 translate="activation.seller.bank_account">My Bank Account</h2>
+
+      <b class="right">{{activation.form.bankAccountOwner}}</b>
+      <span translate="activation.seller.recipient">Recipient:</span><br>
+      <b class="right">{{activation.form.iban}}</b>
+      <span translate="activation.seller.iban">IBAN:</span><br>
+      <b class="right">{{activation.form.bic}}</b>
+      <span translate="activation.seller.bic">BIC/SWIFT:</span><br>
+      <b class="right">{{activation.form.bankName}}</b>
+      <span translate="activation.seller.bank_name">Name of the Bank:</span><br>
+
+      <p>
+        <span translate="activation.seller.step3a">
+          3) Press the button below to request the transfers. Once you have done this, we will send you two bank transfers.
+        </span><br><br>
+        <span translate="activation.seller.step3b">
+          After you receive them, you have to press the "Become Seller" icon (home page) and the transfered amounts to activate your seller account.
+        </span>
+      </p>
+
+      <button type="submit" class="button" translate="activation.seller.request">Request Bank Transfers</button>
+    </form>
+
+    <div class="buttons">
+      <button type="button" ng-show="activation.step > 0" ng-click="activation.go(activation.step - 1)"
+              translate="common.previous" class="mkmicon ctrl">Previous</button>
+      <button type="button" ng-show="activation.step < 2" ng-click="activation.go(activation.step + 1)" class="mkmicon ctrl2"
+              translate="common.next" ng-disabled="activation.steps[activation.step].$invalid">Next</button>
+    </div>
+  </div>
+
+  <div ng-show="activation.account.bankAccount.iban">
+    Activate bla
+  </div>
+</article>

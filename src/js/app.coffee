@@ -45,11 +45,15 @@ mkmobileApp.config [
 
     # activation
     .state 'activation',
-      url:          '/activation',
-      templateUrl:  '/partials/pages/activation.html'
+      abstract:     yes
+      url:          '/activation'
+      template:     '<ui-view/>'
+    .state 'activation.account',
+      url:          ''
+      templateUrl:  '/partials/pages/activation.account.html'
       controller:   'ActivationCtrl as activation'
     .state 'activation.seller',
-      url:          '/seller',
+      url:          '/seller'
       templateUrl:  '/partials/pages/activation.seller.html'
       controller:   'ActivationCtrl as activation'
 

@@ -15,6 +15,9 @@ angular.module 'mkmobile.controllers.product', []
     # load articles
     @data = MkmApiMarket.articles $stateParams.idProduct
 
+    # get account
+    MkmApiAuth.getAccount ({@account}) => # store account in controller scope
+
     # infinite scrolling
     @loadArticles = =>
       return if @data.articles.length >= @data.count or @data.loading

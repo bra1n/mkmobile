@@ -114,6 +114,12 @@ angular.module 'mkmobile.services.api', ['ngResource']
       method: 'POST'
     accountActivationResend: # resend activation code
       params: {param0: 'account', param1: 'activation'}
+    sellerActivation: # activate an account as a seller
+      params: {param0: 'account', param1: 'selleractivation'}
+      method: 'PUT'
+    sellerActivationRequest: # request seller activation transfers
+      params: {param0: 'account', param1: 'selleractivation'}
+      method: 'POST'
 
     messages: # get all messages
       params: {param0: 'account', param1: 'messages'}
