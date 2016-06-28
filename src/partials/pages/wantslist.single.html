@@ -145,7 +145,7 @@
         <div class="icons">
           <span ng-style="::item.product.expansionIcon | expansionIcon" ng-if="::item.product.expansionIcon"
                 class="icon expansion-{{::wantslist.data.list.game.idGame}}"></span>
-          <span ng-repeat="language in ::item.language" class="icon language language-{{::language.idLanguage}}"></span>
+          <span ng-repeat="language in ::item.idLanguage" class="icon language language-{{::language}}"></span>
           <span ng-if="::item.minCondition">&ge;<i class="icon grading grading-{{::item.minCondition}}"></i></span>
           <span class="icon is-foil" ng-if="::item.isFoil"></span>
           <span class="icon is-signed" ng-if="::item.isSigned"></span>
@@ -158,7 +158,7 @@
         <span ng-if="::!item.wishPrice" translate="wantslist.not_available">N/A</span>
       </div>
       <div class="card-image" ng-show="item.showImage" ng-click="item.showImage = 0">
-        <img src="" ng-src="{{::item.showImage && (item.product.image | productImage)}}">
+        <img src="" ng-src="{{::item.showImage && (item[item.type].image | productImage)}}">
       </div>
     </li>
     <li class="empty" ng-show="!wantslist.data.list.itemCount" translate="wantslist.emptylist">

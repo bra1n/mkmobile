@@ -96,15 +96,11 @@ angular.module 'mkmobile.services.market', []
       response = count: 0, products: [], loading: no
       if search.length > 1
         response.loading = yes
-        MkmApi.api.metaproducts {search, idLanguage: MkmApiAuth.getLanguage()}, (data) =>
+        MkmApi.api.metaproducts {search, idLanguage: MkmApiAuth.getLanguage(), maxResults: 20}, (data) =>
           # cache metaproducts
           data.metaproduct?.map (val) =>
             DataCache.metaproduct val.metaproduct.idMetaproduct, val
-          # todo: remove this once metaproducts contain this fields by default
-          response.products = data.metaproduct?.splice(0,20).map (val) ->
-            for loc in val.metaproduct.localization when parseInt(loc.idLanguage, 10) is MkmApiAuth.getLanguage()
-              val.metaproduct.locName = loc.name
-            val
+          response.products = data.metaproduct or []
           response.count = response.products?.length
           response.loading = no
       response

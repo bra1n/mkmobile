@@ -43,9 +43,6 @@ angular.module 'mkmobile.controllers.wantslist', []
       # transform booleans to string
       for field in ["mailAlert", "isFoil", "isSigned", "isAltered"]
         @current[field] = if typeof @current[field] is "boolean" then @current[field].toString() else ""
-      # create idLanguage array
-      @current.idLanguage = []
-      @current.idLanguage.push lang.idLanguage for lang in @current.language or []
       # get metaproduct printings and keep selected expansion, if present
       MkmApiMarket.metaproduct @current[@current.type].idMetaproduct, (data) =>
         @current.metaproduct or= data.metaproduct.metaproduct
