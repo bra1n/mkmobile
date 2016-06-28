@@ -9,7 +9,7 @@
   </div>
 </header>
 
-<form id="add" name="card" class="overlay" ng-show="wantslist.screen == 'add' || wantslist.screen == 'edit'"
+<form id="add" name="wantslist.cardform" class="overlay" ng-show="wantslist.screen == 'add' || wantslist.screen == 'edit'"
       ng-submit="wantslist.update()">
   <!-- Search and suggestions -->
   <label class="search" ng-show="wantslist.screen == 'add'">
@@ -19,7 +19,7 @@
   <ul ng-show="wantslist.suggestions.products.length" class="suggestions">
     <li ng-repeat="product in wantslist.suggestions.products" class="cardname" ng-click="wantslist.select(product)">
       {{::product.metaproduct.enName}}
-      <small ng-hide="wantslist.languageId == 1">{{::product.metaproduct.locName}}</small>
+      <small ng-hide="languageId == 1">{{::product.metaproduct.locName}}</small>
     </li>
   </ul>
 
@@ -27,7 +27,7 @@
     <span translate="wantslist.card">Card</span>
     <b class="cardname">
       {{wantslist.current.metaproduct.enName}}
-      <small ng-hide="wantslist.languageId == 1">{{wantslist.current.metaproduct.locName}}</small>
+      <small ng-hide="languageId == 1">{{wantslist.current.metaproduct.locName}}</small>
     </b>
     <input type="hidden" ng-model="wantslist.current.metaproduct" required>
   </label>
@@ -61,7 +61,7 @@
   </label>
   <label>
     <span translate="product.filter.condition">Condition</span>
-    <i class="icon grading grading-{{wantslist.current.minCondition}}"></i>
+    &ge; <i class="icon grading grading-{{wantslist.current.minCondition}}"></i>
     <select ng-model="wantslist.current.minCondition" required>
       <option ng-repeat="condition in wantslist.conditions" value="{{condition}}"
               translate="article.conditions.{{condition}}"></option>
@@ -113,7 +113,7 @@
   <div class="error" ng-show="wantslist.error">{{'wantslist.error' | translate}}</div>
   <div class="buttons">
     <button type="submit" class="button" translate="wantslist.button_{{wantslist.screen}}"
-            ng-disabled="card.$invalid">List this Article</button>
+            ng-disabled="wantslist.cardform.$invalid">List this Article</button>
   </div>
 </form>
 
@@ -140,7 +140,7 @@
       <div class="card">
         <b class="cardname">
           {{::item[item.type].enName}}
-          <small ng-hide="::wantslist.languageId">{{::item[item.type].locName}}</small>
+          <small ng-hide="languageId == 1">{{::item[item.type].locName}}</small>
         </b>
         <div class="icons">
           <span ng-style="::item.product.expansionIcon | expansionIcon" ng-if="::item.product.expansionIcon"

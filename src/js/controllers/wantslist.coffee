@@ -32,6 +32,7 @@ angular.module 'mkmobile.controllers.wantslist', []
     # add a wantslist item
     @add = =>
       @current = {mailAlert: "true", minCondition: "PO"}
+      @cardform.$setUntouched()
       @screen = 'add'
 
     # edit selected wantslist item -> transform selected wantslist to something we can edit
