@@ -32,8 +32,8 @@ angular.module "mkmobile.controllers.activation", []
 
     # activate seller account / request verification transfers
     @seller = =>
-      MkmApiAuth.activateSeller @form, ({account, data}) =>
-        if account
+      MkmApiAuth.activateSeller @form, (account) =>
+        if account.idUser
           @account = account
           # activation successful
           message = if @account.maySell then "success2" else "success"
