@@ -6,11 +6,6 @@ angular.module 'mkmobile.services.wantslist', []
       response = list: {}, loading: yes
       MkmApi.api.wantslist {param1: idWantslist}, (data) =>
         response.list = data.wantslist
-        # todo: remove this once metaproducts contain this fields by default
-        response.list.item = response.list.item.map (item) ->
-          for loc in item[item.type].localization when parseInt(loc.idLanguage, 10) is MkmApiAuth.getLanguage()
-            item[item.type].locName = loc.name
-          item
         response.loading = no
       , ->
         response.error = yes
