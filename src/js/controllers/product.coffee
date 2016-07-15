@@ -32,11 +32,14 @@ angular.module 'mkmobile.controllers.product', []
 
     # reset filter form
     @clearFilter = =>
+      if @filter.inUse
+        @data = MkmApiMarket.articles $stateParams.idProduct, @filter
       @filter = {}
       sessionStorage.removeItem "filter"
 
     # use filter
     @applyFilter = =>
+      @filter.inUse = yes
       sessionStorage.setItem "filter", JSON.stringify @filter
       @data = MkmApiMarket.articles $stateParams.idProduct, @filter
       @show ''

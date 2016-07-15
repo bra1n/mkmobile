@@ -167,6 +167,7 @@ button.remove { background:url("/img/remove.png") transparent center center no-r
 button.add { background:url("/img/add.png") transparent center center no-repeat; }
 button.edit { background: url("/img/edit.png") transparent center center no-repeat; }
 button.cart { background: url("/img/cart.png") no-repeat center center transparent; }
+body.loggedout button.cart { background-image: url("/img/cart_disabled.png"); }
 
 // link arrow
 .link {

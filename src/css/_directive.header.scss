@@ -40,12 +40,14 @@ header {
     button {
       position: absolute;
       right: 0;
+      width: 36px;
       background: none;
       border: none;
       top: 50%;
       font-size: 24px;
       margin-top: -21px;
       color: $mkmBlue;
+      padding: 2px 0;
     }
   }
   .logo {

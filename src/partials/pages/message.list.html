@@ -1,4 +1,7 @@
-<header translate="titles.message">My Messages</header>
+<header>
+  <a href="javascript:history.back()" class="back"></a>
+  <span translate="titles.message">My Messages</span>
+</header>
 <article>
   <form class="search subheadline mkmicon" ng-submit="blur($event)">
     <input id="search" type="text" placeholder="{{'common.search' | translate}}" ng-model="search">

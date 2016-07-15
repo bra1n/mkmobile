@@ -19,16 +19,9 @@
     <span ng-show="!results.loading || results.count"
           translate="search.results" translate-value-count="{{results.count | number}}">Results</span>
     <span class="error" ng-show="results.error" translate="search.error">Error loading search results</span>
-    <label for="searchSort" ng-show="results.count > 0" translate="search.sort">Sort</label>
-    <select id="searchSort" ng-model="sort" ng-show="results.count > 0">
-      <option value="enName" translate="search.name">Name</option>
-      <option value="locName" translate="search.foreign_name" ng-if="::languageId != 1">Foreign Name</option>
-      <option value="expansionName" translate="common.expansion">Expansion</option>
-      <option value="rarity" translate="search.rarity">Rarity</option>
-    </select>
   </div>
   <ul ng-class="{loading:results.loading}">
-    <li class="link" ng-repeat="product in results.products | orderBy:sort">
+    <li class="link" ng-repeat="product in results.products">
       <a ui-sref="product(product)">
         <span class="icon expansion-{{::product.idGame}}" ng-style="::product.expansionIcon | expansionIcon" ng-if="::product.expansionIcon >= 0"></span>
         <span ng-class="::product | rarityIcon" ng-if="::product.rarity"></span>

@@ -7,7 +7,11 @@ body.user {
       padding: 4px 10px;
       border-bottom: 1px solid #ccc;
       &:nth-child(even) { background: rgb(240, 240, 240); }
-      .icon { margin: -2px 5px 0 0; }
+
+      .icon {
+        margin: -2px 5px 0 0;
+        flex-shrink: 0;
+      }
 
       div.card {
         display: flex;

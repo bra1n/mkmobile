@@ -171,7 +171,7 @@
   <span ng-show="product.data.error" class="error" translate="product.articles_error">Error loading articles</span>
   <span ng-show="!product.data.loading && !product.data.count && !product.data.error" class="error"
         translate="product.no_articles">No Offers :(</span>
-  <div ng-show="product.hasFilter()" class="notification" translate="product.active_filter"
+  <div ng-show="product.filter.inUse" class="notification" translate="product.active_filter"
         translate-values="{icon: '<i class=\'mkmicon filter\'></i>'}">Filter options are active</div>
 
   <!-- Articles -->
@@ -192,7 +192,7 @@
         <span class="icon reputation reputation-{{::article.seller.reputation}}" ng-if="::article.seller.reputation"></span>
         <span class="icon commercial commercial-{{::article.seller.isCommercial}}" ng-if="::article.seller.isCommercial"></span>
         <span class="icon risk risk-{{::article.seller.riskGroup}}" ng-if="::article.seller.riskGroup"></span>
-        <span class="icon shipspeed shipspeed-{{::article.seller.shipsFast}}" ng-if="::article.seller.shipsFast"></span>
+        <span class="icon shipspeed" ng-if="::article.seller.avgShippingTime">{{::article.seller.avgShippingTime}}</span>
         <span class="icon vacation-{{::article.seller.onVacation}}" ng-if="::article.seller.onVacation"></span>
         <div class="comment">{{::article.comments}}</div>
       </div>

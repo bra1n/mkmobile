@@ -6,13 +6,24 @@
 // generic icons
 .icon.card { background-image: url('/img/icons.png'); width: 16px; height: 16px; background-position: 0 0; }
 .icon.comment { background-image: url('/img/icons.png'); width: 20px; height: 20px; background-position: -16px 0; }
+.icon.commercial-0 { background-image: url('/img/icons.png'); width: 16px; height: 16px; background-position: -36px 0; }
+.icon.commercial-1 { background-image: url('/img/icons.png'); width: 16px; height: 16px; background-position: 0 -16px; }
+.icon.commercial-2 { background-image: url('/img/icons.png'); width: 16px; height: 16px; background-position: -36px -16px; }
 .icon.is-altered { background-image: url('/img/icons.png'); width: 16px; height: 16px; background-position: 0 -32px; }
 .icon.is-firsted { background-image: url('/img/icons.png'); width: 16px; height: 16px; background-position: -16px -32px; }
 .icon.is-foil { background-image: url('/img/icons.png'); width: 16px; height: 16px; background-position: -32px -32px; }
 .icon.is-playset { background-image: url('/img/icons.png'); width: 16px; height: 16px; background-position: -52px 0; }
 .icon.is-signed { background-image: url('/img/icons.png'); width: 16px; height: 16px; background-position: -52px -16px; }
 .icon.no { background-image: url('/img/icons.png'); width: 16px; height: 16px; background-position: -48px -32px; }
-.icon.vacation-true { background-image: url('/img/icons.png'); width: 16px; height: 16px; background-position: -16px -48px; }
+.icon.risk { background-image: url('/img/icons.png'); width: 16px; height: 16px; background-position: 0 -48px; }
+.icon.shipspeed { background-image: url('/img/icons.png'); width: 16px; height: 16px; background-position: -16px -48px; }
+.icon.vacation-true { background-image: url('/img/icons.png'); width: 16px; height: 16px; background-position: -32px -48px; }
+
+.icon.shipspeed {
+  text-align: center;
+  font-weight: bold;
+  font-size: 10px;
+}
 
 .icon.commercial { background-image: url('/img/icons.png'); width: 16px; height: 16px; display: none; }
 .icon.commercial-0,.icon.commercial-private { display: inline-block; background-position: -36px 0; }
@@ -80,12 +91,6 @@
 .icon.language-9 { display:inline-block; background-position: -144px 0; }
 .icon.language-10 { display:inline-block; background-position: -160px 0; }
 .icon.language-11 { display:inline-block; background-position: -176px 0; }
-
-// shipspeed
-.icon.shipspeed { background-image: url('/img/shipspeed.png'); width:16px; height: 16px; }
-.shipspeed-0 { display:none; }
-.shipspeed-1 { background-position: -1px -1px; }
-.shipspeed-2 { background-position: -19px -1px; }
 
 // reputation
 .icon.reputation { background-image: url('/img/reputation.png'); background-repeat: no-repeat; }
