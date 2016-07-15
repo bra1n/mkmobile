@@ -1,8 +1,8 @@
 # header with search functionality
 angular.module 'mkmobile.directives.header', []
 .directive 'mkmHeader', [
-  'MkmApiAuth', 'MkmApiMarket', 'MkmApiCart', '$state'
-  (MkmApiAuth, MkmApiMarket, MkmApiCart, $state) ->
+  'MkmApiAuth', 'MkmApiMarket', 'MkmApiCart'
+  (MkmApiAuth, MkmApiMarket, MkmApiCart) ->
     restrict: 'E'
     templateUrl: '/partials/directives/header.html'
     link: (scope) ->
@@ -58,6 +58,11 @@ angular.module 'mkmobile.directives.header', []
       scope.$root.$on '$translateChangeSuccess', ->
         scope.idLanguage = MkmApiAuth.getLanguage()
       # listen to cart changes
-      MkmApiCart.onChange 'header', -> scope.cart = MkmApiCart.count()
-      scope.$on '$destroy', -> MkmApiCart.onChange 'header', null
+      scope.$root.$on '$cartChange', (event, amount) ->
+        console.log "cartchange", amount
+        scope.cart = amount
+      # listen to auth changes
+      scope.$root.$on '$authChange', (event, account) ->
+        console.log "authchange", account
+        scope.isActivated = !!account.isActivated
 ]

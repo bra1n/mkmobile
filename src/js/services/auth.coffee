@@ -1,7 +1,7 @@
 angular.module 'mkmobile.services.auth', []
 .factory 'MkmApiAuth', [
-  'MkmApi', '$state', 'DataCache', 'tmhDynamicLocale', '$translate', 'MkmApiCart'
-  (MkmApi, $state, DataCache, tmhDynamicLocale, $translate, MkmApiCart) ->
+  'MkmApi', '$state', 'DataCache', 'tmhDynamicLocale', '$translate', '$rootScope'
+  (MkmApi, $state, DataCache, tmhDynamicLocale, $translate, $rootScope) ->
     redirectAfterLogin = name: "home", params: {}
     promises = {}
 
@@ -21,6 +21,7 @@ angular.module 'mkmobile.services.auth', []
       sessionStorage.removeItem "search"
       sessionStorage.removeItem "filter"
       DataCache.reset()
+      $rootScope.$broadcast '$authChange', {}
       $state.go "login"
 
     # checks whether a user is logged in and redirects if necessary
@@ -57,6 +58,7 @@ angular.module 'mkmobile.services.auth', []
           }
           @cache data.account
           response.success = yes
+          $rootScope.$broadcast '$authChange', data.account
           if data.account.isActivated
             $state.go redirectAfterLogin.name, redirectAfterLogin.params
           else
@@ -119,7 +121,7 @@ angular.module 'mkmobile.services.auth', []
       DataCache.cartCount account.articlesInShoppingCart
       DataCache.messageCount account.unreadMessages
       DataCache.balance account.accountBalance
-      MkmApiCart.triggerChange()
+      $rootScope.$broadcast '$cartChange', account.articlesInShoppingCart
       return DataCache.account account
 
     # return list of available languages
