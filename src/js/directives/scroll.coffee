@@ -1,6 +1,6 @@
 # infinite scrolling
 angular.module 'mkmobile.directives.scroll', []
-.directive 'infiniteScroll', ['$window', ($window) ->
+.directive 'infiniteScroll', ($window) ->
   scope:
     isContainer: "=?"
     infiniteScroll: "&"
@@ -18,4 +18,3 @@ angular.module 'mkmobile.directives.scroll', []
       scrollElem = document.getElementsByTagName('body')[0]
       angular.element($window).bind 'scroll', scrollHandler
       scope.$on '$destroy', -> angular.element($window).unbind 'scroll', scrollHandler
-]

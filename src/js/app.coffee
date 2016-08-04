@@ -20,199 +20,196 @@ angular.module 'templates', [] # placeholder for real templates
 angular.module 'translations', [] # placeholder for real translations
 angular.module 'locales', [] # placeholder for real locales
 
-mkmobileApp.config [
-  '$locationProvider', '$stateProvider', '$urlRouterProvider'
-  ($locationProvider, $stateProvider, $urlRouterProvider) ->
-    $locationProvider.html5Mode yes
-    $stateProvider
-    # static pages
-    .state 'home',
-      url:          '/home'
-      templateUrl:  '/partials/pages/home.html'
-      controller:   'HomeCtrl'
+mkmobileApp.config ($locationProvider, $stateProvider, $urlRouterProvider) ->
+  $locationProvider.html5Mode yes
+  $stateProvider
+  # static pages
+  .state 'home',
+    url:          '/home'
+    templateUrl:  '/partials/pages/home.html'
+    controller:   'HomeCtrl'
 
-    # payment pages
-    .state 'payment',
-      url:          '/payment/:method',
-      templateUrl:  '/partials/pages/payment.html'
-      controller:   'PaymentCtrl'
+  # payment pages
+  .state 'payment',
+    url:          '/payment/:method',
+    templateUrl:  '/partials/pages/payment.html'
+    controller:   'PaymentCtrl'
 
-    # search
-    .state 'search',
-      url:          '/search'
-      templateUrl:  '/partials/pages/search.html'
-      controller:   'SearchCtrl'
+  # search
+  .state 'search',
+    url:          '/search'
+    templateUrl:  '/partials/pages/search.html'
+    controller:   'SearchCtrl'
 
-    # activation
-    .state 'activation',
-      abstract:     yes
-      url:          '/activation'
-      template:     '<ui-view/>'
-    .state 'activation.account',
-      url:          ''
-      templateUrl:  '/partials/pages/activation.account.html'
-      controller:   'ActivationCtrl as activation'
-    .state 'activation.seller',
-      url:          '/seller'
-      templateUrl:  '/partials/pages/activation.seller.html'
-      controller:   'ActivationCtrl as activation'
+  # activation
+  .state 'activation',
+    abstract:     yes
+    url:          '/activation'
+    template:     '<ui-view/>'
+  .state 'activation.account',
+    url:          ''
+    templateUrl:  '/partials/pages/activation.account.html'
+    controller:   'ActivationCtrl as activation'
+  .state 'activation.seller',
+    url:          '/seller'
+    templateUrl:  '/partials/pages/activation.seller.html'
+    controller:   'ActivationCtrl as activation'
 
-    # shopping cart
-    .state 'cart',
-      abstract:     yes
-      url:          '/cart'
-      template:     '<ui-view/>'
-    .state 'cart.list',
-      url:          ''
-      templateUrl:  '/partials/pages/cart.html'
-      controller:   'CartCtrl'
-    .state 'cart.address',
-      url:          '/address'
-      templateUrl:  '/partials/pages/cart.address.html'
-      controller:   'CartCtrl'
-    .state 'cart.checkout',
-      url:          '/checkout/:method'
-      templateUrl:  '/partials/pages/cart.checkout.html'
-      controller:   'CartCtrl'
-    .state 'cart.order',
-      url:          '/:orderId',
-      templateUrl:  '/partials/pages/order.single.html'
-      controller:   'CartCtrl'
+  # shopping cart
+  .state 'cart',
+    abstract:     yes
+    url:          '/cart'
+    template:     '<ui-view/>'
+  .state 'cart.list',
+    url:          ''
+    templateUrl:  '/partials/pages/cart.html'
+    controller:   'CartCtrl'
+  .state 'cart.address',
+    url:          '/address'
+    templateUrl:  '/partials/pages/cart.address.html'
+    controller:   'CartCtrl'
+  .state 'cart.checkout',
+    url:          '/checkout/:method'
+    templateUrl:  '/partials/pages/cart.checkout.html'
+    controller:   'CartCtrl'
+  .state 'cart.order',
+    url:          '/:orderId',
+    templateUrl:  '/partials/pages/order.single.html'
+    controller:   'CartCtrl'
 
 # stock management
-    .state 'stock',
-      abstract:     yes
-      url:          '/stock'
-      template:     '<ui-view/>'
-    .state 'stock.list',
-      url:          ''
-      templateUrl:  '/partials/pages/stock.html'
-      controller:   'StockCtrl'
-    .state 'stock.article',
-      url:          '/:articleId'
-      templateUrl:  '/partials/pages/article.html'
-      controller:   'StockCtrl'
+  .state 'stock',
+    abstract:     yes
+    url:          '/stock'
+    template:     '<ui-view/>'
+  .state 'stock.list',
+    url:          ''
+    templateUrl:  '/partials/pages/stock.html'
+    controller:   'StockCtrl'
+  .state 'stock.article',
+    url:          '/:articleId'
+    templateUrl:  '/partials/pages/article.html'
+    controller:   'StockCtrl'
 
-    # user profile
-    .state 'profile',
-      abstract:     yes
-      url:          '/profile'
-      template:     '<ui-view/>'
-    .state 'profile.account',
-      url:          ''
-      templateUrl:  '/partials/pages/profile.account.html'
-      controller:   'ProfileCtrl as profile'
-    .state 'profile.credit',
-      url:          '/credit'
-      templateUrl:  '/partials/pages/profile.credit.html'
-      controller:   'ProfileCtrl as profile'
-    .state 'profile.coupon',
-      url:          '/coupon'
-      templateUrl:  '/partials/pages/profile.coupon.html'
-      controller:   'ProfileCtrl as profile'
-    .state 'profile.user',
-      url:          '/:idUser'
-      templateUrl:  '/partials/pages/profile.user.html'
-      controller:   'ProfileCtrl as profile'
-      noLogin:      yes
+  # user profile
+  .state 'profile',
+    abstract:     yes
+    url:          '/profile'
+    template:     '<ui-view/>'
+  .state 'profile.account',
+    url:          ''
+    templateUrl:  '/partials/pages/profile.account.html'
+    controller:   'ProfileCtrl as profile'
+  .state 'profile.credit',
+    url:          '/credit'
+    templateUrl:  '/partials/pages/profile.credit.html'
+    controller:   'ProfileCtrl as profile'
+  .state 'profile.coupon',
+    url:          '/coupon'
+    templateUrl:  '/partials/pages/profile.coupon.html'
+    controller:   'ProfileCtrl as profile'
+  .state 'profile.user',
+    url:          '/:idUser'
+    templateUrl:  '/partials/pages/profile.user.html'
+    controller:   'ProfileCtrl as profile'
+    noLogin:      yes
 
-    # order management
-    .state 'order',
-      abstract:     yes
-      url:          '/order'
-      template:     '<ui-view/>'
-    .state 'order.buy',
-      url:          '/buy'
-      templateUrl:  '/partials/pages/order.list.html'
-      controller:   'OrderCtrl'
-    .state 'order.sell',
-      url:          '/sell'
-      templateUrl:  '/partials/pages/order.list.html'
-      controller:   'OrderCtrl'
-    .state 'order.single',
-      url:          '/:idOrder'
-      templateUrl:  '/partials/pages/order.single.html'
-      controller:   'OrderCtrl'
-    .state 'order.evaluate',
-      url:          '/:idOrder/evaluate'
-      templateUrl:  '/partials/pages/order.evaluate.html'
-      controller:   'OrderCtrl'
+  # order management
+  .state 'order',
+    abstract:     yes
+    url:          '/order'
+    template:     '<ui-view/>'
+  .state 'order.buy',
+    url:          '/buy'
+    templateUrl:  '/partials/pages/order.list.html'
+    controller:   'OrderCtrl'
+  .state 'order.sell',
+    url:          '/sell'
+    templateUrl:  '/partials/pages/order.list.html'
+    controller:   'OrderCtrl'
+  .state 'order.single',
+    url:          '/:idOrder'
+    templateUrl:  '/partials/pages/order.single.html'
+    controller:   'OrderCtrl'
+  .state 'order.evaluate',
+    url:          '/:idOrder/evaluate'
+    templateUrl:  '/partials/pages/order.evaluate.html'
+    controller:   'OrderCtrl'
 
-    # messages
-    .state 'message',
-      abstract:     yes
-      url:          '/message'
-      template:     '<ui-view/>'
-    .state 'message.list',
-      url:          ''
-      templateUrl:  '/partials/pages/message.list.html'
-      controller:   'MessageCtrl'
-    .state 'message.user',
-      url:          '/:idUser'
-      templateUrl:  '/partials/pages/message.user.html'
-      controller:   'MessageCtrl'
+  # messages
+  .state 'message',
+    abstract:     yes
+    url:          '/message'
+    template:     '<ui-view/>'
+  .state 'message.list',
+    url:          ''
+    templateUrl:  '/partials/pages/message.list.html'
+    controller:   'MessageCtrl'
+  .state 'message.user',
+    url:          '/:idUser'
+    templateUrl:  '/partials/pages/message.user.html'
+    controller:   'MessageCtrl'
 
-    # wantslists
-    .state 'wantslist',
-      abstract:     yes
-      url:          '/wantslist'
-      template:     '<ui-view/>'
-    .state 'wantslist.list',
-      url:          ''
-      templateUrl:  '/partials/pages/wantslist.list.html'
-      controller:   'WantslistCtrl as wantslist'
-    .state 'wantslist.single',
-      url:          '/:idWantslist'
-      templateUrl:  '/partials/pages/wantslist.single.html'
-      controller:   'WantslistCtrl as wantslist'
+  # wantslists
+  .state 'wantslist',
+    abstract:     yes
+    url:          '/wantslist'
+    template:     '<ui-view/>'
+  .state 'wantslist.list',
+    url:          ''
+    templateUrl:  '/partials/pages/wantslist.list.html'
+    controller:   'WantslistCtrl as wantslist'
+  .state 'wantslist.single',
+    url:          '/:idWantslist'
+    templateUrl:  '/partials/pages/wantslist.single.html'
+    controller:   'WantslistCtrl as wantslist'
 
-    # anonymous routes
-    .state 'imprint',
-      url:          '/imprint'
-      templateUrl:  '/partials/pages/imprint.html'
-      controller:   'HomeCtrl'
-      noLogin:      yes
-    .state 'contact',
-      url:          '/contact'
-      templateUrl:  '/partials/pages/contact.html'
-      controller:   'ContactCtrl'
-      noLogin:      yes
-    .state 'login',
-      url:          '/login'
-      templateUrl:  '/partials/pages/login.html'
-      controller:   'LoginCtrl'
-      noLogin:      yes
-    .state 'recover',
-      url:          '/recover'
-      templateUrl:  '/partials/pages/recover.html'
-      controller:   'RecoverCtrl as recover'
-      noLogin:      yes
-    .state 'register',
-      url:          '/register'
-      templateUrl:  '/partials/pages/register.html'
-      controller:   'RegisterCtrl as register'
-      noLogin:      yes
-    .state 'product',
-      url:          '/product/:idProduct?screen'
-      templateUrl:  '/partials/pages/product.html'
-      controller:   'ProductCtrl as product'
-      noLogin:      yes
-    .state 'user',
-      url:          '/user/:idUser'
-      templateUrl:  '/partials/pages/user.html'
-      controller:   'UserCtrl as user'
-      noLogin:      yes
-    .state 'callback',
-      url:          '/callback'
-      templateUrl:  '/partials/pages/callback.html'
-      controller:   'CallbackCtrl'
-      noLogin:      yes
-    $urlRouterProvider.otherwise ($injector) ->
-      if $injector.get('MkmApiAuth').isLoggedIn() then '/home' else '/login'
-]
+  # anonymous routes
+  .state 'imprint',
+    url:          '/imprint'
+    templateUrl:  '/partials/pages/imprint.html'
+    controller:   'HomeCtrl'
+    noLogin:      yes
+  .state 'contact',
+    url:          '/contact'
+    templateUrl:  '/partials/pages/contact.html'
+    controller:   'ContactCtrl'
+    noLogin:      yes
+  .state 'login',
+    url:          '/login'
+    templateUrl:  '/partials/pages/login.html'
+    controller:   'LoginCtrl'
+    noLogin:      yes
+  .state 'recover',
+    url:          '/recover'
+    templateUrl:  '/partials/pages/recover.html'
+    controller:   'RecoverCtrl as recover'
+    noLogin:      yes
+  .state 'register',
+    url:          '/register'
+    templateUrl:  '/partials/pages/register.html'
+    controller:   'RegisterCtrl as register'
+    noLogin:      yes
+  .state 'product',
+    url:          '/product/:idProduct?screen'
+    templateUrl:  '/partials/pages/product.html'
+    controller:   'ProductCtrl as product'
+    noLogin:      yes
+  .state 'user',
+    url:          '/user/:idUser'
+    templateUrl:  '/partials/pages/user.html'
+    controller:   'UserCtrl as user'
+    noLogin:      yes
+  .state 'callback',
+    url:          '/callback'
+    templateUrl:  '/partials/pages/callback.html'
+    controller:   'CallbackCtrl'
+    noLogin:      yes
+  $urlRouterProvider.otherwise ($injector) ->
+    if $injector.get('MkmApiAuth').isLoggedIn() then '/home' else '/login'
 
 # configure the $http behaviours
-mkmobileApp.config ['$httpProvider', ($httpProvider) ->
+mkmobileApp.config ($httpProvider) ->
   $httpProvider.defaults.useXDomain = yes
   delete $httpProvider.defaults.headers.common['X-Requested-With']
   $httpProvider.interceptors.push ['$q', ($q) ->
@@ -234,53 +231,46 @@ mkmobileApp.config ['$httpProvider', ($httpProvider) ->
         response.data._range = parseInt(response.headers()['content-range'].replace(/^.*\//,''),10) or 0
       response or $q.when response
   ]
-]
 
 # i18n
-mkmobileApp.config [
-  'tmhDynamicLocaleProvider', '$translateProvider'
-  (tmhDynamicLocaleProvider, $translateProvider) ->
-    # translations
-    language = switch (navigator.language or navigator.userLanguage).toLowerCase().substr(0,2)
-      when "fr" then "fr_FR"
-      when "de" then "de_DE"
-      when "es" then "es_ES"
-      when "it" then "it_IT"
-      else "en_GB"
-    $translateProvider
-    .useStaticFilesLoader
-      prefix: '/translations/lang-',
-      suffix: '.json'
-    .fallbackLanguage 'en_GB'
-    .preferredLanguage language
-    .useSanitizeValueStrategy 'sanitizeParameters'
-    # locale
-    tmhDynamicLocaleProvider.localeLocationPattern '/lib/angular-i18n/angular-locale_{{locale}}.js'
-    tmhDynamicLocaleProvider.defaultLocale language.replace(/_/, '-').toLowerCase()
-]
+mkmobileApp.config (tmhDynamicLocaleProvider, $translateProvider) ->
+  # translations
+  language = switch (navigator.language or navigator.userLanguage).toLowerCase().substr(0,2)
+    when "fr" then "fr_FR"
+    when "de" then "de_DE"
+    when "es" then "es_ES"
+    when "it" then "it_IT"
+    else "en_GB"
+  $translateProvider
+  .useStaticFilesLoader
+    prefix: '/translations/lang-',
+    suffix: '.json'
+  .fallbackLanguage 'en_GB'
+  .preferredLanguage language
+  .useSanitizeValueStrategy 'sanitizeParameters'
+  # locale
+  tmhDynamicLocaleProvider.localeLocationPattern '/lib/angular-i18n/angular-locale_{{locale}}.js'
+  tmhDynamicLocaleProvider.defaultLocale language.replace(/_/, '-').toLowerCase()
 
 # generate a base CSS class based on the route path and check login for auth routes
-mkmobileApp.run [
-  '$rootScope','MkmApiAuth','$translate'
-  ($rootScope, MkmApiAuth, $translate) ->
-    # update title and view class
-    translateTitle = -> $translate(['titles.app','titles.'+$rootScope.viewClass]).then (texts) ->
-      $rootScope.viewTitle = texts['titles.app'] + ' — ' + texts['titles.'+$rootScope.viewClass]
-      $rootScope.language = $translate.use().substr(0,2)
-      $rootScope.languageId = MkmApiAuth.getLanguage()
-    # check login
-    $rootScope.$on '$stateChangeStart', (event, next) ->
-      event.preventDefault() unless next.noLogin or MkmApiAuth.checkLogin(next)
-    # new page, update view class and title
-    $rootScope.$on '$stateChangeSuccess', (event, current) ->
-      if current.name
-        $rootScope.viewClass = current.name.split(".").shift()
-        $rootScope.loggedIn = MkmApiAuth.isLoggedIn()
-        $rootScope.username = MkmApiAuth.getUsername()
-        translateTitle()
-    # update title on language change
-    $rootScope.$on '$translateChangeSuccess', -> translateTitle()
-]
+mkmobileApp.run ($rootScope, MkmApiAuth, $translate) ->
+  # update title and view class
+  translateTitle = -> $translate(['titles.app','titles.'+$rootScope.viewClass]).then (texts) ->
+    $rootScope.viewTitle = texts['titles.app'] + ' — ' + texts['titles.'+$rootScope.viewClass]
+    $rootScope.language = $translate.use().substr(0,2)
+    $rootScope.languageId = MkmApiAuth.getLanguage()
+  # check login
+  $rootScope.$on '$stateChangeStart', (event, next) ->
+    event.preventDefault() unless next.noLogin or MkmApiAuth.checkLogin(next)
+  # new page, update view class and title
+  $rootScope.$on '$stateChangeSuccess', (event, current) ->
+    if current.name
+      $rootScope.viewClass = current.name.split(".").shift()
+      $rootScope.loggedIn = MkmApiAuth.isLoggedIn()
+      $rootScope.username = MkmApiAuth.getUsername()
+      translateTitle()
+  # update title on language change
+  $rootScope.$on '$translateChangeSuccess', -> translateTitle()
 
 # helper function to generate oauth headers
 generateOAuthHeader = (config) ->

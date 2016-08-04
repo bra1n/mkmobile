@@ -1,5 +1,5 @@
 angular.module 'mkmobile.services.api', ['ngResource']
-.factory 'MkmApi', [ '$resource', ($resource) ->
+.factory 'MkmApi', ($resource) ->
   sessionAuth = JSON.parse(sessionStorage.getItem('auth')) or {}
   auth =
     consumerKey:    window.consumerKey or 'alb03sLPpFNAhi6f'
@@ -152,4 +152,3 @@ angular.module 'mkmobile.services.api', ['ngResource']
   api: $resource apiURL+'/output.json/:param0/:param1/:param2/:param3/:param4/:param5', {}, apiParams
   auth: auth
   url: apiURL+'/authenticate/'
-]

@@ -1,5 +1,5 @@
 angular.module 'mkmobile.directives.order', []
-.directive 'mkmOrder', [ 'MkmApiCart', (MkmApiCart) ->
+.directive 'mkmOrder', (MkmApiCart) ->
   scope:
     order: "="
     removeArticle: "="
@@ -7,4 +7,3 @@ angular.module 'mkmobile.directives.order', []
   link: (scope) -> scope.countries = MkmApiCart.getCountries()
   restrict: 'E'
   templateUrl: '/partials/directives/order.html'
-]

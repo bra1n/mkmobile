@@ -10,11 +10,12 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-sass'
   grunt.loadNpmTasks 'grunt-bump'
   grunt.loadNpmTasks 'grunt-html2js'
+  grunt.loadNpmTasks 'grunt-ng-annotate'
   grunt.loadNpmTasks 'grunt-postcss'
 
   # Default task.
   grunt.registerTask 'default', ['coffee', 'sass:dev', 'watch']
-  grunt.registerTask 'build', ['clean', 'coffee', 'html2js', 'sass:dist', 'postcss', 'i18n', 'concat', 'uglify', 'copy']
+  grunt.registerTask 'build', ['clean', 'coffee', 'html2js', 'sass:dist', 'postcss', 'i18n', 'ngAnnotate', 'concat', 'uglify', 'copy']
   grunt.registerTask 'release', (type = "patch") -> grunt.task.run ['bump-only:'+type, 'build', 'bump-commit']
 
   # locales and translations gathering and transforming
@@ -73,7 +74,7 @@ module.exports = (grunt) ->
         commitFiles: ['.']
         pushTo: 'origin'
 
-    clean: ['<%= distdir %>/*']
+    clean: ['<%= distdir %>/*', '<%= src.js %>/build/*']
 
     coffee:
       options:
@@ -94,6 +95,15 @@ module.exports = (grunt) ->
       main:
         src: ['<%= src.tpl %>']
         dest: '<%= src.js %>/build/templates.js'
+
+    ngAnnotate:
+      main:
+        files: [{
+          expand: true
+          cwd: '<%= src.js %>'
+          src: ['**/*.js']
+          dest: '<%= src.js %>'
+        }]
 
     sass:
       dev:

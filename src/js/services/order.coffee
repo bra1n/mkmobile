@@ -1,5 +1,5 @@
 angular.module 'mkmobile.services.order', []
-.factory 'MkmApiOrder', [ 'MkmApi', 'MkmApiAuth', 'DataCache', (MkmApi, MkmApiAuth, DataCache) ->
+.factory 'MkmApiOrder', (MkmApi, MkmApiAuth, DataCache) ->
   actorMap =
     sell:      1
     buy:       2
@@ -67,4 +67,3 @@ angular.module 'mkmobile.services.order', []
   getComplaints: -> ["badCommunication","incompleteShipment","notFoil","rudeSeller","shipDamage","unorderedShipment",
                      "wrongEd","wrongLang"]
   getEvaluations: -> [1..4]
-]

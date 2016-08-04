@@ -1,5 +1,5 @@
 angular.module 'mkmobile.services.cache', []
-.factory 'DataCache', ['$cacheFactory', ($cacheFactory) ->
+.factory 'DataCache', ($cacheFactory) ->
   # all glory to the mighty cache object
   caches =
     product: $cacheFactory 'products', capacity: 500
@@ -45,4 +45,3 @@ angular.module 'mkmobile.services.cache', []
   metaproduct: (id, data) ->
     caches.metaproduct.put(id, data) if data?
     caches.metaproduct.get(id) if id?
-]

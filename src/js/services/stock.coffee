@@ -1,5 +1,5 @@
 angular.module 'mkmobile.services.stock', []
-.factory 'MkmApiStock', [ 'MkmApi', 'MkmApiMarket', 'DataCache', (MkmApi, MkmApiMarket, DataCache) ->
+.factory 'MkmApiStock', (MkmApi, MkmApiMarket, DataCache) ->
   # retrieve one or more articles
   get: (id, response) ->
     if id? # single article
@@ -80,4 +80,3 @@ angular.module 'mkmobile.services.stock', []
 
   getLanguages: -> [1..11]
   getConditions: -> ["MT","NM","EX","GD","LP","PL","PO"]
-]

@@ -1,5 +1,5 @@
 angular.module 'mkmobile.services.wantslist', []
-.factory 'MkmApiWantslist', [ 'MkmApi', 'MkmApiAuth', (MkmApi, MkmApiAuth) ->
+.factory 'MkmApiWantslist',(MkmApi) ->
   # retrieve wantslists
   get: (idWantslist) ->
     if idWantslist? # single list items
@@ -62,8 +62,3 @@ angular.module 'mkmobile.services.wantslist', []
   # delete a wants list
   delete: (idWantslist, cb) ->
     MkmApi.api.wantslistDelete {param1: idWantslist}, cb
-
-
-
-
-]
