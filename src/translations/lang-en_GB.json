@@ -108,7 +108,7 @@
     "last_name": "Last Name:",
     "name": "Name:",
     "street": "Street and house number.:",
-    "additional": "Additional info (optional):",
+    "additional": "Additional info (optional)",
     "city": "City:",
     "zip": "Post Code:",
     "country": "Country:",
@@ -407,7 +407,7 @@
     "success": "We have sent you an email containing instructions to activate your account. This is needed to validate your email address. If you are using a free mail service like Hotmail or Yahoo Mail and didn't receive the email, it is possible that it was placed in your spam mail folder. If you do not receive an email, please log in and check that your email address was entered correctly.",
     "terms": "I hereby agree to the <a href='https://www.magiccardmarket.eu/Help/General_Terms_and_Conditions' target='_blank'>General Terms and Conditions</a> as well as to the <a href='https://www.magiccardmarket.eu/Help/Privacy_Policy' target='_blank'>Privacy Policy</a> of the Sammelkartenmarkt Ltd. & Co. KG.",
     "username": "Username:",
-    "username_password": "Username, Email and Password"
+    "username_password": "Email, Username and Password"
   },
   "search": {
     "results": "{{count}} Results",

@@ -1,8 +1,9 @@
 <header>
   <a href="javascript:history.back()" class="back"></a>
   <div class="title">{{profile.data.user.username}}</div>
-  <div class="right" ng-show="profile.data.user.username == profile.username">
-    <a ui-sref="profile.account" class="active mkmicon info"></a>
+  <div class="right">
+    <a ui-sref="profile.account" ng-show="profile.data.user.username == profile.username" class="active mkmicon info"></a>
+    <a ui-sref="user(profile.data.user)" ng-show="profile.data.user.username != profile.username" class="active mkmicon info"></a>
   </div>
 </header>
 

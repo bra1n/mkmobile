@@ -261,7 +261,7 @@
     }
   },
   "home": {
-    "greeting": "Hello, {{name}}"
+    "greeting": "Hallo, {{name}}"
   },
   "login": {
     "login": "Anmelden",

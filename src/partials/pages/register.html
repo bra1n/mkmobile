@@ -27,9 +27,12 @@
     <label for="lastName" translate="address.last_name">Last Name:</label>
     <input name="lastName" id="lastName" type="text" ng-model="register.form.lastName" required
            ng-class="{invalid: register.formError == 'lastName'}">
-    <label for="extra" translate="address.additional">+ Additional address info (optional):</label>
+    <label for="extra" translate="address.additional" ng-class="{open: register.showAdditionalInfo}"
+           ng-click="register.showAdditionalInfo = !register.showAdditionalInfo">
+      Additional address info (optional)
+    </label>
     <input name="extra" id="extra" type="text" ng-model="register.form.extra"
-           ng-class="{invalid: register.formError == 'extra'}">
+           ng-class="{invalid: register.formError == 'extra'}" ng-show="register.showAdditionalInfo">
     <label for="street" translate="address.street">Steet and house number:</label>
     <input name="street" id="street" type="text" ng-model="register.form.street" required
            ng-class="{invalid: register.formError == 'street'}">
@@ -56,7 +59,7 @@
            ng-class="{invalid: register.formError == 'email'}">
     <label for="username" translate="register.username">Username:</label>
     <input name="username" id="username" type="text" ng-model="register.form.username" required
-           ng-class="{invalid: register.formError == 'username'}">
+           ng-class="{invalid: register.formError == 'username'}" maxlength="20">
     <label for="password" translate="register.password">Password:</label>
     <input name="password" id="password" type="password" ng-model="register.form.password" minlength="8" maxlength="20"
            ng-class="{invalid: register.formError == 'password'}" required>

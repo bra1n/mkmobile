@@ -1,4 +1,7 @@
-<header translate="titles.cart"></header>
+<header>
+  <a href="javascript:history.back()" class="back"></a>
+  <div class="title" translate="titles.cart"></div>
+</header>
 <article>
   <p ng-hide="data.cart.length || data.loading" translate>cart.empty</p>
   <div class="overview" ng-show="data.cart.length">
