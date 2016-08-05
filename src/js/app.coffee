@@ -178,7 +178,7 @@ mkmobileApp.config ($locationProvider, $stateProvider, $urlRouterProvider) ->
   .state 'login',
     url:          '/login'
     templateUrl:  '/partials/pages/login.html'
-    controller:   'LoginCtrl'
+    controller:   'LoginCtrl as login'
     noLogin:      yes
   .state 'recover',
     url:          '/recover'

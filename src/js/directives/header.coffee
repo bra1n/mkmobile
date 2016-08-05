@@ -1,6 +1,6 @@
 # header with search functionality
 angular.module 'mkmobile.directives.header', []
-.directive 'mkmHeader', (MkmApiAuth, MkmApiMarket, MkmApiCart) ->
+.directive 'mkmHeader', (MkmApiAuth, MkmApiMarket, MkmApiCart, $state) ->
   restrict: 'E'
   templateUrl: '/partials/directives/header.html'
   link: (scope) ->
@@ -22,7 +22,7 @@ angular.module 'mkmobile.directives.header', []
     # toggle search
     scope.toggleSearch = ->
       if scope.searchOpen
-        scope.searchOpen = no unless scope.query
+        scope.searchOpen = no unless scope.query or $state.is "login"
         scope.query = ""
       else
         scope.searchOpen = yes
@@ -33,11 +33,7 @@ angular.module 'mkmobile.directives.header', []
         scope.menuOpen = no
       else
         scope.menuOpen = yes
-        scope.searchOpen = no
-
-    # close open elements when changing page
-    scope.$on '$stateChangeStart', ->
-      scope.searchOpen = scope.menuOpen = no
+        scope.searchOpen = no unless $state.is "login"
 
     # infinite scrolling
     scope.loadResults = ->
@@ -50,8 +46,11 @@ angular.module 'mkmobile.directives.header', []
       sessionStorage.setItem "search", query
       scope.results = MkmApiMarket.search query
     # listen to route changes
-    scope.$root.$on '$routeChangeStart', ->
-      scope.menuOpen = scope.searchOpen = no
+    scope.$on '$stateChangeSuccess', (event, current) ->
+      scope.searchOpen = scope.menuOpen = no
+      if current.name is "login"
+        scope.searchOpen = yes
+        scope.query = ""
     # listen to language changes
     scope.$root.$on '$translateChangeSuccess', ->
       scope.idLanguage = MkmApiAuth.getLanguage()

@@ -1,20 +1,22 @@
 # login
 angular.module 'mkmobile.controllers.login', []
-.controller 'LoginCtrl', ($scope, MkmApiAuth, $sce, $translate) ->
-  $scope.loggedIn = MkmApiAuth.isLoggedIn()
-  $scope.iframeSrc = $sce.trustAsResourceUrl MkmApiAuth.getLoginURL()+"/"+$translate.use().substr(0,2)
+.controller 'LoginCtrl', ($rootScope, MkmApiAuth, $sce, $translate) ->
+  @loggedIn = MkmApiAuth.isLoggedIn()
+  @iframeSrc = $sce.trustAsResourceUrl MkmApiAuth.getLoginURL()+"/"+$translate.use().substr(0,2)
+  @gameId = window.gameId or 1
 
   # listen to language changes and reload iframe
-  $scope.$root.$on '$translateChangeSuccess', ->
-    unless $scope.login
-      $scope.iframeSrc = $sce.trustAsResourceUrl MkmApiAuth.getLoginURL()+"/"+$translate.use().substr(0,2)
+  $rootScope.$on '$translateChangeSuccess', =>
+    unless @login
+      @iframeSrc = $sce.trustAsResourceUrl MkmApiAuth.getLoginURL()+"/"+$translate.use().substr(0,2)
 
   # handle login callback
-  window.handleCallback = (token) ->
-    $scope.login = MkmApiAuth.getAccess token
+  window.handleCallback = (token) =>
+    @login = MkmApiAuth.getAccess token
     delete window.handleCallback
 
   # log the user out
-  $scope.logout = ->
+  @logout = =>
     MkmApiAuth.logout()
-    $scope.loggedIn = no
+    @loggedIn = no
+  @

@@ -215,6 +215,10 @@
     "confirm": "Confirm Order",
     "are_you_sure": "Are you sure you want to buy these articles?"
   },
+  "header": {
+    "search_1": "Search MagicCardMarket",
+    "search_3": "Search YugiohCardMarket"
+  },
   "imprint": {
     "telephone": "Telephone:",
     "support": "Not for customer support",

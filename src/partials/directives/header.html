@@ -1,11 +1,11 @@
 <!-- Header bar -->
 <header>
   <a class="mkmicon" ng-class="{menu:!menuOpen, cross:menuOpen}" ng-click="toggleMenu()"></a>
-  <a ng-hide="searchOpen || !loggedIn" ui-sref="home" class="logo"></a>
-  <a ng-hide="searchOpen || loggedIn" ui-sref="login" class="logo"></a>
+  <a ng-hide="searchOpen || !loggedIn" ui-sref="home" class="logo game-{{::gameId}}"></a>
+  <a ng-hide="searchOpen || loggedIn" ui-sref="login" class="logo game-{{::gameId}}"></a>
   <form ng-show="searchOpen">
     <span class="mkmicon search"></span>
-    <input type="text" ng-model="query" placeholder="{{'common.search' | translate}}">
+    <input type="text" ng-model="query" placeholder="{{'header.search_'+gameId | translate}}">
     <button type="button" ng-click="toggleSearch()" class="mkmicon cancel-circle"></button>
   </form>
   <a ng-hide="searchOpen" ng-click="toggleSearch()" class="search mkmicon"></a>
@@ -37,7 +37,10 @@
 <div id="menu" class="overlay" ng-show="menuOpen">
   <header translate="common.menu">Menu</header>
   <ul>
-    <li class="link"><a ui-sref="home" translate="titles.home">Home</a></li>
+    <li class="link">
+      <a ui-sref="login" ng-show="!loggedIn" translate="titles.login">Login</a>
+      <a ui-sref="home" ng-show="loggedIn" translate="titles.home">Home</a>
+    </li>
     <li>
       <select class="right" id="languages"
               ng-options="language as 'common.languages.'+language | translate for language in languages"
