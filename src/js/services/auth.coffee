@@ -75,7 +75,7 @@ angular.module 'mkmobile.services.auth', []
           response.loading = no
         , (error) =>
           # if request for account returns with a 403, it means we're logged out and don't know it yet
-          @logout() if error.status is 403
+          @logout() if error.status in [403, 401]
       promises.account.then ->
         response.account = DataCache.account()
         response.loading = no

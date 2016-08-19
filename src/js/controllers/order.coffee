@@ -22,7 +22,6 @@ angular.module 'mkmobile.controllers.order', []
       MkmApiOrder.update {idOrder:$scope.idOrder, status, reason:$scope.data.order.state.reason}, ->
         $scope.data = MkmApiOrder.get {idOrder: $scope.idOrder}
         $state.go('order.evaluate', {idOrder: $scope.idOrder}) if status is "confirmReception"
-    false
 
   # evaluate order
   $scope.evaluations = MkmApiOrder.getEvaluations()

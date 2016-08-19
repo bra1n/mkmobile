@@ -134,6 +134,8 @@ body.loggedout header .logo {
 #search.overlay, #menu.overlay {
   z-index: 1010;
   background: rgba(255, 255, 255, 0.9);
+  padding-top: 30px;
+  top: 40px;
 }
 
 // Menu Styling

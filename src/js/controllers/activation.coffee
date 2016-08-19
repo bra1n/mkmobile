@@ -22,6 +22,7 @@ angular.module "mkmobile.controllers.activation", []
   @step = 0
   @loading = yes
   MkmApiAuth.getAccount ({@account, @loading}) => # store account in controller scope
+    @form.bankAccountOwner = @account.name.firstName + ' ' + @account.name.lastName
 
   # go to seller account activation form step
   @go = (to) =>

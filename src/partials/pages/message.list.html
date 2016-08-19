@@ -9,16 +9,15 @@
   </form>
   <ul class="overview" ng-class="{loading:data.loading}">
     <li ng-repeat="thread in data.messages | filter:search" class="link"
-        ng-class="{sending:thread.message.isSending, unread:thread.unreadMessages}">
+        ng-class="{sending:thread.message.isSending, unread:thread.unreadMessages}"
+        ui-sref="message.user({idUser:thread.partner.idUser})">
       <button class="remove" ng-click="delete($index,thread.partner.idUser)"></button>
       <span class="time">{{thread.message.date | date:'short'}}</span>
-      <a ui-sref="message.user({idUser:thread.partner.idUser})">
-        <span class="title">
-          {{thread.partner.username}}
-          <span mkm-user user="thread.partner"></span>
-        </span>
-        <p>{{thread.message.text | truncate:150}}</p>
-      </a>
+      <span class="title">
+        {{thread.partner.username}}
+        <span mkm-user user="thread.partner"></span>
+      </span>
+      <p>{{thread.message.text | truncate:150}}</p>
     </li>
     <li class="user" ng-repeat="user in users">
       <a ui-sref="message.user({idUser:user.idUser})">

@@ -60,10 +60,10 @@ body.order {
       }
     }
 
-    form.order {
+    div.order {
       text-align: center;
       padding-bottom: 10px;
-      div.status { padding: 10px; }
+      div.status { padding: 10px 10px 0; }
       div.evaluation { padding: 10px; }
       button { margin-top: 10px; }
       b, span {
@@ -73,6 +73,11 @@ body.order {
       }
       b { text-align: left; white-space: nowrap; }
       span { text-align: right; }
+      .cancelrequest { text-align: left; }
+      textarea {
+        width: 100%;
+        margin-top: 10px;
+      }
     }
 
     div.outstanding {

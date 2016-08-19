@@ -67,6 +67,9 @@
     <input name="passwordRepeated" id="passwordRepeated" type="password" ng-model="register.form.passwordRepeated"
            minlength="8" maxlength="20" required ng-class="{invalid: register.formError == 'passwordRepeated'}"
            ng-pattern="register.password | escapeRegex">
+    <div class="error" ng-show="register.formError == 'password'" translate="register.password_error">
+      The chosen password is not valid or is highly insecure. The password may only contain letters, numbers, and ".", "!", ",", "?" and "_". Is should have between 8 and 20 characters.
+    </div>
   </form>
 
   <!-- Step 3 -->

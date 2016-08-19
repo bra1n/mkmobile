@@ -38,7 +38,7 @@
   <header translate="common.menu">Menu</header>
   <ul>
     <li class="link">
-      <a ui-sref="login" ng-show="!loggedIn" translate="titles.login">Login</a>
+      <a ui-sref="login" ng-click="toggleMenu()" ng-show="!loggedIn" translate="titles.home">Home</a>
       <a ui-sref="home" ng-show="loggedIn" translate="titles.home">Home</a>
     </li>
     <li>

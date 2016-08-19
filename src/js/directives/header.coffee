@@ -55,10 +55,6 @@ angular.module 'mkmobile.directives.header', []
     scope.$root.$on '$translateChangeSuccess', ->
       scope.idLanguage = MkmApiAuth.getLanguage()
     # listen to cart changes
-    scope.$root.$on '$cartChange', (event, amount) ->
-      console.log "cartchange", amount
-      scope.cart = amount
+    scope.$root.$on '$cartChange', (event, amount) -> scope.cart = amount
     # listen to auth changes
-    scope.$root.$on '$authChange', (event, account) ->
-      console.log "authchange", account
-      scope.isActivated = !!account.isActivated
+    scope.$root.$on '$authChange', (event, account) -> scope.isActivated = !!account.isActivated
