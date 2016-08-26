@@ -1,59 +1,105 @@
-<header translate="titles.payment">Payment</header>
+<header>
+  <a ui-sref="home" class="back"></a>
+  <div class="title" ng-show="payment.method == 'bank'" translate="payment.bank">Credit my Account via Bank Transfer</div>
+  <div class="title" ng-show="payment.method != 'bank'" translate="payment.paypal">Payment</div>
+</header>
+
 <article>
-  <div ng-show="method == 'done'">
+  <p ng-show="payment.method == 'done'">
     <span translate="payment.done">Thank you for your payment!</span><br>
-    <a href="javascript:window.close();" translate="payment.close">You can now close this tab</a>.
-  </div>
-  <div ng-show="method == 'cancel'">
+    <a href="javascript:window.close();" translate="payment.close">You can now close this tab</a>
+  </p>
+
+  <p ng-show="payment.method == 'cancel'">
     <span translate="payment.cancel">Your Paypal account has not been charged.</span><br>
-    <a href="javascript:window.close();" translate="payment.close">You can now close this tab</a>.
-  </div>
-  <div ng-show="method == 'paypal'">
-    <div class="loading" ng-show="data.loading" translate="payment.loading">Loading payment data...</div>
-    <div class="headline" translate="payment.paypal">Credit my Account via PayPal</div>
-    <span translate="payment.paypal_p1"></span><br>
-    <span translate="payment.paypal_p2"></span><br>
-    <span translate="payment.alternate">Alternate Method:</span>
-    <a ui-sref="payment({method:'bank'})" translate="payment.bank">Credit your account via bank transfer</a><br>
-    <span translate="payment.paypal_p3">Total amount for PayPal:</span>
-    <b>{{data.account.moneyDetails.providerRechargeAmount | currency:"€"}}</b>
+    <a href="javascript:window.close();" translate="payment.close">You can now close this tab</a>
+  </p>
+
+  <div ng-show="payment.method == 'paypal'">
+    <div class="loading" ng-show="payment.data.loading" translate="payment.loading">Loading payment data...</div>
+    <ul>
+      <li>
+        <span translate="payment.paypal_p1"></span>
+      </li>
+      <li>
+        <span translate="payment.paypal_p2"></span><br>
+      </li>
+      <li>
+        <div class="label" translate="payment.paypal_p3">Total amount for PayPal:</div>
+        <b>{{payment.data.account.moneyDetails.providerRechargeAmount | currency:"€"}}</b>
+      </li>
+    </ul>
     <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
       <input type="hidden" name="cmd" value="_xclick">
       <input type="hidden" name="business" value="paypal@magickartenmarkt.de">
       <input type="hidden" name="item_name" value="Digital Goods">
-      <input type="hidden" name="custom" value="{{data.account.idUser}}">
-      <input type="hidden" name="amount" value="{{data.account.moneyDetails.providerRechargeAmount}}">
+      <input type="hidden" name="custom" value="{{payment.data.account.idUser}}">
+      <input type="hidden" name="amount" value="{{payment.data.account.moneyDetails.providerRechargeAmount}}">
       <input type="hidden" name="currency_code" value="EUR">
-      <input type="hidden" name="return" value="{{location.protocol()}}://{{location.host()}}/payment/done">
-      <input type="hidden" name="cancel_return" value="{{location.protocol()}}://{{location.host()}}/payment/cancel">
+      <input type="hidden" name="return" value="{{payment.location.protocol()}}://{{payment.location.host()}}/payment/done">
+      <input type="hidden" name="cancel_return" value="{{payment.location.protocol()}}://{{payment.location.host()}}/payment/cancel">
       <input type="hidden" name="rm" value="2">
-      <input type="hidden" name="lc" value="{{data.account.idDisplayLanguage | findInMap:languages}}">
+      <input type="hidden" name="lc" value="{{payment.data.account.idDisplayLanguage | findInMap:payment.languages}}">
       <input type="hidden" name="image_url" value="http://mkmapi.eu/img/localisation/english/banner_750_90.png">
-      <button ng-click="redirect()" translate="payment.paypal_p4">Pay with Paypal</button>
+      <button ng-click="payment.redirect()" class="button" translate="payment.paypal_p4">Pay with Paypal</button>
     </form>
+    <p>
+      <span translate="payment.alternate">Alternate Method:</span>
+      <a ui-sref="payment({method:'bank'})" translate="payment.bank">Credit your account via bank transfer</a><br>
+    </p>
   </div>
-  <div ng-show="method == 'bank'">
-    <div class="loading" ng-show="data.loading" translate="payment.loading">Loading payment data...</div>
-    <div class="headline" translate="payment.bank">Credit my Account via Bank Transfer</div>
-    <span translate="payment.bank_p1"></span>
+
+  <div ng-show="payment.method == 'bank'">
+    <div class="loading" ng-show="payment.data.loading" translate="payment.loading">Loading payment data...</div>
+    <p translate="payment.bank_p1"></p>
     <ul>
       <li><b translate="payment.bank_p2">Bank Account</b></li>
-      <li><b translate="payment.bank_p3">Amount:</b> {{data.account.bankRecharge | currency:"€"}}</li>
-      <li><b translate="payment.bank_p4">Recipient:</b> Sammelkartenmarkt</li>
-      <li><b translate="payment.bank_p5">Account Nr:</b> 107541500</li>
-      <li><b translate="payment.bank_p6">Bank:</b> Commerzbank AG</li>
-      <li><b translate="payment.bank_p7">Bank Code:</b> 10040000</li>
-      <li><b translate="payment.bank_p8">IBAN:</b> DE80100400000107541500</li>
-      <li><b translate="payment.bank_p9">BIC:</b> COBADEFFXXX</li>
-      <li><b translate="payment.bank_p10">Transfer Reason:</b> {{data.account.username}}-{{data.account.idUser}}</li>
+      <li>
+        <div class="label" translate="payment.bank_p3">Amount:</div>
+        <b>{{payment.data.account.moneyDetails.unpaidAmount | currency:"€"}}</b>
+      </li>
+      <li>
+        <div class="label" translate="payment.bank_p4">Recipient:</div>
+        <b>Sammelkartenmarkt</b>
+      </li>
+      <li>
+        <div class="label" translate="payment.bank_p5">Account Nr:</div>
+        <b>107541500</b>
+      </li>
+      <li>
+        <div class="label" translate="payment.bank_p6">Bank:</div>
+        <b>Commerzbank AG</b>
+      </li>
+      <li>
+        <div class="label" translate="payment.bank_p7">Bank Code:</div>
+        <b>10040000</b>
+      </li>
+      <li>
+        <div class="label" translate="payment.bank_p8">IBAN:</div>
+        <b>DE80100400000107541500</b>
+      </li>
+      <li>
+        <div class="label" translate="payment.bank_p9">BIC:</div>
+        <b>COBADEFFXXX</b>
+      </li>
+      <li>
+        <div class="label" translate="payment.bank_p10">Transfer Reason:</div>
+        <b>{{payment.data.account.username}}-{{payment.data.account.idUser}}</b>
+      </li>
     </ul>
-    <b translate="payment.bank_p11">Attention:</b>
-    <span translate="payment.bank_p12" translate-value-user="{{data.account.username+'-'+data.account.idUser}}"></span><br>
-    <span translate="payment.bank_p13"></span><br>
-    <b translate="payment.bank_p11">Atention:</b>
-    <span translate="payment.bank_p14"></span><br>
-    <span translate="payment.bank_p15"></span><br>
-    <span translate="payment.alternate">Alternate Method:</span>
-    <a ui-sref="payment({method:'paypal'})" translate="payment.paypal">Credit your account via PayPal</a><br>
+    <p class="warning">
+      <b translate="payment.bank_p11">Attention:</b>
+      <span translate="payment.bank_p12" translate-value-user="{{payment.data.account.username+'-'+data.account.idUser}}"></span><br>
+      <span translate="payment.bank_p13"></span><br>
+    </p>
+    <p class="warning">
+      <b translate="payment.bank_p11">Atention:</b>
+      <span translate="payment.bank_p14"></span><br>
+      <span translate="payment.bank_p15"></span><br>
+    </p>
+    <p>
+      <b translate="payment.alternate">Alternate Method:</b>
+      <a ui-sref="payment({method:'paypal'})" translate="payment.paypal">Credit your account via PayPal</a><br>
+    </p>
   </div>
 </article>

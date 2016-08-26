@@ -35,7 +35,7 @@ angular.module "mkmobile.controllers.activation", []
       if account.idUser
         @account = account
         # activation successful
-        message = if @account.maySell then "success2" else "success"
+        message = if @account.sellerActivation is 3 then "success2" else "success"
         $translate("activation.seller." + message).then (text) =>
           alert text
           $state.go 'home'

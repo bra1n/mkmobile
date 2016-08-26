@@ -215,6 +215,10 @@
     "confirm": "Confirmar pedido",
     "are_you_sure": "¿Estás seguro de que quieres comprar estos artículos?"
   },
+  "header": {
+    "search_1": "Buscar en MagicCardMarket",
+    "search_3": "Buscar en YugiohCardMarket"
+  },
   "imprint": {
     "telephone": "Teléfono",
     "support": "No para atención al cliente",
@@ -396,6 +400,7 @@
     "help": "¿No puedes registrarte?",
     "legal": "Legal",
     "password": "Contraseña",
+    "password_error": "La contraseña elegida no es válida o no es lo suficientemente segura. La contraseña solo puede contener letras, números y algunos signos como: punto (.), cierre de exclamación (!), de interrogación (?) y guión bajo (_). Debería tener entre 8 y 20 caracteres.",
     "personal": "Datos personales",
     "private": "Cuenta particular",
     "professional": "¿Profesional?",
@@ -421,11 +426,14 @@
   "profile": {
     "address": "Dirección",
     "cash_coupon": "Canjear cupón",
+    "company": null,
     "contact": "Contactar con este usuario",
     "coupon_error": "El código no es válido o bien el cupón ya fue canjeado",
     "coupon_success": "El cupón ha sido canjeado satisfatoriamente",
     "country": "País",
-    "credit": "Crédido total",
+    "money_credit": null,
+    "bonus_credit": null,
+    "total_credit": null,
     "credit_account": "Ingresar dinero",
     "days": "{{x}} días",
     "evaluation": "Votos recibidos como vendedor",

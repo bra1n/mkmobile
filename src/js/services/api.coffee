@@ -94,6 +94,9 @@ angular.module 'mkmobile.services.api', ['ngResource']
     # Account Management
     account: # get account data
       params: param0: 'account'
+    accountLogout: # log the user out
+      params: {param0: 'account', param1: 'logout'}
+      method: 'POST'
     accountVacation: # change vacation flag for account
       params: {param0: 'account', param1: 'vacation', onVacation: '@vacation'}
       method: 'PUT'

@@ -42,16 +42,27 @@
     </li>
     <li ng-if="profile.account.maySell">
       <label class="label" for="vacation" translate="profile.vacation">MKM Vacation Status</label>
-      <input type="checkbox" id="vacation" ng-change="updateVacation()" ng-model="profile.account.onVacation">
+      <input type="checkbox" id="vacation" ng-change="profile.updateVacation()" ng-model="profile.account.onVacation">
       <label for="vacation" ng-show="profile.account.onVacation" translate="profile.on">On</label>
       <label for="vacation" ng-hide="profile.account.onVacation" translate="profile.off">Off</label>
     </li>
+    <li ng-if="profile.account.moneyDetails.bonusBalance">
+      <div class="label" translate="profile.money_credit">Credit</div>
+      <b>{{profile.account.moneyDetails.moneyBalance | currency:"€"}}</b>
+    </li>
+    <li ng-if="profile.account.moneyDetails.bonusBalance">
+      <div class="label" translate="profile.bonus_credit">Bonus Credit</div>
+      <b>{{profile.account.moneyDetails.bonusBalance | currency:"€"}}</b>
+    </li>
     <li>
-      <div class="label" translate="profile.credit">Total Credit</div>
+      <div class="label" translate="profile.total_credit">Total Credit</div>
       <b>{{profile.account.moneyDetails.totalBalance | currency:"€"}}</b>
     </li>
     <li class="link">
       <a ui-sref="profile.credit" translate="profile.credit_account">Credit User Account</a>
+    </li>
+    <li class="link" ng-if="profile.account.moneyDetails.unpaidAmount">
+      <a ui-sref="payment({method:'paypal'})" translate="payment.paypal">Credit with PayPal</a>
     </li>
     <li class="link">
       <a ui-sref="profile.coupon" translate="profile.cash_coupon">Cash-In Coupon</a>

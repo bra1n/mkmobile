@@ -35,10 +35,10 @@ angular.module 'mkmobile.services.message', []
       response.loading = yes
       MkmApi.api.messageSend {param2: id, message: message}, (data) ->
         response.loading = no
-        response.count = data._range or data.message?.length
-        response.messages = data.message
+        response.count = response.count + 1
+        response.messages.unshift data.message
         response.partner = data.partner
-        message.date = new Date message.date for message in response.messages
+        message.date = new Date data.message.date
       , (err) ->
         response.loading = no
         response.error = err.error

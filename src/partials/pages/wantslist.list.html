@@ -8,7 +8,8 @@
     <form name="wantslist.createForm" ng-submit="wantslist.create()">
       <label for="name" translate="wantslist.addlabel">Add new Wants List</label>
       <div class="row">
-        <input type="text" id="name" ng-model="wantslist.name" placeholder="{{'wantslist.name' | translate}}">
+        <input type="text" id="name" ng-model="wantslist.name" placeholder="{{'wantslist.name' | translate}}"
+               maxlength="30">
         <button type="submit" class="button" ng-disabled="!wantslist.name" translate="wantslist.addbutton">Add List</button>
       </div>
     </form>
@@ -27,7 +28,7 @@
         <button type="button" class="icon remove" ng-click="wantslist.delete(list)"></button>
       </div>
       <form ng-show="list.edit" ng-submit="wantslist.rename(list)">
-        <input type="text" required ng-model="list.name" placeholder="List Name">
+        <input type="text" required ng-model="list.name" placeholder="List Name" maxlength="30">
         <button type="submit" class="button" translate="wantslist.save">Save</button>
       </form>
     </li>

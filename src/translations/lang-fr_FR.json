@@ -108,7 +108,7 @@
     "last_name": "Nom:",
     "name": "Nom:",
     "street": "Rue et numéro:",
-    "additional": "Suite adresse:",
+    "additional": "Suite adresse (facultatif):",
     "city": "Ville :",
     "zip": "Code postal :",
     "country": "Pays :",
@@ -215,6 +215,10 @@
     "confirm": "Confirmer la commande",
     "are_you_sure": "Tu vas acheter ces articles, es-tu sûr?"
   },
+  "header": {
+    "search_1": "Chercher sur Magiccardmarket",
+    "search_3": "Chercher sur Yugiohcardmarket"
+  },
   "imprint": {
     "telephone": "Téléphone:",
     "support": "Pas pour le service client",
@@ -261,7 +265,7 @@
     }
   },
   "home": {
-    "greeting": "Bonjour {{name}},"
+    "greeting": "Bonjour, {{name}}"
   },
   "login": {
     "login": "Se connecter",
@@ -396,6 +400,7 @@
     "help": "Impossible de s'inscrire ?",
     "legal": "Légal",
     "password": "Mot de passe:",
+    "password_error": "Le mot de passe choisi n'est pas valide ou est peu sûr. Le mot de passe ne peut contenir que des lettres, numéros et . , ! ; ? et _. Il devrait avoir entre 8 et 20 charactères.",
     "personal": "Données personnelles",
     "private": "Compte particulière",
     "professional": "Professionnel ?",
@@ -407,7 +412,7 @@
     "success": "Nous t'avons envoyé un mail. Merci de suivre les instructions de ce mail pour terminer ton inscription. Si jamais tu n'as pas recu le mail, merci de bien vouloir vérifier ton filtre spam ou alors vérifier que tu aies bien saisi ton addresse mél lors de l'inscription.",
     "terms": "J'accepte les <a href='https://www.magiccardmarket.eu/Help/General_Terms_and_Conditions' target='_blank'>Conditions Générales</a> et la <a href='https://www.magiccardmarket.eu/Help/Privacy_Policy' target='_blank'>déclaration de protection de données</a> de la Sammelkartenmarkt Ltd. & Co. KG.",
     "username": "Nom d'utilisateur:",
-    "username_password": "Nom d'utilisateur, adresse mél et mot de passe"
+    "username_password": "Adresse mél, pseudo et mot de passe"
   },
   "search": {
     "results": "{{count}} Résultats",
@@ -421,11 +426,14 @@
   "profile": {
     "address": "Adresse",
     "cash_coupon": "Encaisser un bon d'achat",
+    "company": null,
     "contact": "Contacter cet utilisateur",
     "coupon_error": "Le code n'est pas valable ou le bon d'achat a été déjà encaissé",
     "coupon_success": "Bon d'achat encaissé!",
     "country": "Pays",
-    "credit": "Crédit total",
+    "money_credit": null,
+    "bonus_credit": null,
+    "total_credit": null,
     "credit_account": "Créditer ton compte",
     "days": "{{x}} jours",
     "evaluation": "Évaluations comme vendeur",

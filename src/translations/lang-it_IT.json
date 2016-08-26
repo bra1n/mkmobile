@@ -78,7 +78,7 @@
       "error": "C'è stato un errore nell'attivazione del tuo account venditore.",
       "iban": "IBAN:",
       "recipient": "Beneficiario:",
-      "request": "Richiedi um bonifico bancario",
+      "request": "Richiedi bonifici bancari",
       "step1a": "Non sei un venditore autorizzato.",
       "step1b": "Per diventare un venditore autorizzato, ti preghiamo di seguire la seguente procedura:",
       "step1c": "1. Inserisci il tuo numero di telefono. Questa informazione non verrà comunicata ad altri utenti a meno che non sia necessario per risolvere un problema.",
@@ -108,7 +108,7 @@
     "last_name": "Cognome:",
     "name": "Nome:",
     "street": "Via e numero civico",
-    "additional": "Informazioni aggiuntive (opzionale):",
+    "additional": "ulteriori info indirizzo (opzionale):",
     "city": "Città:",
     "zip": "Codice postale:",
     "country": "Paese:",
@@ -214,6 +214,10 @@
     "instabuy": "Il saldo del tuo account é sufficiente. L'ordine sarà pagato con il tuo credito on-line.",
     "confirm": "Conferma l'Ordine",
     "are_you_sure": "Sei sicuro di voler acquistare questi articoli?"
+  },
+  "header": {
+    "search_1": "Cerca MagicCardMarket",
+    "search_3": "Cerca YugiohCardMarket"
   },
   "imprint": {
     "telephone": "Telefono:",
@@ -396,6 +400,7 @@
     "help": "Non è possibile registrarsi?",
     "legal": "Legale",
     "password": "Password:",
+    "password_error": "La password prescelta non è valida o non è sicura. La password può contenere solamente lettere, numeri e i caratteri: \".\", \"!\", \",\", \"?\" e \"_\". Dovrebbe essere lunga tra 8 e 20 caratteri.",
     "personal": "Dati personali",
     "private": "Account privato",
     "professional": "Professionale?",
@@ -407,7 +412,7 @@
     "success": "Ti abbiamo spedito una email contenente le istruzioni per attivare il tuo account. Ciò è necessario per convalidare il tuo indirizzo email. Se utilizzi un servizio di email gratuito come Hotmail o Yahoo Mail e non riceverai la nostra email, potrebbe essere finita nel tuo filtro antispam, ti preghiamo quindi di verificare. Se non ricevi la nostra email, per favore effettua il login e verifica di aver fornito il tuo indirizzo email corretto.",
     "terms": "Con la presente acconsento alle <a href='https://www.magiccardmarket.eu/Help/General_Terms_and_Conditions' target='_blank'>Condizioni d'uso</a> e al <a href='https://www.magiccardmarket.eu/Help/Privacy_Policy' target='_blank'>Regolamento privacy</a> di Sammelkartenmarkt Ltd. & Co. KG.",
     "username": "Username:",
-    "username_password": "Username, email e password"
+    "username_password": "Email, Username e password"
   },
   "search": {
     "results": "{{count}} Risultati",
@@ -421,11 +426,14 @@
   "profile": {
     "address": "Indirizzo",
     "cash_coupon": "Incassa coupon",
+    "company": null,
     "contact": "Contatta questo utente",
     "coupon_error": "Il codice non è valido o il coupon è stato già incassato.",
     "coupon_success": "Coupon incassato con successo",
     "country": "Stato",
-    "credit": "Credito totale",
+    "money_credit": null,
+    "bonus_credit": null,
+    "total_credit": null,
     "credit_account": "Accreditare il mio conto",
     "days": "{{x}} giorni",
     "evaluation": "Valutazione come venditore",

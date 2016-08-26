@@ -33,7 +33,7 @@ mkmobileApp.config ($locationProvider, $stateProvider, $urlRouterProvider) ->
   .state 'payment',
     url:          '/payment/:method',
     templateUrl:  '/partials/pages/payment.html'
-    controller:   'PaymentCtrl'
+    controller:   'PaymentCtrl as payment'
 
   # search
   .state 'search',

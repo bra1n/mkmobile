@@ -14,6 +14,7 @@ angular.module 'mkmobile.services.auth', []
 
   # logout: remove session data, trash the cache, redirect to /login
   logout: ->
+    MkmApi.api.accountLogout()
     MkmApi.auth.secret = MkmApi.auth.token = MkmApi.auth.username = ""
     sessionStorage.removeItem "auth"
     sessionStorage.removeItem "search"

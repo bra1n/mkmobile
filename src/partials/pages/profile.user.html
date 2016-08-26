@@ -49,7 +49,7 @@
       <b>{{profile.data.user.email}}</b>
     </li>
     <li ng-if="profile.data.user.vat">
-      <div class="label" translate="common.vat">VAT</div>
+      <div class="label" translate="profile.vat">VAT</div>
       <b>{{profile.data.user.vat}}</b>
     </li>
     <li>
@@ -73,10 +73,8 @@
       <b>{{profile.data.user.unsentShipments}}</b>
     </li>
     <li ng-if="profile.data.user.legalInformation" class="link">
-      <a ng-click="user.showLegal = !user.showLegal" translate="profile.legal_information">Legal Information</a>
-      <textarea disabled ng-show="user.showLegal">
-        {{profile.data.user.legalInformation}}
-      </textarea>
+      <a ng-click="profile.user.showLegal = !profile.user.showLegal" translate="profile.legal_information">Legal Information</a>
+      <textarea disabled ng-show="profile.user.showLegal">{{profile.data.user.legalInformation}}</textarea>
     </li>
     <li class="link" ng-show="profile.data.user.username != username">
       <a ui-sref="user(profile.data.user)" translate="profile.show_articles">Show articles from this user</a>

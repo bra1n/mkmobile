@@ -1,0 +1,60 @@
+// payment page
+body.payment {
+  article {
+    li {
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      .label {
+        width: 50%;
+        flex-shrink: 0;
+      }
+      b {
+        color: $mkmBlue;
+        word-break: break-all;
+        span {
+          display: block;
+        }
+      }
+      input { margin-right: 5px; }
+      textarea {
+        width: 100%;
+        height: 300px;
+        margin-top: 10px;
+      }
+      &:nth-child(even) {
+        background: #f0f0f0;
+      }
+      &.link {
+        border-top: 1px solid #ccc;
+        background: #fff;
+        display: block;
+        &:after { top: 20px; }
+      }
+      &.balance { border-bottom: 1px solid #ccc; }
+    }
+    a {
+      display: block;
+      line-height: 20px;
+    }
+    p {
+      padding: 10px;
+      &.warning { background: #FFE599; }
+      &.center { text-align: center; }
+    }
+    form {
+      padding: 0 10px;
+      label {
+        display: block;
+      }
+      input, button {
+        width: 100%;
+      }
+      .error { margin-bottom: 10px; }
+    }
+    &.loading {
+      height: 64px;
+      background-position: center bottom;
+    }
+  }
+}

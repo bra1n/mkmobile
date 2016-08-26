@@ -5,10 +5,10 @@
 <article>
   <form ng-submit="profile.submitCoupon()">
     <label for="coupon" translate="profile.insert_code">Insert your Coupon Code</label>
-    <input id="coupon" type="text" ng-model="profile.coupon">
-    <div class="error" ng-show="profile.messages" translate="profile.coupon_error">Coupon error</div>
+    <input id="coupon" type="text" ng-model="profile.couponCode">
+    <div class="error" ng-show="profile.coupon[0].successful == false" translate="profile.coupon_error">Coupon error</div>
     <div class="success" ng-show="profile.success" translate="profile.coupon_success">Success!</div>
-    <button class="button" type="submit" ng-disabled="!profile.coupon" translate="profile.submit">Submit</button>
+    <button class="button" type="submit" ng-disabled="!profile.couponCode" translate="profile.submit">Submit</button>
   </form>
 </article>
 

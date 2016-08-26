@@ -6,7 +6,7 @@
   <p ng-show="activation.loading" class="loading"></p>
 
   <!-- request seller activation forms -->
-  <div ng-show="activation.account.bankAccount.iban === ''">
+  <div ng-show="activation.account.sellerActivation == 0">
     <nav>
       <span ng-class="{active: activation.step==index}" ng-click="activation.go(index)"
             ng-repeat="(index, form) in activation.steps"></span>
@@ -88,7 +88,7 @@
   </div>
 
   <!-- enter transfer amounts to activate seller account -->
-  <div ng-show="activation.account.bankAccount.iban">
+  <div ng-show="activation.account.sellerActivation > 0">
     <p translate="activation.seller.step4">
       Enter the amounts of the transfers here to activate your seller account.
     </p>

@@ -78,7 +78,7 @@
       "error": "Es gab einen Fehler bei der Aktivierung als Verkäufer.",
       "iban": "IBAN:",
       "recipient": "Empfänger:",
-      "request": "Überweisung anfordern",
+      "request": "Überweisungen anfordern",
       "step1a": "Du bist kein verifizierter Verkäufer",
       "step1b": "Bitte führe folgende Schritte durch, um Dein Konto für den Verkauf freizuschalten:",
       "step1c": "1. Gib Deine Telefonnummer ein.",
@@ -108,7 +108,7 @@
     "last_name": "Nachname:",
     "name": "Name:",
     "street": "Straße/Hausnr.:",
-    "additional": "Weitere Adresszeile (optional):",
+    "additional": "Weitere Adresszeile (optional)",
     "city": "Stadt:",
     "zip": "PLZ:",
     "country": "Land:",
@@ -214,6 +214,10 @@
     "instabuy": "Dein Kontostand reich aus, um diese Bestellung von Deinem Guthaben zu bezahlen.",
     "confirm": "Bestellung bestätigen",
     "are_you_sure": "Bitte bestätige Deinen Einkauf."
+  },
+  "header": {
+    "search_1": "Auf Magiccardmarket suchen",
+    "search_3": "Auf Yugiohcardmarket suchen"
   },
   "imprint": {
     "telephone": "Telefon:",
@@ -331,7 +335,7 @@
     "bank_p3": "Betrag:",
     "bank_p4": "Empfänger",
     "bank_p5": "Kontonummer:",
-    "bank_p6": "Name der Bank:",
+    "bank_p6": "Adresse Kreditinstitut:",
     "bank_p7": "Bankleitzahl:",
     "bank_p8": "IBAN:",
     "bank_p9": "BIC:",
@@ -396,6 +400,7 @@
     "help": "Ich kann mich nicht anmelden.",
     "legal": "AGB",
     "password": "Passwort:",
+    "password_error": "Das gewählte Password ist ungültig oder unsicher. Es dürfen nur Buchstaben, Zahlen, Satzzeichen und Unterstrich (_) benutzt werden. 8 bis 20 Zeichen.",
     "personal": "Persönliche Daten",
     "private": "Normales Konto",
     "professional": "Gewerblich?",
@@ -407,7 +412,7 @@
     "success": "Wir haben Dir eine E-Mail mit weiteren Informationen gesendet. Um den Anmeldeprozess abzuschließen, folge bitte den Anweisungen dieser E-Mail. Solltest Du die E-Mail nicht erhalten haben, überprüfe bitte Deinen Spam-Ordner und vergewissere Dich, dass Du Deine E-Mail korrekt eingegeben hast.",
     "terms": "Hiermit akzeptiere ich die  <a href='https://www.magiccardmarket.eu/Help/General_Terms_and_Conditions' target='_blank'>AGB</a> sowie die <a href='https://www.magiccardmarket.eu/Help/Privacy_Policy' target='_blank'>Datenschutzerklärung</a> der Sammelkartenmarkt Ltd. & Co. KG.",
     "username": "Benutzername:",
-    "username_password": "Benutzername, E-Mail und Passwort"
+    "username_password": "E-Mail, Benutzername und Passwort"
   },
   "search": {
     "results": "{{count}} Ergebnisse",
@@ -421,11 +426,14 @@
   "profile": {
     "address": "Adresse",
     "cash_coupon": "Gutschein einlösen",
+    "company": "Firmenname",
     "contact": "Diesen User kontaktieren",
     "coupon_error": "Der Code ist ungültig oder wurde bereits eingelöst.",
     "coupon_success": "Gutschein erfolgreich eingelöst!",
     "country": "Land",
-    "credit": "Guthaben",
+    "money_credit": "Guthaben",
+    "bonus_credit": "Sonderguthaben",
+    "total_credit": "Gesamtguthaben",
     "credit_account": "Benutzerkonto aufladen",
     "days": "{{x}} Tage",
     "evaluation": "Bewertung als Verkäufer",
