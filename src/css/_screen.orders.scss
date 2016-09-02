@@ -1,12 +1,14 @@
 // order page
-#content.buys, #content.sells {
-  header {
+body.order {
+  #content header {
     padding: 0 30px;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-right: 5px;
+    }
   }
   article {
-    position: relative;
     .tabs {
       padding: 10px 10px 0;
       background: #eaeaea;
@@ -27,12 +29,8 @@
         border-bottom: none;
         box-shadow: inset 0 1px 1px #fff;
         font-weight: bold;
-        color: #012169;
+        color: $mkmBlue;
         font-size: 16px;
-        -webkit-transition: background-color 0.5s;
-        -moz-transition: background-color 0.5s;
-        -ms-transition: background-color 0.5s;
-        -o-transition: background-color 0.5s;
         transition: background-color 0.5s;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -62,10 +60,10 @@
       }
     }
 
-    form.order {
+    div.order {
       text-align: center;
       padding-bottom: 10px;
-      div.status { padding: 10px; }
+      div.status { padding: 10px 10px 0; }
       div.evaluation { padding: 10px; }
       button { margin-top: 10px; }
       b, span {
@@ -75,6 +73,18 @@
       }
       b { text-align: left; white-space: nowrap; }
       span { text-align: right; }
+      .cancelrequest { text-align: left; }
+      textarea {
+        width: 100%;
+        margin-top: 10px;
+      }
+    }
+
+    div.outstanding {
+      border-top: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+      .button { margin-top: 10px; }
     }
   }
   // evaluation
@@ -107,26 +117,20 @@
     }
     div.overlay {
       position: absolute;
-      top: 50px;
-      min-height: 100%;
       left: 0;
       right: 0;
+      bottom: 0;
       background: rgba(255,255,255,0.9);
       opacity: 1;
-      -webkit-transition: all 0.5s linear;
-      -moz-transition: all 0.5s linear;
-      -ms-transition: all 0.5s linear;
-      -o-transition: all 0.5s linear;
       transition: all 0.5s linear;
       overflow: auto;
-      margin-bottom: 70px;
       &.ng-hide-add, &.ng-hide-remove { display:block!important; }
       &.ng-hide { opacity:0; }
       li {
         text-align: left;
         padding: 10px;
       }
-      button { margin-top: 10px; }
+      button { margin: 10px 0; }
     }
     div.view {
       padding: 10px;

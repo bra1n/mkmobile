@@ -1,0 +1,86 @@
+<header>
+  <a href="javascript:history.back()" class="back"></a>
+  <div class="title">{{profile.data.user.username}}</div>
+  <div class="right">
+    <a ui-sref="profile.account" ng-show="profile.data.user.username == profile.username" class="active mkmicon info"></a>
+    <a ui-sref="user(profile.data.user)" ng-show="profile.data.user.username != profile.username" class="active mkmicon info"></a>
+  </div>
+</header>
+
+<article ng-class="{loading: profile.data.loading}">
+  <ul ng-show="profile.data.user">
+    <li>
+      <div class="label" translate="profile.evaluation">Evaluation as Seller</div>
+      <i class="icon reputation reputation-{{profile.data.user.reputation}}"></i>
+      <b>{{'article.seller.'+profile.data.user.reputation | translate}}</b>
+    </li>
+    <li>
+      <div class="label" translate="profile.registered">Registered as</div>
+      <i class="icon commercial commercial-{{profile.data.user.isCommercial}}"></i>
+      <b>{{'article.account.'+profile.data.user.isCommercial | translate}}</b>
+    </li>
+    <li ng-if="profile.data.user.name.company">
+      <div class="label" translate="profile.company">Company</div>
+      <b>{{profile.data.user.name.company}}</b>
+    </li>
+    <li>
+      <div class="label" translate="profile.name">Name</div>
+      <b>{{profile.data.user.name.firstName}} {{profile.data.user.name.lastName}}</b>
+    </li>
+    <li ng-if="profile.data.user.isCommercial">
+      <div class="label" translate="profile.address">Address</div>
+      <b>
+        <span>{{profile.data.user.address.street}}</span>
+        <span>{{profile.data.user.address.extra}}</span>
+        <span>{{profile.data.user.address.zip}} {{profile.data.user.address.city}}</span>
+      </b>
+    </li>
+    <li>
+      <div class="label" translate="profile.country">Country</div>
+      <i class="icon country country-{{profile.data.user.address.country}}"></i>
+      <b>{{'address.countries.'+profile.data.user.address.country | translate}}</b>
+    </li>
+    <li ng-if="profile.data.user.phoneNumber">
+      <div class="label" translate="profile.phone">Phone</div>
+      <b>{{profile.data.user.phoneNumber}}</b>
+    </li>
+    <li ng-if="profile.data.user.email">
+      <div class="label" translate="common.email">Email</div>
+      <b>{{profile.data.user.email}}</b>
+    </li>
+    <li ng-if="profile.data.user.vat">
+      <div class="label" translate="profile.vat">VAT</div>
+      <b>{{profile.data.user.vat}}</b>
+    </li>
+    <li>
+      <div class="label" translate="profile.sales">Sales</div>
+      <b>{{profile.data.user.sellCount}}</b>
+    </li>
+    <li>
+      <div class="label" translate="profile.sold">Sold Items</div>
+      <b>{{profile.data.user.soldItems}}</b>
+    </li>
+    <li>
+      <div class="label" translate="profile.shipping">Avg Shipping</div>
+      <b translate="profile.days" translate-values="{x: profile.data.user.avgShippingTime}"></b>
+    </li>
+    <li>
+      <div class="label" translate="profile.loss_percentage">Loss Percentage</div>
+      <b>{{profile.data.user.lossPercentage}}</b>
+    </li>
+    <li>
+      <div class="label" translate="profile.unsent_shipments">Unsent Shipments</div>
+      <b>{{profile.data.user.unsentShipments}}</b>
+    </li>
+    <li ng-if="profile.data.user.legalInformation" class="link">
+      <a ng-click="profile.user.showLegal = !profile.user.showLegal" translate="profile.legal_information">Legal Information</a>
+      <textarea disabled ng-show="profile.user.showLegal">{{profile.data.user.legalInformation}}</textarea>
+    </li>
+    <li class="link" ng-show="profile.data.user.username != username">
+      <a ui-sref="user(profile.data.user)" translate="profile.show_articles">Show articles from this user</a>
+    </li>
+    <li class="link" ng-show="profile.data.user.username != username && loggedIn">
+      <a ui-sref="message.user(profile.data.user)" translate="profile.contact">Contact this user</a>
+    </li>
+  </ul>
+</article>

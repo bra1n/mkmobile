@@ -1,0 +1,244 @@
+// Header styling
+header {
+  box-sizing: border-box;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 1000;
+  max-height: 100%;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background: #fff;
+  color: #fff;
+  font-size: 24px;
+  padding: 0 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  form {
+    position: relative;
+    flex-grow: 1;.search {
+      position: absolute;
+      left: 8px;
+      top: 50%;
+      margin-top: -20px;
+      font-size: 20px;
+      color: $mkmBlue;
+    }
+    input {
+      border-radius: 15px;
+      height: 32px;
+      line-height: 30px;
+      box-sizing: border-box;
+      padding: 0 30px;
+      display: block;
+      width: 100%;
+    }
+    button {
+      position: absolute;
+      right: 0;
+      width: 36px;
+      background: none;
+      border: none;
+      top: 50%;
+      font-size: 24px;
+      margin-top: -21px;
+      color: $mkmBlue;
+      padding: 2px 0;
+    }
+  }
+  .logo {
+    background: url("/img/1-logo.jpg") no-repeat center center;
+    background-size: auto 90%;
+    flex-grow: 1;
+    height: 100%;
+    margin: 0 24px 0 48px;
+    body.de &.game-1 {
+      background-image: url("/img/1-logo_de.jpg");
+    }
+    &.game-3 {
+      background-image: url("/img/3-logo.jpg");
+    }
+  }
+  .back {
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    margin-top: -11px;
+    left: 0;
+    width: 20px;
+    height: 21px;
+    display: block;
+    background: url("/img/back.png") center center no-repeat;
+  }
+  a {
+    margin: 0 5px;
+    cursor: pointer;
+    position: relative;
+    color: $mkmBlue;
+  }
+  // counter overlay for shopping cart
+  span.counter {
+    background: red;
+    position: absolute;
+    top: 3px;
+    right: 1px;
+    font-size: 10pt;
+    line-height: 100%;
+    padding: 3px;
+    font-weight: bold;
+    color: #fff;
+  }
+}
+
+// center logo when logged out
+body.loggedout header .logo {
+  margin-left: 24px;
+}
+
+// Subheader
+#content header, .overlay header {
+  top: 40px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 16px;
+  background: linear-gradient(to bottom, #012678 0%, #011d5d 100%);
+  overflow: hidden;
+  white-space: nowrap;
+  font-weight: bold;
+  padding: 0 30px;
+  &.loading { background-color: #012678; }
+  .title {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: bold;
+  }
+  .right {
+    position: absolute;
+    right: 6px;
+    top: 0;
+    a {
+      font-size: 18px;
+      margin: 0 2px;
+      &.used { color: $mkmRed; }
+      &.active { color: $mkmGold; }
+    }
+  }
+  a { color: white; }
+}
+
+// Overlay below header
+#search.overlay, #menu.overlay {
+  z-index: 1010;
+  background: rgba(255, 255, 255, 0.9);
+  padding-top: 30px;
+  top: 40px;
+}
+
+// Menu Styling
+#menu {
+  ul {
+    li {
+      padding: 10px;
+      line-height: 20px;
+      border-bottom: 1px solid #ccc;
+      &:last-child { border:none; }
+    }
+    label {
+      display: inline-block;
+      white-space: nowrap;
+    }
+    .right {
+      float: right;
+      width: auto;
+      margin-top: -3px;
+    }
+    .center { text-align: center; }
+    a {
+      display: block;
+      line-height: 20px;
+    }
+  }
+}
+
+// Search results
+#search {
+  top: 41px;
+  padding-top: 5px;
+  .header {
+    vertical-align: middle;
+    margin: 0 3px;
+    text-align: center;
+    font-weight: bold;
+  }
+  li {
+    padding: 7px 10px;
+    border-bottom: 1px solid #ccc;
+    &:nth-child(even) { background: rgba(240,240,240,0.4); }
+    .icon {
+      margin-right: 5px;
+      flex-shrink: 0;
+    }
+    .name {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    small {
+      display: block;
+      font-weight: normal;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+  a {
+    font-weight: bold;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    small {
+      color: #444;
+      font-style: italic;
+    }
+  }
+}
+
+// push content down
+article { padding-top: 70px; }
+
+/* login specific styling of search
+body.login {
+  &.loggedout header .logo { margin-left: 0; }
+  &.loggedin header .logo { margin: 0; }
+  header {
+    > .mkmicon.search { display: none; }
+    form {
+      position: fixed;
+      top: 40px;
+      left: 0;
+      right: 0;
+      height: 30px;
+      background: linear-gradient(to bottom, #012678 0%, #011d5d 100%);
+      padding: 3px 5px;
+      box-sizing: border-box;
+      .search {
+        font-size: 14px;
+        left: 12px;
+      }
+      input {
+        height: 24px;
+        line-height: 24px;
+      }
+      button {
+        font-size: 18px;
+        right: 4px;
+        margin-top: -21px;
+      }
+    }
+  }
+  #search { top: 71px; }
+}
+//*/

@@ -1,23 +1,11 @@
 // messages page
-#content.messages {
-  header {
-    .icons {
-      background: white;
-      border-radius: 3px;
-      line-height: 10px;
-      padding: 4px;
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      margin-top: -12px;
-    }
-  }
+body.message {
   article {
-    .overview { margin-top: 50px; }
+    .overview { margin-top: 40px; }
     li {
       span.time, button {
         font-weight: bold;
-        color: #012169;
+        color: $mkmBlue;
         float:right;
         line-height: 24px;
         font-size: 12px;
@@ -35,7 +23,7 @@
     }
     // single user view
     ul.thread {
-      margin: 60px 10px 60px 10px;
+      margin: 50px 10px;
       li {
         margin-bottom: 10px;
         h3 {
@@ -64,30 +52,26 @@
     }
     form.write.subheadline {
       position: fixed;
-      bottom: 58px;
+      bottom: 0;
       width: 100%;
       box-shadow: none;
       border-top: 1px solid #ccc;
       z-index: 1000;
-      display: table;
-      div { padding: 0 10px; display: table-cell; }
-      div.left { width: 100%; }
+      display: flex;
+      align-items: center;
       textarea {
         height: 30px;
-        vertical-align: middle;
-        line-height: 30px;
-        margin: 0px;
+        margin: 0 5px;
         max-height: 30px;
-        width: 100%;
-        max-width: 100%;
-        margin-top: -5px;
+        flex-grow: 1;
+        padding: 0 10px;
+        font-size: 14px;
       }
       button {
         height: 30px;
         line-height: 30px;
         border: none;
         background: none;
-        vertical-align: middle;
       }
     }
     // thread view

@@ -1,11 +1,13 @@
-<header class="game-{{gameId}}"></header>
+<header translate="home.greeting" translate-values="{name: account.name.firstName}">Hello</header>
 <article>
-  <span></span><a href="/stock" class="stock" translate="titles.stock">My Articles</a>
-  <span></span><a href="/buys" class="buys" translate="titles.buys">My Buys</a><!--
-  --><a href="/sells" class="sells" translate="titles.sells">My Sells</a>
-  <span></span><a href="/messages" class="messages">
+  <a ui-sref="profile.account" class="mkmicon profile" translate="titles.profile">Profile</a>
+  <a ui-sref="message.list" class="mkmicon messages">
     <span class="count" ng-show="messages">{{messages}}</span>
-    <span translate="titles.messages">My Messages</span>
+    <span translate="titles.message">Messages</span>
   </a>
+  <a ui-sref="order.buy" class="mkmicon purchases" translate="titles.buys">Purchases</a>
+  <a ui-sref="wantslist.list" class="mkmicon wants" translate="titles.wantslist">Wants</a>
+  <a ui-sref="order.sell" ng-hide="account && !account.maySell" class="mkmicon sales" translate="titles.sells">Sales</a>
+  <a ui-sref="stock.list" ng-hide="account && !account.maySell" class="mkmicon offers" translate="titles.stock">Offers</a>
+  <a ui-sref="activation.seller" ng-show="account && account.sellerActivation < 3" class="mkmicon becomeseller" translate="titles.activation_seller">Become Seller</a>
 </article>
-<mkm-footer messages="messages"></mkm-footer>

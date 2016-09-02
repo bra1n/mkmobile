@@ -1,10 +1,9 @@
 <div class="seller">
   <b translate="order.seller" class="title">Seller:</b>
-  <b class="title">{{order.seller.username}}</b>
+  <a ui-sref="profile.user(order.seller)" class="title">{{order.seller.username}}</a>
   ({{order.seller.sellCount}})
   <span class="seller-details" mkm-user user="order.seller"></span>
-  <a class="icon comment" ng-show="order.isBuyer" href="/messages/{{order.seller.idUser}}"></a>
-  <div class="seller-address" ng-show="order.seller.address">
+  <div class="seller-address" ng-show="order.seller.address.city">
     <b translate="order.seller_address">Seller's address</b><br>
     <i>
       {{order.seller.name.firstName}} {{order.seller.name.lastName}},
@@ -21,9 +20,8 @@
 <hr ng-show="order.buyer">
 <div class="buyer" ng-show="order.buyer">
   <b translate="order.buyer" class="title">Buyer:</b>
-  <b class="title">{{order.buyer.username}}</b> ({{order.buyer.sellCount}})
+  <a ui-sref="profile.user(order.buyer)" class="title">{{order.buyer.username}}</a> ({{order.buyer.sellCount}})
   <span class="buyer-details" mkm-user user="order.buyer"></span>
-  <a class="icon comment" ng-hide="order.isBuyer" href="/messages/{{order.buyer.idUser}}"></a>
   <div class="buyer-address" ng-show="order.shippingAddress && order.shippingAddress.country">
     <b translate="order.shipping_address">Shipping address</b><br>
     <i>
@@ -51,9 +49,14 @@
     <div class="controls" ng-show="removeArticle">
       <button class="remove" ng-click="removeArticle(article, order)"></button>
     </div>
-    <div class="card">
+    <div class="count">
       {{article.count}}x
-      <a href="/product/{{article.idProduct}}">{{article.product.name}}</a>
+    </div>
+    <div class="card">
+      <a ui-sref="product(article)">
+        {{::article.product.enName}}
+        <small ng-hide="::article.language.idLanguage == 1">{{::article.product.locName}}</small>
+      </a>
     </div>
     <div class="icons">
       <span class="icon expansion-{{article.product.idGame}}" ng-style="article.product.expIcon | expansionIcon" ng-show="article.product.expansion"></span>

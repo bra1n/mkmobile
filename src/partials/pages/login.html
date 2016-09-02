@@ -1,18 +1,20 @@
-<mkm-search></mkm-search>
+<header translate="titles.login">Login</header>
 <article>
   <form>
-    <img src="/img/1-logo.jpg" alt="Logo" class="logo" ng-show="gameId == 1 && language != 'de'">
-    <img src="/img/1-logo_de.jpg" alt="Logo" class="logo" ng-show="gameId == 1 && language == 'de'">
-    <img src="/img/3-logo.jpg" alt="Logo" class="logo" ng-show="gameId == 3">
-    <div ng-hide="loggedIn">
-      <iframe src="" ng-src="{{iframeSrc}}" ng-show="iframeSrc" scrolling="no"></iframe>
-      <button class="button" ng-hide="iframeSrc || login.success" ng-click="handleLogin()" translate="login.login">Log In</button>
-      <div ng-show="login.error" translate="login.error">Error retrieving access, please retry</div>
-      <div ng-show="login.success" translate="login.success">Logged in successfully!</div>
+    <img class="logo" ng-if="login.gameId != 1 || languageId != 3" ng-src="/img/{{login.gameId}}-logo.jpg">
+    <img class="logo" ng-if="login.gameId == 1 && languageId == 3" ng-src="/img/1-logo_de.jpg">
+    <div ng-hide="login.loggedIn || login.login.success">
+      <iframe src="" ng-src="{{login.iframeSrc}}" scrolling="yes"></iframe>
+      <div ng-show="login.login.error" translate="login.error">Error retrieving access, please retry</div>
+      <a ui-sref="recover" translate="login.forgot_your">Forgot your username or password?</a><br>
+      <span translate="login.not_a_member">Not a member?</span>
+      <a ui-sref="register" translate="login.register">Register here</a><br><br>
+      <i class="mkmicon display"></i>
       <a href="http://{{language}}.magiccardmarket.eu" translate="common.desktop">To desktop version</a>
     </div>
-    <div ng-show="loggedIn">
-      <button class="button" ng-click="logout()" translate="common.logout">Logout</button>
+    <div ng-show="login.login.success" translate="login.success">Logged in successfully!</div>
+    <div ng-show="login.loggedIn">
+      <button class="button" ng-click="login.logout()" translate="common.logout">Logout</button>
     </div>
   </form>
 </article>

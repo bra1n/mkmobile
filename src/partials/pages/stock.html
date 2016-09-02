@@ -1,23 +1,20 @@
 <header>
+  <a href="javascript:history.back()" class="back"></a>
   <span translate="titles.stock">My Articles</span>
   <span ng-hide="data.loading">
-    - {{data.count}}
+    &nbsp;- {{data.count}}
     <span ng-show="data.count != 1" translate="common.articles"></span>
     <span ng-show="data.count == 1" translate="common.article"></span>
   </span>
 </header>
 <article>
-  <form class="search subheadline" ng-submit="blur()">
+  <form class="search subheadline mkmicon" ng-class="{open:selected.length}" ng-submit="blur()">
     <div class="tools" ng-show="selected.length">
       <button type="button" class="remove" ng-click="decrease(selected)"></button>
       <button type="button" class="add" ng-click="increase(selected)"></button>
     </div>
-    <div class="left">
-      <input type="text" ng-model="query" placeholder="{{'common.search' | translate}}">
-    </div>
-    <div class="right">
-      <button type="button" ng-show="query" ng-click="query = ''">{{'search.cancel' | translate}}</button>
-    </div>
+    <input type="text" ng-model="query" placeholder="{{'common.search' | translate}}">
+    <button type="button" ng-show="query" ng-click="query = ''">{{'search.cancel' | translate}}</button>
   </form>
   <div ng-show="data.error" class="error" translate="stock.error">No Articles</div>
   <div ng-show="!data.loading && !data.count && !data.error" class="empty" translate="stock.no_articles">No Articles</div>
@@ -28,9 +25,14 @@
         <input type="checkbox" ng-checked="selected.indexOf(article) > -1" ng-click="select(article)" ng-disabled="article.inShoppingCart">
         <span class="icon card" ng-if="::article.product.image" ng-click="article.showImage = !article.showImage"></span>
       </div>
-      <div class="card">
+      <div class="count">
         {{article.count}}x
-        <a href="/stock/{{::article.idArticle}}" ng-if="!article.inShoppingCart">{{::article.product.name}}</a>
+      </div>
+      <div class="card">
+        <a ui-sref="stock.article({articleId:article.idArticle})" ng-if="!article.inShoppingCart">
+          {{::article.product.enName}}
+          <small ng-hide="::article.language.idLanguage == 1">{{::article.product.locName}}</small>
+        </a>
         <span ng-if="::article.inShoppingCart">{{::article.product.name}}</span>
         <div class="card-image" ng-click="article.showImage = 0">
           <img src="" ng-src="{{::article.showImage && (article.product.image | productImage)}}">
@@ -39,7 +41,8 @@
       </div>
       <div class="icons">
         <span ng-class="::article.product | rarityIcon" ng-if="::article.product.rarity"></span>
-        <span class="icon expansion-{{::article.product.idGame}}" ng-style="::article.product.expIcon | expansionIcon" ng-if="::article.product.expansion"></span>
+        <span ng-style="::article.product.expIcon | expansionIcon" ng-if="::article.product.expIcon"
+              class="icon expansion-{{::article.product.idGame}}"></span>
         <span class="icon language language-{{::article.language.idLanguage}}" ng-if="::article.language.idLanguage"></span>
         <span class="icon grading grading-{{::article.condition}}" ng-if="::article.condition"></span>
         <span class="icon is-foil" ng-if="::article.isFoil"></span>
@@ -53,4 +56,3 @@
     </li>
   </ul>
 </article>
-<mkm-footer cart="count"></mkm-footer>

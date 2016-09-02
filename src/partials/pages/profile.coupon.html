@@ -1,0 +1,14 @@
+<header>
+  <a ui-sref="profile.account" class="back"></a>
+  <div class="title" translate="profile.cash_coupon">Coupon</div>
+</header>
+<article>
+  <form ng-submit="profile.submitCoupon()">
+    <label for="coupon" translate="profile.insert_code">Insert your Coupon Code</label>
+    <input id="coupon" type="text" ng-model="profile.couponCode">
+    <div class="error" ng-show="profile.coupon[0].successful == false" translate="profile.coupon_error">Coupon error</div>
+    <div class="success" ng-show="profile.success" translate="profile.coupon_success">Success!</div>
+    <button class="button" type="submit" ng-disabled="!profile.couponCode" translate="profile.submit">Submit</button>
+  </form>
+</article>
+

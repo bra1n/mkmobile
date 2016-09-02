@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="mkmobileApp">
+<!DOCTYPE html><html lang="en" ng-app="mkmobileApp">
 <head>
   <base href="/">
   <title ng-bind="viewTitle">MCM Mobile</title>
@@ -7,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <!-- Libraries -->
   <script src="/lib/angular/angular.js"></script>
-  <script src="/lib/angular-route/angular-route.js"></script>
+  <script src="/lib/angular-ui-router/release/angular-ui-router.js"></script>
   <script src="/lib/angular-resource/angular-resource.js"></script>
   <script src="/lib/angular-sanitize/angular-sanitize.js"></script>
   <script src="/lib/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
@@ -16,19 +15,44 @@
   <script src="/lib/cryptojslib/rollups/hmac-sha1.js"></script>
   <script src="/lib/cryptojslib/components/enc-base64-min.js"></script>
   <!-- App -->
-  <script src="/js/app/app.js"></script>
-  <script src="/js/app/controllers.js"></script>
-  <script src="/js/app/filters.js"></script>
-  <script src="/js/app/directives.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/controllers.js"></script>
+  <script src="/js/services.js"></script>
+  <script src="/js/filters.js"></script>
+  <script src="/js/directives.js"></script>
+  <!-- Controllers -->
+  <script src="/js/controllers/activation.js"></script>
+  <script src="/js/controllers/callback.js"></script>
+  <script src="/js/controllers/cart.js"></script>
+  <script src="/js/controllers/contact.js"></script>
+  <script src="/js/controllers/home.js"></script>
+  <script src="/js/controllers/login.js"></script>
+  <script src="/js/controllers/message.js"></script>
+  <script src="/js/controllers/order.js"></script>
+  <script src="/js/controllers/payment.js"></script>
+  <script src="/js/controllers/product.js"></script>
+  <script src="/js/controllers/recover.js"></script>
+  <script src="/js/controllers/register.js"></script>
+  <script src="/js/controllers/profile.js"></script>
+  <script src="/js/controllers/stock.js"></script>
+  <script src="/js/controllers/user.js"></script>
+  <script src="/js/controllers/wantslist.js"></script>
   <!-- Services -->
   <script src="/js/services/api.js"></script>
+  <script src="/js/services/auth.js"></script>
   <script src="/js/services/cache.js"></script>
-  <script src="/js/services/stock.js"></script>
   <script src="/js/services/cart.js"></script>
   <script src="/js/services/market.js"></script>
-  <script src="/js/services/auth.js"></script>
-  <script src="/js/services/order.js"></script>
   <script src="/js/services/message.js"></script>
+  <script src="/js/services/order.js"></script>
+  <script src="/js/services/stock.js"></script>
+  <script src="/js/services/wantslist.js"></script>
+  <!-- Directives -->
+  <script src="/js/directives/header.js"></script>
+  <script src="/js/directives/order.js"></script>
+  <script src="/js/directives/product.js"></script>
+  <script src="/js/directives/scroll.js"></script>
+  <script src="/js/directives/user.js"></script>
   <!-- Config -->
   <script>
     // var consumerKey = ""; // App Token
@@ -37,11 +61,12 @@
     // var accessSecret = ""; // Access Token Secret
     // var gameId = "1";
   </script>
-  <link rel="stylesheet" href="/css/styles.css">
+  <link media="screen, projection" rel="stylesheet" type="text/css" href="/css/styles.css">
 </head>
-<body ng-class="[language, loggedIn]">
+<body ng-class="[language, loggedIn ? 'loggedin':'loggedout', viewClass]">
   <div id="container">
-    <div ng-view id="content" ng-class="viewClass"></div>
+    <mkm-header></mkm-header>
+    <div ui-view id="content"></div>
   </div>
 </body>
 </html>

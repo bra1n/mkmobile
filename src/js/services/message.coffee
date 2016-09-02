@@ -1,4 +1,5 @@
-mkmobileServices.factory 'MkmApiMessage', [ 'MkmApi', 'DataCache', (MkmApi, DataCache) ->
+angular.module 'mkmobile.services.message', []
+.factory 'MkmApiMessage', (MkmApi, DataCache) ->
   get: (id, cb) ->
     response = messages: [], count: 0, loading: yes
     MkmApi.api.messages {param2: id}, (data) ->
@@ -17,7 +18,7 @@ mkmobileServices.factory 'MkmApiMessage', [ 'MkmApi', 'DataCache', (MkmApi, Data
         response.count = data._range or data.thread?.length
         response.messages = response.messages.concat data.thread if response.count
         # recalculate unread message count
-        # fixme: this will not consider the (unlikely) situation where you have 100+ unread threads
+        # todo: consider the (unlikely) situation where you have 100+ unread threads
         unreadCount = 0
         unreadCount += thread.unreadMessages for thread in response.messages
         DataCache.messageCount unreadCount
@@ -34,25 +35,16 @@ mkmobileServices.factory 'MkmApiMessage', [ 'MkmApi', 'DataCache', (MkmApi, Data
       response.loading = yes
       MkmApi.api.messageSend {param2: id, message: message}, (data) ->
         response.loading = no
-        response.count = data._range or data.message?.length
-        response.messages = data.message
+        response.count = response.count + 1
+        response.messages.unshift data.message
         response.partner = data.partner
-        message.date = new Date message.date for message in response.messages
+        message.date = new Date data.message.date
       , (err) ->
         response.loading = no
         response.error = err.error
 
   delete: (threadId, messageId) -> MkmApi.api.messageDelete {param2: threadId, param3: messageId}
 
-  findUser: (search, cb) ->
-    if search
-      MkmApi.api.user {param2: search}, (data) ->
-        cb data.user
-      , (err) -> cb []
-    else
-      cb []
-
   # unread message count
   count: ->
     DataCache.messageCount()
-]

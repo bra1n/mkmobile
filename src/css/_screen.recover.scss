@@ -1,0 +1,12 @@
+// recover user/pw page
+body.recover {
+  article {
+    p, form {
+      padding: 0 10px;
+    }
+    button, input {
+      width: 100%;
+      margin: 2px 0 8px;
+    }
+  }
+}

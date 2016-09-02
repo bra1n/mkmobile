@@ -1,8 +1,11 @@
-<header translate="titles.cart"></header>
+<header>
+  <a href="javascript:history.back()" class="back"></a>
+  <div class="title" translate="titles.cart"></div>
+</header>
 <article>
   <p ng-hide="data.cart.length || data.loading" translate>cart.empty</p>
   <div class="overview" ng-show="data.cart.length">
-    <a href="/cart/address" class="address link">
+    <a ui-sref="cart.address" class="address link">
       <span class="title" translate="cart.shipping_address"></span>
       <i>
         {{data.address.name}},
@@ -22,12 +25,12 @@
     </div>
     <div class="multiple" ng-show="data.cart.length > 1">
       <div class="titlebar">
-        <a href="javascript:void()" ng-click="emptyCart()" class="right" translate="cart.delete">Empty cart</a>
+        <a ng-click="emptyCart()" class="right" translate="cart.delete">Empty cart</a>
         <span translate="cart.headline" translate-values="{orders:data.cart.length, articles:count}"></span>
       </div>
       <ul>
         <li class="order link" ng-repeat="order in data.cart">
-          <button class="remove" ng-click="removeOrder(order)"></button><a href="/cart/{{order.idReservation}}">
+          <button class="remove" ng-click="removeOrder(order)"></button><a ui-sref="cart.order({orderId: order.idReservation})">
             <span translate="cart.order"></span>
             {{order.idReservation}}<br>
             <span translate="cart.seller"></span>
@@ -48,16 +51,15 @@
     </div>
     <div class="titlebar">
       <span translate="cart.balance"></span>
-      {{data.balance | currency:"€"}}
+      {{data.account.moneyDetails.totalBalance | currency:"€"}}
     </div>
-    <div class="payments" ng-show="data.balance < sum">
-      <a href="/cart/checkout/bank" class="button" translate="common.bank"></a>
-      <a href="/cart/checkout/paypal" class="button" translate="common.paypal"></a>
+    <div class="payments" ng-show="data.account.moneyDetails.totalBalance < sum">
+      <a ui-sref="cart.checkout({method:'bank'})" class="button" translate="common.bank"></a>
+      <a ui-sref="cart.checkout({method:'paypal'})" class="button" translate="common.paypal"></a>
     </div>
-    <div class="payments" ng-show="data.balance >= sum">
-      <a href="/cart/checkout/instabuy" class="button green" translate="common.instabuy"></a>
+    <div class="payments" ng-show="data.account.moneyDetails.totalBalance >= sum">
+      <a ui-sref="cart.checkout({method:'instabuy'})" class="button green" translate="common.instabuy"></a>
     </div>
   </div>
   <div class="loading" ng-show="data.loading" translate="cart.loading"></div>
 </article>
-<mkm-footer cart="count"></mkm-footer>

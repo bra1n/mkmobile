@@ -1,0 +1,71 @@
+<header>
+  <a ui-sref="home" class="back"></a>
+  <div class="title" translate="titles.profile">Profile</div>
+  <div class="right">
+    <a ui-sref="profile.user(profile.account)" class="mkmicon info"></a>
+  </div>
+</header>
+
+<article>
+  <p ng-show="profile.loading" class="loading"></p>
+  <ul ng-hide="profile.loading">
+    <li>
+      <div class="label" translate="profile.username">Username</div>
+      <i class="icon commercial commercial-{{profile.account.isCommercial}}"></i>
+      <b class="username" ng-class="{vacation: profile.account.onVacation}">
+        {{profile.account.username}}
+      </b>
+    </li>
+    <li>
+      <div class="label" translate="profile.name">Name</div>
+      <b>{{profile.account.name.firstName}} {{profile.account.name.lastName}}</b>
+    </li>
+    <li>
+      <div class="label" translate="profile.address">Address</div>
+      <b>
+        <span>{{profile.account.homeAddress.street}}</span>
+        <span>{{profile.account.homeAddress.extra}}</span>
+        <span>{{profile.account.homeAddress.zip}} {{profile.account.homeAddress.city}}</span>
+        <span>
+          <i class="icon country country-{{profile.account.homeAddress.country}}"></i>
+          {{'address.countries.'+profile.account.homeAddress.country | translate}}
+        </span>
+      </b>
+    </li>
+    <li>
+      <div class="label" translate="common.email">Email</div>
+      <b>{{profile.account.email}}</b>
+    </li>
+    <li ng-if="profile.account.phoneNumber">
+      <div class="label" translate="profile.phone">Phone</div>
+      <b>{{profile.account.phoneNumber}}</b>
+    </li>
+    <li ng-if="profile.account.maySell">
+      <label class="label" for="vacation" translate="profile.vacation">MKM Vacation Status</label>
+      <input type="checkbox" id="vacation" ng-change="profile.updateVacation()" ng-model="profile.account.onVacation">
+      <label for="vacation" ng-show="profile.account.onVacation" translate="profile.on">On</label>
+      <label for="vacation" ng-hide="profile.account.onVacation" translate="profile.off">Off</label>
+    </li>
+    <li ng-if="profile.account.moneyDetails.bonusBalance">
+      <div class="label" translate="profile.money_credit">Credit</div>
+      <b>{{profile.account.moneyDetails.moneyBalance | currency:"€"}}</b>
+    </li>
+    <li ng-if="profile.account.moneyDetails.bonusBalance">
+      <div class="label" translate="profile.bonus_credit">Bonus Credit</div>
+      <b>{{profile.account.moneyDetails.bonusBalance | currency:"€"}}</b>
+    </li>
+    <li>
+      <div class="label" translate="profile.total_credit">Total Credit</div>
+      <b>{{profile.account.moneyDetails.totalBalance | currency:"€"}}</b>
+    </li>
+    <li class="link">
+      <a ui-sref="profile.credit" translate="profile.credit_account">Credit User Account</a>
+    </li>
+    <li class="link" ng-if="profile.account.moneyDetails.unpaidAmount">
+      <a ui-sref="payment({method:'paypal'})" translate="payment.paypal">Credit with PayPal</a>
+    </li>
+    <li class="link">
+      <a ui-sref="profile.coupon" translate="profile.cash_coupon">Cash-In Coupon</a>
+    </li>
+  </ul>
+</article>

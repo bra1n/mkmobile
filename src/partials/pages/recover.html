@@ -1,0 +1,15 @@
+<header>
+  <a ui-sref="login" class="back"></a>
+  <span translate="titles.recover">Recover Username / Password</span>
+</header>
+<article>
+  <p translate="recover.explanation">Please fill out the following form to recover your username or password.</p>
+  <form>
+    <label for="email" translate="common.email">Email address</label>
+    <input type="email" ng-model="recover.email" id="email">
+    <button type="button" class="button" ng-disabled="!recover.email" translate="recover.submit_username"
+            ng-click="recover.submit('username')">Recover Username</button>
+    <button type="button" class="button" ng-disabled="!recover.email" translate="recover.submit_password"
+            ng-click="recover.submit('password')">Recover Password</button>
+  </form>
+</article>

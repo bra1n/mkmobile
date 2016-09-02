@@ -1,7 +1,8 @@
-mkmobileServices.factory 'MkmApiOrder', [ 'MkmApi', 'MkmApiAuth', 'DataCache', (MkmApi, MkmApiAuth, DataCache) ->
+angular.module 'mkmobile.services.order', []
+.factory 'MkmApiOrder', (MkmApi, MkmApiAuth, DataCache) ->
   actorMap =
-    sells:      1
-    buys:       2
+    sell:      1
+    buy:       2
   statusMap =
     bought:     1
     paid:       2
@@ -10,14 +11,14 @@ mkmobileServices.factory 'MkmApiOrder', [ 'MkmApi', 'MkmApiAuth', 'DataCache', (
     lost:       32
     cancelled:  128
 
-  get: ({mode, status, orderId, response}) ->
-    if orderId?
-      response = order: DataCache.order orderId
+  get: ({mode, status, idOrder, response}) ->
+    if idOrder?
+      response = order: DataCache.order idOrder
       unless response.order?
         response.loading = yes
-        MkmApi.api.order {param1: orderId}, (data) =>
+        MkmApi.api.order {param1: idOrder}, (data) =>
           response.loading = no
-          response.order = DataCache.order orderId, data.order
+          response.order = DataCache.order idOrder, data.order
         , (error) ->
           response.error = error
           response.loading = no
@@ -40,18 +41,18 @@ mkmobileServices.factory 'MkmApiOrder', [ 'MkmApi', 'MkmApiAuth', 'DataCache', (
         response.loading = no
     response
 
-  update: ({orderId, status, reason}, cb) ->
+  update: ({idOrder, status, reason}, cb) ->
     request = action: status
     request.reason = reason if reason?
-    MkmApi.api.orderUpdate {param1: orderId}, request, (data) ->
-      DataCache.order orderId, data.order
+    MkmApi.api.orderUpdate {param1: idOrder}, request, (data) ->
+      DataCache.order idOrder, data.order
       cb?()
     false
 
-  evaluate: (orderId, evaluation, cb) ->
-    evaluation.orderId = orderId
+  evaluate: (idOrder, evaluation, cb) ->
+    evaluation.idOrder = idOrder
     MkmApi.api.orderEvaluate evaluation, (data) ->
-      DataCache.order orderId, data.order
+      DataCache.order idOrder, data.order
       cb?()
     false
 
@@ -66,4 +67,3 @@ mkmobileServices.factory 'MkmApiOrder', [ 'MkmApi', 'MkmApiAuth', 'DataCache', (
   getComplaints: -> ["badCommunication","incompleteShipment","notFoil","rudeSeller","shipDamage","unorderedShipment",
                      "wrongEd","wrongLang"]
   getEvaluations: -> [1..4]
-]

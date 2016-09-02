@@ -1,123 +1,63 @@
 // product page
-#content.product {
-  header {
+body.product {
+  #content header {
     padding-right: 60px;
-    padding-left: 60px;
+    padding-left: 30px;
     font-size: 16px;
     font-weight: normal;
-    .box {
-      background: white;
-      border-radius: 3px;
-      line-height: 10px;
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      margin-top: -12px;
-      .icon { margin: 2px; }
-    }
   }
+  &.loggedin #content header { padding-right: 80px; }
+
+  /* Articles */
   article {
-    padding: 60px 10px 60px 10px;
-    .table {
-      display: table;
-      width: 100%;
-    }
-    .row {
-      display: table-row;
-      -webkit-transition: height 500ms;
-      -moz-transition: height 500ms;
-      -ms-transition: height 500ms;
-      -o-transition: height 500ms;
-      transition: height 500ms;
-      height: 30px;
-    }
-    .cell {
-      display: table-cell;
-      height: 30px;
-      line-height: 30px;
-      white-space: nowrap;
-      text-align: left;
-      vertical-align: top;
-    }
-    div.seller {
-      cursor: pointer;
-      font-weight: bold;
-      color: #0240ca;
-      .name {
-        display: inline-block;
-        max-width: 40px;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        vertical-align: top;
-        background: #fdfdfd;
-        position: relative;
-        z-index: 10;
-        -webkit-transition: max-width 500ms;
-        -moz-transition: max-width 500ms;
-        -ms-transition: max-width 500ms;
-        -o-transition: max-width 500ms;
-        transition: max-width 500ms;
-        @media screen and (min-width: 420px) { max-width: 100px; }
-        @media screen and (min-width: 530px) { max-width: 220px; }
-      }
-      .details {
-        position: absolute;
-        left: 50px;
-        z-index: 1;
-        @media screen and (min-width: 420px) { left: 110px; }
-        @media screen and (min-width: 530px) { left: 230px; }
-      }
-    }
-    .row.seller .seller .name { max-width: 300px; }
-    div.icons {
-      width: 50px;
-      padding: 0 5px;
-      .icon.comment { cursor:pointer; }
-    }
-    div.comment {
-      position: absolute;
-      width: 100%;
+    .icon.commercial-0 { display: none; }
+    .notification {
       text-align: center;
-      left: 0;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      height: 0;
-      -webkit-transition: height 500ms;
-      -moz-transition: height 500ms;
-      -ms-transition: height 500ms;
-      -o-transition: height 500ms;
-      transition: height 500ms;
+      color: $mkmBlue;
+      margin: 10px 0;
     }
-    .row.comment {
-      height: 60px;
-      div.comment { height: 30px; }
-    }
-    div.price {
-      text-align: right;
-      font-weight: bold;
-      width: 100px;
-    }
-    div.price .icon.is-playset { display: none; }
-    div.price.playset {
-      .price, .price-per-card {
+    li {
+      padding: 4px 10px;
+      border-bottom: 1px solid #ccc;
+      line-height: 20px;
+      &:nth-child(even) { background: rgb(240, 240, 240); }
+      .icon { margin: -2px 5px 0 0; }
+      .article {
+        display: flex;
+        align-items: center;
         font-weight: bold;
-        color: #0240ca;
-        cursor: pointer;
+        width: 100%;
       }
-      .icon.is-playset { display: inline-block; }
+      .price {
+        flex-grow: 1;
+        text-align: right;
+      }
+      .count {
+        margin: 0 5px;
+        min-width: 30px;
+        text-align: center;
+      }
+      .comment {
+        font-style: italic;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      button {
+        border: none;
+        height: 20px;
+        width: 35px;
+        padding: 0;
+        vertical-align: middle;
+        outline: none;
+      }
+      .sell {
+        line-height: 18px;
+        float: right;
+      }
+      &.open .sell { width: 35px; }
     }
-    .count { display: inline-block; min-width: 20px; text-align: center; }
-    button {
-      border: none;
-      background: url("/img/cart.png") no-repeat center 3px transparent;
-      height: 25px;
-      width: 35px;
-      padding: 0;
-      vertical-align: middle;
-      outline: none;
-    }
-    .comment { text-align: center; }
+
   }
 }

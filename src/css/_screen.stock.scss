@@ -1,49 +1,57 @@
 // stock page
-#content.stock {
-  header.product {
+body.stock {
+  #content header.product {
     padding: 0 60px;
     overflow: hidden;
     text-overflow: ellipsis;
     font-weight: normal;
     font-size: 16px;
-    .box {
-      background: white;
-      border-radius: 3px;
-      line-height: 10px;
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      margin-top: -12px;
-      .icon { margin: 2px; }
-    }
+    span { margin: 0 2px; }
   }
+
   article {
-    padding-top: 101px;
-    &.product { padding-top: 60px; }
-    .search button.remove, .search button.add { width: 30px; vertical-align: middle; }
+    .search {
+      &.open:before {
+        left: 77px;
+      }
+      button.remove, button.add {
+        width: 30px;
+        height: 30px;
+        vertical-align: middle;
+      }
+    }
     .empty { padding: 10px; text-align: center; font-weight: bold; }
     .articles {
-      display: table;
-      width: 100%;
+      margin-top: 40px;
       li {
-        display: table-row;
+        display: flex;
+        width: 100%;
         font-weight: bold;
-        color: #012169;
+        color: $mkmBlue;
+        border-bottom: 1px solid #ccc;
+        align-items: center;
+        padding: 8px 0;
         &:nth-child(even) { background: #fafafa; }
         .icon.card, .icon.comment { cursor: pointer; }
-        & > div {
-          display: table-cell;
-          border-bottom: 1px solid #ccc;
-          padding: 8px 0;
-          vertical-align: middle;
-          line-height: 18px;
-        }
         div.controls {
           width: 40px;
           padding-left: 10px;
-          input { vertical-align: middle; }
+          flex-shrink: 0;
         }
-        div.icons { text-align: center; white-space: nowrap; padding: 0 5px; }
+        div.card {
+          flex-grow: 1;
+          padding-left: 5px;
+          small {
+            display: block;
+            font-weight: normal;
+            font-style: italic;
+            color: #444;
+          }
+        }
+        div.icons {
+          flex-shrink: 0;
+          padding: 0 5px;
+        }
         div.price { text-align: right; padding-right: 10px; }
         div.card-image {
           position: absolute;
@@ -52,8 +60,8 @@
           left: 0;
           background: rgba(255, 255, 255, 0.75);
           margin-bottom: 50px;
-          border: 1px solid #ccc;
-          margin-top: 8px;
+          border-bottom: 1px solid #ccc;
+          margin-top: 9px;
           padding: 10px;
           display: none;
           cursor: pointer;
@@ -69,14 +77,10 @@
           white-space: nowrap;
           text-overflow: ellipsis;
           height: 0;
-          border: 0px solid #ccc;
-          -webkit-transition: height 500ms;
-          -moz-transition: height 500ms;
-          -ms-transition: height 500ms;
-          -o-transition: height 500ms;
+          border-bottom: 0 solid #ccc;
           transition: height 500ms;
           background: rgba(255,255,255,0.75);
-          margin-top: 8px;
+          margin-top: 9px;
           line-height: 30px;
           cursor: pointer;
         }

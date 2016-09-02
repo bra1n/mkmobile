@@ -1,14 +1,15 @@
 <header class="product" ng-class="{loading:data.product.loading}">
-  <a href="/stock" class="back"></a>
+  <a ui-sref="stock.list" class="back"></a>
   <span class="error ng-hide" ng-show="data.product.error" translate="product.error"></span>
-  <span ng-show="data.product.product">{{data.article.count}}x {{data.product.product.name[1].productName}}</span>
-  <span ng-show="data.product.product.number" translate translate-values="data.product.product">product.nr</span>
-  <div class="box">
-    <span ng-show="data.product.product.expansion" class="icon expansion-{{data.product.product.idGame}}" ng-style="data.product.product.expIcon | expansionIcon">
-    </span><span ng-show="data.product.product.rarity" ng-class="data.product.product | rarityIcon"></span>
+  <span ng-show="data.product.product">{{data.article.count}}x {{data.product.product.enName}}</span>
+  <div class="right">
+    <a class="mkmicon info" ng-click="details = !details" ng-class="{active:details}"></a>
   </div>
 </header>
-<mkm-product product-data="data.product"></mkm-product>
+
+<!-- Product Details-->
+<mkm-product product-data="data.product" ng-show="details"></mkm-product>
+
 <article class="product">
   <div class="loading" ng-show="data.loading" translate="common.loading"></div>
   <div class="error" ng-show="data.error" translate="article.not_found"></div>
@@ -70,4 +71,3 @@
     <button class="button" ng-click="save()" translate="common.save"></button>
   </form>
 </article>
-<mkm-footer></mkm-footer>

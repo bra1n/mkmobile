@@ -1,29 +1,43 @@
-<aside class="slider" ng-class="!!slider && 'open'">
-  <div class="content">
-    <div class="aligner"></div><div class="data">
-      <img src="" ng-src="{{productData.product.image | productImage}}">
-      <div class="text">
-        <b translate="product.available">Available Items:</b>
-        {{productData.product.countArticles | number}}<br>
-        <b translate="product.from">From (EX+):</b>
-        {{productData.product.priceGuide.LOW | currency:"€"}}<br>
-        <b translate="product.average">Average price (EX+):</b>
-        {{productData.product.priceGuide.AVG | currency:"€"}}<br>
-        <span ng-show="productData.product.countFoils">
-          <b translate="product.foils">Available foils:</b>
-          {{productData.product.countFoils | number}}<br>
-        </span>
-        <span ng-show="productData.product.countFoils">
-          <b translate="product.foils_from">Foils from:</b>
-          {{productData.product.priceGuide.LOWFOIL | currency:"€"}}<br></span>
-        <div class="reprints" ng-show="productData.product.reprint">
-          <b translate="product.reprints">Also available in:</b><br>
-          <a href="/product/{{reprint.idProduct}}" ng-repeat="reprint in productData.product.reprint">
-            <span class="icon expansion-{{productData.product.idGame}}" ng-style="reprint.expIcon | expansionIcon"></span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="toggle" ng-click="slider=!slider">...</div>
-</aside>
+<!-- Product Details-->
+<div ng-class="{loading:productData.loading}">
+  <h2>
+    <span ng-if="productData.product.rarity" ng-class="productData.product | rarityIcon"></span>
+    <span ng-style="productData.product.expansion.expansionIcon | expansionIcon"
+          class="icon expansion-{{productData.product.idGame}}"
+          ng-if="productData.product.expansion"></span>
+    {{productData.product.enName}}
+    <span ng-show="productData.product.number" translate="product.nr"
+          translate-values="{number:productData.product.number}"></span>
+  </h2>
+  <img src="" ng-src="{{productData.product.image | productImage}}">
+  <table ng-show="productData.product">
+    <tr ng-show="productData.product.countArticles >= 0">
+      <td translate="product.available">Available Items:</td>
+      <td>{{productData.product.countArticles | number}}</td>
+    </tr>
+    <tr>
+      <td translate="product.from">From (EX+):</td>
+      <td>{{productData.product.priceGuide.LOW | currency:"€"}}</td>
+    </tr>
+    <tr>
+      <td translate="product.trend">Price Trend:</td>
+      <td>{{productData.product.priceGuide.TREND | currency:"€"}}</td>
+    </tr>
+    <tr ng-show="productData.product.countFoils">
+      <td translate="product.foils">Available foils:</td>
+      <td>{{productData.product.countFoils | number}}</td>
+    </tr>
+    <tr ng-show="productData.product.countFoils">
+      <td translate="product.foils_from">Foils from:</td>
+      <td>{{productData.product.priceGuide.LOWFOIL | currency:"€"}}</td>
+    </tr>
+    <tr ng-show="productData.product.reprint">
+      <td translate="product.reprints">Also available in:</td>
+      <td>
+        <a ui-sref="product({idProduct:reprint.idProduct,screen:product.screen})" ng-repeat="reprint in productData.product.reprint">
+          <span class="icon expansion-{{productData.product.idGame}}" ng-style="reprint.expIcon | expansionIcon"></span>
+        </a>
+      </td>
+    </tr>
+  </table>
+</div>

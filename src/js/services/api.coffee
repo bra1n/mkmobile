@@ -1,92 +1,157 @@
-mkmobileServices.factory 'MkmApi', [ '$resource', ($resource) ->
+angular.module 'mkmobile.services.api', ['ngResource']
+.factory 'MkmApi', ($resource) ->
+  sessionAuth = JSON.parse(sessionStorage.getItem('auth')) or {}
   auth =
-    consumerKey:    window.consumerKey or 'rQVRXlcVqJvFR7OV'
-    consumerSecret: window.consumerSecret or 'vPDvkCOmfUslqVqov0ylAflCUkxsGeBw'
-    secret:         window.accessSecret or window.sessionStorage.getItem('secret') or ''
-    token:          window.accessToken or sessionStorage.getItem('token') or ''
-  apiURL    = 'https://www.mkmapi.eu/ws/v1.1'
+    consumerKey:    window.consumerKey or 'alb03sLPpFNAhi6f'
+    consumerSecret: window.consumerSecret or 'HTIcbso87X22JdS3Yk89c2CojfZiNDMX'
+    secret:         window.accessSecret or sessionAuth.secret or ''
+    token:          window.accessToken or sessionAuth.token or ''
+    username:       window.username or sessionAuth.username or ''
+  apiURL    = 'https://sandbox.mkmapi.eu/ws/v2.0'
   apiParams =
+    # Misc
+    access: # exchange temporary token with access token, get user details
+      params: param0: 'access'
+      method: 'POST'
+    contact:
+      params: param0: 'support'
+      method: 'POST'
+    captcha:
+      params: param0: 'captcha'
+
+    # Marketplace
     search: # search for a product
-      params: {type:'products',param2:window.gameId or '1',param3:'1',param4:'false'}
+      params: {param0:'products', param1:'find', idGame:window.gameId or '1', idLanguage:'1'}
       unique: 'search'
       cache:  yes
     articles: # get all articles for a product
-      params: type: 'articles'
+      params: param0: 'articles'
     product: # get a single product
-      params: type: 'product'
+      params: param0: 'products'
       cache: yes
-    access: # exchange temporary token with access token, get user details
-      params: type: 'access'
-      method: 'POST'
-    user: # search for a user
-      params: {type: 'user', param1: 'find'}
+    metaproduct: # get a single metaproduct
+      params: param0: 'metaproducts'
       cache: yes
+    metaproducts: # search for metaproducts
+      params: {param0: 'metaproducts', param1: 'find', idGame:window.gameId or '1', idLanguage:'1', exact: no}
+      unique: 'metaproduct'
+      cache: yes
+    users: # search for a user
+      params: {param0: 'users', param1: 'find'}
       unique: 'user'
+      cache: yes
+    user: # get a single user
+      params: {param0: 'users'}
+      cache: yes
+    userArticles: # get all articles for a single user
+      params: {param0: 'users', param2: 'articles'}
 
+    # Shopping Cart
     cart: # get shoppingcart contents
-      params: type: 'shoppingcart'
+      params: param0: 'shoppingcart'
     cartUpdate: # update shoppingcart contents
-      params: type: 'shoppingcart'
+      params: param0: 'shoppingcart'
       method: 'PUT'
     cartEmpty: # empty the shoppingcart
-      params: type: 'shoppingcart'
+      params: param0: 'shoppingcart'
       method: 'DELETE'
     shippingAddress: # update shipping address for shoppingcart
-      params: {type: 'shoppingcart', param1: 'shippingaddress'}
+      params: {param0: 'shoppingcart', param1: 'shippingaddress'}
       method: 'PUT'
     shippingMethod: # get shipping methods for order
-      params: {type: 'shoppingcart', param1: 'shippingmethod'}
+      params: {param0: 'shoppingcart', param1: 'shippingmethod'}
     shippingMethodUpdate: # change shipping methods for order
-      params: {type: 'shoppingcart', param1: 'shippingmethod', param2: '@orderId'}
+      params: {param0: 'shoppingcart', param1: 'shippingmethod', param2: '@idOrder'}
       method: 'PUT'
     checkout: # checkout shoppingcart
-      params: {type: 'shoppingcart', param2: 'checkout'}
+      params: {param0: 'shoppingcart', param2: 'checkout'}
+      method: 'PUT'
 
     stock: # get stock articles
-      params: type: 'stock'
+      params: param0: 'stock'
     stockSearch: # search stock
-      params: {type: 'stock', param1: 'articles', param3: window.gameId or '1'}
+      params: {param0: 'stock', param1: 'articles', param3: window.gameId or '1'}
       unique: 'searchStock'
     stockUpdate: # update stock articles
-      params: {type: 'stock', param1: '@action'}
+      params: {param0: 'stock', param1: '@action'}
       method: 'PUT'
+    stockCreate: # create a stock article
+      params: {param0: 'stock'}
+      method: 'POST'
 
     orders: # get buys / sells
-      params: type: 'orders'
+      params: param0: 'orders'
       unique: 'order'
     order: # get a single order
-      params: type: 'order'
+      params: param0: 'order'
     orderUpdate: # update an order (status)
-      params: type: 'order'
+      params: param0: 'order'
       method: 'PUT'
     orderEvaluate: # evaluate an order
-      params: {type: 'order', param1: '@orderId', param2: 'evaluation'}
+      params: {param0: 'order', param1: '@idOrder', param2: 'evaluation'}
       method: 'POST'
 
+    # Account Management
     account: # get account data
-      params: type: 'account'
+      params: param0: 'account'
+    accountLogout: # log the user out
+      params: {param0: 'account', param1: 'logout'}
+      method: 'POST'
     accountVacation: # change vacation flag for account
-      params: {type: 'account', param1: 'vacation', param2: '@vacation'}
+      params: {param0: 'account', param1: 'vacation', onVacation: '@vacation'}
       method: 'PUT'
     accountLanguage: # update account language
-      params: {type: 'account', param1: 'language', param2: '@languageId'}
+      params: {param0: 'account', param1: 'language', idDisplayLanguage: '@languageId'}
       method: 'PUT'
+    accountLogindata: # recover logindata
+      params: {param0: 'account', param1: 'logindata', type: '@type'}
+      method: 'POST'
+    accountRegister: # register new account
+      params: {param0: 'account', param1: 'registration'}
+      method: 'POST'
+    accountCoupon: # redeem coupon
+      params: {param0: 'account', param1: 'coupon'}
+      method: 'POST'
+    accountActivation: # activate account
+      params: {param0: 'account', param1: 'activation'}
+      method: 'POST'
+    accountActivationResend: # resend activation code
+      params: {param0: 'account', param1: 'activation'}
+    sellerActivation: # activate an account as a seller
+      params: {param0: 'account', param1: 'selleractivation'}
+      method: 'PUT'
+    sellerActivationRequest: # request seller activation transfers
+      params: {param0: 'account', param1: 'selleractivation'}
+      method: 'POST'
 
     messages: # get all messages
-      params: {type: 'account', param1: 'messages'}
+      params: {param0: 'account', param1: 'messages'}
     messageSend: # send a message
-      params: {type: 'account', param1: 'messages', param2: '@param2'}
+      params: {param0: 'account', param1: 'messages', param2: '@param2'}
       method: 'POST'
     messageDelete: #delete a message (thread)
-      params: {type: 'account', param1: 'messages'}
+      params: {param0: 'account', param1: 'messages'}
       method: 'DELETE'
+
+    # Wants lists
+    wantslist: # get wantslists
+      params: {param0: 'wantslist'}
+    wantslistCreate: # add a wantslist
+      params: {param0: 'wantslist'}
+      method: 'POST'
+    wantslistUpdate: # change a wantslist
+      params: {param0: 'wantslist'}
+      method: 'PUT'
+    wantslistDelete: # delete a wantslist
+      params: {param0: 'wantslist'}
+      method: 'DELETE'
+
   # augment the configs
   for param,config of apiParams
     # oauth for all the requests
     apiParams[param].oauth = auth
     # PUT / POST should send the right content-type header
     apiParams[param].headers = {'Content-type': 'application/xml'} if config.method in ['PUT', 'POST']
-  api: $resource apiURL+'/output.json/:type/:param1/:param2/:param3/:param4/:param5', {}, apiParams
+  api: $resource apiURL+'/output.json/:param0/:param1/:param2/:param3/:param4/:param5', {}, apiParams
   auth: auth
   url: apiURL+'/authenticate/'
-]

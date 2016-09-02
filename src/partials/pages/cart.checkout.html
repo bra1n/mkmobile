@@ -1,0 +1,10 @@
+<header>
+  <a ui-sref="cart.list" class="back"></a>
+  <span translate="checkout.title"></span>
+</header>
+<article class="checkout">
+  <div ng-show="method == 'paypal'" translate="checkout.paypal"></div>
+  <div ng-show="method == 'bank'" translate="checkout.bank"></div>
+  <div ng-show="method == 'instabuy'" translate="checkout.instabuy"></div>
+  <button ng-click="checkout()" class="button" translate="checkout.confirm"></button>
+</article>

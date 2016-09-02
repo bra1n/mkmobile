@@ -1,4 +1,5 @@
-#content.cart {
+body.cart {
+  #content header span { margin-right: 5px; }
   article {
     i { display: block; }
     p {
@@ -54,15 +55,10 @@
         vertical-align: middle;
         line-height: 30px;
       }
-      input {
+      input, select {
         width: 50%;
-        margin-left: -12px;
         vertical-align: middle;
-        margin-bottom: 5px;
-      }
-      select {
-        width: 50%;
-        margin-bottom: 5px;
+        margin-bottom: 10px;
       }
     }
   }
@@ -70,5 +66,4 @@
     text-align: center;
     div { padding: 50px 30px 30px; }
   }
-  footer .cart { background-position: 25% 25%; }
 }
