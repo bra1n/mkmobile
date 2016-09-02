@@ -4,7 +4,7 @@ angular.module 'mkmobile.controllers.register', []
   @form = {}
   @formError = ""
   @steps = []
-  @step = 1
+  @step = 0
   @countries = MkmApiCart.getCountries()
 
   @go = (to) => # don't go to a step if a previous one still has errors
