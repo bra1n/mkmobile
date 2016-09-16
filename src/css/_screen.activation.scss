@@ -54,10 +54,11 @@ body.activation {
         &.active:before {
           background: $mkmBlue;
         }
-        &.invalid {
-          border-color: $mkmRed;
-        }
       }
+    }
+
+    .invalid {
+      border-color: $mkmRed;
     }
 
     /* bottom line buttons */

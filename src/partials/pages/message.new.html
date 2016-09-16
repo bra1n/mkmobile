@@ -1,0 +1,18 @@
+<header>
+  <a ui-sref="message.list" class="back"></a>
+  <div class="title" translate="messages.new">New Message</div>
+</header>
+<article>
+  <form class="search subheadline mkmicon" ng-submit="new.blur($event)">
+    <input id="search" type="text" placeholder="{{'profile.username' | translate}}" ng-model="new.searchUser">
+    <button type="button" ng-show="new.searchUser" ng-click="new.searchUser = ''">{{'search.cancel' | translate}}</button>
+  </form>
+  <ul class="users" ng-class="{loading:new.users.loading}">
+    <li class="link" ng-repeat="user in new.users">
+      <a ui-sref="message.user({idUser:user.idUser})">
+        <span mkm-user user="user"></span>
+        <span class="title">{{user.username}}</span>
+      </a>
+    </li>
+  </ul>
+</article>

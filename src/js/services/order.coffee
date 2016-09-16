@@ -60,7 +60,6 @@ angular.module 'mkmobile.services.order', []
     evaluationGrade: 1
     itemDescription: 1
     packaging: 1
-    speed: 1
     complaint: []
     comment: ""
 

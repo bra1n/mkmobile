@@ -69,7 +69,7 @@ angular.module 'mkmobile.controllers.product', []
     @screen = 'edit'
 
   # reset article
-  do @clearArticle = => @article = {idLanguage: "1", condition: "NM", idProduct: $stateParams.idProduct}
+  do @clearArticle = => @article = {idLanguage: "1", condition: "NM", idProduct: $stateParams.idProduct, count: 1}
 
   # check if filter has content
   @hasFilter = =>

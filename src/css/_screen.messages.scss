@@ -1,7 +1,6 @@
 // messages page
 body.message {
   article {
-    .overview { margin-top: 40px; }
     li {
       span.time, button {
         font-weight: bold;
@@ -31,9 +30,10 @@ body.message {
           font-size: 12px;
         }
         div {
-          background: #d1d7e4;
+          background: #f5f5f5;
           padding: 10px;
           border-radius: 10px;
+          margin-right: 20px;
           box-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
         .time {
@@ -47,7 +47,11 @@ body.message {
         button { height: 16px; }
         p { margin:0; white-space: pre-wrap; }
         &.unread div { border-left: 5px solid #0240ca; }
-        &.sending div { background: #f5f5f5; }
+        &.sending div {
+          background: #d1d7e4;
+          margin-left: 20px;
+          margin-right: 0;
+        }
       }
     }
     form.write.subheadline {
@@ -74,8 +78,9 @@ body.message {
         background: none;
       }
     }
-    // thread view
-    ul.overview {
+    // thread and users view
+    ul.overview, ul.users {
+      margin-top: 40px;
       p {
         margin:0;
         clear: right;
@@ -90,10 +95,6 @@ body.message {
         &.sending p:before { content:"↪ "; }
         a { display: block; }
         &:after { right: 10px; }
-      }
-      li.user p {
-        color: #0240ca;
-        font-style: normal;
       }
     }
   }

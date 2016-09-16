@@ -57,13 +57,14 @@ body.order {
           display: block;
           color: #444;
         }
+        .red { color: $mkmRed; }
       }
     }
 
     div.order {
       text-align: center;
       padding-bottom: 10px;
-      div.status { padding: 10px 10px 0; }
+      div.status { padding: 10px; }
       div.evaluation { padding: 10px; }
       button { margin-top: 10px; }
       b, span {
@@ -90,6 +91,10 @@ body.order {
   // evaluation
   article.evaluation {
     text-align: center;
+    li.guidelines {
+      border-bottom: 1px solid #ccc;
+      padding: 10px;
+    }
     form {
       padding: 10px;
       label, select {

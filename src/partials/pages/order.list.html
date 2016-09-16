@@ -52,7 +52,9 @@
             <b translate="order.cancellation">Cancellation Requested:</b>
             {{::order.cancellationRequest.date | date:'short'}}<br>
           </span>
-          <b ng-if="order.state.state == 'received'" translate="order.please_evaluate">Please evaluate this order</b>
+          <b ng-if="order.state.state == 'received'" class="red" translate="order.please_evaluate">
+            Please evaluate this order
+          </b>
         </a>
       </li>
     </ul>

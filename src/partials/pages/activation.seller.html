@@ -8,7 +8,7 @@
   <!-- request seller activation forms -->
   <div ng-show="activation.account.sellerActivation == 0">
     <nav>
-      <span ng-class="{active: activation.step==index}" ng-click="activation.go(index)"
+      <span ng-class="{active: activation.step==index, invalid: !!form[activation.formError]}" ng-click="activation.go(index)"
             ng-repeat="(index, form) in activation.steps"></span>
     </nav>
 
@@ -26,8 +26,9 @@
         </span>
       </p>
 
-      <label for="telephone" translate="activation.seller.telephone">Telephone:</label>
-      <input name="telephone" id="telephone" type="text" ng-model="activation.form.phoneNumber" required minlength="5">
+      <label for="phoneNumber" translate="activation.seller.telephone">Telephone:</label>
+      <input name="phoneNumber" id="phoneNumber" type="text" ng-model="activation.form.phoneNumber" required
+             minlength="5" ng-class="{invalid: activation.formError == 'phoneNumber'}">
     </form>
 
     <!-- Step 2-->
@@ -41,17 +42,21 @@
         </span>
       </p>
 
-      <label for="bankAccountOwner" translate="activation.seller.recipient">Recipient:</label>
-      <input name="bankAccountOwner" id="bankAccountOwner" type="text" ng-model="activation.form.bankAccountOwner" required>
+      <label for="bankAccount" translate="activation.seller.recipient">Recipient:</label>
+      <input name="bankAccount" id="bankAccount" type="text" ng-model="activation.form.bankAccountOwner"
+             required ng-class="{invalid: activation.formError == 'bankAccount'}">
 
       <label for="iban" translate="activation.seller.iban">IBAN:</label>
-      <input name="iban" id="iban" type="text" ng-model="activation.form.iban" required minlength="16" maxlength="32">
+      <input name="iban" id="iban" type="text" ng-model="activation.form.iban" required minlength="16" maxlength="32"
+             ng-class="{invalid: activation.formError == 'bankAccount'}">
 
       <label for="bic" translate="activation.seller.bic">BIC/SWIFT:</label>
-      <input name="bic" id="bic" type="text" ng-model="activation.form.bic" required minlength="8" maxlength="11">
+      <input name="bic" id="bic" type="text" ng-model="activation.form.bic" required minlength="8" maxlength="11"
+             ng-class="{invalid: activation.formError == 'bankAccount'}">
 
       <label for="bankName" translate="activation.seller.bank_name">Name of the Bank:</label>
-      <input name="bankName" id="bankName" type="text" ng-model="activation.form.bankName" required>
+      <input name="bankName" id="bankName" type="text" ng-model="activation.form.bankName" required
+             ng-class="{invalid: activation.formError == 'bankAccount'}">
     </form>
 
     <!-- Step 3 -->
