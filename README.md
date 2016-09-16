@@ -50,6 +50,7 @@ while for development, it should be `src`.
 ```
 dist/           # the web root for production, contains all the necesssary files for a deployment
   img/          # all image assets are copied over to this folder for production deployment
+  fonts/        # all font assets are copied over to this folder for production deployment
   
   app.js        # the compiled, concatenated and minified app code
   index.html    # the main index HTML, built from the index.dist.html
@@ -58,9 +59,11 @@ dist/           # the web root for production, contains all the necesssary files
   
 src/            # the web root for development, contains all the sources, libraries and assets
   css/          # contains the SCSS stylesheets and partials
+  fonts/        # icon fonts are stored here
   img/          # all images and spritemaps are here, with sprite source files in separate subfolders
   js/           # the main app logic
-    app/        # controllers, directives and filters are here along with the base AngularJS app
+    controllers/# controllers are here
+    directives/ # directives are here
     services/   # since there are several services built on top of the API, they are in their own folder
   lib/          # all JS dependencies are here, once you run Bower (not checked into GitHub)
   partials/     # the HTML templates are here
