@@ -144,11 +144,15 @@ mkmobileApp.config ($locationProvider, $stateProvider, $urlRouterProvider) ->
   .state 'message.list',
     url:          ''
     templateUrl:  '/partials/pages/message.list.html'
-    controller:   'MessageCtrl'
+    controller:   'MessageCtrl as list'
+  .state 'message.new',
+    url:          '/new'
+    templateUrl:  '/partials/pages/message.new.html'
+    controller:   'MessageCtrl as new'
   .state 'message.user',
     url:          '/:idUser'
     templateUrl:  '/partials/pages/message.user.html'
-    controller:   'MessageCtrl'
+    controller:   'MessageCtrl as user'
 
   # wantslists
   .state 'wantslist',

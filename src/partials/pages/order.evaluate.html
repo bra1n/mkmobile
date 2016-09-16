@@ -8,6 +8,12 @@
   <div class="error" ng-show="data.error" translate="order.error">Error loading order</div>
   <div class="loading" ng-show="data.loading" translate="order.loading">Loading order...</div>
 
+  <ul>
+    <li class="guidelines" ng-click="hideOverlay = false">
+      <a translate="evaluation.guidelines">Evaluation Guidelines</a>
+    </li>
+  </ul>
+
   <!-- Evaluation form -->
   <form ng-show="data.order && !data.order.evaluation && !data.loading && !data.error" ng-submit="evaluate()">
     <label for="evaluationGrade" translate="evaluation.overall">Overall Evaluation</label><!--
@@ -27,11 +33,6 @@
  --><span class="icon evaluation" ng-class="'evaluation-'+evaluation.packaging"></span><!--
  --><select ng-options="evaluation as 'evaluation.evaluations.'+evaluation | translate for evaluation in evaluations"
             id="packaging" ng-model="evaluation.packaging" required></select>
-
-    <label for="speed" translate="evaluation.speed">Processing Speed</label><!--
- --><span class="icon evaluation" ng-class="'evaluation-'+evaluation.speed"></span><!--
- --><select ng-options="evaluation as 'evaluation.evaluations.'+evaluation | translate for evaluation in evaluations"
-            id="speed" ng-model="evaluation.speed" required></select>
 
     <label for="complaints" translate="evaluation.complaint">Complaints</label><!--
  --><select ng-options="complaint as 'evaluation.complaints.'+complaint | translate for complaint in complaints"
@@ -72,10 +73,6 @@
     <b translate="evaluation.packaging">Packaging:</b><!--
     --><i class="icon evaluation" ng-class="'evaluation-'+data.order.evaluation.packaging"></i><!--
     --><span translate="evaluation.evaluations.{{data.order.evaluation.packaging}}"></span><br>
-
-    <b translate="evaluation.speed">Speed:</b><!--
-    --><i class="icon evaluation" ng-class="'evaluation-'+data.order.evaluation.speed"></i><!--
-    --><span translate="evaluation.evaluations.{{data.order.evaluation.speed}}"></span><br>
 
     <div ng-show="data.order.evaluation.complaint">
       <b translate="evaluation.complaint">Complaints:</b><!--

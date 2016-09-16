@@ -18,6 +18,7 @@ angular.module "mkmobile.controllers.activation", []
 
   # seller activation
   @form = {}
+  @formError = ""
   @steps = []
   @step = 0
   @loading = yes
@@ -41,6 +42,7 @@ angular.module "mkmobile.controllers.activation", []
           $state.go 'home'
       else
         # activation error (error in data)
+        @formError = account.data.post_data_field
         $translate("activation.seller.error").then (text) =>
           alert text
   @

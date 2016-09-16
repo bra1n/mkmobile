@@ -27,7 +27,7 @@ angular.module 'mkmobile.controllers.order', []
   $scope.evaluations = MkmApiOrder.getEvaluations()
   $scope.complaints = MkmApiOrder.getComplaints()
   $scope.evaluation = MkmApiOrder.getEvaluation()
-  $scope.hideOverlay = 0
+  $scope.hideOverlay = true
   $scope.evaluate = ->
     MkmApiOrder.evaluate $scope.idOrder, $scope.evaluation, ->
       $state.go 'order.single', idOrder: $scope.idOrder
