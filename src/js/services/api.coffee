@@ -7,7 +7,7 @@ angular.module 'mkmobile.services.api', ['ngResource']
     secret:         window.accessSecret or sessionAuth.secret or ''
     token:          window.accessToken or sessionAuth.token or ''
     username:       window.username or sessionAuth.username or ''
-  apiURL    = 'https://sandbox.mkmapi.eu/ws/v2.0'
+  apiURL    = if auth.consumerKey is 'alb03sLPpFNAhi6f' then 'https://sandbox.mkmapi.eu/ws/v2.0' else 'https://www.mkmapi.eu/ws/v2.0'
   apiParams =
     # Misc
     access: # exchange temporary token with access token, get user details

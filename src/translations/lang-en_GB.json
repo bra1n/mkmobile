@@ -217,7 +217,10 @@
   },
   "header": {
     "search_1": "Search MagicCardMarket",
-    "search_3": "Search YugiohCardMarket"
+    "search_2": "Search WowCardMarket",
+    "search_3": "Search YugiohCardMarket",
+    "search_5": "Search SpoilsCardMarket",
+    "search_6": "Search PokémonCardMarket"
   },
   "imprint": {
     "telephone": "Telephone:",

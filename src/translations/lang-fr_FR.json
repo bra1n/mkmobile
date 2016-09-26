@@ -216,8 +216,11 @@
     "are_you_sure": "Tu vas acheter ces articles, es-tu sûr?"
   },
   "header": {
-    "search_1": "Chercher sur Magiccardmarket",
-    "search_3": "Chercher sur Yugiohcardmarket"
+    "search_1": "Chercher sur MagicCardMarket",
+    "search_2": "Chercher sur WowCardMarket",
+    "search_3": "Chercher sur YugiohCardMarket",
+    "search_5": "Chercher sur SpoilsCardMarket",
+    "search_6": "Chercher sur PokémonCardMarket"
   },
   "imprint": {
     "telephone": "Téléphone:",

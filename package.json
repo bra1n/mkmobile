@@ -3,7 +3,7 @@
   "company": "Sammelkartenmarkt Ltd. & Co. KG",
   "name": "mkmobile",
   "homepage": "https://github.com/bra1n/mkmobile",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "repository": {
     "type": "git",
     "url": "git@github.com:bra1n/mkmobile.git"
@@ -27,7 +27,8 @@
     "grunt-contrib-uglify": "~0.9.2",
     "grunt-contrib-watch": "~0.6.1",
     "grunt-html2js": "~0.3.4",
-    "grunt-ng-annotate": "^2.0.2",
-    "grunt-postcss": "^0.7.1"
+    "grunt-postcss": "^0.7.1",
+    "grunt-cli": "^1.2.0",
+    "grunt-ng-annotate": "^2.0.2"
   }
 }

@@ -1,4 +1,4 @@
-/*! mkmobile - v2.1.0 - 2016-09-16
+/*! mkmobile - v2.1.1 - 2016-09-26
  * Author: Steffen Baumgart <steffen@baumgart.biz>
  * https://github.com/bra1n/mkmobile
  * Copyright (c) 2016 ; Sammelkartenmarkt Ltd. & Co. KG */
