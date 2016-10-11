@@ -1,6 +1,7 @@
 angular.module 'mkmobile.services.api', ['ngResource']
 .factory 'MkmApi', ($resource) ->
-  sessionAuth = JSON.parse(sessionStorage.getItem('auth')) or {}
+  sessionAuth = {}
+  try sessionAuth = JSON.parse(sessionStorage.getItem('auth')) or {}
   auth =
     consumerKey:    window.consumerKey or 'alb03sLPpFNAhi6f'
     consumerSecret: window.consumerSecret or 'HTIcbso87X22JdS3Yk89c2CojfZiNDMX'

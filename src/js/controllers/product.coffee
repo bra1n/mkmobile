@@ -5,7 +5,8 @@ angular.module 'mkmobile.controllers.product', []
   @screen = $stateParams.screen
   @languages = MkmApiStock.getLanguages()
   @conditions = MkmApiStock.getConditions()
-  @filter = JSON.parse(sessionStorage.getItem("filter")) or {}
+  @filter = {}
+  try @filter = JSON.parse(sessionStorage.getItem("filter")) or {}
 
   # get product data
   @productData = MkmApiMarket.product $stateParams.idProduct
@@ -33,13 +34,13 @@ angular.module 'mkmobile.controllers.product', []
     if @filter.inUse
       @data = MkmApiMarket.articles $stateParams.idProduct, @filter
     @filter = {}
-    sessionStorage.removeItem "filter"
+    try sessionStorage.removeItem "filter"
 
   # use filter
   @applyFilter = =>
     delete @filter.inUse
     @filter.inUse = !!Object.keys(@filter).length
-    sessionStorage.setItem "filter", JSON.stringify @filter
+    try sessionStorage.setItem "filter", JSON.stringify @filter
     @data = MkmApiMarket.articles $stateParams.idProduct, @filter
     @show ''
 

@@ -16,9 +16,10 @@ angular.module 'mkmobile.services.auth', []
   logout: ->
     MkmApi.api.accountLogout()
     MkmApi.auth.secret = MkmApi.auth.token = MkmApi.auth.username = ""
-    sessionStorage.removeItem "auth"
-    sessionStorage.removeItem "search"
-    sessionStorage.removeItem "filter"
+    try
+      sessionStorage.removeItem "auth"
+      sessionStorage.removeItem "search"
+      sessionStorage.removeItem "filter"
     DataCache.reset()
     $rootScope.$broadcast '$authChange', {}
     $state.go "login"
@@ -50,7 +51,7 @@ angular.module 'mkmobile.services.auth', []
         MkmApi.auth.secret = data.oauth_token_secret
         MkmApi.auth.username = data.account.username
         # store auth data in the session
-        sessionStorage.setItem "auth", JSON.stringify {
+        try sessionStorage.setItem "auth", JSON.stringify {
           token: MkmApi.auth.token
           secret: MkmApi.auth.secret
           username: MkmApi.auth.username
