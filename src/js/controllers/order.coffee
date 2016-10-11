@@ -6,9 +6,10 @@ angular.module 'mkmobile.controllers.order', []
   $window.scrollTo(0,0) if $scope.idOrder?
 
   $scope.$watch "tab", (status) ->
-    sessionStorage.setItem $scope.mode + 'Tab', $scope.tab
+    try sessionStorage.setItem $scope.mode + 'Tab', $scope.tab
     $scope.data = MkmApiOrder.get {mode: $scope.mode, status, idOrder: $scope.idOrder}
-  $scope.tab = sessionStorage.getItem($scope.mode + 'Tab') or "bought"
+  $scope.tab = "bought"
+  try $scope.tab = sessionStorage.getItem($scope.mode + 'Tab') or "bought"
 
   $scope.loadOrders = ->
     return if $scope.data.orders.length >= $scope.data.count or $scope.data.loading

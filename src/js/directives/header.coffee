@@ -4,7 +4,7 @@ angular.module 'mkmobile.directives.header', []
   restrict: 'E'
   templateUrl: '/partials/directives/header.html'
   link: (scope) ->
-    scope.query = sessionStorage.getItem("search") or ""
+    try scope.query = sessionStorage.getItem("search") or ""
     scope.sort = "enName"
     scope.gameId = window.gameId or 1
     scope.languages = MkmApiAuth.getLanguages()
@@ -43,7 +43,7 @@ angular.module 'mkmobile.directives.header', []
 
     # searching
     scope.$watch 'query', (query) ->
-      sessionStorage.setItem "search", query
+      try sessionStorage.setItem "search", query
       scope.results = MkmApiMarket.search query
     # listen to route changes
     scope.$on '$stateChangeSuccess', (event, current) ->

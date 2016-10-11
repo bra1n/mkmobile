@@ -12,7 +12,7 @@ angular.module 'mkmobile.controllers.stock', []
   # search logic / loading article data
   $scope.$watch 'query', (query) ->
     $scope.selected = []
-    sessionStorage.setItem "searchStock", query
+    try sessionStorage.setItem "searchStock", query
     if !query or $stateParams.articleId
       $scope.data = MkmApiStock.get $stateParams.articleId
     else
@@ -24,7 +24,8 @@ angular.module 'mkmobile.controllers.stock', []
         MkmApiStock.get $stateParams.articleId, $scope.data
       else
         MkmApiStock.search $scope.query, $scope.data
-  $scope.query = sessionStorage.getItem("searchStock") or ""
+  $scope.query = ""
+  try $scope.query = sessionStorage.getItem("searchStock") or ""
 
   # change article counts
   $scope.increase = (articles) -> MkmApiStock.updateBatch articles, 1

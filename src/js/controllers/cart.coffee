@@ -49,7 +49,7 @@ angular.module 'mkmobile.controllers.cart', []
     return unless confirm text
     $scope.clicked = yes
     MkmApiCart.checkout ->
-      sessionStorage.setItem 'buysTab', (if $scope.method is 'instabuy' then 'paid' else 'bought')
+      try sessionStorage.setItem 'buysTab', (if $scope.method is 'instabuy' then 'paid' else 'bought')
       $location.path switch $scope.method
         when 'paypal' then '/payment/paypal'
         when 'bank' then '/payment/bank'
