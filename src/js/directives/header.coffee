@@ -1,6 +1,6 @@
 # header with search functionality
 angular.module 'mkmobile.directives.header', []
-.directive 'mkmHeader', (MkmApiAuth, MkmApiMarket, MkmApiCart, $state) ->
+.directive 'mkmHeader', (MkmApiAuth, MkmApiMarket, MkmApiCart, $state, $transitions) ->
   restrict: 'E'
   templateUrl: '/partials/directives/header.html'
   link: (scope) ->
@@ -46,9 +46,9 @@ angular.module 'mkmobile.directives.header', []
       try sessionStorage.setItem 'search', query
       scope.results = MkmApiMarket.search query
     # listen to route changes
-    scope.$on '$stateChangeSuccess', (event, current) ->
+    $transitions.onSuccess {}, (trans) ->
       scope.searchOpen = scope.menuOpen = no
-      if current.name is 'login'
+      if trans.to().name is 'login'
         scope.searchOpen = yes
         scope.query = ''
     # listen to language changes

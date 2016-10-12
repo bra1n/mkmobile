@@ -4,7 +4,7 @@ body.message {
     li {
       span.time, button {
         font-weight: bold;
-        color: $mkmBlue;
+        color: $mkm-blue;
         float:right;
         line-height: 24px;
         font-size: 12px;
@@ -46,7 +46,7 @@ body.message {
         }
         button { height: 16px; }
         p { margin:0; white-space: pre-wrap; }
-        &.unread div { border-left: 5px solid #0240ca; }
+        &.unread div { border-left: 5px solid $mkm-link; }
         &.sending div {
           background: #d1d7e4;
           margin-left: 20px;
@@ -91,7 +91,7 @@ body.message {
         border-bottom: 1px solid #ccc;
         padding: 10px 25px 10px 10px;
         &:nth-child(even) { background: #fafafa; }
-        &.unread { border-left: 5px solid #0240ca; }
+        &.unread { border-left: 5px solid $mkm-link; }
         &.sending p:before { content:"↪ "; }
         a { display: block; }
         &:after { right: 10px; }

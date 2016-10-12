@@ -13,3 +13,5 @@ ratings:
 exclude_paths:
 - dist/
 - Gruntfile.coffee
+- README.md
+- *.json

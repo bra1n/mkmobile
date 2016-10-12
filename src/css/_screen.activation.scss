@@ -38,7 +38,7 @@ body.activation {
         height: 16px;
         margin: 10px 5px;
         border-radius: 50%;
-        border: 2px solid $mkmBlue;
+        border: 2px solid $mkm-blue;
         text-align: center;
         line-height: 18px;
         vertical-align: middle;
@@ -52,13 +52,13 @@ body.activation {
           transition: all 0.25s;
         }
         &.active:before {
-          background: $mkmBlue;
+          background: $mkm-blue;
         }
       }
     }
 
     .invalid {
-      border-color: $mkmRed;
+      border-color: $mkm-red;
     }
 
     /* bottom line buttons */
@@ -71,7 +71,7 @@ body.activation {
       button {
         padding: 10px 30px;
         font-size: 18px;
-        color: $mkmBlue;
+        color: $mkm-blue;
         background: none;
         letter-spacing: 1px;
         border: none;

@@ -2,7 +2,7 @@
 
 [![Code Climate](https://codeclimate.com/github/bra1n/mkmobile/badges/gpa.svg)](https://codeclimate.com/github/bra1n/mkmobile)
 
-MagicCardMarket Mobile Client
+The MagicCardMarket Mobile Client is an Angular 1.5 based mobile app, developed with CoffeeScript and SCSS and built with Grunt.  
 
 [Live Demo](https://m.magiccardmarket.eu)
 

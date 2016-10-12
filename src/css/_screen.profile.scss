@@ -10,7 +10,7 @@ body.profile {
         flex-shrink: 0;
       }
       b {
-        color: $mkmBlue;
+        color: $mkm-blue;
         word-break: break-all;
         span {
           display: block;
@@ -20,8 +20,8 @@ body.profile {
         vertical-align: baseline;
         margin-right: 5px;
       }
-      .username { color: $mkmGreen; }
-      .username.vacation { color: $mkmRed; }
+      .username { color: $mkm-green; }
+      .username.vacation { color: $mkm-red; }
       input { margin-right: 5px; }
       textarea {
         width: 100%;

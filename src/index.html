@@ -63,7 +63,7 @@
   </script>
   <link media="screen, projection" rel="stylesheet" type="text/css" href="/css/styles.css">
 </head>
-<body ng-class="[language, loggedIn ? 'loggedin':'loggedout', viewClass]">
+<body ng-class="[language, viewClass, loggedIn ? 'loggedin':'loggedout']">
   <div id="container">
     <mkm-header></mkm-header>
     <div ui-view id="content"></div>

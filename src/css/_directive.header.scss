@@ -25,7 +25,7 @@ header {
       top: 50%;
       margin-top: -20px;
       font-size: 20px;
-      color: $mkmBlue;
+      color: $mkm-blue;
     }
     input {
       border-radius: 15px;
@@ -45,7 +45,7 @@ header {
       top: 50%;
       font-size: 24px;
       margin-top: -21px;
-      color: $mkmBlue;
+      color: $mkm-blue;
       padding: 2px 0;
     }
   }
@@ -77,11 +77,11 @@ header {
     margin: 0 5px;
     cursor: pointer;
     position: relative;
-    color: $mkmBlue;
+    color: $mkm-blue;
   }
   // counter overlay for shopping cart
   span.counter {
-    background: red;
+    background: $mkm-red;
     position: absolute;
     top: 3px;
     right: 1px;
@@ -123,8 +123,8 @@ body.loggedout header .logo {
     a {
       font-size: 18px;
       margin: 0 2px;
-      &.used { color: $mkmRed; }
-      &.active { color: $mkmGold; }
+      &.used { color: $mkm-red; }
+      &.active { color: $mkm-gold; }
     }
   }
   a { color: white; }

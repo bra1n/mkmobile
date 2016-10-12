@@ -9,7 +9,7 @@ mkm-order {
       display: flex;
       align-items: center;
       font-weight: bold;
-      color: $mkmBlue;
+      color: $mkm-blue;
       border-bottom: 1px solid #ccc;
       padding: 10px;
       &:nth-child(even) { background: #fafafa; }

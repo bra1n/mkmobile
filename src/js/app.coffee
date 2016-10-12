@@ -218,7 +218,8 @@ mkmobileApp.config ($httpProvider) ->
   delete $httpProvider.defaults.headers.common['X-Requested-With']
   $httpProvider.interceptors.push ['$q', ($q) ->
     uniqueRequests = {}
-    # - if the request has a "unique" flag, cancel any currently running requests with that same flag
+    # - if the request has a "unique" flag,
+    #   cancel any currently running requests with that same flag
     # - generate OAuth header if provided
     # - transform payload into XML if right content type
     request: (config) ->
@@ -229,22 +230,25 @@ mkmobileApp.config ($httpProvider) ->
       config.headers.Authorization = generateOAuthHeader config if config.oauth?
       config.transformRequest = ((data) -> toXML data) if config.headers['Content-type']?
       config or $q.when config
-    # if the response has a Range header, parse it and put it into the data as _count property
+    # if the response has a Range header,
+    # parse it and put it into the data as _count property
     response: (response) ->
-      if response.headers()['content-range']?
-        response.data._range = parseInt(response.headers()['content-range'].replace(/^.*\//,''),10) or 0
+      range = response.headers()['content-range']
+      if range?
+        response.data._range = parseInt(range.replace(/^.*\//, ''), 10) or 0
       response or $q.when response
   ]
 
 # i18n
 mkmobileApp.config (tmhDynamicLocaleProvider, $translateProvider) ->
   # translations
-  language = switch (navigator.language or navigator.userLanguage).toLowerCase().substr(0,2)
-    when "fr" then "fr_FR"
-    when "de" then "de_DE"
-    when "es" then "es_ES"
-    when "it" then "it_IT"
-    else "en_GB"
+  languageCode = (navigator.language or navigator.userLanguage).toLowerCase().substr(0, 2)
+  language = switch languageCode
+    when 'fr' then 'fr_FR'
+    when 'de' then 'de_DE'
+    when 'es' then 'es_ES'
+    when 'it' then 'it_IT'
+    else 'en_GB'
   $translateProvider
   .useStaticFilesLoader
     prefix: '/translations/lang-',
@@ -256,20 +260,23 @@ mkmobileApp.config (tmhDynamicLocaleProvider, $translateProvider) ->
   tmhDynamicLocaleProvider.localeLocationPattern '/lib/angular-i18n/angular-locale_{{locale}}.js'
   tmhDynamicLocaleProvider.defaultLocale language.replace(/_/, '-').toLowerCase()
 
-# generate a base CSS class based on the route path and check login for auth routes
-mkmobileApp.run ($rootScope, MkmApiAuth, $translate) ->
+# generate a base CSS class based on the route path
+# and check login for auth routes
+mkmobileApp.run ($rootScope, MkmApiAuth, $translate, $transitions) ->
   # update title and view class
-  translateTitle = -> $translate(['titles.app','titles.'+$rootScope.viewClass]).then (texts) ->
-    $rootScope.viewTitle = texts['titles.app'] + ' — ' + texts['titles.'+$rootScope.viewClass]
-    $rootScope.language = $translate.use().substr(0,2)
-    $rootScope.languageId = MkmApiAuth.getLanguage()
+  translateTitle = ->
+    $translate(['titles.app', 'titles.'+$rootScope.viewClass]).then (texts) ->
+      $rootScope.viewTitle = texts['titles.app'] + ' — '
+      $rootScope.viewTitle += texts['titles.'+$rootScope.viewClass]
+      $rootScope.language = $translate.use().substr(0, 2)
+      $rootScope.languageId = MkmApiAuth.getLanguage()
   # check login
-  $rootScope.$on '$stateChangeStart', (event, next) ->
-    event.preventDefault() unless next.noLogin or MkmApiAuth.checkLogin(next)
+  $transitions.onBefore {}, (trans) ->
+    return trans.to().noLogin or MkmApiAuth.checkLogin(trans.to())
   # new page, update view class and title
-  $rootScope.$on '$stateChangeSuccess', (event, current) ->
-    if current.name
-      $rootScope.viewClass = current.name.split(".").shift()
+  $transitions.onSuccess {}, (trans) ->
+    if trans.to().name
+      $rootScope.viewClass = trans.to().name.split(".").shift()
       $rootScope.loggedIn = MkmApiAuth.isLoggedIn()
       $rootScope.username = MkmApiAuth.getUsername()
       translateTitle()
@@ -288,10 +295,17 @@ generateOAuthHeader = (config) ->
     oauth_token: auth.token
     oauth_version: "1.0"
     oauth_signature: ""
-  paramOrder = ["oauth_consumer_key","oauth_nonce","oauth_signature_method","oauth_timestamp","oauth_token","oauth_version"]
+  paramOrder = [
+    "oauth_consumer_key",
+    "oauth_nonce",
+    "oauth_signature_method",
+    "oauth_timestamp",
+    "oauth_token",
+    "oauth_version"
+  ]
   # add query parameters if present
   for key,value of config.params
-    params[key] = encodeURIComponent value #.toString().replace /[ ]/g, '+' # wonky implementation for space encoding
+    params[key] = encodeURIComponent value
     paramOrder.push key
   signatureParams = []
   signatureParams.push param+"="+params[param] for param in paramOrder.sort()
