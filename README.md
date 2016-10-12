@@ -1,5 +1,7 @@
 # mkmobile
 
+[![Code Climate](https://codeclimate.com/github/bra1n/mkmobile/badges/gpa.svg)](https://codeclimate.com/github/bra1n/mkmobile)
+
 MagicCardMarket Mobile Client
 
 [Live Demo](https://m.magiccardmarket.eu)
