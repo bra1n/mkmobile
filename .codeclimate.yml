@@ -1,0 +1,17 @@
+---
+engines:
+  coffeelint:
+    enabled: true
+  fixme:
+    enabled: true
+  scss-lint:
+    enabled: true
+    config:
+      scss_files: 'src/**/*.scss'
+ratings:
+  paths:
+  - "src/**/*.coffee"
+  - "src/**/*.scss"
+exclude_paths:
+- dist/
+- Gruntfile.coffee
