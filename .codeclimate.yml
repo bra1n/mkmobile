@@ -12,6 +12,8 @@ ratings:
   - "src/**/*.scss"
 exclude_paths:
 - dist/
+- src/img/
+- src/fonts/
 - Gruntfile.coffee
 - README.md
 - bower.json

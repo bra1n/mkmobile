@@ -1,159 +1,181 @@
 // order page
 body.order {
-  #content header {
+  .order-header {
     padding: 0 30px;
+
     span {
+      margin-right: 5px;
       overflow: hidden;
       text-overflow: ellipsis;
-      margin-right: 5px;
     }
   }
-  article {
-    .tabs {
-      padding: 10px 10px 0;
-      background: #eaeaea;
-      border-bottom: 1px solid #ccc;
-      box-shadow: inset 0 -1px 1px rgba(0,0,0,0.2);
-      li {
-        display: inline-block;
-        width: 25%;
-        vertical-align: top;
-        text-align: center;
-        cursor: pointer;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-        padding: 10px 0;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-        border: 1px solid #ccc;
-        border-bottom: none;
-        box-shadow: inset 0 1px 1px #fff;
-        font-weight: bold;
-        color: $mkm-blue;
-        font-size: 16px;
-        transition: background-color 0.5s;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        &.current {
-          background: $mkm-background;
-          position: relative;
-          margin-bottom: -1px;
-          padding-bottom: 11px;
-        }
-      }
-    }
-    div.orders {
-      padding-top: 10px;
-      h3 {
-        color: #9e9e9e;
-        font-size: 12px;
-      }
-      li {
-        border-bottom: 1px solid #ccc;
-        padding: 10px;
-        position: relative;
-        &:nth-child(even) { background: #fafafa; }
-        a {
-          display: block;
-          color: #444;
-        }
-        .red { color: $mkm-red; }
-      }
-    }
 
-    div.order {
+  .tabs {
+    background: $mkm-lightgray;
+    border-bottom: 1px solid $mkm-gray;
+    box-shadow: inset 0 -1px 1px rgba(0, 0, 0, .2);
+    padding: 10px 10px 0;
+
+    li {
+      border: 1px solid $mkm-gray;
+      border-bottom: 0;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      box-shadow: inset 0 1px 1px $mkm-white;
+      box-sizing: border-box;
+      color: $mkm-blue;
+      cursor: pointer;
+      display: inline-block;
+      font-size: 16px;
+      font-weight: bold;
+      overflow: hidden;
+      padding: 10px 0;
       text-align: center;
-      padding-bottom: 10px;
-      div.status { padding: 10px; }
-      div.evaluation { padding: 10px; }
-      button { margin-top: 10px; }
-      b, span {
-        display: inline-block;
-        width: 50%;
-        vertical-align: top;
-      }
-      b { text-align: left; white-space: nowrap; }
-      span { text-align: right; }
-      .cancelrequest { text-align: left; }
-      textarea {
-        width: 100%;
-        margin-top: 10px;
-      }
+      text-overflow: ellipsis;
+      transition: background-color .5s;
+      vertical-align: top;
+      width: 25%;
     }
 
-    div.outstanding {
-      border-top: 1px solid #ccc;
+    .current {
+      background: $mkm-background;
+      margin-bottom: -1px;
+      padding-bottom: 11px;
+      position: relative;
+    }
+  }
+
+  div.orders {
+    padding-top: 10px;
+
+    h3 {
+      color: $mkm-darkgray;
+      font-size: 12px;
+    }
+
+    li {
+      border-bottom: 1px solid $mkm-gray;
       padding: 10px;
-      text-align: center;
-      .button { margin-top: 10px; }
+      position: relative;
+    }
+
+    li:nth-child(even) { background: $mkm-listeven; }
+
+    a {
+      color: $mkm-darkgray;
+      display: block;
+    }
+
+    .red { color: $mkm-red; }
+  }
+
+  div.order {
+    padding-bottom: 10px;
+    text-align: center;
+    div.status { padding: 10px; }
+    div.evaluation { padding: 10px; }
+    button { margin-top: 10px; }
+    b,
+    span {
+      display: inline-block;
+      vertical-align: top;
+      width: 50%;
+    }
+
+    b { text-align: left; white-space: nowrap; }
+    span { text-align: right; }
+    .cancelrequest { text-align: left; }
+    textarea {
+      margin-top: 10px;
+      width: 100%;
     }
   }
+
+  div.outstanding {
+    border-top: 1px solid $mkm-gray;
+    padding: 10px;
+    text-align: center;
+    .button { margin-top: 10px; }
+  }
+
   // evaluation
   article.evaluation {
     text-align: center;
+
     li.guidelines {
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid $mkm-gray;
       padding: 10px;
     }
+
     form {
       padding: 10px;
-      label, select {
-        display: inline-block;
-        width: 50%;
-        text-align: left;
-        vertical-align: top;
-        line-height: 25px;
-        margin-bottom: 10px;
-      }
-      #complaints {
-        height: 75px;
-      }
-      .icon {
-        position: absolute;
-        margin-left: -20px;
-        margin-top: 5px;
-      }
-      input {
-        width: 100%;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-        margin-bottom: 10px;
-      }
     }
-    div.overlay {
+
+    label,
+    select {
+      display: inline-block;
+      line-height: 25px;
+      margin-bottom: 10px;
+      text-align: left;
+      vertical-align: top;
+      width: 50%;
+    }
+
+    .complaints {
+      height: 75px;
+    }
+
+    .icon {
+      margin-left: -20px;
+      margin-top: 5px;
       position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(255,255,255,0.9);
-      opacity: 1;
-      transition: all 0.5s linear;
-      overflow: auto;
-      &.ng-hide-add, &.ng-hide-remove { display:block!important; }
-      &.ng-hide { opacity:0; }
-      li {
-        text-align: left;
-        padding: 10px;
-      }
-      button { margin: 10px 0; }
     }
-    div.view {
+
+    input {
+      box-sizing: border-box;
+      margin-bottom: 10px;
+      width: 100%;
+    }
+
+    div.overlay {
+      background: rgba(255, 255, 255, .9);
+      bottom: 0;
+      left: 0;
+      opacity: 1;
+      overflow: auto;
+      position: absolute;
+      right: 0;
+      transition: all .5s linear;
+
+      li {
+        padding: 10px;
+        text-align: left;
+      }
+
+      button {
+        margin: 10px 0;
+      }
+    }
+
+    div.view-evaluation {
       padding: 10px;
-      b, span {
+
+      b,
+      span {
+        box-sizing: border-box;
         display: inline-block;
-        width: 50%;
-        vertical-align: top;
         line-height: 25px;
         margin-bottom: 10px;
-        text-align: left;
         padding-right: 20px;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
+        text-align: left;
+        vertical-align: top;
+        width: 50%;
       }
+
       .icon {
-        position: absolute;
         margin-left: -20px;
         margin-top: 5px;
+        position: absolute;
       }
     }
   }
