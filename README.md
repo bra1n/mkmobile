@@ -1,4 +1,4 @@
-# mkmobile
+# MagicCardMarket Mobile Client
 
 [![Code Climate](https://codeclimate.com/github/bra1n/mkmobile/badges/gpa.svg)](https://codeclimate.com/github/bra1n/mkmobile)
 
