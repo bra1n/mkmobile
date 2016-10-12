@@ -14,4 +14,6 @@ exclude_paths:
 - dist/
 - Gruntfile.coffee
 - README.md
-- *.json
+- bower.json
+- coffeelint.json
+- package.json
