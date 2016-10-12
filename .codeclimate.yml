@@ -6,8 +6,6 @@ engines:
     enabled: true
   scss-lint:
     enabled: true
-    config:
-      scss_files: 'src/**/*.scss'
 ratings:
   paths:
   - "src/**/*.coffee"
