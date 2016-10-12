@@ -29,7 +29,7 @@
       <div class="comment" ng-show="article.showComment">{{::article.comments}}</div>
       <div class="article">
         <span class="icon language language-{{::article.language.idLanguage}}"></span>
-        <span class="icon grading grading-{{::article.condition}}"></span>
+        <span class="icon grading grading-{{::article.condition.toLowerCase()}}"></span>
         <span class="icon is-foil" ng-if="::article.isFoil"></span>
         <span class="icon is-signed" ng-if="::article.isSigned"></span>
         <span class="icon is-altered" ng-if="::article.isAltered"></span>

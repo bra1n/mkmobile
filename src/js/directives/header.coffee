@@ -4,8 +4,8 @@ angular.module 'mkmobile.directives.header', []
   restrict: 'E'
   templateUrl: '/partials/directives/header.html'
   link: (scope) ->
-    try scope.query = sessionStorage.getItem("search") or ""
-    scope.sort = "enName"
+    try scope.query = sessionStorage.getItem('search') or ''
+    scope.sort = 'enName'
     scope.gameId = window.gameId or 1
     scope.languages = MkmApiAuth.getLanguages()
     MkmApiAuth.getAccount (data) ->
@@ -22,8 +22,8 @@ angular.module 'mkmobile.directives.header', []
     # toggle search
     scope.toggleSearch = ->
       if scope.searchOpen
-        scope.searchOpen = no unless scope.query or $state.is "login"
-        scope.query = ""
+        scope.searchOpen = no unless scope.query or $state.is 'login'
+        scope.query = ''
       else
         scope.searchOpen = yes
         scope.menuOpen = no
@@ -33,7 +33,7 @@ angular.module 'mkmobile.directives.header', []
         scope.menuOpen = no
       else
         scope.menuOpen = yes
-        scope.searchOpen = no unless $state.is "login"
+        scope.searchOpen = no unless $state.is 'login'
 
     # infinite scrolling
     scope.loadResults = ->
@@ -43,18 +43,20 @@ angular.module 'mkmobile.directives.header', []
 
     # searching
     scope.$watch 'query', (query) ->
-      try sessionStorage.setItem "search", query
+      try sessionStorage.setItem 'search', query
       scope.results = MkmApiMarket.search query
     # listen to route changes
     scope.$on '$stateChangeSuccess', (event, current) ->
       scope.searchOpen = scope.menuOpen = no
-      if current.name is "login"
+      if current.name is 'login'
         scope.searchOpen = yes
-        scope.query = ""
+        scope.query = ''
     # listen to language changes
     scope.$root.$on '$translateChangeSuccess', ->
       scope.idLanguage = MkmApiAuth.getLanguage()
     # listen to cart changes
-    scope.$root.$on '$cartChange', (event, amount) -> scope.cart = amount
+    scope.$root.$on '$cartChange', (event, amount) ->
+      scope.cart = amount
     # listen to auth changes
-    scope.$root.$on '$authChange', (event, account) -> scope.isActivated = !!account.isActivated
+    scope.$root.$on '$authChange', (event, account) ->
+      scope.isActivated = !!account.isActivated

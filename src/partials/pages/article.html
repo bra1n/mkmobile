@@ -28,7 +28,7 @@
     <div ng-show="data.article.condition != null">
       <hr>
       <label for="condition" translate="article.condition"></label>
-      <span class="icon grading grading-{{data.article.condition}}"></span>
+      <span class="icon grading grading-{{data.article.condition.toLowerCase()}}"></span>
       <select id="condition" ng-options="condition as 'article.conditions.'+condition | translate for condition in conditions"
               ng-model="data.article.condition" required></select>
       <hr>

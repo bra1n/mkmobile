@@ -1,9 +1,9 @@
 {
   "arrow_spacing": {
-    "level": "ignore"
+    "level": "warn"
   },
   "braces_spacing": {
-    "level": "ignore",
+    "level": "warn",
     "spaces": 0,
     "empty_object_spaces": 0
   },
@@ -14,15 +14,15 @@
     "level": "error"
   },
   "colon_assignment_spacing": {
-    "level": "ignore",
+    "level": "warn",
     "spacing": {
       "left": 0,
-      "right": 0
+      "right": 1
     }
   },
   "cyclomatic_complexity": {
     "value": 10,
-    "level": "ignore"
+    "level": "warn"
   },
   "duplicate_key": {
     "level": "error"
@@ -34,14 +34,14 @@
     "level": "warn"
   },
   "eol_last": {
-    "level": "ignore"
+    "level": "error"
   },
   "indentation": {
     "value": 2,
     "level": "error"
   },
   "line_endings": {
-    "level": "ignore",
+    "level": "error",
     "value": "unix"
   },
   "max_line_length": {
@@ -50,7 +50,7 @@
     "limitComments": true
   },
   "missing_fat_arrows": {
-    "level": "ignore",
+    "level": "warn",
     "is_strict": false
   },
   "newlines_after_classes": {
@@ -68,7 +68,7 @@
     "level": "ignore"
   },
   "no_empty_param_list": {
-    "level": "ignore"
+    "level": "warn"
   },
   "no_implicit_braces": {
     "level": "ignore",
@@ -91,7 +91,7 @@
     "level": "error"
   },
   "no_this": {
-    "level": "ignore"
+    "level": "warn"
   },
   "no_throwing_strings": {
     "level": "error"
@@ -105,7 +105,7 @@
     "allowed_in_empty_lines": true
   },
   "no_unnecessary_double_quotes": {
-    "level": "ignore"
+    "level": "warn"
   },
   "no_unnecessary_fat_arrows": {
     "level": "warn"
@@ -114,14 +114,14 @@
     "level": "ignore"
   },
   "prefer_english_operator": {
-    "level": "ignore",
+    "level": "warn",
     "doubleNotLevel": "ignore"
   },
   "space_operators": {
     "level": "ignore"
   },
   "spacing_after_comma": {
-    "level": "ignore"
+    "level": "warn"
   },
   "transform_messes_up_line_numbers": {
     "level": "warn"

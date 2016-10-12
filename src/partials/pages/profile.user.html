@@ -37,7 +37,7 @@
     </li>
     <li>
       <div class="label" translate="profile.country">Country</div>
-      <i class="icon country country-{{profile.data.user.address.country}}"></i>
+      <i class="icon country country-{{profile.data.user.address.country.toLowerCase()}}"></i>
       <b>{{'address.countries.'+profile.data.user.address.country | translate}}</b>
     </li>
     <li ng-if="profile.data.user.phoneNumber">

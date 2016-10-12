@@ -46,7 +46,7 @@
            ng-class="{invalid: register.formError == 'city'}">
     </div>
     <label for="country" translate="address.country">Country:</label>
-    <span class="icon country" ng-class="'country-'+register.form.country"></span>
+    <span class="icon country" ng-class="'country-'+register.form.country.toLowerCase()"></span>
     <select name="country" id="country" ng-model="register.form.country" required ng-class="{invalid: register.formError == 'country'}"
             ng-options="country as 'address.countries.'+country | translate for country in register.countries"></select>
   </form>

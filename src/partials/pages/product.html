@@ -52,7 +52,7 @@
   </label>
   <label>
     <span translate="article.condition">Minimum Condition</span>
-    <i class="icon grading grading-{{product.filter.minCondition}}"></i>
+    <i class="icon grading grading-{{product.filter.minCondition.toLowerCase()}}"></i>
     <select ng-model="product.filter.minCondition">
       <option value="" translate="common.no_preference">No preference</option>
       <option ng-repeat="condition in product.conditions" value="{{condition}}"
@@ -123,7 +123,7 @@
   </label>
   <label>
     <span translate="article.condition">Condition</span>
-    <i class="icon grading grading-{{product.article.condition}}"></i>
+    <i class="icon grading grading-{{product.article.condition.toLowerCase()}}"></i>
     <select ng-model="product.article.condition" required>
       <option ng-repeat="condition in product.conditions" value="{{condition}}"
               translate="article.conditions.{{condition}}"></option>
@@ -185,7 +185,7 @@
       </div>
       <a ui-sref="user(article.seller)" ng-click="$event.stopPropagation()">
         {{::article.seller.username}}
-        <span ng-if="::article.seller.address.country" class="icon country country-{{::article.seller.address.country}}"></span>
+        <span ng-if="::article.seller.address.country" class="icon country country-{{::article.seller.address.country.toLowerCase()}}"></span>
       </a>
       <div class="extra" ng-if="article.open">
         <span translate="product.sales" translate-values="::{count:article.seller.sellCount}">123 Sales</span>
@@ -198,7 +198,7 @@
       </div>
       <div class="article">
         <span class="icon language language-{{::article.language.idLanguage}}"></span>
-        <span class="icon grading grading-{{::article.condition}}"></span>
+        <span class="icon grading grading-{{::article.condition.toLowerCase()}}"></span>
         <span class="icon is-foil" ng-if="::article.isFoil"></span>
         <span class="icon is-signed" ng-if="::article.isSigned"></span>
         <span class="icon is-altered" ng-if="::article.isAltered"></span>

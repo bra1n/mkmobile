@@ -61,7 +61,7 @@
   </label>
   <label>
     <span translate="product.filter.condition">Condition</span>
-    &ge; <i class="icon grading grading-{{wantslist.current.minCondition}}"></i>
+    &ge; <i class="icon grading grading-{{wantslist.current.minCondition.toLowerCase()}}"></i>
     <select ng-model="wantslist.current.minCondition" required>
       <option ng-repeat="condition in wantslist.conditions" value="{{condition}}"
               translate="article.conditions.{{condition}}"></option>
@@ -146,7 +146,7 @@
           <span ng-style="::item.product.expansionIcon | expansionIcon" ng-if="::item.product.expansionIcon"
                 class="icon expansion-{{::wantslist.data.list.game.idGame}}"></span>
           <span ng-repeat="language in ::item.idLanguage" class="icon language language-{{::language}}"></span>
-          <span ng-if="::item.minCondition">&ge;<i class="icon grading grading-{{::item.minCondition}}"></i></span>
+          <span ng-if="::item.minCondition">&ge;<i class="icon grading grading-{{::item.minCondition.toLowerCase()}}"></i></span>
           <span class="icon is-foil" ng-if="::item.isFoil"></span>
           <span class="icon is-signed" ng-if="::item.isSigned"></span>
           <span class="icon is-altered" ng-if="::item.isAltered"></span>

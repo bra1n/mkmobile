@@ -27,7 +27,7 @@
         <span>{{profile.account.homeAddress.extra}}</span>
         <span>{{profile.account.homeAddress.zip}} {{profile.account.homeAddress.city}}</span>
         <span>
-          <i class="icon country country-{{profile.account.homeAddress.country}}"></i>
+          <i class="icon country country-{{profile.account.homeAddress.country.toLowerCase()}}"></i>
           {{'address.countries.'+profile.account.homeAddress.country | translate}}
         </span>
       </b>

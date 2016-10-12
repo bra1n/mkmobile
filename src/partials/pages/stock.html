@@ -44,7 +44,7 @@
         <span ng-style="::article.product.expIcon | expansionIcon" ng-if="::article.product.expIcon"
               class="icon expansion-{{::article.product.idGame}}"></span>
         <span class="icon language language-{{::article.language.idLanguage}}" ng-if="::article.language.idLanguage"></span>
-        <span class="icon grading grading-{{::article.condition}}" ng-if="::article.condition"></span>
+        <span class="icon grading grading-{{::article.condition.toLowerCase()}}" ng-if="::article.condition"></span>
         <span class="icon is-foil" ng-if="::article.isFoil"></span>
         <span class="icon is-signed" ng-if="::article.isSigned"></span>
         <span class="icon is-playset" ng-if="::article.isPlayset"></span>
